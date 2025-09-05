@@ -10,6 +10,7 @@ import Carousel from "../../components/heroSection/Carousel";
 import adv1 from "../../assets/Posters/soap4.png";
 import adv2 from "../../assets/Posters/serum1.png";
 import adv3 from "../../assets/Posters/shampoo1.png";
+import adv4 from "../../assets/Posters/NoorByShayan.png";
 
 function Allproducts() {
   const [isFirstVisit, setIsFirstVisit] = useState(true);
@@ -40,6 +41,10 @@ function Allproducts() {
     {
       src: adv3,
       link: "/shampoo",
+    },
+    {
+      src: adv4,
+      link: "",
     },
   ];
 

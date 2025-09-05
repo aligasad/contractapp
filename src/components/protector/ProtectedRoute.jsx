@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Loader from '../loader/Loader.jsx';
+import Loader from "../loader/Loader.jsx";
 import { auth } from "../../firebase/FirebaseConfig.jsx";
 import { useAuth } from "./AuthContext.jsx";
 
@@ -17,10 +17,7 @@ function ProtectedRoute({ children }) {
     return () => clearInterval(timer);
   }, []); //mounting
 
-  if (isLoading)
-    return (
-      <Loader />
-    );
+  if (isLoading) return <Loader />;
 
   if (!user) return navigate("/login");
 

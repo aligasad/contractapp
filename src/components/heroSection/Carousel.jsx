@@ -2,6 +2,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 // Custom Arrow Components
 const NextArrow = ({ onClick }) => (
@@ -36,19 +37,26 @@ function Carousel({ images }) {
   };
 
   return (
-    <div className="relative w-full overflow-hidden sm:mb-[-10px]">
-      <Slider {...settings}>
-        {images.map((obj, index) => (
-          <div key={index} onClick={() => (window.location = obj.link)}>
-            <img
-              src={obj.src}
-              alt={`Slide ${index}`}
-              className="w-full h-18 sm:h-40 md:h-50  object-cover object-center cursor-pointer"
-            />
-          </div>
-        ))}
-      </Slider>
-    </div>
+    <motion.div
+      initial={{ opacity: 0, x: -100 }} // start off-screen to the left
+      animate={{ opacity: 1, x: 0 }} // move to center
+      exit={{ opacity: 0 }} // exit off-screen to the right
+      transition={{ duration: 1 }}
+    >
+      <div className="relative w-full overflow-hidden sm:mb-[-10px]">
+        <Slider {...settings}>
+          {images.map((obj, index) => (
+            <div key={index} onClick={() => (window.location = obj.link)}>
+              <img
+                src={obj.src}
+                alt={`Slide ${index}`}
+                className="w-full h-20 sm:h-30 md:h-50  object-cover object-center cursor-pointer"
+              />
+            </div>
+          ))}
+        </Slider>
+      </div>
+    </motion.div>
   );
 }
 

@@ -141,20 +141,20 @@ function App() {
           ),
         },
         {
-          path: '/return-policy',
-          element: <ReturnPolicy />
+          path: "/return-policy",
+          element: <ReturnPolicy />,
         },
         {
-          path: '/privacy-policy',
-          element: <PrivacyPolicy />
+          path: "/privacy-policy",
+          element: <PrivacyPolicy />,
         },
         {
-          path: '/terms&condition',
-          element: <TermsAndConditions />
+          path: "/terms&condition",
+          element: <TermsAndConditions />,
         },
         {
-          path: '/contact',
-          element: <Contact />
+          path: "/contact",
+          element: <Contact />,
         },
         {
           path: "/*",
@@ -167,31 +167,45 @@ function App() {
   const handleWhatsAppClick = () => {
     const phoneNumber = "917807040707";
     const message = "Hi, I am interested in your product!";
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+      message
+    )}`;
     window.open(url, "_blank"); // opens in new tab
   };
 
   const [isContactOpen, setIsContactOpen] = useState(false);
   return (
     <>
+      {/* // Scroll to top button */}
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        className="z-20 fixed bottom-8 sm:bottom-3 right-6 bg-[#019664] hover:bg-green-600 hover:shadow-lg hover:scale-105 text-white p-[10px] cursor-pointer rounded-full shadow-lg transition"
+        className="z-20 fixed bottom-8 sm:bottom-3 right-6 bg-[#449474] hover:bg-[#019664] hover:shadow-lg hover:scale-105 text-white p-[10px] cursor-pointer rounded-full shadow-lg transition"
       >
         <FaArrowUp size={25} />
       </button>
+      {/* WhatsApp Button */}
       <button
         onClick={handleWhatsAppClick}
-        className="z-20 fixed bottom-22 sm:bottom-16 right-6 bg-[#019664] hover:bg-green-600 hover:shadow-lg hover:scale-105 text-white p-[10px] cursor-pointer rounded-full shadow-lg transition"
+        className="z-20 fixed bottom-22 sm:bottom-16 right-6 bg-[#449474] hover:bg-[#019664] hover:shadow-lg hover:scale-105 text-white p-[10px] cursor-pointer rounded-full shadow-lg transition"
       >
         <BsWhatsapp size={25} />
       </button>
-
+      {/* Contact Button */}
       <button
         onClick={() => setIsContactOpen(!isContactOpen)}
-        className="cursor-pointer fixed bottom-6 left-6 bg-green-600 text-white p-[10px] rounded-full shadow-lg hover:bg-green-700 transition z-50 hover:scale-105"
+        className="cursor-pointer fixed bottom-6 left-6 bg-[#449474] text-white p-[10px] rounded-full shadow-lg hover:bg-[#019664] transition z-50 hover:scale-105"
       >
-        {isContactOpen ? <Icon icon={'mdi:close'} className="text-xl sm:text-2xl text-rose-600 font-bold" /> : <Icon icon={'mdi:email-arrow-right-outline'} className="text-2xl sm:text-3xl" />}
+        {isContactOpen ? (
+          <Icon
+            icon={"mdi:close"}
+            className="text-xl sm:text-2xl text-rose-600 font-bold"
+          />
+        ) : (
+          <Icon
+            icon={"mdi:email-arrow-right-outline"}
+            className="text-2xl sm:text-3xl"
+          />
+        )}
       </button>
 
       {/* Contact Form Panel */}

@@ -142,7 +142,7 @@ function Navbar() {
   return (
     <div className="bg-[#dfe3d6] sticky top-0 z-50 shadow-md">
       {/* Mobile View */}
-      <div className="lg:hidden flex justify-between items-center px-4 py-3">
+      <div className="md:hidden flex justify-between items-center px-4 py-3">
         <Link to="/" className="text-2xl font-bold text-green-700">
           <div className="border-2 border-green-700 p-1 rounded-full">
             <img
@@ -389,7 +389,7 @@ function Navbar() {
       )}
 
       {/* Desktop Header-------------------------------------------- */}
-      <div className="hidden lg:flex items-center justify-between px-8 py-1 bg-[#dfe3d6] border-b-2 border-[#4b9878]">
+      <div className="hidden md:flex items-center justify-between px-8 py-1 bg-[#dfe3d6] border-b-2 border-[#4b9878]">
         <div className="flex items-center gap-6">
           <Link
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
@@ -400,7 +400,7 @@ function Navbar() {
               <img src={logo} alt="Logo" className="w-10 h-auto rounded" />
             </div>
           </Link>
-          <nav className="hidden lg:flex gap-6 text-sm text-[#003d29]">
+          <nav className="hidden md:flex gap-6 text-sm text-[#003d29]">
             <Link to="/" className="hover:text-green-700 font-bold">
               Home
             </Link>
@@ -521,7 +521,7 @@ function Navbar() {
           </button> */}
 
           {/* Search Icon/Input on Large Screens */}
-          <div className="relative hidden lg:flex items-center">
+          <div className="relative hidden sm:flex items-center">
             {!searchBarOpen ? (
               <button
                 onClick={() => setSearchBarOpen(true)}
