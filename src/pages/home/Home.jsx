@@ -7,13 +7,12 @@ import { addToCart, deleteFromCart } from "../../redux/CartSlice";
 import { Link } from "react-router-dom";
 import { useData } from "../../context/data/MyState";
 import { motion } from "framer-motion";
-import Benefits from "../../components/benefits/Benefits";
 import HeroSection2 from "../../components/heroSection/HeroSection2";
 import ProductShow from "../../components/heroSection/ProductShow";
 import TransformSection from "../../components/heroSection/TransforSection";
 import TestimonialAnim from "../../components/testimonial/TestimonialAnim";
-import { FaArrowUp } from "react-icons/fa6";
 import CategoriesSection from "../../components/ProductCategory/ProductCategory";
+import Services from "../../components/OurServices/Services";
 
 function Home() {
   const { resetFilter } = useData();
@@ -34,14 +33,14 @@ function Home() {
         {/* <HeroSection /> */}
         <HeroSection2 />
       </motion.div>
-      <motion.div
+      {/* <motion.div
         initial={{ opacity: 0, x: -100 }}
         animate={{ opacity: 1, x: 0 }} 
         exit={{ opacity: 0 }} 
         transition={{ duration: 1 }}
       >
         <CategoriesSection />
-      </motion.div>
+      </motion.div> */}
 
       <motion.div
         initial={{ opacity: 0, y: 50 }}
@@ -50,10 +49,10 @@ function Home() {
         transition={{ duration: 1 }}
         onAnimationComplete={() => setIsFirstVisit(false)} // Remove animation after it's done
       >
-        <Benefits />
+        <Services />
       </motion.div>
 
-      <motion.div
+      {/* <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0 }}
@@ -61,9 +60,9 @@ function Home() {
         onAnimationComplete={() => setIsFirstVisit(false)} 
       >
         <ProductShow />
-      </motion.div>
+      </motion.div> */}
 
-      <motion.div
+      {/* <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0 }}
@@ -71,9 +70,9 @@ function Home() {
         onAnimationComplete={() => setIsFirstVisit(false)} 
       >
         <TransformSection />
-      </motion.div>
+      </motion.div> */}
 
-      <motion.div
+      {/* <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0 }}
@@ -81,7 +80,7 @@ function Home() {
         onAnimationComplete={() => setIsFirstVisit(false)} 
       >
         <ProductCard />
-      </motion.div>
+      </motion.div> */}
 
       {/* <ProductApi /> */}
       <div className="flex justify-center md:-mt-10 mb-4 ">

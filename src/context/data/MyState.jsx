@@ -9,7 +9,6 @@ import {
   onSnapshot,
   orderBy,
   query,
-  QuerySnapshot,
   setDoc,
   Timestamp,
 } from "firebase/firestore";
@@ -32,13 +31,17 @@ function MyState({ children }) {
   // For Loading...
   const [loading, setLoading] = useState(false);
 
-  // --------------------- AddProduct Function and get Product Function ---------------------
-  const [products, setProducts] = useState({
-    title: null,
-    price: null,
-    imageUrl: [],
-    category: null,
-    description: null,
+  // --------------------- AddWorker Function and get Worker Function ---------------------
+  const [workers, setWorkers] = useState({
+    name: "",
+    phone: "",
+    skills: "",
+    area: "",
+    city: "",
+    district: "",
+    experience: "",
+    profilePic: "",
+    aboutMe: "",
     time: Timestamp.now(),
     date: new Date().toLocaleString("en-US", {
       month: "short",
@@ -46,27 +49,24 @@ function MyState({ children }) {
       year: "numeric",
     }),
   });
-  // ------------- Add Product Section -------------------------------
-  const addProduct = async () => {
+
+  // ------------- Add Worker Section -------------------------------
+  const addWorker = async () => {
     if (
-      products.title === null ||
-      products.price === null ||
-      products.imageUrl === null ||
-      products.category === null ||
-      products.description === null
+      !workers.name 
     ) {
       return toast.warning("Please fill all fields");
     }
 
     setLoading(true);
     try {
-      const productRef = collection(firebaseDB, "products");
-      await addDoc(productRef, products);
-      toast.success("Product Added Successfully!");
+      const workerRef = collection(firebaseDB, "workers");
+      await addDoc(workerRef, workers);
+      toast.success("Worker Added Successfully!");
       setTimeout(() => {
         window.location.href = "/dashboard";
       });
-      getProductData();
+      getWorkerData();
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -74,24 +74,21 @@ function MyState({ children }) {
     }
   };
 
-  // -------------GET PRODUCT(hame firebase database se data lake ke dega) -----------
-  const [product, setProduct] = useState([]);
+  // -------------GET WORKERS from firebase -----------
+  const [worker, setWorker] = useState([]);
 
-  const getProductData = async () => {
+  const getWorkerData = async () => {
     setLoading(true);
     try {
-      const q = query(
-        collection(firebaseDB, "products"),
-        //It returns data after sorting according to its time
-        orderBy("time")
-      );
+      const q = query(collection(firebaseDB, "workers"), orderBy("time"));
 
       const data = onSnapshot(q, (QuerySnapshot) => {
-        let productArray = [];
+        let workerArray = [];
         QuerySnapshot.forEach((doc) => {
-          productArray.push({ ...doc.data(), id: doc.id });
+          workerArray.push({ ...doc.data(), id: doc.id });
         });
-        setProduct(productArray);
+              console.log("Firestore Data:", workerArray); // 👈 check karo yaha kya aa raha hai
+        setWorker(workerArray);
         setLoading(false);
       });
 
@@ -103,20 +100,22 @@ function MyState({ children }) {
   };
 
   useEffect(() => {
-    getProductData();
+    getWorkerData();
   }, []);
 
-  // Update and Delete peoducts only admine can do it-------------------------
-  //update product function ----------------------
+console.log("Fetched Workers", worker);
+
+  // Update and Delete workers only admin can do it-------------------------
   const editHandle = (item) => {
-    setProducts(item);
+    setWorkers(item);
   };
-  const updateProduct = async (item) => {
+
+  const updateWorker = async () => {
     setLoading(true);
     try {
-      await setDoc(doc(firebaseDB, "products", products.id), products);
-      toast.success("Product Updated Successfully!");
-      getProductData();
+      await setDoc(doc(firebaseDB, "workers", workers.id), workers);
+      toast.success("Worker Updated Successfully!");
+      getWorkerData();
       setTimeout(() => {
         window.location.href = "/dashboard";
       }, 1200);
@@ -127,14 +126,13 @@ function MyState({ children }) {
     }
   };
 
-  //delete product function --------------------
-  const deleteProduct = async (item) => {
+  const deleteWorker = async (item) => {
     setLoading(true);
     try {
-      await deleteDoc(doc(firebaseDB, "products", item.id));
-      toast.warning("Product Deleted Successfully!");
+      await deleteDoc(doc(firebaseDB, "workers", item.id));
+      toast.warning("Worker Deleted Successfully!");
       setLoading(false);
-      getProductData();
+      getWorkerData();
     } catch (error) {
       console.log(error);
       setLoading(false);
@@ -153,7 +151,6 @@ function MyState({ children }) {
         setLoading(false);
       });
       setOrder(ordersArray);
-      console.log(ordersArray);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -175,7 +172,6 @@ function MyState({ children }) {
         setLoading(false);
       });
       setUsers(usersArray);
-      console.log(usersArray);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -196,6 +192,7 @@ function MyState({ children }) {
   const [address, setAddress] = useState(null);
   const [error, setError] = useState(null);
   const API_KEY = "3818f79df26b48559714cb5d0ecc5bfe";
+
   useEffect(() => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(
@@ -214,7 +211,7 @@ function MyState({ children }) {
                 setError("No address found.");
               }
             })
-            .catch((err) => {
+            .catch(() => {
               setError("Error fetching address.");
             });
         },
@@ -234,44 +231,12 @@ function MyState({ children }) {
 
   // =======================FINDING PAGE============================
   const [pageType, setPageType] = useState("");
-  // ================================================================
-
-  // =================================================
-  // Offer on Product Function----------------------
-  const calcOffer = (price) => {
-    let discount = 0;
-
-    if (price >= 1000) {
-      discount = 0.2;
-    } else if (price >= 500) {
-      discount = 0.1;
-    } else if (price >= 100) {
-      discount = 0.05;
-    }
-
-    const discountedPrice = price - price * discount;
-    return discountedPrice.toFixed(2);
-  };
-
-  // =================================================
 
   function resetFilter() {
     setSearchkey("");
     setFilterPrice("");
     setFilterType("");
   }
-
-  // ============={ CALCULATE DISCOUNT }================
-
-  function calculateDiscount(original, selling) {
-    if (!original || !selling || Number(original) === 0) return 0;
-    const discount =
-      ((Number(original) - Number(selling)) / Number(original)) * 100;
-
-    return discount.toFixed(2);
-  }
-
-
 
   return (
     <MyContext.Provider
@@ -280,13 +245,13 @@ function MyState({ children }) {
         toggleMode,
         loading,
         setLoading,
-        products,
-        setProducts,
-        addProduct,
-        product,
+        workers,
+        setWorkers,
+        addWorker,
+        worker,
         editHandle,
-        updateProduct,
-        deleteProduct,
+        updateWorker,
+        deleteWorker,
         order,
         users,
         searchkey,
@@ -298,11 +263,9 @@ function MyState({ children }) {
         filterPrice,
         setFilterPrice,
         address,
-        calcOffer,
         resetFilter,
         pageType,
         setPageType,
-        calculateDiscount,
       }}
     >
       {children}

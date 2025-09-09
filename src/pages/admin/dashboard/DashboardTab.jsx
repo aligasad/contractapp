@@ -1,17 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import { MdOutlineProductionQuantityLimits } from "react-icons/md";
 import { FaUser, FaCartPlus } from "react-icons/fa";
 import { AiFillShopping, AiFillPlusCircle, AiFillDelete } from "react-icons/ai";
 import { useData } from "../../../context/data/MyState";
 import { FaEdit } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { MdWork } from "react-icons/md"; // worker icon
 
 function DashboardTab() {
   const context = useData();
-  const { mode, product, editHandle, deleteProduct, order, users } = context;
-  console.log(product);
+  const { mode, worker, searchkey, editHandle, deleteWorker, order, users } = context;
+  console.log(worker);
   let [isOpen, setIsOpen] = useState(false);
+
+  const [debouncedSearchKey, setDebouncedSearchKey] = useState(searchkey);
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedSearchKey(searchkey);
+    }, 600);
+    return () => {
+      clearTimeout(handler)
+    }
+  }, [searchkey])
 
   function closeModal() {
     setIsOpen(false);
@@ -22,9 +32,8 @@ function DashboardTab() {
   }
 
   const add = () => {
-    window.location.href = "/addproduct";
+    window.location.href = "/addworker";
   };
-
 
   return (
     <>
@@ -38,9 +47,9 @@ function DashboardTab() {
                   className="font-medium border-b-2 hover:shadow-purple-700 border-purple-500 text-purple-500 rounded-lg text-xl shadow-[inset_0_0_8px_rgba(0,0,0,0.6)]  px-5 py-1.5 text-center cursor-pointer bg-[#605d5d12] "
                 >
                   <div className="flex gap-2 items-center">
-                    <MdOutlineProductionQuantityLimits />
-                    Products
-                  </div>{" "}
+                    <MdWork />
+                    Workers
+                  </div>
                 </button>
               </Tab>
               <Tab>
@@ -49,7 +58,7 @@ function DashboardTab() {
                   className="font-medium border-b-2 border-[#439373] bg-[#605d5d12] text-[#439373]  hover:shadow-[#306852]  rounded-lg text-xl shadow-[inset_0_0_8px_rgba(0,0,0,0.6)]    px-5 py-1.5 text-center cursor-pointer "
                 >
                   <div className="flex gap-2 items-center">
-                    <AiFillShopping /> Order
+                    <AiFillShopping /> Orders
                   </div>
                 </button>
               </Tab>
@@ -64,18 +73,16 @@ function DashboardTab() {
                 </button>
               </Tab>
             </TabList>
-            {/* product  */}
+            {/* workers  */}
             <TabPanel>
               <div className="  px-4 md:px-0 mb-16">
                 <h1
                   className=" text-center mb-5 text-3xl font-semibold underline"
                   style={{ color: mode === "dark" ? "white" : "" }}
                 >
-                  Product Details
+                  Worker Details
                 </h1>
                 <div className=" flex justify-end">
-                  
-
                   <button
                     onClick={add}
                     type="button"
@@ -86,7 +93,7 @@ function DashboardTab() {
                     }}
                   >
                     <div className="flex gap-2 items-center">
-                      Add Product <FaCartPlus size={20} />
+                      Add Worker <FaCartPlus size={20} />
                     </div>
                   </button>
                 </div>
@@ -107,34 +114,46 @@ function DashboardTab() {
                           Image
                         </th>
                         <th scope="col" className="px-6 py-3">
-                          Title
+                          Worker Name
                         </th>
                         <th scope="col" className="px-6 py-3">
-                          Price
+                          Role
                         </th>
                         <th scope="col" className="px-6 py-3">
-                          Category
+                          Area
                         </th>
                         <th scope="col" className="px-6 py-3">
-                          Type
+                          City
                         </th>
                         <th scope="col" className="px-6 py-3">
-                          Date
+                          Experiance
                         </th>
                         <th scope="col" className="px-6 py-3">
                           Action
                         </th>
                       </tr>
                     </thead>
-                    {product.map((item, index) => {
+                    {worker.filter((obj) => {
+                        const key = debouncedSearchKey
+                          .toLowerCase()
+                          .trim()
+                          .replace(/\s+/g, " ");
+                        return (
+                          obj.city.toLowerCase().trim().replace(/\s+/g, " ").includes(key) ||
+                          obj.district.toLowerCase().trim().replace(/\s+/g, " ").includes(key) ||
+                          obj.area.toLowerCase().trim().replace(/\s+/g, " ").includes(key)
+                        );
+                      }).map((item, index) => {
                       const {
-                        title,
-                        price,
-                        imageUrl,
-                        category,
-                        type,
-                        description,
-                        date,
+                        name,
+                        phone,
+                        skills,
+                        area,
+                        city,
+                        district,
+                        experience,
+                        profilePic,
+                        aboutMe,
                       } = item;
                       return (
                         <tbody key={index} className="">
@@ -156,37 +175,37 @@ function DashboardTab() {
                               scope="row"
                               className="px-6 py-4 font-medium text-black whitespace-nowrap"
                             >
-                              <img className="w-16" src={imageUrl} alt="img" />
+                              <img className="w-16" src={profilePic} alt="img" />
                             </th>
                             <td
                               className="px-6 py-4 text-black "
                               style={{ color: mode === "dark" ? "white" : "" }}
                             >
-                              {title}
+                              {name}
                             </td>
                             <td
                               className="px-6 py-4 text-black "
                               style={{ color: mode === "dark" ? "white" : "" }}
                             >
-                              {"$" + price}
+                              {skills}
                             </td>
                             <td
                               className="px-6 py-4 text-black "
                               style={{ color: mode === "dark" ? "white" : "" }}
                             >
-                              {category}
+                              {area}
                             </td>
                             <td
                               className="px-6 py-4 text-black "
                               style={{ color: mode === "dark" ? "white" : "" }}
                             >
-                              {type}
+                              {city}
                             </td>
                             <td
                               className="px-6 py-4 text-black "
                               style={{ color: mode === "dark" ? "white" : "" }}
                             >
-                              {date}
+                              {experience}
                             </td>
                             <td className="px-6 py-4">
                               <div className=" flex gap-2">
@@ -199,11 +218,11 @@ function DashboardTab() {
                                   <div className="flex gap-4">
                                     <div className="text-xl hover:text-red-700">
                                       <AiFillDelete
-                                        onClick={() => deleteProduct(item)}
+                                        onClick={() => deleteWorker(item)}
                                       />
                                     </div>
                                     <div className="text-xl hover:text-red-700">
-                                      <Link to={"/updateproduct"}>
+                                      <Link to={"/updateworker"}>
                                         <FaEdit
                                           onClick={() => editHandle(item)}
                                         />
@@ -466,7 +485,7 @@ function DashboardTab() {
                             className="px-6 py-4 text-black "
                             style={{ color: mode === "dark" ? "white" : "" }}
                           >
-                            {uid?.slice(0, 15) }.....
+                            {uid?.slice(0, 15)}.....
                           </td>
                           <td
                             className="px-6 py-4 text-black "

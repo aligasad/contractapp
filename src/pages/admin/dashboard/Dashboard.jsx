@@ -5,9 +5,9 @@ import DashboardTab from "./DashboardTab";
 
 function Dashboard() {
   const context = useData();
-  const { mode, product, order, users } = context;
+  const { mode, worker, order, users } = context;
   let orderLength = order.length;
-  let productLength = product.length;
+  let workerLength = worker.length;
   let usersLength = users.length;
 
 
@@ -18,7 +18,7 @@ function Dashboard() {
       <div className="container px-5 mx-auto mb-15">
         <div className="flex flex-wrap justify-around -m-4 text-center">
           {[
-            { label: "Total Products", value: productLength },
+            { label: "Total Products", value: workerLength },
             { label: "Total Orders", value: orderLength },
             { label: "Total Users", value: usersLength },
           ].map((item, idx) => (

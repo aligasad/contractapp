@@ -14,22 +14,17 @@ import MyState from "./context/data/MyState.jsx";
 import Login from "./pages/registration/Login.jsx";
 import Signup from "./pages/registration/Signup.jsx";
 import ProductInfo from "./pages/productInfo/ProductInfo.jsx";
-import AddProduct from "./pages/admin/page/AddProduct.jsx";
-import UpdateProduct from "./pages/admin/page/UpdateProduct.jsx";
+import AddProduct from "./pages/admin/page/AddWorker.jsx";
+import UpdateProduct from "./pages/admin/page/UpdateWorker.jsx";
 import { ToastContainer, Bounce } from "react-toastify";
 import AuthProvider from "./components/protector/AuthContext.jsx";
 import ProtectedRoute from "./components/protector/ProtectedRoute.jsx";
 import Allproducts from "./pages/allproducts/Allproducts.jsx";
-import Serum1 from "./pages/allproducts/Serum/Serum.jsx";
 import AboutUs from "./components/aboutUs/AboutUs.jsx";
 import Profile from "./components/profile/Profile.jsx";
 import CompleteProfile from "./components/profile/CompleteProfile.jsx";
-import Soap from "./pages/allproducts/Soap/Soap.jsx";
-import LipGloss from "./pages/allproducts/LipGloss/LipGloss.jsx";
-import Shampoo from "./pages/allproducts/Shampoo/Shampoo.jsx";
-import Choclates from "./pages/allproducts/Choclates/Choclates.jsx";
 import { FaArrowUp } from "react-icons/fa";
-import Candles from "./pages/allproducts/Candles/Candles.jsx";
+import Aligarh from "./pages/allproducts/Aligarh/Aligarh.jsx";
 import { BsWhatsapp } from "react-icons/bs";
 import ReturnPolicy from "./components/aboutUs/ReturnPolicy.jsx";
 import TermsAndConditions from "./components/aboutUs/TermsAndCondition.jsx";
@@ -37,6 +32,10 @@ import PrivacyPolicy from "./components/aboutUs/PrivacyPolicy.jsx";
 import Contact from "./components/Contact/Contact.jsx";
 import { useState } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
+
+
+import BecomeWorker from "./components/WorkWhiz/BecomeWorker.jsx";
+import Narkatiaganj from "./pages/allproducts/Narkatiaganj/Narkatiaganj.jsx";
 
 function App() {
   const router = createBrowserRouter([
@@ -49,20 +48,28 @@ function App() {
           element: <Home />,
         },
         {
-          path: "/orders",
+          path: '/join',
           element: (
             <ProtectedRoute>
-              <Order />
+              <BecomeWorker />
             </ProtectedRoute>
-          ),
+          )
         },
         {
-          path: "/cart",
-          element: (
-            <ProtectedRoute>
-              <Cart />,
-            </ProtectedRoute>
-          ),
+          // path: "/orders",
+          // element: (
+          //   <ProtectedRoute>
+          //     <Order />
+          //   </ProtectedRoute>
+          // ),
+        },
+        {
+          // path: "/cart",
+          // element: (
+          //   <ProtectedRoute>
+          //     <Cart />,
+          //   </ProtectedRoute>
+          // ),
         },
         {
           path: "/dashboard",
@@ -89,29 +96,14 @@ function App() {
           element: <Allproducts />,
         },
         {
-          path: "/serum",
-          element: <Serum1 />,
+          path: "aligarh",
+          element: <Aligarh/>
         },
         {
-          path: "/shampoo",
-          element: <Shampoo />,
+          path: "narkatiaganj",
+          element: <Narkatiaganj />
         },
-        {
-          path: "/soap",
-          element: <Soap />,
-        },
-        {
-          path: "/lipgloss",
-          element: <LipGloss />,
-        },
-        {
-          path: "organicchocolates",
-          element: <Choclates />,
-        },
-        {
-          path: "candles",
-          element: <Candles />,
-        },
+        
         {
           path: "/complete-profile",
           element: <CompleteProfile />,
@@ -125,7 +117,7 @@ function App() {
           element: <Profile />,
         },
         {
-          path: "/addproduct",
+          path: "/addworker",
           element: (
             <ProtectedRouteForAdmin>
               <AddProduct />
@@ -133,7 +125,7 @@ function App() {
           ),
         },
         {
-          path: "/updateproduct",
+          path: "/updateworker",
           element: (
             <ProtectedRouteForAdmin>
               <UpdateProduct />
@@ -177,21 +169,21 @@ function App() {
   return (
     <>
       {/* // Scroll to top button */}
-      <button
+      {/* <button
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         className="z-20 fixed bottom-8 sm:bottom-3 right-6 bg-[#449474] hover:bg-[#019664] hover:shadow-lg hover:scale-105 text-white p-[10px] cursor-pointer rounded-full shadow-lg transition"
       >
         <FaArrowUp size={25} />
-      </button>
+      </button> */}
       {/* WhatsApp Button */}
-      <button
+      {/* <button
         onClick={handleWhatsAppClick}
         className="z-20 fixed bottom-22 sm:bottom-16 right-6 bg-[#449474] hover:bg-[#019664] hover:shadow-lg hover:scale-105 text-white p-[10px] cursor-pointer rounded-full shadow-lg transition"
       >
         <BsWhatsapp size={25} />
-      </button>
+      </button> */}
       {/* Contact Button */}
-      <button
+      {/* <button
         onClick={() => setIsContactOpen(!isContactOpen)}
         className="cursor-pointer fixed bottom-6 left-6 bg-[#449474] text-white p-[10px] rounded-full shadow-lg hover:bg-[#019664] transition z-50 hover:scale-105"
       >
@@ -206,7 +198,7 @@ function App() {
             className="text-2xl sm:text-3xl"
           />
         )}
-      </button>
+      </button> */}
 
       {/* Contact Form Panel */}
       {isContactOpen && <Contact onClose={() => setIsContactOpen(false)} />}

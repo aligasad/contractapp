@@ -12,12 +12,12 @@ import adv3 from "../../../assets/Posters/soap2.png";
 import adv4 from "../../../assets/Posters/soap4.png";
 import Carousel from "../../../components/heroSection/Carousel.jsx";
 
-function Soap() {
+function Narkatiaganj() {
   const [isFirstVisit, setIsFirstVisit] = useState(true);
   const context = useData();
   const {
     mode,
-    product,
+    worker,
     searchkey,
     setSearchkey,
     filterType,
@@ -102,8 +102,8 @@ function Soap() {
               </div>
 
               <div className="flex flex-wrap -m-4">
-                {product
-                  .filter((obj) => obj.type.toLowerCase().includes("soap"))
+                {worker
+                  .filter((obj) => obj.city.toLowerCase().includes("na"))
                   .filter(
                     (obj) =>
                       obj.title.toLowerCase().includes(searchkey) ||
@@ -117,16 +117,16 @@ function Soap() {
                   )
                   .map((item, index) => {
                     const {
-                      title,
-                      price,
-                      originalPrice,
-                      category,
-                      type,
-                      stock,
+                      name,
+                      phone,
+                      skills,
+                      profilePic,
+                      area,
+                      city,
+                      district,
                       isNew,
-                      quantity,
-                      imageUrl,
-                      id,
+                      experience,
+                      aboutMe,
                     } = item;
                     return (
                       <div
@@ -160,7 +160,7 @@ function Soap() {
                                   Sold Out
                                 </p>
                               )}
-                              {calculateDiscount(originalPrice, price) > 30 ? (
+                              {/* {calculateDiscount(originalPrice, price) > 30 ? (
                                 <p className="absolute bottom-0 right-0 px-3 text-[12px] text-rose-600 font-semibold z-10 border-t border-l bg-rose-200 rounded-tl-lg">
                                   {" "}
                                   Hot Deal{" "}
@@ -170,39 +170,39 @@ function Soap() {
                                   {" "}
                                   New{" "}
                                 </p>
-                              )}
+                              )} */}
                               <img
                                 onClick={() =>
                                   (window.location.href = `/productinfo/${id}`)
                                 }
                                 className="h-36 sm:h-44 object-contain transition-transform rounded-md duration-300 hover:scale-110 cursor-pointer"
-                                src={imageUrl}
-                                alt={title}
+                                src={profilePic}
+                                alt={name}
                               />
                             </div>
                             <div className="px-2 md:px-4 pb-4 border-t bg-[#003d29]  rounded-b-lg  border-gray-300">
                               <p className="text-xs text-white mt-2">
-                                <span className=" font-semibold">{type}</span> /{" "}
-                                {category}
+                                <span className=" font-semibold">{area}</span> /{" "}
+                                {/* {category} */}
                               </p>
                               <h2 className="text-sm font-semibold truncate text-gray-300">
-                                {title}
+                                {name}
                               </h2>
                               <h2 className="text-[12px] font-semibold truncate text-gray-300">
                                 <span>Quantity: </span>
-                                {quantity}
+                                {experience} Years
                               </h2>
                               <hr className="text-white mt-[3px]" />
                               <div className="flex items-baseline gap-1">
-                                <p className="text-[14px] md:text-base font-bold text-red-600 mt-1">
+                                {/* <p className="text-[14px] md:text-base font-bold text-red-600 mt-1">
                                   ${price}
                                 </p>
                                 <p className="text-[12px] md:text-[13px] sm:ml-1 font-semibold text-gray-100 line-through">
                                   ${originalPrice}
-                                </p>
+                                </p> */}
                               </div>
 
-                              <div className="flex items-center justify-between mt-2 w-[70%] sm:w-[55%]">
+                              {/* <div className="flex items-center justify-between mt-2 w-[70%] sm:w-[55%]">
                                 {stock > 0 ? (
                                   <button
                                     onClick={() => toggleCart(item)}
@@ -224,7 +224,7 @@ function Soap() {
                                     Out of Stock
                                   </button>
                                 )}
-                              </div>
+                              </div> */}
                             </div>
                           </div>
                         </motion.div>
@@ -240,4 +240,4 @@ function Soap() {
   );
 }
 
-export default Soap;
+export default Narkatiaganj;
