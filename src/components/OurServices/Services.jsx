@@ -118,7 +118,7 @@ const Services = () => {
               viewport={{ once: true }}
             >
               <div className="flex items-center justify-center mx-auto mb-1">
-                <img src={item.icon} className="h-14" />
+                <img src={item.icon} className="h-12, sm:h-13, md:h-14" />
               </div>
               <h3 className="text-sm sm:text-base text-[#03a6a1]">
                 {item.title}
