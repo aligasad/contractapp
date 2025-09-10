@@ -416,6 +416,16 @@ function BecomeWorker() {
               className="w-full border p-2 rounded"
               required
             />
+            <input
+              type="text"
+              placeholder="Professional In(eg. Invertor, Wiring etc)"
+              value={workers.professional || ""}
+              onChange={(e) =>
+                setWorkers({ ...workers, professional: e.target.value })
+              }
+              className="w-full border p-2 rounded"
+              required
+            />
 
             {/* District */}
             <select

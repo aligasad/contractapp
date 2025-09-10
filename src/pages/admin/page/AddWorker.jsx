@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useData } from "../../../context/data/MyState";
 
-function AddProduct() {
+function AddWorker() {
   const context = useData();
   const { workers, setWorkers, addWorker } = context;
 
@@ -45,13 +45,23 @@ function AddProduct() {
             value={workers.skills || ""}
             onChange={(e) => setWorkers({ ...workers, skills: e.target.value })}
           />
+          <input
+            type="text"
+            name="professional"
+            className="bg-green-50 border border-green-200 px-4 py-2 rounded-lg text-gray-800 placeholder:text-green-400 outline-none focus:ring-2 focus:ring-green-300"
+            placeholder="Professional In(eg. Invertor, Wiring etc)"
+            value={workers.professional || ""}
+            onChange={(e) => setWorkers({ ...workers, professional: e.target.value })}
+            required
+          />
+
           {/* District Select */}
           <select
             name="district"
             onChange={(e) => {
               setWorkers({ ...workers, district: e.target.value, city: "" }); // city reset kar do
             }}
-            className="w-full border p-2 rounded"
+            className="bg-green-50 border border-green-200 px-4 py-2 rounded-lg text-gray-800 placeholder:text-green-400 outline-none focus:ring-2 focus:ring-green-300"
             required
           >
             <option value="">Select District</option>
@@ -66,7 +76,7 @@ function AddProduct() {
           <select
             name="city"
             onChange={(e) => setWorkers({ ...workers, city: e.target.value })}
-            className="w-full border p-2 rounded"
+            className="bg-green-50 border border-green-200 px-4 py-2 rounded-lg text-gray-800 placeholder:text-green-400 outline-none focus:ring-2 focus:ring-green-300"
             required
             disabled={!workers.district} // jab tak district select na ho tab tak disable
           >
@@ -166,4 +176,4 @@ function AddProduct() {
   );
 }
 
-export default AddProduct;
+export default AddWorker;

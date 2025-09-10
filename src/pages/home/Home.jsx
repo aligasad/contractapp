@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import Carousel from "../../components/heroSection/Carousel";
 import ProductCard from "../../components/productCard/ProductCard";
-import Testimonial from "../../components/testimonial/Testimonial";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, deleteFromCart } from "../../redux/CartSlice";
 import { Link } from "react-router-dom";
@@ -83,7 +82,7 @@ function Home() {
       </motion.div> */}
 
       {/* <ProductApi /> */}
-      <div className="flex justify-center md:-mt-10 mb-4 ">
+      {/* <div className="flex justify-center md:-mt-10 mb-4 ">
         <Link to={"/allproducts"}>
           <button
             onClick={resetFilter}
@@ -92,7 +91,7 @@ function Home() {
             See more
           </button>
         </Link>
-      </div>
+      </div> */}
 
       <TestimonialAnim />
     </>

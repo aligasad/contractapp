@@ -14,9 +14,9 @@ import MyState from "./context/data/MyState.jsx";
 import Login from "./pages/registration/Login.jsx";
 import Signup from "./pages/registration/Signup.jsx";
 import ProductInfo from "./pages/productInfo/ProductInfo.jsx";
-import AddProduct from "./pages/admin/page/AddWorker.jsx";
 import UpdateProduct from "./pages/admin/page/UpdateWorker.jsx";
 import { ToastContainer, Bounce } from "react-toastify";
+import AddWorker from "./pages/admin/page/AddWorker.jsx"
 import AuthProvider from "./components/protector/AuthContext.jsx";
 import ProtectedRoute from "./components/protector/ProtectedRoute.jsx";
 import Allproducts from "./pages/allproducts/Allproducts.jsx";
@@ -35,7 +35,21 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 
 
 import BecomeWorker from "./components/WorkWhiz/BecomeWorker.jsx";
-import Narkatiaganj from "./pages/allproducts/Narkatiaganj/Narkatiaganj.jsx";
+import Inverter from "./components/OurServices/ServiceType/Electrician/Inverter.jsx";
+import Electrician from "./components/OurServices/ServiceType/Electrician/Electrician.jsx";
+import Beautician from "./components/OurServices/ServiceType/Beautician/Beautician.jsx";
+import Catering from "./components/OurServices/ServiceType/Catering/Catering.jsx";
+import Cleaning from "./components/OurServices/ServiceType/Cleaning/Cleaning.jsx";
+import Construction from "./components/OurServices/ServiceType/Construction/Construction.jsx";
+import ElectronicDevice from "./components/OurServices/ServiceType/ElectronicDevices/ElectronicDevice.jsx";
+import Laundry from "./components/OurServices/ServiceType/Laundry/Laundry.jsx";
+import Networking from "./components/OurServices/ServiceType/Networking/Networking.jsx";
+import Painting from "./components/OurServices/ServiceType/Painting/Painting.jsx";
+import Plumbing from "./components/OurServices/ServiceType/Plumbing/Plumbing.jsx";
+import Renovation from "./components/OurServices/ServiceType/Renovation/Renovation.jsx";
+import Shifting from "./components/OurServices/ServiceType/Shifting/Shifting.jsx";
+import InteriorPainting from "./components/OurServices/ServiceType/Painting/InteriorPainting.jsx";
+import ExteriorPainting from "./components/OurServices/ServiceType/Painting/ExteriorPainting.jsx";
 
 function App() {
   const router = createBrowserRouter([
@@ -80,6 +94,14 @@ function App() {
           ),
         },
         {
+          path: "/addworker",
+          element: (
+            <ProtectedRouteForAdmin>
+              <AddWorker />
+            </ProtectedRouteForAdmin>
+          ),
+        },
+        {
           path: "/login",
           element: <Login />,
         },
@@ -95,14 +117,83 @@ function App() {
           path: "/allproducts",
           element: <Allproducts />,
         },
+        // --------------{ ELECTRICIAN AND ITS'S CATEGORY }----------------------------------
+        {
+          path: 'electrician',
+          element: <Electrician />
+        },
+        {
+          path: "inverter",
+          element: <Inverter />
+        },
+        // --------------{ ELECTRICIAN AND ITS'S CATEGORY }----------------------------------
+        {
+          path: 'beautician',
+          element: <Beautician />
+        },
+        // --------------{ ELECTRICIAN AND ITS'S CATEGORY }----------------------------------
+        {
+          path: 'cleaning',
+          element: <Cleaning />
+        },
+        // --------------{ ELECTRICIAN AND ITS'S CATEGORY }----------------------------------
+        {
+          path: 'catering',
+          element: <Catering />
+        },
+        // --------------{ ELECTRICIAN AND ITS'S CATEGORY }----------------------------------
+        {
+          path: 'construction',
+          element: <Construction />
+        },
+        // --------------{ ELECTRICIAN AND ITS'S CATEGORY }----------------------------------
+        {
+          path: 'electronicdevice',
+          element: <ElectronicDevice />
+        },
+        // --------------{ ELECTRICIAN AND ITS'S CATEGORY }----------------------------------
+        {
+          path: 'laundry',
+          element: <Laundry />
+        },
+        // --------------{ ELECTRICIAN AND ITS'S CATEGORY }----------------------------------
+        {
+          path: 'networking',
+          element: <Networking />
+        },
+        // --------------{ PAINTING AND ITS'S CATEGORY }----------------------------------
+        {
+          path: '/painting',
+          element: <Painting />
+        },
+        {
+          path: 'interiorpainting',
+          element: <InteriorPainting />
+        },
+        {
+          path: 'exteriorpainting',
+          element: <ExteriorPainting />
+        },
+        // --------------{ ELECTRICIAN AND ITS'S CATEGORY }----------------------------------
+        {
+          path: 'plumbing',
+          element: <Plumbing />
+        },
+        // --------------{ ELECTRICIAN AND ITS'S CATEGORY }----------------------------------
+        {
+          path: 'renovation',
+          element: <Renovation />
+        },
+        // --------------{ ELECTRICIAN AND ITS'S CATEGORY }----------------------------------
+        {
+          path: 'shifting',
+          element: <Shifting />
+        },
         {
           path: "aligarh",
           element: <Aligarh/>
         },
-        {
-          path: "narkatiaganj",
-          element: <Narkatiaganj />
-        },
+        
         
         {
           path: "/complete-profile",
@@ -116,14 +207,7 @@ function App() {
           path: "profile",
           element: <Profile />,
         },
-        {
-          path: "/addworker",
-          element: (
-            <ProtectedRouteForAdmin>
-              <AddProduct />
-            </ProtectedRouteForAdmin>
-          ),
-        },
+        
         {
           path: "/updateworker",
           element: (

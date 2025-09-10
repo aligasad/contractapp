@@ -62,135 +62,252 @@ const Footer = () => {
   }
 
   return (
-    <footer className="bg-[#EE4E4E] text-white px-6 md:px-20 py-12 relative overflow-hidden">
-      {/* Decorative Gradient Circles */}
-      <div className="absolute top-10 left-10 w-40 h-40 bg-[#FFF455]/20 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-10 right-10 w-52 h-52 bg-[#FFC700]/20 rounded-full blur-3xl"></div>
+    // <footer className="bg-[#EE4E4E] text-white px-6 md:px-20 py-12 relative overflow-hidden">
+    //   {/* Decorative Gradient Circles */}
+    //   <div className="absolute top-10 left-10 w-40 h-40 bg-[#FFF455]/20 rounded-full blur-3xl"></div>
+    //   <div className="absolute bottom-10 right-10 w-52 h-52 bg-[#FFC700]/20 rounded-full blur-3xl"></div>
 
-      <div className="relative grid grid-cols-1 md:grid-cols-4 gap-10 z-10">
+    //   <div className="relative grid grid-cols-1 md:grid-cols-4 gap-10 z-10">
+    //     {/* Logo and Description */}
+    //     <div>
+    //       <h2 className="text-xl font-bold flex items-center mb-4">
+    //         <span className="text-2xl mr-2">⚡</span> WorkWhiz
+    //       </h2>
+    //       <p className="text-sm leading-relaxed mb-4 text-white/90">
+    //         Smart tools & solutions to simplify your workflow. Work faster,
+    //         smarter, and better with WorkWhiz 🚀
+    //       </p>
+    //       <div className="flex space-x-3">
+    //         {[FaInstagram, FaFacebookF, FaTwitter].map((Icon, index) => (
+    //           <div
+    //             key={index}
+    //             className="group w-9 h-9 flex items-center justify-center bg-white/10 rounded-full cursor-pointer transform transition-transform duration-200 hover:scale-110 hover:bg-[#FFF455]"
+    //           >
+    //             <Icon className="text-white text-lg group-hover:text-[#219C90]" />
+    //           </div>
+    //         ))}
+    //       </div>
+    //     </div>
+
+    //       {/* Quick Links */}
+    //       <div>
+    //         <h3 className="text-lg font-semibold mb-4 text-[#FFF455]">
+    //           Quick Links
+    //         </h3>
+    //         <ul className="space-y-2 text-sm">
+    //           <li
+    //             className="hover:underline cursor-pointer hover:text-[#FFC700]"
+    //             onClick={() => navigate("about")}
+    //           >
+    //             About Us
+    //           </li>
+    //           <li className="hover:underline cursor-pointer hover:text-[#FFC700]">
+    //             Services
+    //           </li>
+    //           <li
+    //             className="hover:underline cursor-pointer hover:text-[#FFC700]"
+    //             onClick={() => navigate("pricing")}
+    //           >
+    //             Pricing
+    //           </li>
+    //           <li className="hover:underline cursor-pointer hover:text-[#FFC700]">
+    //             Reviews
+    //           </li>
+    //           <li className="hover:underline cursor-pointer hover:text-[#FFC700]">
+    //             <Link to={"/contact"}>Contact</Link>
+    //           </li>
+    //         </ul>
+    //       </div>
+
+    //       {/* Customer Care */}
+    //       <div>
+    //         <h3 className="text-lg font-semibold mb-4 text-[#FFF455]">
+    //           Customer Care
+    //         </h3>
+    //         <ul className="space-y-3 text-sm text-white/90">
+    //           <li className="flex items-center gap-2 hover:text-[#FFC700]">
+    //             <MdEmail />{" "}
+    //             <a href="mailto:support@workwhiz.com">support@workwhiz.com</a>
+    //           </li>
+    //           <li className="flex items-center gap-2 hover:text-[#FFC700]">
+    //             <MdPhone /> <a href="tel:+911234567890">+91-1234567890</a>
+    //           </li>
+    //           <li className="flex items-center gap-2 hover:text-[#FFC700]">
+    //             <MdLocationOn />{" "}
+    //             <a
+    //               href="https://www.google.com/maps?q=Lucknow"
+    //               target="_blank"
+    //               rel="noreferrer"
+    //             >
+    //               Lucknow, India
+    //             </a>
+    //           </li>
+    //         </ul>
+    //       </div>
+
+    //     {/* Newsletter */}
+    //     <div>
+    //       <h3 className="text-lg font-semibold mb-4 text-[#FFF455]">
+    //         Stay Updated
+    //       </h3>
+    //       <p className="text-sm mb-4 text-white/90">
+    //         Get the latest updates & productivity hacks from WorkWhiz.
+    //       </p>
+    //       <input
+    //         type="email"
+    //         placeholder="Enter your email"
+    //         value={email}
+    //         onChange={(e) => setEmail(e.target.value)}
+    //         className="w-full px-4 py-2 rounded-md border border-white/30 bg-white/10 text-white placeholder-white/70 mb-3 focus:outline-none focus:ring-2 focus:ring-[#FFC700]"
+    //       />
+    //       <button
+    //         onClick={handleSubscribe}
+    //         className="border-gray-600 border w-full bg-gradient-to-r from-[#FFC700] to-[#EE4E4E] text-white font-medium py-2 rounded-md transition transform hover:scale-105 hover:opacity-90 cursor-pointer"
+    //       >
+    //         Subscribe
+    //       </button>
+    //     </div>
+    //   </div>
+
+    //   {/* Footer Bottom */}
+    //   <div className="relative border-t border-white/20 mt-10 pt-6 flex flex-col md:flex-row items-center justify-between text-sm text-white/80 z-10">
+    //     <p className="mb-4 md:mb-0">© 2025 WorkWhiz. All rights reserved.</p>
+    //     <div className="flex space-x-6">
+    //       <a
+    //         onClick={() => navigate("privacy-policy")}
+    //         className="hover:underline cursor-pointer hover:text-[#FFC700]"
+    //       >
+    //         Privacy Policy
+    //       </a>
+    //       <a
+    //         onClick={() => navigate("terms&condition")}
+    //         className="hover:underline cursor-pointer hover:text-[#FFC700]"
+    //       >
+    //         Terms & Conditions
+    //       </a>
+    //       <a
+    //         href="#"
+    //         className="hover:underline cursor-pointer hover:text-[#FFC700]"
+    //       >
+    //         Cookie Policy
+    //       </a>
+    //     </div>
+    //   </div>
+    // </footer>
+
+    <footer className="relative bg-gradient-to-br from-[#03A6A1] via-[#02807C] to-[#FF4F0F] text-white px-6 md:px-20 py-16 overflow-hidden">
+      
+      {/* Decorative Background Blobs */}
+      <div className="absolute -top-10 -left-10 w-64 h-64 bg-[#FFE3BB]/20 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-10 right-30 w-80 h-80 bg-[#FFA673]/30 rounded-full blur-3xl animate-pulse"></div>
+
+      <div className="relative grid grid-cols-1 md:grid-cols-4 gap-12 z-10">
         {/* Logo and Description */}
         <div>
-          <h2 className="text-xl font-bold flex items-center mb-4">
-            <span className="text-2xl mr-2">⚡</span> WorkWhiz
+          <h2 className="text-2xl font-extrabold flex items-center mb-4 tracking-wide">
+            <span className="text-3xl mr-2">⚡</span> WorkWhiz
           </h2>
-          <p className="text-sm leading-relaxed mb-4 text-white/90">
+          <p className="text-sm leading-relaxed mb-6 text-white/90">
             Smart tools & solutions to simplify your workflow. Work faster,
             smarter, and better with WorkWhiz 🚀
           </p>
-          <div className="flex space-x-3">
+          <div className="flex space-x-4">
             {[FaInstagram, FaFacebookF, FaTwitter].map((Icon, index) => (
               <div
                 key={index}
-                className="group w-9 h-9 flex items-center justify-center bg-white/10 rounded-full cursor-pointer transform transition-transform duration-200 hover:scale-110 hover:bg-[#FFF455]"
+                className="group w-10 h-10 flex items-center justify-center bg-white/10 rounded-full cursor-pointer transform transition-all duration-300 hover:scale-125 hover:bg-white/90"
               >
-                <Icon className="text-white text-lg group-hover:text-[#219C90]" />
+                <Icon className="text-white text-lg group-hover:text-[#03A6A1]" />
               </div>
             ))}
           </div>
         </div>
 
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4 text-[#FFF455]">
-              Quick Links
-            </h3>
-            <ul className="space-y-2 text-sm">
-              <li
-                className="hover:underline cursor-pointer hover:text-[#FFC700]"
-                onClick={() => navigate("about")}
-              >
-                About Us
-              </li>
-              <li className="hover:underline cursor-pointer hover:text-[#FFC700]">
-                Services
-              </li>
-              <li
-                className="hover:underline cursor-pointer hover:text-[#FFC700]"
-                onClick={() => navigate("pricing")}
-              >
-                Pricing
-              </li>
-              <li className="hover:underline cursor-pointer hover:text-[#FFC700]">
-                Reviews
-              </li>
-              <li className="hover:underline cursor-pointer hover:text-[#FFC700]">
-                <Link to={"/contact"}>Contact</Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Customer Care */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4 text-[#FFF455]">
-              Customer Care
-            </h3>
-            <ul className="space-y-3 text-sm text-white/90">
-              <li className="flex items-center gap-2 hover:text-[#FFC700]">
-                <MdEmail />{" "}
-                <a href="mailto:support@workwhiz.com">support@workwhiz.com</a>
-              </li>
-              <li className="flex items-center gap-2 hover:text-[#FFC700]">
-                <MdPhone /> <a href="tel:+911234567890">+91-1234567890</a>
-              </li>
-              <li className="flex items-center gap-2 hover:text-[#FFC700]">
-                <MdLocationOn />{" "}
-                <a
-                  href="https://www.google.com/maps?q=Lucknow"
-                  target="_blank"
-                  rel="noreferrer"
+        {/* Quick Links */}
+        <div>
+          <h3 className="text-lg font-semibold mb-5 text-[#FFE3BB]">
+            Quick Links
+          </h3>
+          <ul className="space-y-3 text-sm">
+            {["About Us", "Services", "Pricing", "Reviews", "Contact"].map(
+              (link, i) => (
+                <li
+                  key={i}
+                  className="hover:translate-x-2 transition-transform duration-200 cursor-pointer hover:text-[#FFC700]"
                 >
-                  Lucknow, India
-                </a>
-              </li>
-            </ul>
-          </div>
+                  {link}
+                </li>
+              )
+            )}
+          </ul>
+        </div>
+
+        {/* Customer Care */}
+        <div>
+          <h3 className="text-lg font-semibold mb-5 text-[#FFE3BB]">
+            Customer Care
+          </h3>
+          <ul className="space-y-4 text-sm text-white/90">
+            <li className="flex items-center gap-2 hover:text-[#FFC700] transition">
+              <MdEmail />{" "}
+              <a href="mailto:support@workwhiz.com">support@workwhiz.com</a>
+            </li>
+            <li className="flex items-center gap-2 hover:text-[#FFC700] transition">
+              <MdPhone /> <a href="tel:+911234567890">+91-1234567890</a>
+            </li>
+            <li className="flex items-center gap-2 hover:text-[#FFC700] transition">
+              <MdLocationOn />{" "}
+              <a
+                href="https://www.google.com/maps?q=Lucknow"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Lucknow, India
+              </a>
+            </li>
+          </ul>
+        </div>
 
         {/* Newsletter */}
         <div>
-          <h3 className="text-lg font-semibold mb-4 text-[#FFF455]">
+          <h3 className="text-lg font-semibold mb-5 text-[#FFE3BB]">
             Stay Updated
           </h3>
           <p className="text-sm mb-4 text-white/90">
             Get the latest updates & productivity hacks from WorkWhiz.
           </p>
-          <input
-            type="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-4 py-2 rounded-md border border-white/30 bg-white/10 text-white placeholder-white/70 mb-3 focus:outline-none focus:ring-2 focus:ring-[#FFC700]"
-          />
-          <button
-            onClick={handleSubscribe}
-            className="border-gray-600 border w-full bg-gradient-to-r from-[#FFC700] to-[#EE4E4E] text-white font-medium py-2 rounded-md transition transform hover:scale-105 hover:opacity-90 cursor-pointer"
-          >
-            Subscribe
-          </button>
+          <div className="relative">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-[#FFC700] border border-white/30"
+            />
+            <button
+              onClick={handleSubscribe}
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-gradient-to-r from-[#FFC700] to-[#FF4F0F] px-4 py-2 rounded-md font-medium hover:scale-105 transition"
+            >
+              Subscribe
+            </button>
+          </div>
         </div>
       </div>
 
       {/* Footer Bottom */}
-      <div className="relative border-t border-white/20 mt-10 pt-6 flex flex-col md:flex-row items-center justify-between text-sm text-white/80 z-10">
+      <div className="relative border-t-2 border-white/20 mt-12 pt-6 flex flex-col md:flex-row items-center justify-between text-sm text-white/80 z-10">
         <p className="mb-4 md:mb-0">© 2025 WorkWhiz. All rights reserved.</p>
         <div className="flex space-x-6">
-          <a
-            onClick={() => navigate("privacy-policy")}
-            className="hover:underline cursor-pointer hover:text-[#FFC700]"
-          >
-            Privacy Policy
-          </a>
-          <a
-            onClick={() => navigate("terms&condition")}
-            className="hover:underline cursor-pointer hover:text-[#FFC700]"
-          >
-            Terms & Conditions
-          </a>
-          <a
-            href="#"
-            className="hover:underline cursor-pointer hover:text-[#FFC700]"
-          >
-            Cookie Policy
-          </a>
+          {[{title: "Privacy Policy", link: 'privacy-policy'}, {title: "Terms & Conditions", link: 'terms&condition'}, {title: "Cookie Policy", link: 'about'}].map(
+            (item, i) => (
+              <Link to={item.link}
+                key={i}
+                className="hover:underline cursor-pointer hover:text-[#FFC700] transition"
+              >
+                {item.title}
+              </Link>
+            )
+          )}
         </div>
       </div>
     </footer>

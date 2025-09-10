@@ -1,18 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useData } from "../../../context/data/MyState.jsx";
-import { addToCart } from "../../../redux/CartSlice.jsx";
+import { useData } from "../../../../context/data/MyState.jsx";
+import { addToCart } from "../../../../redux/CartSlice.jsx";
 import { toast } from "react-toastify";
-import { FaHeart } from "react-icons/fa6";
 import { motion } from "framer-motion";
+import Carousel from "../../../heroSection/Carousel.jsx";
 
-import adv1 from "../../../assets/Posters/soap1.jpg";
-import adv2 from "../../../assets/Posters/soap.png";
-import adv3 from "../../../assets/Posters/soap2.png";
-import adv4 from "../../../assets/Posters/soap4.png";
-import Carousel from "../../../components/heroSection/Carousel.jsx";
-
-function Narkatiaganj() {
+function Wiring() {
   const [isFirstVisit, setIsFirstVisit] = useState(true);
   const context = useData();
   const {
@@ -30,21 +24,13 @@ function Narkatiaganj() {
 
   const images = [
     {
-      src: adv1,
+      src: 'https://tse3.mm.bing.net/th/id/OIP.6jLhzynOzti5VZsmh_G6xwHaCS?pid=Api&P=0&h=180',
       link: "https://isavii.com/",
     },
     {
-      src: adv2,
+      src: 'https://tse1.mm.bing.net/th/id/OIP.PpEN-jI0V-ufDNviNHHMwgHaC1?pid=Api&P=0&h=180',
       link: "/soap",
-    },
-    {
-      src: adv3,
-      link: "/soap",
-    },
-    {
-      src: adv4,
-      link: "productinfo/lfe2PjlVkHDDlgCoV5JR",
-    },
+    }
   ];
 
   const dispatch = useDispatch();
@@ -87,7 +73,7 @@ function Narkatiaganj() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1 }}
-          onAnimationComplete={() => setIsFirstVisit(false)} // Remove animation after it's done
+          onAnimationComplete={() => setIsFirstVisit(false)}
         >
           <section className="text-gray-600 body-font bg-[#caf5e7a7]">
             <div className="container px-5 py-8 mx-auto">
@@ -96,24 +82,33 @@ function Narkatiaganj() {
                   class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900"
                   style={{ color: mode === "dark" ? "white" : "" }}
                 >
-                  Serum Collection
+                  INTERTOR EXPERTS...
                 </h1>
                 <div class="h-1 w-25 bg-green-700 rounded"></div>
               </div>
 
               <div className="flex flex-wrap -m-4">
                 {worker
-                  .filter((obj) => obj.city.toLowerCase().includes("na"))
-                  .filter(
-                    (obj) =>
-                      obj.title.toLowerCase().includes(searchkey) ||
-                      obj.type.toLowerCase().includes(searchkey)
-                  )
-                  .filter((item) =>
-                    item.category
+                  ?.filter((obj) =>
+                    (obj.skills || "")
                       .replace(/\s+/g, "")
                       .toLowerCase()
-                      .includes(filterType)
+                      .includes("invertor")
+                  )
+                  .filter(
+                    (obj) =>
+                      (obj.skills || "")
+                        .toLowerCase()
+                        .includes(searchkey?.toLowerCase() || "") ||
+                      (obj.area || "")
+                        .toLowerCase()
+                        .includes(searchkey?.toLowerCase() || "")
+                  )
+                  .filter((item) =>
+                    (item.category || "")
+                      .replace(/\s+/g, "")
+                      .toLowerCase()
+                      .includes(filterType?.toLowerCase() || "")
                   )
                   .map((item, index) => {
                     const {
@@ -151,7 +146,7 @@ function Narkatiaganj() {
                             }}
                           >
                             <div className="flex justify-center items-center p-4 bg-white rounded-t-lg border-2 border-b-0 border-[#195f48] relative">
-                              {stock > 0 ? (
+                              {/* {stock > 0 ? (
                                 <p className=" absolute bottom-0 left-0 bg-green-700 px-2 rounded-tr-lg text-[10px] sm:text-[12px] text-white font-semibold z-10 ">
                                   On Sale
                                 </p>
@@ -159,7 +154,7 @@ function Narkatiaganj() {
                                 <p className=" absolute bottom-0 left-0 bg-[#b35d52] px-2 rounded-tr-lg text-[10px] sm:text-[12px] text-white font-semibold z-10 ">
                                   Sold Out
                                 </p>
-                              )}
+                              )} */}
                               {/* {calculateDiscount(originalPrice, price) > 30 ? (
                                 <p className="absolute bottom-0 right-0 px-3 text-[12px] text-rose-600 font-semibold z-10 border-t border-l bg-rose-200 rounded-tl-lg">
                                   {" "}
@@ -240,4 +235,4 @@ function Narkatiaganj() {
   );
 }
 
-export default Narkatiaganj;
+export default Wiring;

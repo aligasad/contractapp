@@ -18,14 +18,14 @@ const TestimonialAnim = ({ autoplay = false }) => {
       designation: "Frontend Developer at CodeCraft",
       quote:
         "Using this platform improved our workflow tremendously. The animations are smooth and the interface is super intuitive.",
-      src: "https://images.pexels.com/photos/27665348/pexels-photo-27665348/free-photo-of-a-little-girl-that-is-looking-down-at-her-cell-phone.jpeg?auto=compress&cs=tinysrgb&w=600",
+      src: "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/short/linkedin-profile-picture-maker/dummy_image/thumb/004.webp",
     },
     {
       name: "Ravi Verma",
       designation: "Product Designer at Creatix",
       quote:
         "I love the simplicity and flexibility. It feels like magic every time the UI updates with such elegance.",
-      src: "https://www.over40datingsite.co.uk/wp-content/uploads/2016/09/shutterstock_341919467.jpg",
+      src: "https://wallpapers.com/images/hd/professional-profile-pictures-1080-x-1080-460wjhrkbwdcp1ig.jpg",
     },
   ];
 
@@ -49,88 +49,66 @@ const TestimonialAnim = ({ autoplay = false }) => {
   const randomRotateY = () => Math.floor(Math.random() * 21) - 10;
 
   return (
-    <div className="mx-auto max-w-sm px-4 py-8 sm:py-15 font-sans antialiased md:max-w-4xl md:px-8 lg:px-12">
-      <div className="relative grid grid-cols-1 gap-5 sm:gap-20 md:grid-cols-2">
-        {/* Image */}
-        <div>
-          <div className="relative mx-auto h-50 w-50 sm:h-80 sm:w-full">
-            <AnimatePresence>
-              {testimonials.map((testimonial, index) => (
-                <motion.div
-                  key={testimonial.src}
-                  initial={{
-                    opacity: 0,
-                    scale: 0.9,
-                    z: -100,
-                    rotate: randomRotateY(),
-                  }}
-                  animate={{
-                    opacity: isActive(index) ? 1 : 0.7,
-                    scale: isActive(index) ? 1 : 0.95,
-                    z: isActive(index) ? 0 : -100,
-                    rotate: isActive(index) ? 0 : randomRotateY(),
-                    zIndex: isActive(index)
-                      ? 40
-                      : testimonials.length + 2 - index,
-                    y: isActive(index) ? [0, -80, 0] : 0,
-                  }}
-                  exit={{
-                    opacity: 0,
-                    scale: 0.9,
-                    z: 100,
-                    rotate: randomRotateY(),
-                  }}
-                  transition={{ duration: 0.4, ease: "easeInOut" }}
-                  className="absolute inset-0 origin-bottom"
-                >
-                  <img
-                    src={testimonial.src}
-                    alt={testimonial.name}
-                    width={500}
-                    height={500}
-                    draggable={false}
-                    className=" h-full w-full rounded-3xl object-cover object-center"
-                  />
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </div>
+    <div className="bg-gradient-to-b from-[#eabaa0]  via-[#FDFBF5] to-[#fffdfa]">
+      <div className="relative mx-auto max-w-6xl px-6 py-16 font-sans antialiased">
+      {/* Decorative Backgrounds */}
+      <div className="absolute -top-20 -left-20 w-72 h-72 bg-[#03A6A1]/10 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#FFA673]/20 rounded-full blur-3xl"></div>
+
+      <div className="relative grid grid-cols-1 md:grid-cols-2 gap-12 items-center z-10">
+        {/* Image Section */}
+        <div className="relative mx-auto h-64 sm:h-80 w-64 sm:w-80">
+          <AnimatePresence>
+            {testimonials.map((testimonial, index) => (
+              <motion.div
+                key={testimonial.src}
+                initial={{ opacity: 0, scale: 0.9, rotate: -5 }}
+                animate={{
+                  opacity: isActive(index) ? 1 : 0.5,
+                  scale: isActive(index) ? 1 : 0.9,
+                  zIndex: isActive(index) ? 30 : 0,
+                  rotate: isActive(index) ? 0 : -5,
+                }}
+                exit={{ opacity: 0, scale: 0.9, rotate: 5 }}
+                transition={{ duration: 0.6, ease: "easeInOut" }}
+                className="absolute inset-0"
+              >
+                <img
+                  src={testimonial.src}
+                  alt={testimonial.name}
+                  className="h-full w-full rounded-3xl object-cover shadow-2xl border-4 border-[#029590]/70"
+                />
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </div>
 
-        {/* Content */}
-        <div className="flex flex-col justify-between py-4">
+        {/* Content Section */}
+        <div className="flex flex-col justify-between py-6">
           <motion.div
             key={active}
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -20, opacity: 0 }}
-            transition={{ duration: 0.2, ease: "easeInOut" }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+            className="bg-[#029590]/30 backdrop-blur-lg p-6 rounded-2xl shadow-lg border border-[#035590]/30"
           >
-            <h3
-              className="text-2xl font-bold text-gray-700"
-              style={{ color: mode === "dark" ? "#FFD814" : "" }}
-            >
+            <h3 className="text-2xl font-bold text-[#03A6A1]">
               {testimonials[active].name}
             </h3>
-            <p
-              className="text-sm text-amber-500"
-              style={{ color: mode === "dark" ? "#FFF8DC" : "" }}
-            >
+            <p className="text-sm text-[#FF4F0F] font-medium">
               {testimonials[active].designation}
             </p>
-            <motion.p
-              className="mt-2 sm:mt-8 text-lg "
-              style={{ color: mode === "dark" ? "#D3D3D3" : "" }}
-            >
+            <motion.p className="mt-4 text-gray-700 text-lg leading-relaxed">
               {testimonials[active].quote.split(" ").map((word, index) => (
                 <motion.span
                   key={index}
-                  initial={{ filter: "blur(10px)", opacity: 0, y: 5 }}
+                  initial={{ filter: "blur(6px)", opacity: 0, y: 5 }}
                   animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
                   transition={{
                     duration: 0.2,
                     ease: "easeInOut",
-                    delay: 0.02 * index,
+                    delay: 0.015 * index,
                   }}
                   className="inline-block"
                 >
@@ -141,29 +119,23 @@ const TestimonialAnim = ({ autoplay = false }) => {
           </motion.div>
 
           {/* Arrows */}
-          <div
-            className="flex gap-4 pt-6 sm:pt-12 md:pt-0"
-            
-          >
+          <div className="flex gap-4 pt-6">
             <button
               onClick={handlePrev}
-              className="group/button flex h-7 w-7 items-center justify-center rounded-full bg-neutral-800"
-              style={
-                {  backgroundColor: mode === "dark" ? "white" : "" }
-              }
+              className="cursor-pointer flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-r from-[#03A6A1] to-[#02807C] shadow-md hover:scale-110 transition"
             >
-              <IconArrowLeft className="h-5 w-5 text-black transition-transform duration-300 group-hover/button:rotate-12 dark:text-neutral-400" style={{color: mode === "dark" ? "black" : ""}} />
+              <IconArrowLeft className="h-6 w-6 text-white" />
             </button>
             <button
               onClick={handleNext}
-              className="group/button flex h-7 w-7 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800"
-              style={{  backgroundColor: mode === "dark" ? "white" : "" }}
+              className="cursor-pointer flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-r from-[#FFA673] to-[#FF4F0F] shadow-md hover:scale-110 transition"
             >
-              <IconArrowRight className="h-5 w-5 text-black transition-transform duration-300 group-hover/button:-rotate-12 dark:text-neutral-400" style={{color: mode === "dark" ? "black" : ""}} />
+              <IconArrowRight className="h-6 w-6 text-white" />
             </button>
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

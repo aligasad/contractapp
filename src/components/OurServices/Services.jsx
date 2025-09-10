@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import {
   FaLeaf,
   FaTint,
@@ -23,59 +24,71 @@ import shifting from "../../assets/ServiceLogo/shifting.webp";
 
 const benefits = [
   {
-    icon: electrician,
-    title: "Electrician",
-  },
-  {
-    icon: plumbing,
-    title: "Plumbing Service",
-  },
-  {
     icon: shifting,
     title: "Shifting Service",
+    moveTo: "shifting",
   },
   {
     icon: painting,
     title: "Home Painting Service",
+    moveTo: "painting",
   },
   {
     icon: construction,
     title: "Home Construction",
+    moveTo: "construction",
+  },
+  {
+    icon: electrician,
+    title: "Electrician",
+    moveTo: "electrician",
   },
   {
     icon: renovation,
     title: "Home Renovation",
+    moveTo: "renovation",
   },
   {
     icon: catering,
     title: "Catering Services",
+    moveTo: "catering",
   },
   {
     icon: Cleaning,
     title: "Cleaning Services",
+    moveTo: "cleaning",
   },
   {
     icon: Laundary,
     title: "Laundry Services",
+    moveTo: "laundary",
   },
   {
     icon: Beauty,
     title: "Beautician",
+    moveTo: "beautician",
   },
   {
     icon: computer,
     title: "Computer and networking",
+    moveTo: "computer",
+  },
+  {
+    icon: plumbing,
+    title: "Plumbing Service",
+    moveTo: "plumbing",
   },
   {
     icon: electronicDevice,
     title: "Electronic Devices",
+    moveTo: "electronicdevice",
   },
 ];
 
 const Services = () => {
+  const navigate = useNavigate();
   return (
-
-    <section className="py-20 px-6 bg-gradient-to-b from-[#eabaa0] via-[#FDFBF5] to-white">
+    <section className="py-20 px-6 bg-gradient-to-b from-[#fffdfa] via-[#FDFBF5] to-[#eabaa0]">
       <div className="max-w-6xl mx-auto">
         <motion.div
           className="text-center mb-16"
@@ -84,7 +97,6 @@ const Services = () => {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          {/* Heading Tag */}
           <div className="flex justify-center items-center gap-2 text-[#03a6a1] mb-4">
             <FaLeaf className="w-5 h-5" />
             <span className="text-sm font-semibold uppercase tracking-wide">
@@ -92,37 +104,49 @@ const Services = () => {
             </span>
           </div>
 
-          {/* Title */}
           <h2 className="text-3xl md:text-5xl font-bold mb-4">
             <span className="text-[#03a6a1]">Our</span>{" "}
             <span className="text-amber-500">Services</span>
           </h2>
 
-          {/* Subtext */}
           <p className="text-gray-600 max-w-2xl mx-auto">
             Discover trusted services and skilled workers near you — reliable,
             affordable, and professional.
           </p>
         </motion.div>
 
-        {/* Benefits Grid */}
+        {/* Benefits Grid------------------------------------- */}
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 px-3 sm:px-6 md:px-13 gap-4 sm:gap-6 md:gap-8">
           {benefits.map((item, index) => (
             <motion.div
               key={index}
-              className=" rounded-xl py-2 px-1 w-26 h-26 sm:w-32 sm:h-32 lg:w-36 lg:h-36 grid place-items-center text-center hover:shadow-lg hover:shadow-[#03a6a1]/20 transition duration-300"
+              className={`rounded-xl pb-2 px-1 w-26 h-26 sm:w-32 sm:h-32 lg:w-36 lg:h-36 grid place-items-center text-center hover:shadow-lg ${index % 2 !== 0 ? 'hover:shadow-[#03a6a1]/30' : 'hover:shadow-[#ff4f0f]/30'} transition duration-300`}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               whileHover={{ y: -5 }}
               transition={{ duration: 0.05, delay: index * 0.05 }}
               viewport={{ once: true }}
             >
-              <div className="flex items-center justify-center mx-auto mb-1">
-                <img src={item.icon} className="h-13" />
+              <div
+                onClick={() => {
+                  navigate(item.moveTo);
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+                className="cursor-pointer"
+              >
+                {/* Diamond Shape Background --------------------------------*/}
+                <div
+                  className={`grid place-items-center mx-auto w-20 h-20 sm:w-24 sm:h-24 mb-0 ${index % 2 !== 0 ? 'bg-[#03a6a1]' : 'bg-[#ff4f0f]'}`}
+                  style={{
+                    clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                  }}
+                >
+                  <img src={item.icon} className="h-10 sm:h-12" />
+                </div>
+                <h3 className="text-sm sm:text-base text-[#000]">
+                  {item.title}
+                </h3>
               </div>
-              <h3 className="text-sm sm:text-base text-[#03a6a1]">
-                {item.title}
-              </h3>
             </motion.div>
           ))}
         </div>
