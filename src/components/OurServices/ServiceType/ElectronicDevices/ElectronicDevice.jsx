@@ -49,7 +49,7 @@ const ElectronicDevice = () => {
       {/* Top Section with Heading + Description */}
       <div className="text-center px-6 py-10 bg-gradient-to-r from-[#FFE3BB] via-white to-[#FFF7EB]">
         <h2 className="text-3xl md:text-4xl font-bold text-[#03A6A1]">
-          Our Electrical Services
+          Our Electronic Devices Services
         </h2>
         <p className="mt-4 max-w-2xl mx-auto text-gray-700 text-base md:text-lg">
           WorkWhiz provides professional and reliable electrical services for
