@@ -395,16 +395,19 @@ function Navbar() {
 
       {/* Desktop Header-------------------------------------------- */}
       <div className="hidden min-h-15 md:flex items-center justify-between px-8 py-2 bg-gradient-to-r from-[#FFE3BB] via-[#FFA673]/50 to-[#FF4F0F]/30 border-b-2 border-[#03A6A1]/40 shadow-md">
-        {/* Left Section - Logo & Nav */}
+        {/* Left Section - Logo & Nav--------------------------- */}
         <div className="flex items-center gap-8">
-          {/* Logo */}
-          <Link
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            to="/"
-            className="text-2xl font-extrabold text-[#03A6A1] tracking-wide flex items-center gap-2"
+          {/* Logo---------------------------------------------- */}
+          <div
+            onClick={() => {
+              navigate("/");
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+            className="cursor-pointer text-2xl font-extrabold text-[#03A6A1] tracking-wide flex items-center gap-2"
           >
-            <img src={logo} className="h-14" /> <span className="hidden sm:block"></span>
-          </Link>
+            <img src={logo} className="h-14" />{" "}
+            <span className="hidden sm:block"></span>
+          </div>
 
           {/* Navigation */}
           <nav className="hidden md:flex gap-6 text-sm text-[#FF4F0F] font-semibold">

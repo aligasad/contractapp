@@ -136,7 +136,7 @@ const Services = () => {
               >
                 {/* Diamond Shape Background --------------------------------*/}
                 <div
-                  className={`grid place-items-center mx-auto w-20 h-20 sm:w-24 sm:h-24 mb-0 ${index % 2 !== 0 ? 'bg-[#03a6a1]' : 'bg-[#ff4f0f]'}`}
+                  className={`grid place-items-center mx-auto w-20 h-20 sm:w-24 sm:h-24 mb-0 ${index % 2 !== 0 ? 'bg-[#03a6a1]' : 'bg-[#fe9a00]'}`}
                   style={{
                     clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
                   }}

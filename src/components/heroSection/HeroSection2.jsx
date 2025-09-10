@@ -45,12 +45,12 @@ const HeroSection2 = () => {
           {/* Buttons */}
           <div className="flex gap-4">
             <Link to="/hire" className="hover:scale-105 transition">
-              <button className="cursor-pointer bg-gradient-to-r from-[#03A6A1] to-[#02807C] text-white px-7 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
+              <button className="text-sm sm:text-base cursor-pointer bg-gradient-to-r from-[#03A6A1] to-[#02807C] text-white px-5 sm:px-7 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
                 Hire a Worker
               </button>
             </Link>
             <Link to="/join" className="hover:scale-105 transition">
-              <button className="cursor-pointer border-2 border-[#FFA673] text-[#FF4F0F] hover:bg-[#FFA673] hover:text-white px-7 py-3 rounded-full font-semibold transition-all duration-300">
+              <button className="text-sm sm:text-base cursor-pointer border-2 border-[#FFA673] text-[#FF4F0F] hover:bg-[#FFA673] hover:text-white px-5 sm:px-7 py-3 rounded-full font-semibold transition-all duration-300">
                 Become a Worker
               </button>
             </Link>

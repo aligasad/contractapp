@@ -49,11 +49,11 @@ const Shifting = () => {
       </div>
 
       {/* Services Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-8 px-7 lg:px-17 md:px-18 py-8 place-items-center">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-8 px-2 lg:px-17 md:px-18 py-8 place-items-center">
         {services.map((service, index) => (
           <div
             key={index}
-            className="relative w-47 md:w-50 lg-w-55 h-50 sm:h-60 md:h-65 lg:h-70 rounded-xl shadow-lg overflow-hidden group"
+            className="relative w-45 md:w-50 lg-w-55 h-50 sm:h-60 md:h-65 lg:h-70 rounded-xl shadow-lg overflow-hidden group"
           >
             {/* Background Image */}
             <img
@@ -64,22 +64,21 @@ const Shifting = () => {
 
             {/* Overlay */}
             <div className="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors duration-500"></div>
-
             {/* Text */}
             <div className="absolute top-4 left-4 right-4 text-white z-10">
-              <h3 className="text-xl font-semibold text-center text-[#FFA673]">
+              <h3 className="text-base md:text-xl font-semibold text-center text-[#FFA673]">
                 {service.title}
               </h3>
               <div className="bg-[#03A6A1] h-[2px] mt-1"></div>
-              <p className="text-sm mt-2">{service.description}</p>
+              <p className="text-sm mt-2 text-center ">{service.description}</p>
             </div>
 
             {/* Button */}
             <div
               className="
             absolute left-1/2 transform -translate-x-1/2 z-10
-            transition-all duration-500 w-25
-            bottom-6
+            transition-all duration-500 w-25 cursor-pointer
+            bottom-6 opacity-65
             md:bottom-[-70px] md:group-hover:bottom-6
           "
             >

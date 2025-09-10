@@ -50,7 +50,7 @@ const TestimonialAnim = ({ autoplay = false }) => {
 
   return (
     <div className="bg-gradient-to-b from-[#eabaa0]  via-[#FDFBF5] to-[#fffdfa]">
-      <div className="relative mx-auto max-w-6xl px-6 py-16 font-sans antialiased">
+      <div className="relative mx-auto max-w-6xl px-6 py-5 font-sans antialiased">
       {/* Decorative Backgrounds */}
       <div className="absolute -top-20 -left-20 w-72 h-72 bg-[#03A6A1]/10 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#FFA673]/20 rounded-full blur-3xl"></div>
