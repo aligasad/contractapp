@@ -2,35 +2,23 @@ import Carousel from "../../../heroSection/Carousel";
 
 const services = [
   {
-    title: "Wash Basin",
-    description: "Installation and repair of wash basins.",
-    image: "https://via.placeholder.com/300x400?text=Light",
+    title: "Gaming Setup",
+    description: "Repair services for computers and laptops. Printers And Photocopy Machine Maintenance and repair of printers and photocopy machines.",
+    image: "https://i.pinimg.com/736x/4b/a7/d5/4ba7d517112b740e62654fdccc55243a.jpg",
+    moveTo: "/gamingsetup"
   },
   {
-    title: "Tap And Faucets",
-    description: "Installation and maintenance of taps and faucets.",
-    image: "https://via.placeholder.com/300x400?text=Sockets",
+    title: "Computer And Laptop Repairing",
+    description: "Repair services for computers and laptops. Printers And Photocopy Machine Maintenance and repair of printers and photocopy machines.",
+    image: "https://i.pinimg.com/736x/21/78/da/2178da06ff78dca0090a5fc72d250db5.jpg",
+    moveTo: "/computerlaptop"
   },
   {
-    title: "Toilet",
-    description: "Repair and maintenance of toilet systems.",
-    image: "https://via.placeholder.com/300x400?text=Telephone",
-  },
-  {
-    title: "Water Tank",
-    description: "Installation and repair of water tanks.",
-    image: "https://via.placeholder.com/300x400?text=MCB",
-  },
-  {
-    title: "Blockages",
-    description: "Clearing blockages in plumbing systems.",
-    image: "https://via.placeholder.com/300x400?text=Fan",
-  },
-  {
-    title: "Whole House Plumbing",
-    description: "Complete plumbing solutions for entire houses.",
-    image: "https://via.placeholder.com/300x400?text=Fan",
-  },
+    title: "IT Technician",
+    description: "Professional IT technician support. Computer And Laptop Servicing Regular servicing for computers and laptops.",
+    image: "https://i.pinimg.com/736x/15/90/8e/15908e25aee50eca8d18e9a796fa1422.jpg",
+    moveTo: "/ittechnician"
+  }
 ];
 
 const Networking = () => {
@@ -93,7 +81,7 @@ const Networking = () => {
               className="
             absolute left-1/2 transform -translate-x-1/2 z-10
             transition-all duration-500 w-25 cursor-pointer
-            bottom-6 opacity-65
+            bottom-6 opacity-65 opacity-100
             md:bottom-[-70px] md:group-hover:bottom-6
           "
             >

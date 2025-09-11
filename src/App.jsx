@@ -153,12 +153,12 @@ function App() {
         },
         // --------------{ ELECTRICIAN AND ITS'S CATEGORY }----------------------------------
         {
-          path: 'laundry',
+          path: 'laundary',
           element: <Laundry />
         },
         // --------------{ ELECTRICIAN AND ITS'S CATEGORY }----------------------------------
         {
-          path: 'networking',
+          path: 'computer',
           element: <Networking />
         },
         // --------------{ PAINTING AND ITS'S CATEGORY }----------------------------------

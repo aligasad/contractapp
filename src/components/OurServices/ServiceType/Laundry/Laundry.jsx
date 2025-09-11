@@ -2,35 +2,17 @@ import Carousel from "../../../heroSection/Carousel";
 
 const services = [
   {
-    title: "Wash Basin",
-    description: "Installation and repair of wash basins.",
-    image: "https://via.placeholder.com/300x400?text=Light",
+    title: "Normal Clothes",
+    description: "Cleaning service for everyday wear.",
+    image: "https://i.pinimg.com/1200x/c3/f6/f0/c3f6f028c17881be5f9ac9b44d7eda64.jpg",
+    moveTo: "/normalclothes"
   },
   {
-    title: "Tap And Faucets",
-    description: "Installation and maintenance of taps and faucets.",
-    image: "https://via.placeholder.com/300x400?text=Sockets",
-  },
-  {
-    title: "Toilet",
-    description: "Repair and maintenance of toilet systems.",
-    image: "https://via.placeholder.com/300x400?text=Telephone",
-  },
-  {
-    title: "Water Tank",
-    description: "Installation and repair of water tanks.",
-    image: "https://via.placeholder.com/300x400?text=MCB",
-  },
-  {
-    title: "Blockages",
-    description: "Clearing blockages in plumbing systems.",
-    image: "https://via.placeholder.com/300x400?text=Fan",
-  },
-  {
-    title: "Whole House Plumbing",
-    description: "Complete plumbing solutions for entire houses.",
-    image: "https://via.placeholder.com/300x400?text=Fan",
-  },
+    title: "Party Wear",
+    description: "Specialized cleaning for party and formal attire.",
+    image: "https://i.pinimg.com/1200x/57/14/0d/57140d0a4b9b72bb1403a67efc95c52d.jpg",
+    moveTo: "/partywear"
+  }
 ];
 
 const Laundry = () => {
@@ -93,7 +75,7 @@ const Laundry = () => {
               className="
             absolute left-1/2 transform -translate-x-1/2 z-10
             transition-all duration-500 w-25 cursor-pointer
-            bottom-6 opacity-65
+            bottom-6 opacity-65 hover:opacity-100
             md:bottom-[-70px] md:group-hover:bottom-6
           "
             >

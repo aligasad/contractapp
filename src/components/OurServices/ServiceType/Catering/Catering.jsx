@@ -2,45 +2,17 @@ import Carousel from "../../../heroSection/Carousel";
 
 const services = [
   {
-    title: "Inverter",
-    description: "Installation and maintenance of power inverters.",
-    image: "03A6A1",
+    title: "Marriage",
+    description: "Exquisite menus for memorable weddings.",
+    image: "https://i.pinimg.com/1200x/29/ea/ec/29eaeccf0ff8df28c5504b690e5e1821.jpg",
+    moveTo: "/marriage"
   },
-  {
-    title: "Wiring",
-    description: "General electrical wiring services.",
-    image: "03A6A1",
-  },
-  {
-    title: "Solar Repair And Installation",
-    description: "Repair and installation of solar power systems.",
-    image: "03A6A1",
-  },
-  {
-    title: "Whole House Wiring",
-    description: "Complete wiring solutions for entire houses.",
-    image: "03A6A1",
-  },
-  {
-    title: "Power Sockets and Switch Boards",
-    description: "Installation and maintenance of sockets and switch boards.",
-    image: "https://via.placeholder.com/300x400?text=Sockets",
-  },
-  {
-    title: "Telephone And Networking Sockets",
-    description: "Setup and repair of telephone and networking sockets.",
-    image: "https://via.placeholder.com/300x400?text=Telephone",
-  },
-  {
-    title: "MCB & MCCBs",
-    description: "Maintenance and installation of MCB and MCCBs.",
-    image: "https://via.placeholder.com/300x400?text=MCB",
-  },
-  {
-    title: "Fan",
-    description: "Installation and repair of ceiling and wall fans.",
-    image: "https://via.placeholder.com/300x400?text=Fan",
-  },
+  // {
+  //   title: "Bartabanda",
+  //   description: "Traditional delicacies for milestone celebrations.",
+  //   image: "03A6A1",
+  //   moveTo: "/bartabanda"
+  // },
 ];
 
 const Catering = () => {
@@ -104,7 +76,7 @@ const Catering = () => {
               className="
             absolute left-1/2 transform -translate-x-1/2 z-10
             transition-all duration-500 w-25 cursor-pointer
-            bottom-6 opacity-65
+            bottom-6 opacity-65 hover:opacity-100
             md:bottom-[-70px] md:group-hover:bottom-6
           "
             >

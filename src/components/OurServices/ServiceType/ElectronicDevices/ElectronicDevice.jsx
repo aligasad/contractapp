@@ -3,33 +3,39 @@ import Carousel from "../../../heroSection/Carousel";
 const services = [
   {
     title: "Wash Basin",
-    description: "Installation and repair of wash basins.",
-    image: "https://via.placeholder.com/300x400?text=Light",
+    description: "Expert repair and servicing of televisions.",
+    image: "https://i.pinimg.com/736x/a5/0e/40/a50e401a427090c3ed1eeaade001d2ca.jpg",
+    moveTo: "/washbasin"
   },
   {
-    title: "Tap And Faucets",
-    description: "Installation and maintenance of taps and faucets.",
-    image: "https://via.placeholder.com/300x400?text=Sockets",
+    title: "Air Condition (AC)",
+    description: "Proficient maintenance and repair of air conditioners.",
+    image: "https://i.pinimg.com/736x/ce/9c/f7/ce9cf7367350d789d9c7c2115e1bd572.jpg",
+    moveTo: "/ac"
   },
   {
-    title: "Toilet",
-    description: "Repair and maintenance of toilet systems.",
-    image: "https://via.placeholder.com/300x400?text=Telephone",
+    title: "Refrigerator",
+    description: "Thorough repair and servicing of refrigerators.",
+    image: "https://i.pinimg.com/1200x/e6/a2/43/e6a2432c85629aaf7cb3bb5b818a50c8.jpg",
+    moveTo: "/refrigerator"
   },
   {
-    title: "Water Tank",
-    description: "Installation and repair of water tanks.",
-    image: "https://via.placeholder.com/300x400?text=MCB",
+    title: "Washing Machine",
+    description: "Complete maintenance and repair of washing machines.",
+    image: "https://i.pinimg.com/736x/72/25/0e/72250ecdffcd4b3bf9425cce9708d1f4.jpg",
+    moveTo: "/washingmachine"
   },
   {
-    title: "Blockages",
-    description: "Clearing blockages in plumbing systems.",
-    image: "https://via.placeholder.com/300x400?text=Fan",
+    title: "Iron",
+    description: "Skilled repair and servicing of irons for crisp results.",
+    image: "https://i.pinimg.com/736x/91/b1/a7/91b1a79c0094d2d65458de198e060dd2.jpg",
+    moveTo: "/iron"
   },
   {
-    title: "Whole House Plumbing",
-    description: "Complete plumbing solutions for entire houses.",
-    image: "https://via.placeholder.com/300x400?text=Fan",
+    title: "Vacuum Cleaner",
+    description: "Thorough maintenance and repair of vacuum cleaners for cleaning.",
+    image: "https://i.pinimg.com/1200x/8c/ea/f9/8ceaf96813cf05f1ca48907a8c7588f7.jpg",
+    moveTo: "/vacuumcleaner"
   },
 ];
 
@@ -93,7 +99,7 @@ const ElectronicDevice = () => {
               className="
             absolute left-1/2 transform -translate-x-1/2 z-10
             transition-all duration-500 w-25 cursor-pointer
-            bottom-6 opacity-65
+            bottom-6 opacity-65 hover:opacity-100
             md:bottom-[-70px] md:group-hover:bottom-6
           "
             >

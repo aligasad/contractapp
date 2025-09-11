@@ -5,31 +5,37 @@ const services = [
     title: "Wash Basin",
     description: "Installation and repair of wash basins.",
     image: "https://via.placeholder.com/300x400?text=Light",
+    moveTo: "/washbasin"
   },
   {
     title: "Tap And Faucets",
     description: "Installation and maintenance of taps and faucets.",
     image: "https://via.placeholder.com/300x400?text=Sockets",
+    moveTo: "/tapfaucets"
   },
   {
     title: "Toilet",
     description: "Repair and maintenance of toilet systems.",
     image: "https://via.placeholder.com/300x400?text=Telephone",
+    moveTo: "/toilet"
   },
   {
     title: "Water Tank",
     description: "Installation and repair of water tanks.",
     image: "https://via.placeholder.com/300x400?text=MCB",
+    moveTo: "/watertank"
   },
   {
     title: "Blockages",
     description: "Clearing blockages in plumbing systems.",
     image: "https://via.placeholder.com/300x400?text=Fan",
+    moveTo: "/blockages"
   },
   {
     title: "Whole House Plumbing",
     description: "Complete plumbing solutions for entire houses.",
     image: "https://via.placeholder.com/300x400?text=Fan",
+    moveTo: "/wholehouse"
   },
 ];
 
@@ -49,7 +55,7 @@ const Plumbing = () => {
       {/* Top Section with Heading + Description */}
       <div className="text-center px-6 py-10 bg-gradient-to-r from-[#FFE3BB] via-white to-[#FFF7EB]">
         <h2 className="text-3xl md:text-4xl font-bold text-[#03A6A1]">
-          Our Electrical Services
+          Plumbing Services
         </h2>
         <p className="mt-4 max-w-2xl mx-auto text-gray-700 text-base md:text-lg">
           WorkWhiz provides professional and reliable electrical services for

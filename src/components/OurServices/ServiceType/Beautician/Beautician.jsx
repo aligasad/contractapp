@@ -2,34 +2,40 @@ import Carousel from "../../../heroSection/Carousel"
 
 const services = [
   {
-    title: "Wash Basin",
-    description: "Installation and repair of wash basins.",
-    image: "https://via.placeholder.com/300x400?text=Light",
+    title: "Hair",
+    description: "Professional styling for your hair.",
+    image: "https://i.pinimg.com/736x/15/7b/8a/157b8afef3f373d0ff5bef1139fcc95e.jpg",
+    moveTo: "/hair"
   },
   {
-    title: "Tap And Faucets",
-    description: "Installation and maintenance of taps and faucets.",
-    image: "https://via.placeholder.com/300x400?text=Sockets",
+    title: "Waxing",
+    description: "Efficient services for smooth skin.",
+    image: "https://i.pinimg.com/736x/8d/c7/17/8dc7172d2a74f83778c46f8e082f05db.jpg",
+    moveTo: "/waxing"
   },
   {
-    title: "Toilet",
-    description: "Repair and maintenance of toilet systems.",
-    image: "https://via.placeholder.com/300x400?text=Telephone",
+    title: "Bridal Packages",
+    description: "Tailored packages for brides-to-be.",
+    image: "https://i.pinimg.com/736x/b0/f7/18/b0f71854cb8ac1f351a12bbf35068d8d.jpg",
+    moveTo: "/bridalpackages"
   },
   {
-    title: "Water Tank",
-    description: "Installation and repair of water tanks.",
-    image: "https://via.placeholder.com/300x400?text=MCB",
+    title: "Makeup",
+    description: "Expert makeup application for any occasion.",
+    image: "https://i.pinimg.com/736x/0d/62/3a/0d623a9caa9d3540f9cbad09f7229581.jpg",
+    moveTo: "/makeup"
   },
   {
-    title: "Blockages",
-    description: "Clearing blockages in plumbing systems.",
-    image: "https://via.placeholder.com/300x400?text=Fan",
+    title: "Mehendi",
+    description: "Intricate designs for traditional adornment.",
+    image: "https://i.pinimg.com/736x/65/55/81/655581205eee1cbd937f49017e951795.jpg",
+    moveTo: "/mehendi"
   },
   {
-    title: "Whole House Plumbing",
-    description: "Complete plumbing solutions for entire houses.",
-    image: "https://via.placeholder.com/300x400?text=Fan",
+    title: "Facial",
+    description: "Rejuvenating treatments for your skin.",
+    image: "https://i.pinimg.com/1200x/5d/0c/ed/5d0ced66453076be0e9df481560b1174.jpg",
+    moveTo: "/facial"
   },
 ];
 
@@ -49,7 +55,7 @@ const Beautician = () => {
       {/* Top Section with Heading + Description */}
       <div className="text-center px-6 py-10 bg-gradient-to-r from-[#FFE3BB] via-white to-[#FFF7EB]">
         <h2 className="text-3xl md:text-4xl font-bold text-[#03A6A1]">
-          Our Electrical Services
+          Beauty Services
         </h2>
         <p className="mt-4 max-w-2xl mx-auto text-gray-700 text-base md:text-lg">
           WorkWhiz provides professional and reliable electrical services for
@@ -93,7 +99,7 @@ const Beautician = () => {
               className="
             absolute left-1/2 transform -translate-x-1/2 z-10
             transition-all duration-500 w-25 cursor-pointer
-            bottom-6 opacity-65
+            bottom-6 opacity-65 hover:opacity-100
             md:bottom-[-70px] md:group-hover:bottom-6
           "
             >

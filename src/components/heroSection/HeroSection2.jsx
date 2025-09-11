@@ -5,7 +5,7 @@ const HeroSection2 = () => {
   const navigate = useNavigate();
   return (
 
-    <section className="relative bg-gradient-to-br from-[#FFE3BB] via-white to-[#FFF9F3] overflow-hidden py-20 px-6 md:px-20">
+    <section className="relative bg-gradient-to-br from-[#FFE3BB] via-white to-[#FFF9F3] overflow-hidden py-5 sm:py-20 px-6 md:px-20">
       {/* Decorative Blobs */}
       <div className="absolute -top-20 -left-20 w-72 h-72 bg-[#03A6A1]/10 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#FFA673]/20 rounded-full blur-3xl"></div>
@@ -57,7 +57,7 @@ const HeroSection2 = () => {
           </div>
         </motion.div>
 
-        {/* Right Image */}
+        {/* Right Image --------- - --------- - -------- - -------- - -------- - -------- */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -69,7 +69,7 @@ const HeroSection2 = () => {
             <img
               src="https://wallpaperaccess.com/full/3113314.jpg"
               alt="WorkWhiz Hero"
-              className="relative w-72 md:w-96 lg:w-[30rem] rounded-2xl shadow-2xl hover:scale-105 transition duration-500 ease-in-out"
+              className="relative w-full sm:w-72 md:w-96 lg:w-[30rem] sm:rounded-2xl shadow-2xl hover:scale-105 transition duration-500 ease-in-out"
             />
           </div>
         </motion.div>

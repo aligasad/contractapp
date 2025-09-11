@@ -2,35 +2,23 @@ import Carousel from "../../../heroSection/Carousel";
 
 const services = [
   {
-    title: "Wash Basin",
-    description: "Installation and repair of wash basins.",
-    image: "https://via.placeholder.com/300x400?text=Light",
+    title: "Tank Cleaning",
+    description: "Expert cleaning and disinfection of water storage tanks.",
+    image: "https://i.pinimg.com/1200x/bb/13/76/bb137617476e3947eeaa47548c3592d7.jpg",
+    moveTo: "/tankcleaning"
   },
   {
-    title: "Tap And Faucets",
-    description: "Installation and maintenance of taps and faucets.",
-    image: "https://via.placeholder.com/300x400?text=Sockets",
+    title: "House Cleaning",
+    description: "Thorough cleaning and sanitization of residential spaces.",
+    image: "https://i.pinimg.com/736x/5a/d3/bb/5ad3bb3a2e65bdae78eb73acf5762406.jpg",
+    moveTo: "/housecleaning"
   },
   {
-    title: "Toilet",
-    description: "Repair and maintenance of toilet systems.",
-    image: "https://via.placeholder.com/300x400?text=Telephone",
-  },
-  {
-    title: "Water Tank",
-    description: "Installation and repair of water tanks.",
-    image: "https://via.placeholder.com/300x400?text=MCB",
-  },
-  {
-    title: "Blockages",
-    description: "Clearing blockages in plumbing systems.",
-    image: "https://via.placeholder.com/300x400?text=Fan",
-  },
-  {
-    title: "Whole House Plumbing",
-    description: "Complete plumbing solutions for entire houses.",
-    image: "https://via.placeholder.com/300x400?text=Fan",
-  },
+    title: "Waste Management",
+    description: "Efficient handling and disposal of waste materials.",
+    image: "https://i.pinimg.com/1200x/68/8c/cf/688ccf4afb65d0414cfd588733ba8544.jpg",
+    moveTo: "/wastemanagement"
+  }
 ];
 
 const Cleaning = () => {
@@ -49,7 +37,7 @@ const Cleaning = () => {
       {/* Top Section with Heading + Description */}
       <div className="text-center px-6 py-10 bg-gradient-to-r from-[#FFE3BB] via-white to-[#FFF7EB]">
         <h2 className="text-3xl md:text-4xl font-bold text-[#03A6A1]">
-          Our Electrical Services
+          Cleaning Services
         </h2>
         <p className="mt-4 max-w-2xl mx-auto text-gray-700 text-base md:text-lg">
           WorkWhiz provides professional and reliable electrical services for
@@ -93,7 +81,7 @@ const Cleaning = () => {
               className="
             absolute left-1/2 transform -translate-x-1/2 z-10
             transition-all duration-500 w-25 cursor-pointer
-            bottom-6 opacity-65
+            bottom-6 opacity-65 hover:opacity-100
             md:bottom-[-70px] md:group-hover:bottom-6
           "
             >
