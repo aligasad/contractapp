@@ -137,7 +137,7 @@ function Navbar() {
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [showNavbar, setShowNavbar] = useState(true);
-  const [searchBarOpen, setSearchBarOpen] = useState(false); // <-- Add this line
+  const [searchBarOpen, setSearchBarOpen] = useState(false); 
 
   return (
     <div className="bg-[#dfe3d6] sticky top-0 z-50 shadow-md">
@@ -149,12 +149,12 @@ function Navbar() {
               onClick={onTop}
               src={logo}
               alt="Logo"
-              className="w-16 h-auto rounded"
+              className="h-12 py-1"
             />
           </div>
         </Link>
 
-        {/* Right side icons */}
+        {/* Right side icons ----- ------   -------  -------   ------- ----- */}
         <div className="flex items-center gap-5">
           {/* Mobile Search Icon & Input */}
           {!searchBarOpen ? (
@@ -405,7 +405,7 @@ function Navbar() {
             }}
             className="cursor-pointer text-2xl font-extrabold text-[#03A6A1] tracking-wide flex items-center gap-2"
           >
-            <img src={logo} className="h-14" />{" "}
+            <img src={logo} className="sm:h-11" />{" "}
             <span className="hidden sm:block"></span>
           </div>
 

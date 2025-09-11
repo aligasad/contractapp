@@ -21,15 +21,11 @@ const Painting = () => {
 
   const images = [
     {
-      src: 'https://www.thespruce.com/thmb/L_F0EyabrFQmciPXukZ8jTawXSs=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/BEST_INTERIOR_0590-66bc96bb997449a5b6052b479a082039.jpg',
+      src: 'https://i.ibb.co/YTVqRgNd/Untitled-design-9.png',
       link: "",
     },
     {
-      src: 'https://www.housepaintersedmonton.ca/wp-content/uploads/2022/06/exterior_painting_services-1.jpg',
-      link: "",
-    },
-    {
-      src: 'http://paintsprayerjudge.com/wp-content/uploads/Woman-painting-interior-wall-with-wagner-paint-sprayer.jpg',
+      src: 'https://i.ibb.co/nqGdjGmH/Untitled-design-10.png',
       link: "",
     },
     {
