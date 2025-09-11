@@ -142,14 +142,14 @@ function Navbar() {
   return (
     <div className="bg-[#dfe3d6] sticky top-0 z-50 shadow-md">
       {/* Mobile View */}
-      <div className="md:hidden flex justify-between items-center px-4 py-1 bg-[#FFF455] border-b-2 border-[#219C90] shadow-md">
+      <div className="md:hidden flex justify-between items-center px-4 py-1 bg-gradient-to-br from-[#FFE3BB] via-white to-[#e7c1a9] border-b-2 border-[#219C90] shadow-md">
         <Link to="/" className="text-2xl font-bold text-[#219C90]">
           <div className="">
             <img
               onClick={onTop}
               src={logo}
               alt="Logo"
-              className="h-12 py-1"
+              className="h-14 py-1"
             />
           </div>
         </Link>
