@@ -24,43 +24,43 @@ const services = [
     title: "Solar Repair And Installation",
     description: "Repair and installation of solar power systems.",
     image: "https://i.pinimg.com/1200x/5f/6b/9f/5f6b9f8b1cbe50a58cd10c5f23e06cb6.jpg",
-    moveTo: "/"
+    moveTo: "/workers/solar"
   },
   {
     title: "Whole House Wiring",
     description: "Complete wiring solutions for entire houses.",
     image: "https://i.pinimg.com/1200x/ef/07/b5/ef07b5effc723c2841479ebc2037d69b.jpg",
-    moveTo: "/"
+    moveTo: "/workers/whole"
   },
   {
     title: "Power Sockets and Switch Boards",
     description: "Installation and maintenance of sockets and switch boards.",
     image: "https://i.pinimg.com/1200x/cc/7d/55/cc7d55387036bba181a87aa0eed67be9.jpg",
-    moveTo: "/"
+    moveTo: "/workers/power"
   },
   {
     title: "Telephone And Networking Sockets",
     description: "Setup and repair of telephone and networking sockets.",
     image: "https://i.pinimg.com/736x/4e/9c/ad/4e9cada4f0a55ffcdeef8c140cca42d0.jpg",
-    moveTo: "/"
+    moveTo: "/workers/telephone"
   },
   {
     title: "MCB & MCCBs",
     description: "Maintenance and installation of MCB and MCCBs.",
     image: "https://i.pinimg.com/736x/1b/9f/75/1b9f75287c70442878e3de23e540d088.jpg",
-    moveTo: "/"
+    moveTo: "/workers/mcb"
   },
   {
     title: "Fan",
     description: "Installation and repair of ceiling and wall fans.",
     image: "https://i.pinimg.com/736x/38/f4/88/38f488baa090b1ef9e65241331102d3d.jpg",
-    moveTo: "/"
+    moveTo: "/workers/fan"
   },
   {
     title: "Sub Meter",
     description: "Installation and repair of sub meters for electricity.",
     image: "https://i.pinimg.com/736x/c0/21/27/c021273d42781a533d98941e21a057ce.jpg",
-    moveTo: "/"
+    moveTo: "/workers/meter"
   },
 ];
 

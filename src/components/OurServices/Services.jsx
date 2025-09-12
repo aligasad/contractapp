@@ -128,7 +128,7 @@ const Services = () => {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               whileHover={{ y: -5 }}
-              transition={{ duration: 0.05, delay: index * 0.05 }}
+              transition={{ duration: 0.3, delay: index * 0.2 }}
               viewport={{ once: true }}
             >
               <div
@@ -164,7 +164,7 @@ const Services = () => {
                     }}
                   ></div>
                 </div>
-                <h3 className={`text-[11px] sm:text-sm md:text-base font-semibold ${index % 2 !== 0 ? "text-[#ff4f0f]" : "text-[#03a6a1]"}`}>
+                <h3 className={`text-[11px] sm:text-sm md:text-base font-semibold ${index % 2 !== 0 ? "text-[#03a6a1]" : "text-[#ff4f0f]"}`}>
                   {item.title}
                 </h3>
               </div>

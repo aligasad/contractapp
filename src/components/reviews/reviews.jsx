@@ -27,19 +27,19 @@ const PrevArrow = ({ onClick }) => (
   </div>
 );
 
-function ReviewSection({ productId }) {
+function ReviewSection({ workerId }) {
   const [reviews, setReviews] = useState([]);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
 
   const fetchData = async () => {
-    const data = await getReviews(productId.id);
+    const data = await getReviews(workerId.id);
     setReviews(data);
   };
 
   useEffect(() => {
     fetchData();
-  }, [productId.id]);
+  }, [workerId.id]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -51,7 +51,7 @@ function ReviewSection({ productId }) {
       return;
     }
 
-    await addReview(productId.id, {
+    await addReview(workerId.id, {
       userId: user.uid,
       userName: user.email || "Anonymous",
       rating: Number(rating),

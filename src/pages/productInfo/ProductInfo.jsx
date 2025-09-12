@@ -125,7 +125,7 @@ function ProductInfo() {
                 </div>
 
                 <div className="hidden sm:block mt-8">
-                  <ReviewSection productId={params} />
+                  <ReviewSection workerId={params} />
                 </div>
               </div>
               {/* Product Info Section */}
@@ -358,7 +358,7 @@ function ProductInfo() {
               </div>
 
               <div className=" sm:hidden ">
-                <ReviewSection productId={params} />
+                <ReviewSection workerId={params} />
               </div>
             </div>
           </div>

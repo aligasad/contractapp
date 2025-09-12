@@ -50,7 +50,7 @@ import Renovation from "./components/OurServices/ServiceType/Renovation/Renovati
 import Shifting from "./components/OurServices/ServiceType/Shifting/Shifting.jsx";
 import InteriorPainting from "./components/OurServices/ServiceType/Painting/InteriorPainting.jsx";
 import ExteriorPainting from "./components/OurServices/ServiceType/Painting/ExteriorPainting.jsx";
-import WorkerList from "./components/OurServices/WorkerList.jsx";
+import ElectricianWorkers from "./components/OurServices/ServiceType/Electrician/ElectricianWorkers.jsx";
 
 function App() {
   const router = createBrowserRouter([
@@ -120,7 +120,7 @@ function App() {
         },
         {
           path: "/workers/:category",
-          element: <WorkerList />
+          element: <ElectricianWorkers />
         },
         // --------------{ ELECTRICIAN AND ITS'S CATEGORY }----------------------------------
         {
