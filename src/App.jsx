@@ -50,6 +50,7 @@ import Renovation from "./components/OurServices/ServiceType/Renovation/Renovati
 import Shifting from "./components/OurServices/ServiceType/Shifting/Shifting.jsx";
 import InteriorPainting from "./components/OurServices/ServiceType/Painting/InteriorPainting.jsx";
 import ExteriorPainting from "./components/OurServices/ServiceType/Painting/ExteriorPainting.jsx";
+import WorkerList from "./components/OurServices/WorkerList.jsx";
 
 function App() {
   const router = createBrowserRouter([
@@ -116,6 +117,10 @@ function App() {
         {
           path: "/allproducts",
           element: <Allproducts />,
+        },
+        {
+          path: "/workers/:category",
+          element: <WorkerList />
         },
         // --------------{ ELECTRICIAN AND ITS'S CATEGORY }----------------------------------
         {

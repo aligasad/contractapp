@@ -8,7 +8,6 @@ import { addToCart, deleteFromCart } from "../../redux/CartSlice";
 import { toast } from "react-toastify";
 import {
   FaArrowCircleDown,
-  FaArrowCircleUp,
   FaCheckCircle,
 } from "react-icons/fa";
 import ReviewSection from "../../components/reviews/reviews";
@@ -16,19 +15,19 @@ import ReviewSection from "../../components/reviews/reviews";
 function ProductInfo() {
   const context = useData();
   const [isWished, setIsWished] = useState(false);
-  const { loading, setLoading, calcOffer, product } = context;
+  const { loading, setLoading, calcOffer, worker } = context;
 
-  const [products, setProducts] = useState("");
+  const [workers, setWorkers] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
   const params = useParams();
   // console.log(products.title)
 
-  const getProductData = async () => {
+  const getWorkerData = async () => {
     setLoading(true);
     try {
-      const productTemp = await getDoc(doc(firebaseDB, "products", params.id));
+      const workerTemp = await getDoc(doc(firebaseDB, "workers", params.id));
       // console.log(productTemp)
-      setProducts(productTemp.data());
+      setWorkers(workerTemp.data());
       // console.log(productTemp.data())
       setLoading(false);
     } catch (error) {
@@ -38,7 +37,7 @@ function ProductInfo() {
   };
 
   useEffect(() => {
-    getProductData();
+    getWorkerData();
   }, []);
 
   const dispatch = useDispatch();
@@ -47,19 +46,19 @@ function ProductInfo() {
 
   // add to cart if item is not already present
   const user = JSON.parse(localStorage.getItem("user"));
-  const toggleCart = (product) => {
+  const toggleCart = (worker) => {
     if (!user) {
       toast.warning("Please login first!");
       return;
     }
 
-    const isInCart = cartItems.some((item) => item.id === product.id);
+    const isInCart = cartItems.some((item) => item.id === worker.id);
 
     if (isInCart) {
-      dispatch(deleteFromCart(product));
+      dispatch(deleteFromCart(worker));
       toast.info("Item removed from cart");
     } else {
-      dispatch(addToCart(product));
+      dispatch(addToCart(worker));
       toast.success("Item added to cart");
     }
   };
@@ -91,7 +90,7 @@ function ProductInfo() {
   return (
     <section className="text-gray-700 body-font overflow-hidden bg-gradient-to-br from-green-50 to-blue-100 min-h-screen">
       <div className="container px-2 md:px-5 py-5 mx-auto">
-        {products && (
+        {workers && (
           <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-lg p-4 md:p-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Images Section */}
@@ -101,16 +100,13 @@ function ProductInfo() {
                   <img
                     alt="ecommerce"
                     className="w-full max-h-[55vh] object-contain rounded-xl transition-all duration-300"
-                    src={selectedImage || products.imageUrl}
+                    src={selectedImage || workers.profilePic}
                   />
                 </div>
                 {/* Thumbnails */}
                 <div className="flex gap-3 justify-center">
                   {[
-                    products.imageUrl,
-                    products.imageUrl2,
-                    products.imageUrl3,
-                    products.imageUrl4,
+                    workers.profilePic,
                   ]
                     .filter(Boolean)
                     .map((url, idx) => (
@@ -119,7 +115,7 @@ function ProductInfo() {
                         src={url}
                         alt={`thumb-${idx}`}
                         className={`w-16 h-16 object-cover rounded-xl cursor-pointer border-2 transition-all duration-200 transform hover:scale-105 ${
-                          (selectedImage || products.imageUrl) === url
+                          (selectedImage || workers.profilePic) === url
                             ? "border-[#449474] shadow-md"
                             : "border-gray-200 opacity-70 hover:opacity-100"
                         }`}
@@ -137,24 +133,24 @@ function ProductInfo() {
                 <div>
                   <div className="flex items-center gap-2 mb-2">
                     <h2 className="text-xs md:text-sm title-font bg-gradient-to-r from-gray-800 to-amber-500 bg-clip-text text-transparent font-bold tracking-widest md:mr-3">
-                      {products.brand.toUpperCase() || "THE ZAPHIRA"}
+                      {/* {workers.brand.toUpperCase() || "THE ZAPHIRA"} */}
                     </h2>
-                    {products.isNew && (
+                    {workers.isNew && (
                       <span className="bg-green-200 text-green-800 text-xs font-semibold px-2 py-0.5 rounded-full">
                         New
                       </span>
                     )}
                     {
                       <span className="bg-yellow-200 text-yellow-800 text-xs font-semibold px-2 py-0.5 rounded-full">
-                        {Number(products.stock) !== 0 ? "On Sale" : "Sold Out"}
+                        {Number(workers.stock) !== 0 ? "On Sale" : "Sold Out"}
                       </span>
                     }
                   </div>
                   <h1 className="text-gray-900 text-2xl md:text-3xl title-font font-bold mb-2">
-                    {products.title}
+                    {workers.title}
                   </h1>
                   <h2 className="text-xs md:text-sm title-font text-yellow-600 font-semibold tracking-widest mb-2">
-                    {products.category?.toUpperCase()}
+                    {workers.category?.toUpperCase()}
                   </h2>
                   <div className="flex flex-wrap items-center mb-4"></div>
 
@@ -165,7 +161,7 @@ function ProductInfo() {
                         Quantity:
                       </span>{" "}
                       <span className="text-rose-700 font-bold">
-                        {products.quantity || "N/A"}
+                        {workers.quantity || "N/A"}
                       </span>
                     </div>
                     <div>
@@ -173,7 +169,7 @@ function ProductInfo() {
                         Type:
                       </span>{" "}
                       <span className="text-gray-700 font-semibold text-[13px]">
-                        {products.type ? products.type.toUpperCase() : "N/A"}
+                        {workers.type ? workers.type.toUpperCase() : "N/A"}
                       </span>
                     </div>
                     <div>
@@ -181,7 +177,7 @@ function ProductInfo() {
                         Self Life:
                       </span>{" "}
                       <span className="text-gray-700 font-semibold text-[13px]">
-                        {products.selfLife ? products.selfLife.toUpperCase() : "N/A"}
+                        {workers.selfLife ? workers.selfLife.toUpperCase() : "N/A"}
                       </span>
                     </div>
                     <div>
@@ -190,18 +186,18 @@ function ProductInfo() {
                       </span>{" "}
                       <span
                         className={` ${
-                          products.stock > 0 ? products.stock <= 5 ? "text-amber-600 font-semibold" :"text-green-600 font-bold" : "text-red-500 font-bold"
+                          workers.stock > 0 ? workers.stock <= 5 ? "text-amber-600 font-semibold" :"text-green-600 font-bold" : "text-red-500 font-bold"
                         }`}
                       >
-                        {products.stock > 0 ? products.stock <= 5 ? "Low in Stock" : `${products.stock} Items` : "Out of Stock"}
+                        {workers.stock > 0 ? workers.stock <= 5 ? "Low in Stock" : `${workers.stock} Items` : "Out of Stock"}
                       </span>
                     </div>
                     <div className="sm:col-span-2 mt-0 sm:mt-3">
                       <span className="font-bold text-green-700">
                         Tags:
                       </span>{" "}
-                      {products.tags ? (
-                        products.tags.split("|").map((tag, i) => (
+                      {workers.tags ? (
+                        workers.tags.split("|").map((tag, i) => (
                           <span
                             key={i}
                             className="inline-block bg-amber-100 text-green-800 text-[12px] font-semibold rounded-full px-2 py-0.5 text-xs mr-2 mb-1"
@@ -234,10 +230,10 @@ function ProductInfo() {
                       </button>
                       {openSection === "description" && (
                         <div className="p-5 text-sm md:text-base text-gray-600 border-t border-gray-200">
-                          {products.description ? (
+                          {workers.description ? (
                             <div
                               dangerouslySetInnerHTML={{
-                                __html: products.description,
+                                __html: workers.description,
                               }}
                             />
                           ) : (
@@ -264,9 +260,9 @@ function ProductInfo() {
                       </button>
                       {openSection === "ingredients" && (
                         <div className="p-5 text-sm md:text-base text-gray-600 border-t border-gray-200">
-                          {products.ingredients ? (
+                          {workers.ingredients ? (
                             <ul className="list-disc pl-5">
-                              {products.ingredients
+                              {workers.ingredients
                                 .split("|")
                                 .map((ingredient, index) => (
                                   <li key={index}>{ingredient.trim()}</li>
@@ -296,8 +292,8 @@ function ProductInfo() {
                       </button>
                       {openSection === "benefits" && (
                         <div className="p-5 text-sm md:text-base text-gray-600 border-t border-gray-200">
-                          {products.benefits ? (
-                            products.benefits.split("|").map((item, index) => (
+                          {workers.benefits ? (
+                            workers.benefits.split("|").map((item, index) => (
                               <div
                                 key={index}
                                 className="flex items-start mb-2"
@@ -319,33 +315,33 @@ function ProductInfo() {
                   <div>
                     <div className="flex items-baseline gap-2 mb-2 mt-4">
                       <p className="text-2xl font-bold text-red-600 mt-1">
-                        ${products.price}
+                        ${workers.price}
                       </p>
-                      {products.originalPrice && (
+                      {workers.originalPrice && (
                         <p className="text-lg md:text-xl font-semibold text-gray-400 line-through">
-                          ${products.originalPrice}
+                          ${workers.originalPrice}
                         </p>
                       )}
-                      {products.originalPrice && products.price && (
+                      {workers.originalPrice && workers.price && (
                         <span className="ml-3 bg-green-100 text-green-700 px-2 py-0.5 rounded-full text-xs font-bold">
                           {calculateDiscount(
-                            products.originalPrice,
-                            products.price
+                            workers.originalPrice,
+                            workers.price
                           )}
                           % OFF
                         </span>
                       )}
                     </div>
-                    {products.stock > 0 ? (
+                    {workers.stock > 0 ? (
                       <button
-                        onClick={() => toggleCart(products)}
+                        onClick={() => toggleCart(workers)}
                         className={`px-3 py-[6px] sm:py-2 mr-2 text-[12px] md:text-sm font-semibold rounded-lg transition duration-800 hover:scale-105 cursor-pointer ${
-                          cartItems.some((p) => p.id === products.id)
+                          cartItems.some((p) => p.id === workers.id)
                             ? "bg-red-700 text-white hover:bg-black"
                             : "bg-[#439373] text-black hover:bg-black hover:text-white"
                         }`}
                       >
-                        {cartItems.some((p) => p.id === products.id)
+                        {cartItems.some((p) => p.id === workers.id)
                           ? "Remove"
                           : "Add to Cart"}
                       </button>

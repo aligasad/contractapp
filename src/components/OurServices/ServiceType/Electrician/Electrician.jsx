@@ -6,19 +6,19 @@ const services = [
     title: "Inverter",
     description: "Installation and maintenance of power inverters.",
     image: "https://i.pinimg.com/1200x/42/90/b1/4290b10640cd46a269bf38b7b0c7ada1.jpg",
-    moveTo: "/inverter"
+    moveTo: "/workers/inverter"
   },
   {
     title: "Wiring",
     description: "General electrical wiring services.",
     image: "https://i.pinimg.com/736x/02/20/96/022096f28eba03818597e0d3ba826ba7.jpg",
-    moveTo: "/wiring"
+    moveTo: "/workers/wiring"
   },
   {
     title: "Light",
     description: "Installation and repair of lighting fixtures.",
     image: "https://i.pinimg.com/736x/23/02/5e/23025e91ed14dce3477ec6c44cc13328.jpg",
-    moveTo: "/light"
+    moveTo: "/workers/light"
   },
   {
     title: "Solar Repair And Installation",
@@ -135,7 +135,7 @@ const Electrician = () => {
                 onClick={() => {
                   navigate(service.moveTo);
                   window.scrollTo({ top: 0, behavior: "smooth" });
-                  window.location.reload();
+                  // window.location.reload();
                 }}
               >
                 Hire Now

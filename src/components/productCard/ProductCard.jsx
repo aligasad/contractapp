@@ -8,19 +8,8 @@ import { motion } from "framer-motion";
 
 function ProductCard() {
   const context = useData();
-  const [isWished, setIsWished] = useState(false);
 
-  const {
-    mode,
-    product,
-    searchkey,
-    setSearchkey,
-    filterType,
-    setFilterType,
-    filterPrice,
-    setFilterPrice,
-    calcOffer,
-  } = context;
+  const { mode, product, searchkey, filterType, filterPrice } = context;
   // console.log("ITEMS: ",product);
   // ====================={R E D U X - P A R T}===============================
   const dispatch = useDispatch(); //Returns the dispatch function from the Redux store

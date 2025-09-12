@@ -4,37 +4,37 @@ const services = [
   {
     title: "Wash Basin",
     description: "Installation and repair of wash basins.",
-    image: "https://via.placeholder.com/300x400?text=Light",
+    image: "https://i.pinimg.com/1200x/0d/36/d2/0d36d24fc76f9091f76f197db585f0b7.jpg",
     moveTo: "/washbasin"
   },
   {
     title: "Tap And Faucets",
     description: "Installation and maintenance of taps and faucets.",
-    image: "https://via.placeholder.com/300x400?text=Sockets",
+    image: "https://i.pinimg.com/736x/70/b8/2d/70b82d7ad135082a38770493d64714bc.jpg",
     moveTo: "/tapfaucets"
   },
   {
     title: "Toilet",
     description: "Repair and maintenance of toilet systems.",
-    image: "https://via.placeholder.com/300x400?text=Telephone",
+    image: "https://i.pinimg.com/736x/96/35/fd/9635fd25ceb82b420b4937bb2e3ca1c9.jpg",
     moveTo: "/toilet"
   },
   {
     title: "Water Tank",
     description: "Installation and repair of water tanks.",
-    image: "https://via.placeholder.com/300x400?text=MCB",
+    image: "https://i.pinimg.com/736x/0c/d8/f0/0cd8f02f909dc0add1d5fd5f9ddfa737.jpg",
     moveTo: "/watertank"
   },
   {
     title: "Blockages",
     description: "Clearing blockages in plumbing systems.",
-    image: "https://via.placeholder.com/300x400?text=Fan",
+    image: "https://i.pinimg.com/1200x/53/ac/11/53ac1144b3fdabdab82cda972e7cbae7.jpg",
     moveTo: "/blockages"
   },
   {
     title: "Whole House Plumbing",
     description: "Complete plumbing solutions for entire houses.",
-    image: "https://via.placeholder.com/300x400?text=Fan",
+    image: "https://i.pinimg.com/736x/33/21/77/33217714fbd2af5449a3c1d7e649452d.jpg",
     moveTo: "/wholehouse"
   },
 ];

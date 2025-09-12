@@ -76,7 +76,7 @@ const Catering = () => {
               className="
             absolute left-1/2 transform -translate-x-1/2 z-10
             transition-all duration-500 w-25 cursor-pointer
-            bottom-6 opacity-65 hover:opacity-100
+            bottom-6 opacity-65 hover:opacity-10npm run dev0
             md:bottom-[-70px] md:group-hover:bottom-6
           "
             >

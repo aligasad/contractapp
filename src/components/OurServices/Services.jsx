@@ -106,7 +106,7 @@ const Services = () => {
 
           <h2 className="text-3xl md:text-5xl font-bold mb-4">
             <span className="text-[#03a6a1]">Our</span>{" "}
-            <span className="text-amber-500">Services</span>
+            <span className="text-[#ff4f0f]">Services</span>
           </h2>
 
           <p className="text-gray-600 max-w-2xl mx-auto">
@@ -120,7 +120,11 @@ const Services = () => {
           {benefits.map((item, index) => (
             <motion.div
               key={index}
-              className={`rounded-xl pb-2 px-1 w-26 h-26 sm:w-32 sm:h-32 lg:w-36 lg:h-36 grid place-items-center text-center hover:shadow-lg ${index % 2 !== 0 ? 'hover:shadow-[#03a6a1]/30' : 'hover:shadow-[#ff4f0f]/30'} transition duration-300`}
+              className={`rounded-xl pb-2 px-1 w-26 h-26 sm:w-32 sm:h-32 lg:w-36 lg:h-36 grid place-items-center text-center hover:shadow-lg ${
+                index % 2 !== 0
+                  ? "hover:shadow-[#03a6a1]/50"
+                  : "hover:shadow-[#ff4f0f]/50"
+              } transition duration-300`}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               whileHover={{ y: -5 }}
@@ -136,14 +140,31 @@ const Services = () => {
               >
                 {/* Diamond Shape Background --------------------------------*/}
                 <div
-                  className={`grid place-items-center mx-auto w-20 h-20 sm:w-24 sm:h-24 mb-0 ${index % 2 !== 0 ? 'bg-[#03a6a1]' : 'bg-[#fe9a00]'}`}
+                  className={`grid place-items-center mx-auto w-20 h-20 sm:w-24 sm:h-24 mb-0 ${
+                    index % 2 !== 0 ? "bg-[#03a6a1]" : "bg-[#ff4f0f]"
+                  }`}
                   style={{
-                    clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                    clipPath: index % 2 !== 0 ? "polygon(42% 1%, 63% 19%, 90% 10%, 100% 70%, 48% 100%, 33% 81%, 7% 88%, 0% 30%)" : "polygon(72% 2%, 75% 23%, 95% 20%, 90% 84%, 68% 74%, 63% 96%, 6% 75%, 17% 60%, 0 51%, 25% 11%)",
                   }}
                 >
-                  <img src={item.icon} className="h-10 sm:h-12" />
+                  {/* ICONS CODE--------------------------------------------- */}
+                  {/* <img src={item.icon} className="h-10 sm:h-12" /> */}
+                  <div
+                    className="h-10 sm:h-12 w-10 sm:w-12"
+                    style={{
+                      backgroundColor: index % 2 !== 0 ? "#faeee4" : "#faeee4",
+                      WebkitMaskImage: `url(${item.icon})`,
+                      WebkitMaskRepeat: "no-repeat",
+                      WebkitMaskPosition: "center",
+                      WebkitMaskSize: "contain",
+                      maskImage: `url(${item.icon})`,  // image icons----------------
+                      maskRepeat: "no-repeat",
+                      maskPosition: "center",
+                      maskSize: "contain",
+                    }}
+                  ></div>
                 </div>
-                <h3 className="text-sm sm:text-base text-[#000]">
+                <h3 className={`text-[11px] sm:text-sm md:text-base font-semibold ${index % 2 !== 0 ? "text-[#ff4f0f]" : "text-[#03a6a1]"}`}>
                   {item.title}
                 </h3>
               </div>
@@ -168,7 +189,7 @@ const Services = () => {
             <p className="text-sm text-gray-500">Happy Customers</p>
           </div>
           <div>
-            <div className="text-3xl font-bold text-amber-500">100%</div>
+            <div className="text-3xl font-bold text-[#ff4f0f]">100%</div>
             <p className="text-sm text-gray-500">Verified Workers</p>
           </div>
           <div>
