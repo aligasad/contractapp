@@ -115,7 +115,7 @@ const Services = () => {
           </p>
         </motion.div>
 
-        {/* Benefits Grid------------------------------------- */}
+        {/* Services Grid------------------------------------- */}
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 px-3 sm:px-6 md:px-13 gap-4 sm:gap-6 md:gap-8">
           {benefits.map((item, index) => (
             <motion.div
@@ -128,7 +128,7 @@ const Services = () => {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               whileHover={{ y: -5 }}
-              transition={{ duration: 0.3, delay: index * 0.2 }}
+              transition={{ duration: 0.3, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
               <div
@@ -157,7 +157,7 @@ const Services = () => {
                       WebkitMaskRepeat: "no-repeat",
                       WebkitMaskPosition: "center",
                       WebkitMaskSize: "contain",
-                      maskImage: `url(${item.icon})`,  // image icons----------------
+                      maskImage: `url(${item.icon})`,  // image icons----------------    --------------------!!!
                       maskRepeat: "no-repeat",
                       maskPosition: "center",
                       maskSize: "contain",

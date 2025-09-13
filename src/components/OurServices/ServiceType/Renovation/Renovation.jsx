@@ -4,14 +4,16 @@ const services = [
   {
     title: "Kitchen Renovation",
     description: "Functional and stylish kitchen updates.",
-    image: "https://i.pinimg.com/736x/41/21/41/412141fe7fb57cc2c0ae483c3fdf7b64.jpg",
-    moveTo: '/kitchenrenovation'
+    image:
+      "https://i.pinimg.com/736x/41/21/41/412141fe7fb57cc2c0ae483c3fdf7b64.jpg",
+    moveTo: "/kitchenrenovation",
   },
   {
     title: "Bathroom Renovation",
     description: "Luxurious updates for your bathroom.",
-    image: "https://i.pinimg.com/736x/df/c1/84/dfc1844612aaa00931efa6f235e6313f.jpg",
-    moveTo: '/bathroomrenovation'
+    image:
+      "https://i.pinimg.com/736x/df/c1/84/dfc1844612aaa00931efa6f235e6313f.jpg",
+    moveTo: "/bathroomrenovation",
   },
   // {
   //   title: "Aluminum",
@@ -22,51 +24,55 @@ const services = [
   {
     title: "UPVC",
     description: "Energy-efficient installations for windows and doors.",
-    image: "https://i.pinimg.com/1200x/f2/95/01/f295015af2641c2c932bdf989f60f380.jpg",
-    moveTo: '/upvc'
+    image:
+      "https://i.pinimg.com/1200x/f2/95/01/f295015af2641c2c932bdf989f60f380.jpg",
+    moveTo: "/upvc",
   },
   {
     title: "Railings",
     description: "Stylish railing solutions for safety.",
-    image: "https://i.pinimg.com/1200x/fa/e0/2d/fae02ddd947a4f900587aae936446229.jpg",
-    moveTo: '/railings'
+    image:
+      "https://i.pinimg.com/1200x/fa/e0/2d/fae02ddd947a4f900587aae936446229.jpg",
+    moveTo: "/railings",
   },
   {
     title: "Door And Windows",
     description: "Replacement for improved functionality and security.",
-    image: "https://i.pinimg.com/1200x/79/16/ac/7916ac9f6a708d0c3174e4b266f032f2.jpg",
-    moveTo: '/doorwindows'
+    image:
+      "https://i.pinimg.com/1200x/79/16/ac/7916ac9f6a708d0c3174e4b266f032f2.jpg",
+    moveTo: "/doorwindows",
   },
   {
     title: "Furnitures",
     description: "Custom designs to complement your spaces.",
-    image: "https://i.pinimg.com/1200x/fb/e3/48/fbe348121aaff157e0ee009137ccb034.jpg",
-    moveTo: '/furnitures'
+    image:
+      "https://i.pinimg.com/1200x/fb/e3/48/fbe348121aaff157e0ee009137ccb034.jpg",
+    moveTo: "/furnitures",
   },
 ];
 
 const Renovation = () => {
   const images = [
     {
-      src: 'https://www.thesilverbird.com/wp-content/uploads/2019/06/House-shifting.jpg',
+      src: "https://www.thesilverbird.com/wp-content/uploads/2019/06/House-shifting.jpg",
       link: "",
     },
     {
-      src: 'https://www.thesilverbird.com/wp-content/uploads/2019/06/House-shifting.jpg',
+      src: "https://www.thesilverbird.com/wp-content/uploads/2019/06/House-shifting.jpg",
       link: "",
     },
   ];
   return (
     <div>
       {/* Top Section with Heading + Description */}
-      <div className="text-center px-6 py-10 bg-gradient-to-r from-[#FFE3BB] via-white to-[#FFF7EB]">
+      <div className="text-center px-6 py-10 bg-gradient-to-r from-[#FFE3BB] via-white to-[#FFF7EB] shadow-inner rounded-2xl mb-6">
         <h2 className="text-3xl md:text-4xl font-bold text-[#03A6A1]">
-          Our Electrical Services
+          Home Renovation Services
         </h2>
         <p className="mt-4 max-w-2xl mx-auto text-gray-700 text-base md:text-lg">
-          WorkWhiz provides professional and reliable electrical services for
-          your home and office. From lighting to wiring and socket
-          installations, our experts ensure safety and quality work.
+          Upgrade your home or office with WorkWhiz home renovation services. We
+          specialize in modern designs, space optimization, and quality
+          improvements tailored to your needs.
         </p>
       </div>
 

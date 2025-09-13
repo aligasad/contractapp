@@ -4,42 +4,46 @@ const services = [
   {
     title: "Whole Home",
     description: "Relocation assistance for your entire home.",
-    image: "https://www.thesilverbird.com/wp-content/uploads/2019/06/House-shifting.jpg",
+    image:
+      "https://www.thesilverbird.com/wp-content/uploads/2019/06/House-shifting.jpg",
   },
   {
     title: "Single Room",
     description: "Efficient moving services for individual rooms.",
-    image: "https://cdni.iconscout.com/illustration/premium/thumb/man-shifting-house-5369004-4487791.png",
+    image:
+      "https://cdni.iconscout.com/illustration/premium/thumb/man-shifting-house-5369004-4487791.png",
   },
   {
     title: "Office",
     description: "Seamless relocation solutions for your office space.",
-    image: "https://4.imimg.com/data4/LD/QX/GLADMIN-26263308/office-shifting-1000x1000.jpg",
+    image:
+      "https://4.imimg.com/data4/LD/QX/GLADMIN-26263308/office-shifting-1000x1000.jpg",
   },
 ];
 
 const Shifting = () => {
   const images = [
     {
-      src: 'https://static.vecteezy.com/system/resources/previews/019/049/174/large_2x/global-business-logistics-import-export-and-container-cargo-freight-ship-during-loading-at-industrial-port-by-port-crane-cargo-plane-truck-on-highway-with-copy-space-transportation-industry-concept-photo.jpg',
+      src: "https://static.vecteezy.com/system/resources/previews/019/049/174/large_2x/global-business-logistics-import-export-and-container-cargo-freight-ship-during-loading-at-industrial-port-by-port-crane-cargo-plane-truck-on-highway-with-copy-space-transportation-industry-concept-photo.jpg",
       link: "",
     },
     {
-      src: 'https://icatlogistics.com/wp-content/uploads/The-Different-Modes-of-Transportation-Header-e1645547707423.jpg',
+      src: "https://icatlogistics.com/wp-content/uploads/The-Different-Modes-of-Transportation-Header-e1645547707423.jpg",
       link: "",
     },
   ];
   return (
     <div>
       {/* Top Section with Heading + Description */}
-      <div className="text-center px-6 py-10 bg-gradient-to-r from-[#FFE3BB] via-white to-[#FFF7EB]">
+      <div className="text-center px-6 py-10 bg-gradient-to-r from-[#FFE3BB] via-white to-[#FFF7EB] shadow-inner rounded-2xl mb-6">
         <h2 className="text-3xl md:text-4xl font-bold text-[#03A6A1]">
-          Our Electrical Services
+          Shifting Services
         </h2>
         <p className="mt-4 max-w-2xl mx-auto text-gray-700 text-base md:text-lg">
-          WorkWhiz provides professional and reliable electrical services for
-          your home and office. From lighting to wiring and socket
-          installations, our experts ensure safety and quality work.
+          WorkWhiz provides hassle-free shifting services to make your move
+          smooth and secure. From packing to transportation and safe delivery,
+          our team ensures your belongings are handled with care and reach the
+          destination on time.
         </p>
       </div>
 

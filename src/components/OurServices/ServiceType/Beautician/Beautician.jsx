@@ -1,66 +1,73 @@
-import Carousel from "../../../heroSection/Carousel"
+import Carousel from "../../../heroSection/Carousel";
 
 const services = [
   {
     title: "Hair",
     description: "Professional styling for your hair.",
-    image: "https://i.pinimg.com/736x/15/7b/8a/157b8afef3f373d0ff5bef1139fcc95e.jpg",
-    moveTo: "/hair"
+    image:
+      "https://i.pinimg.com/736x/15/7b/8a/157b8afef3f373d0ff5bef1139fcc95e.jpg",
+    moveTo: "/hair",
   },
   {
     title: "Waxing",
     description: "Efficient services for smooth skin.",
-    image: "https://i.pinimg.com/736x/8d/c7/17/8dc7172d2a74f83778c46f8e082f05db.jpg",
-    moveTo: "/waxing"
+    image:
+      "https://i.pinimg.com/736x/8d/c7/17/8dc7172d2a74f83778c46f8e082f05db.jpg",
+    moveTo: "/waxing",
   },
   {
     title: "Bridal Packages",
     description: "Tailored packages for brides-to-be.",
-    image: "https://i.pinimg.com/736x/b0/f7/18/b0f71854cb8ac1f351a12bbf35068d8d.jpg",
-    moveTo: "/bridalpackages"
+    image:
+      "https://i.pinimg.com/736x/b0/f7/18/b0f71854cb8ac1f351a12bbf35068d8d.jpg",
+    moveTo: "/bridalpackages",
   },
   {
     title: "Makeup",
     description: "Expert makeup application for any occasion.",
-    image: "https://i.pinimg.com/736x/0d/62/3a/0d623a9caa9d3540f9cbad09f7229581.jpg",
-    moveTo: "/makeup"
+    image:
+      "https://i.pinimg.com/736x/0d/62/3a/0d623a9caa9d3540f9cbad09f7229581.jpg",
+    moveTo: "/makeup",
   },
   {
     title: "Mehendi",
     description: "Intricate designs for traditional adornment.",
-    image: "https://i.pinimg.com/736x/65/55/81/655581205eee1cbd937f49017e951795.jpg",
-    moveTo: "/mehendi"
+    image:
+      "https://i.pinimg.com/736x/65/55/81/655581205eee1cbd937f49017e951795.jpg",
+    moveTo: "/mehendi",
   },
   {
     title: "Facial",
     description: "Rejuvenating treatments for your skin.",
-    image: "https://i.pinimg.com/1200x/5d/0c/ed/5d0ced66453076be0e9df481560b1174.jpg",
-    moveTo: "/facial"
+    image:
+      "https://i.pinimg.com/1200x/5d/0c/ed/5d0ced66453076be0e9df481560b1174.jpg",
+    moveTo: "/facial",
   },
 ];
 
 const Beautician = () => {
   const images = [
     {
-      src: 'https://i.pinimg.com/1200x/09/41/c2/0941c206bee42d7502f0d94f4e9a95cf.jpg',
+      src: "https://i.pinimg.com/1200x/09/41/c2/0941c206bee42d7502f0d94f4e9a95cf.jpg",
       link: "",
     },
     {
-      src: 'https://i.pinimg.com/736x/16/4b/7b/164b7be0690df36bf7366eef963a6676.jpg',
+      src: "https://i.pinimg.com/736x/16/4b/7b/164b7be0690df36bf7366eef963a6676.jpg",
       link: "",
     },
   ];
   return (
     <div>
-      {/* Top Section with Heading + Description */}
-      <div className="text-center px-6 py-10 bg-gradient-to-r from-[#FFE3BB] via-white to-[#FFF7EB]">
+      {/* Beautician Services */}
+      <div className="text-center px-6 py-10 bg-gradient-to-r from-[#FFE3BB] via-white to-[#FFF7EB] shadow-inner rounded-2xl mb-6">
         <h2 className="text-3xl md:text-4xl font-bold text-[#03A6A1]">
-          Beauty Services
+          Beautician Services
         </h2>
         <p className="mt-4 max-w-2xl mx-auto text-gray-700 text-base md:text-lg">
-          WorkWhiz provides professional and reliable electrical services for
-          your home and office. From lighting to wiring and socket
-          installations, our experts ensure safety and quality work.
+          WorkWhiz offers expert beautician services at your convenience. From
+          skincare and makeup to hair styling and grooming, our professionals
+          bring salon-quality care to your home for a comfortable and refreshing
+          beauty experience.
         </p>
       </div>
 

@@ -4,63 +4,70 @@ const services = [
   {
     title: "Wash Basin",
     description: "Expert repair and servicing of televisions.",
-    image: "https://i.pinimg.com/736x/a5/0e/40/a50e401a427090c3ed1eeaade001d2ca.jpg",
-    moveTo: "/washbasin"
+    image:
+      "https://i.pinimg.com/736x/a5/0e/40/a50e401a427090c3ed1eeaade001d2ca.jpg",
+    moveTo: "/washbasin",
   },
   {
     title: "Air Condition (AC)",
     description: "Proficient maintenance and repair of air conditioners.",
-    image: "https://i.pinimg.com/736x/ce/9c/f7/ce9cf7367350d789d9c7c2115e1bd572.jpg",
-    moveTo: "/ac"
+    image:
+      "https://i.pinimg.com/736x/ce/9c/f7/ce9cf7367350d789d9c7c2115e1bd572.jpg",
+    moveTo: "/ac",
   },
   {
     title: "Refrigerator",
     description: "Thorough repair and servicing of refrigerators.",
-    image: "https://i.pinimg.com/1200x/e6/a2/43/e6a2432c85629aaf7cb3bb5b818a50c8.jpg",
-    moveTo: "/refrigerator"
+    image:
+      "https://i.pinimg.com/1200x/e6/a2/43/e6a2432c85629aaf7cb3bb5b818a50c8.jpg",
+    moveTo: "/refrigerator",
   },
   {
     title: "Washing Machine",
     description: "Complete maintenance and repair of washing machines.",
-    image: "https://i.pinimg.com/736x/72/25/0e/72250ecdffcd4b3bf9425cce9708d1f4.jpg",
-    moveTo: "/washingmachine"
+    image:
+      "https://i.pinimg.com/736x/72/25/0e/72250ecdffcd4b3bf9425cce9708d1f4.jpg",
+    moveTo: "/washingmachine",
   },
   {
     title: "Iron",
     description: "Skilled repair and servicing of irons for crisp results.",
-    image: "https://i.pinimg.com/736x/91/b1/a7/91b1a79c0094d2d65458de198e060dd2.jpg",
-    moveTo: "/iron"
+    image:
+      "https://i.pinimg.com/736x/91/b1/a7/91b1a79c0094d2d65458de198e060dd2.jpg",
+    moveTo: "/iron",
   },
   {
     title: "Vacuum Cleaner",
-    description: "Thorough maintenance and repair of vacuum cleaners for cleaning.",
-    image: "https://i.pinimg.com/1200x/8c/ea/f9/8ceaf96813cf05f1ca48907a8c7588f7.jpg",
-    moveTo: "/vacuumcleaner"
+    description:
+      "Thorough maintenance and repair of vacuum cleaners for cleaning.",
+    image:
+      "https://i.pinimg.com/1200x/8c/ea/f9/8ceaf96813cf05f1ca48907a8c7588f7.jpg",
+    moveTo: "/vacuumcleaner",
   },
 ];
 
 const ElectronicDevice = () => {
   const images = [
     {
-      src: 'https://www.thesilverbird.com/wp-content/uploads/2019/06/House-shifting.jpg',
+      src: "https://www.thesilverbird.com/wp-content/uploads/2019/06/House-shifting.jpg",
       link: "",
     },
     {
-      src: 'https://www.thesilverbird.com/wp-content/uploads/2019/06/House-shifting.jpg',
+      src: "https://www.thesilverbird.com/wp-content/uploads/2019/06/House-shifting.jpg",
       link: "",
     },
   ];
   return (
     <div>
       {/* Top Section with Heading + Description */}
-      <div className="text-center px-6 py-10 bg-gradient-to-r from-[#FFE3BB] via-white to-[#FFF7EB]">
+      <div className="text-center px-6 py-10 bg-gradient-to-r from-[#FFE3BB] via-white to-[#FFF7EB] shadow-inner rounded-2xl mb-6">
         <h2 className="text-3xl md:text-4xl font-bold text-[#03A6A1]">
-          Our Electronic Devices Services
+          Electronic Device Services
         </h2>
         <p className="mt-4 max-w-2xl mx-auto text-gray-700 text-base md:text-lg">
-          WorkWhiz provides professional and reliable electrical services for
-          your home and office. From lighting to wiring and socket
-          installations, our experts ensure safety and quality work.
+          WorkWhiz provides expert repair and installation for electronic
+          devices. From appliances to gadgets, our technicians ensure safe
+          handling and smooth performance.
         </p>
       </div>
 

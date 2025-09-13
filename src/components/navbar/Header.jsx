@@ -240,7 +240,7 @@ function Navbar() {
                     }}
                     className="flex items-center gap-1 text-[#219C90] font-bold hover:text-[#EE4E4E] cursor-pointer transition"
                   >
-                    Products{" "}
+                    Services{" "}
                     {isProductDropdownOpen ? (
                       <ChevronUp size={16} />
                     ) : (
@@ -258,67 +258,67 @@ function Navbar() {
                         }}
                         className="hover:text-[#EE4E4E] cursor-pointer transition"
                       >
-                        All Products
+                        All Workers
                       </li>
                       <li
                         onClick={() => {
-                          handleSelect("/aligarh"),
+                          handleSelect("/electrician"),
                             setIsOpen(false),
                             setMenuOpen(false);
                         }}
                         className="hover:text-[#EE4E4E] cursor-pointer transition"
                       >
-                        Aligarh
+                        Electrician
                       </li>
                       <li
                         onClick={() => {
-                          handleSelect("/shampoo"),
+                          handleSelect("/painting"),
                             setIsOpen(false),
                             setMenuOpen(false);
                         }}
                         className="hover:text-[#EE4E4E] cursor-pointer transition"
                       >
-                        Shampoo
+                        Home Painter
                       </li>
                       <li
                         onClick={() => {
-                          handleSelect("/soap"),
+                          handleSelect("/construction"),
                             setIsOpen(false),
                             setMenuOpen(false);
                         }}
                         className="hover:text-[#EE4E4E] cursor-pointer transition"
                       >
-                        Soap
+                        Construction
                       </li>
                       <li
                         onClick={() => {
-                          handleSelect("/lipgloss"),
+                          handleSelect("/renovation"),
                             setIsOpen(false),
                             setMenuOpen(false);
                         }}
                         className="hover:text-[#EE4E4E] cursor-pointer transition"
                       >
-                        Lip Gloss
+                        Renovation
                       </li>
                       <li
                         onClick={() => {
-                          handleSelect("/organicchocolates"),
+                          handleSelect("/plumbing"),
                             setIsOpen(false),
                             setMenuOpen(false);
                         }}
                         className="hover:text-[#EE4E4E] cursor-pointer transition"
                       >
-                        Chocolates
+                        Plumbing
                       </li>
                       <li
                         onClick={() => {
-                          handleSelect("/candles"),
+                          handleSelect("/electronicdevice"),
                             setIsOpen(false),
                             setMenuOpen(false);
                         }}
                         className="hover:text-[#EE4E4E] cursor-pointer transition"
                       >
-                        Candles
+                        Electronic Device
                       </li>
                     </ul>
                   )}
@@ -434,50 +434,78 @@ function Navbar() {
               </button>
 
               {isProductDropdownOpen && (
-                <ul className="absolute mt-3 bg-[#FFE3BB] text-[#03A6A1] shadow-lg rounded-xl py-3 px-4 z-50 min-w-[170px] space-y-2 font-medium">
-                  <li
-                    onClick={() => handleSelect("/allproducts")}
-                    className="hover:text-[#FF4F0F] cursor-pointer"
-                  >
-                    All Products
-                  </li>
-                  <li
-                    onClick={() => handleSelect("/aligarh")}
-                    className="hover:text-[#FF4F0F] cursor-pointer"
-                  >
-                    Aligarh
-                  </li>
-                  <li
-                    onClick={() => handleSelect("/narkatiaganj")}
-                    className="hover:text-[#FF4F0F] cursor-pointer"
-                  >
-                    Narkatiaganj
-                  </li>
-                  <li
-                    onClick={() => handleSelect("/soap")}
-                    className="hover:text-[#FF4F0F] cursor-pointer"
-                  >
-                    Soap
-                  </li>
-                  <li
-                    onClick={() => handleSelect("/lipgloss")}
-                    className="hover:text-[#FF4F0F] cursor-pointer"
-                  >
-                    Lip Gloss
-                  </li>
-                  <li
-                    onClick={() => handleSelect("/organicchocolates")}
-                    className="hover:text-[#FF4F0F] cursor-pointer"
-                  >
-                    Chocolates
-                  </li>
-                  <li
-                    onClick={() => handleSelect("/candles")}
-                    className="hover:text-[#FF4F0F] cursor-pointer"
-                  >
-                    Candles
-                  </li>
-                </ul>
+                <ul className="absolute mt-3 bg-[#FFFBEA] text-gray-800 shadow-lg rounded-xl py-2 px-4 z-50 min-w-[160px] space-y-2 border border-[#FFC700]/60">
+                      <li
+                        onClick={() => {
+                          handleSelect("/allproducts"),
+                            setIsProductDropdownOpen(false),
+                            setMenuOpen(false);
+                        }}
+                        className="hover:text-[#EE4E4E] cursor-pointer transition"
+                      >
+                        All Workers
+                      </li>
+                      <li
+                        onClick={() => {
+                          handleSelect("/electrician"),
+                            setIsOpen(false),
+                            setMenuOpen(false);
+                        }}
+                        className="hover:text-[#EE4E4E] cursor-pointer transition"
+                      >
+                        Electrician
+                      </li>
+                      <li
+                        onClick={() => {
+                          handleSelect("/painting"),
+                            setIsOpen(false),
+                            setMenuOpen(false);
+                        }}
+                        className="hover:text-[#EE4E4E] cursor-pointer transition"
+                      >
+                        Home Painter
+                      </li>
+                      <li
+                        onClick={() => {
+                          handleSelect("/construction"),
+                            setIsOpen(false),
+                            setMenuOpen(false);
+                        }}
+                        className="hover:text-[#EE4E4E] cursor-pointer transition"
+                      >
+                        Construction
+                      </li>
+                      <li
+                        onClick={() => {
+                          handleSelect("/renovation"),
+                            setIsOpen(false),
+                            setMenuOpen(false);
+                        }}
+                        className="hover:text-[#EE4E4E] cursor-pointer transition"
+                      >
+                        Renovation
+                      </li>
+                      <li
+                        onClick={() => {
+                          handleSelect("/plumbing"),
+                            setIsOpen(false),
+                            setMenuOpen(false);
+                        }}
+                        className="hover:text-[#EE4E4E] cursor-pointer transition"
+                      >
+                        Plumbing
+                      </li>
+                      <li
+                        onClick={() => {
+                          handleSelect("/electronicdevice"),
+                            setIsOpen(false),
+                            setMenuOpen(false);
+                        }}
+                        className="hover:text-[#EE4E4E] cursor-pointer transition"
+                      >
+                        Electronic Device
+                      </li>
+                    </ul>
               )}
             </div>
 

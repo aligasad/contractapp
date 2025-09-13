@@ -13,18 +13,17 @@ import NoPage from "./pages/nopage/NoPage.jsx";
 import MyState from "./context/data/MyState.jsx";
 import Login from "./pages/registration/Login.jsx";
 import Signup from "./pages/registration/Signup.jsx";
-import ProductInfo from "./pages/productInfo/ProductInfo.jsx";
+import ProductInfo from "./pages/workerInfo/WorkerInfo.jsx";
 import UpdateProduct from "./pages/admin/page/UpdateWorker.jsx";
 import { ToastContainer, Bounce } from "react-toastify";
 import AddWorker from "./pages/admin/page/AddWorker.jsx"
 import AuthProvider from "./components/protector/AuthContext.jsx";
 import ProtectedRoute from "./components/protector/ProtectedRoute.jsx";
-import Allproducts from "./pages/allproducts/Allproducts.jsx";
+import Allproducts from "./pages/allworkers/Allworkers.jsx";
 import AboutUs from "./components/aboutUs/AboutUs.jsx";
 import Profile from "./components/profile/Profile.jsx";
 import CompleteProfile from "./components/profile/CompleteProfile.jsx";
 import { FaArrowUp } from "react-icons/fa";
-import Aligarh from "./pages/allproducts/Aligarh/Aligarh.jsx";
 import { BsWhatsapp } from "react-icons/bs";
 import ReturnPolicy from "./components/aboutUs/ReturnPolicy.jsx";
 import TermsAndConditions from "./components/aboutUs/TermsAndCondition.jsx";
@@ -193,10 +192,6 @@ function App() {
         {
           path: 'shifting',
           element: <Shifting />
-        },
-        {
-          path: "aligarh",
-          element: <Aligarh/>
         },
         
         

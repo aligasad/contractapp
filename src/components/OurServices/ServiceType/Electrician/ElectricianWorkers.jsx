@@ -45,7 +45,7 @@ const ElectricianWorkers = () => {
         .includes("electrician")
     )
     ?.filter((obj) =>
-      (obj.skills || "")
+      (obj.professional || "")
         .replace(/\s+/g, "")
         .toLowerCase()
         .includes(category.replace(/\s+/g, "").toLowerCase())
@@ -91,7 +91,7 @@ const ElectricianWorkers = () => {
         <div class="h-1 w-25 bg-green-700 rounded"></div>
       </div>
       
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-2 px-2 md:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-4">
         {filteredWorkers && filteredWorkers.length > 0 ? (
           filteredWorkers.map((worker, index) => (
             <motion.div
@@ -121,10 +121,10 @@ const ElectricianWorkers = () => {
                       {worker.name}{" "}
                     </h3>
                     <div className="h-[1.5px] bg-[#ff4f0f] w-full"></div>
-                    <p className="text-xs">{worker.skills}</p>
+                    <p className="text-xs text-[#ff4f0f] shadow-inner shadow-gray-700 bg-gray-300 w-fit px-1 mt-0.5 ">{worker.skills}</p>
 
                     <div className="grid grid-cols-1 text-[11px]">
-                      <p>
+                      <p className="text-gray-100">
                         <span className="font-semibold text-gray-800 text-[12px]">
                           Location:
                         </span>{" "}
@@ -146,7 +146,10 @@ const ElectricianWorkers = () => {
                         </span>{" "}
                         {worker.phone}
                       </p>
-                      <div>
+                      
+                    </div>
+
+                    <div className="flex items-center gap-3 mt-1">
                         <button className="cursor-pointer px-2 py-1 text-[11px] bg-[#03A6A1] rounded-md shadow hover:bg-[#FF4F0F] transition">
                           Hire
                         </button>
@@ -154,12 +157,11 @@ const ElectricianWorkers = () => {
                           onClick={() =>
                             (window.location.href = `/productinfo/${worker.id}`)
                           }
-                          className="cursor-pointer px-2 py-1 text-[11px] bg-[#03A6A1] rounded-md shadow hover:bg-[#FF4F0F] transition"
+                          className="cursor-pointer px-2 py-1 text-[11px] bg-[#FF4F0F] rounded-md shadow hover:bg-[#03A6A1] transition"
                         >
                           Details
                         </button>
                       </div>
-                    </div>
                   </div>
                 </div>
               </div>

@@ -2,13 +2,18 @@ import { useEffect } from "react";
 import { useData } from "../../../context/data/MyState";
 
 function UpdateProduct() {
-  const context = useData(); // custom hook
+  const context = useData();
   const { workers, setWorkers, updateWorker } = context;
 
-  // got to top
+  // got to top------------------------------}
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const districtCityMap = {
+    "West Champaran": ["Bettiah", "Bagaha", "Narkatiaganj"],
+    Siwan: ["Siwan", "Mairwa", "Gopalganj"],
+  };
 
   return (
     <div className=" py-3 ">
@@ -56,9 +61,10 @@ function UpdateProduct() {
                 onChange={(e) =>
                   setWorkers({ ...workers, professional: e.target.value })
                 }
-                className="w-full border p-2 rounded"
+                className="bg-green-50 border border-green-200 px-4 py-2 rounded-lg text-gray-800 placeholder:text-green-400 outline-none focus:ring-2 focus:ring-green-300"
                 required
               />
+
               <input
                 type="text"
                 name="area"
@@ -69,26 +75,45 @@ function UpdateProduct() {
                   setWorkers({ ...workers, area: e.target.value })
                 }
               />
-              <input
-                type="text"
-                name="city"
+              {/* District Select */}
+              <select
+                name="district"
+                onChange={(e) => {
+                  setWorkers({
+                    ...workers,
+                    district: e.target.value,
+                    city: "",
+                  }); // city reset kar do
+                }}
                 className="bg-green-50 border border-green-200 px-4 py-2 rounded-lg text-gray-800 placeholder:text-green-400 outline-none focus:ring-2 focus:ring-green-300"
-                placeholder="city"
-                value={workers.city || ""}
+                required
+              >
+                <option value="">Select District</option>
+                {Object.keys(districtCityMap).map((district) => (
+                  <option key={district} value={district}>
+                    {district}
+                  </option>
+                ))}
+              </select>
+
+              {/* City Select */}
+              <select
+                name="city"
                 onChange={(e) =>
                   setWorkers({ ...workers, city: e.target.value })
                 }
-              />
-              <input
-                type="text"
-                name="distric"
                 className="bg-green-50 border border-green-200 px-4 py-2 rounded-lg text-gray-800 placeholder:text-green-400 outline-none focus:ring-2 focus:ring-green-300"
-                placeholder="Distric"
-                value={workers.distric || ""}
-                onChange={(e) =>
-                  setWorkers({ ...workers, distric: e.target.value })
-                }
-              />
+                required
+                disabled={!workers.district} // jab tak district select na ho tab tak disable
+              >
+                <option value="">Select City</option>
+                {workers.district &&
+                  districtCityMap[workers.district].map((city) => (
+                    <option key={city} value={city}>
+                      {city}
+                    </option>
+                  ))}
+              </select>
               <input
                 type="text"
                 name="experience"
@@ -120,6 +145,32 @@ function UpdateProduct() {
                   setWorkers({ ...workers, aboutMe: e.target.value })
                 }
               ></textarea>
+              {/* Checkboxes----------------------------------------------- */}
+              <div className="flex items-center gap-6 mt-2">
+                {/* <label className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={workers.isNew || false}
+                    onChange={(e) =>
+                      setWorkers({ ...workers, isNew: e.target.checked })
+                    }
+                    className="accent-green-500 w-4 h-4"
+                  />
+                  <span className="text-green-700 text-sm">Mark as New</span>
+                </label> */}
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={workers.available || false}
+                    onChange={(e) =>
+                      setWorkers({ ...workers, available: e.target.checked })
+                    }
+                    className="accent-green-500 w-4 h-4"
+                  />
+                  <span className="text-green-700 text-sm">Availability</span>
+                </label>
+              </div>
+
               {/* New Ingredients Field */}
               {/* <textarea
             cols="30"
@@ -157,31 +208,6 @@ function UpdateProduct() {
               setProducts({ ...products, review: e.target.value })
             }
           ></textarea> */}
-              {/* Checkboxes */}
-              {/* <div className="flex items-center gap-6 mt-2">
-                <label className="flex items-center gap-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={products.isNew || false}
-                    onChange={(e) =>
-                      setProducts({ ...products, isNew: e.target.checked })
-                    }
-                    className="accent-green-500 w-4 h-4"
-                  />
-                  <span className="text-green-700 text-sm">Mark as New</span>
-                </label>
-                <label className="flex items-center gap-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={products.onSale || false}
-                    onChange={(e) =>
-                      setProducts({ ...products, onSale: e.target.checked })
-                    }
-                    className="accent-green-500 w-4 h-4"
-                  />
-                  <span className="text-green-700 text-sm">On Sale</span>
-                </label>
-              </div> */}
             </div>
           </div>
           <div className=" flex justify-center mb-3">

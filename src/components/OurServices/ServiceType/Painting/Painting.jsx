@@ -4,16 +4,20 @@ import Carousel from "../../../heroSection/Carousel";
 const services = [
   {
     title: "Interior Painting",
-    description: "Professional house inner wall painting for fresh, vibrant interiors.",
-    image: "http://static1.squarespace.com/static/58f2de7b579fb3f5948c63d8/669f637b726bc74ad44a392e/68af34984728b9257c3104e7/1757177710472/painter-thinking.png?format=1500w",
-    moveTo: '/interiorpainting'
+    description:
+      "Professional house inner wall painting for fresh, vibrant interiors.",
+    image:
+      "http://static1.squarespace.com/static/58f2de7b579fb3f5948c63d8/669f637b726bc74ad44a392e/68af34984728b9257c3104e7/1757177710472/painter-thinking.png?format=1500w",
+    moveTo: "/interiorpainting",
   },
   {
     title: "Exterior Painting",
-    description: "Expert house outer wall painting for durable, attractive exterior.",
-    image: "https://i.pinimg.com/736x/ef/5b/f4/ef5bf49a1d88c1016a698d4354472fd0.jpg",
-    moveTo: '/exteriorpainting'
-  }
+    description:
+      "Expert house outer wall painting for durable, attractive exterior.",
+    image:
+      "https://i.pinimg.com/736x/ef/5b/f4/ef5bf49a1d88c1016a698d4354472fd0.jpg",
+    moveTo: "/exteriorpainting",
+  },
 ];
 
 const Painting = () => {
@@ -21,15 +25,15 @@ const Painting = () => {
 
   const images = [
     {
-      src: 'https://i.ibb.co/YTVqRgNd/Untitled-design-9.png',
+      src: "https://i.ibb.co/YTVqRgNd/Untitled-design-9.png",
       link: "",
     },
     {
-      src: 'https://i.ibb.co/nqGdjGmH/Untitled-design-10.png',
+      src: "https://i.ibb.co/nqGdjGmH/Untitled-design-10.png",
       link: "",
     },
     {
-      src: 'https://static.homeguide.com/assets/images/content/homeguide-woman-painting-apartment-interior-wall-with-paint-roller.jpg',
+      src: "https://static.homeguide.com/assets/images/content/homeguide-woman-painting-apartment-interior-wall-with-paint-roller.jpg",
       link: "",
     },
   ];
@@ -37,14 +41,14 @@ const Painting = () => {
   return (
     <div>
       {/* Top Section with Heading + Description */}
-      <div className="text-center px-6 py-10 bg-gradient-to-r from-[#FFE3BB] via-white to-[#FFF7EB]">
+      <div className="text-center px-6 py-10 bg-gradient-to-r from-[#FFE3BB] via-white to-[#FFF7EB] shadow-inner rounded-2xl mb-6">
         <h2 className="text-3xl md:text-4xl font-bold text-[#03A6A1]">
-        Painting Services
+          Home Painter
         </h2>
         <p className="mt-4 max-w-2xl mx-auto text-gray-700 text-base md:text-lg">
-          WorkWhiz provides professional and reliable electrical services for
-          your home and office. From lighting to wiring and socket
-          installations, our experts ensure safety and quality work.
+          WorkWhiz offers expert home painting services to refresh your walls
+          with vibrant, durable, and professional finishes. Our painters ensure
+          smooth application and long-lasting colors for your home.
         </p>
       </div>
 

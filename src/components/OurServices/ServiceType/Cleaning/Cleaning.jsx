@@ -4,45 +4,49 @@ const services = [
   {
     title: "Tank Cleaning",
     description: "Expert cleaning and disinfection of water storage tanks.",
-    image: "https://i.pinimg.com/1200x/bb/13/76/bb137617476e3947eeaa47548c3592d7.jpg",
-    moveTo: "/tankcleaning"
+    image:
+      "https://i.pinimg.com/1200x/bb/13/76/bb137617476e3947eeaa47548c3592d7.jpg",
+    moveTo: "/tankcleaning",
   },
   {
     title: "House Cleaning",
     description: "Thorough cleaning and sanitization of residential spaces.",
-    image: "https://i.pinimg.com/736x/5a/d3/bb/5ad3bb3a2e65bdae78eb73acf5762406.jpg",
-    moveTo: "/housecleaning"
+    image:
+      "https://i.pinimg.com/736x/5a/d3/bb/5ad3bb3a2e65bdae78eb73acf5762406.jpg",
+    moveTo: "/housecleaning",
   },
   {
     title: "Waste Management",
     description: "Efficient handling and disposal of waste materials.",
-    image: "https://i.pinimg.com/1200x/68/8c/cf/688ccf4afb65d0414cfd588733ba8544.jpg",
-    moveTo: "/wastemanagement"
-  }
+    image:
+      "https://i.pinimg.com/1200x/68/8c/cf/688ccf4afb65d0414cfd588733ba8544.jpg",
+    moveTo: "/wastemanagement",
+  },
 ];
 
 const Cleaning = () => {
   const images = [
     {
-      src: 'https://www.thesilverbird.com/wp-content/uploads/2019/06/House-shifting.jpg',
+      src: "https://www.thesilverbird.com/wp-content/uploads/2019/06/House-shifting.jpg",
       link: "",
     },
     {
-      src: 'https://www.thesilverbird.com/wp-content/uploads/2019/06/House-shifting.jpg',
+      src: "https://www.thesilverbird.com/wp-content/uploads/2019/06/House-shifting.jpg",
       link: "",
     },
   ];
   return (
     <div>
-      {/* Top Section with Heading + Description */}
-      <div className="text-center px-6 py-10 bg-gradient-to-r from-[#FFE3BB] via-white to-[#FFF7EB]">
+      {/* Cleaning Services */}
+      <div className="text-center px-6 py-10 bg-gradient-to-r from-[#FFE3BB] via-white to-[#FFF7EB] shadow-inner rounded-2xl mb-6">
         <h2 className="text-3xl md:text-4xl font-bold text-[#03A6A1]">
           Cleaning Services
         </h2>
         <p className="mt-4 max-w-2xl mx-auto text-gray-700 text-base md:text-lg">
-          WorkWhiz provides professional and reliable electrical services for
-          your home and office. From lighting to wiring and socket
-          installations, our experts ensure safety and quality work.
+          WorkWhiz provides professional cleaning services to keep your home and
+          workplace spotless. From deep cleaning and sanitization to regular
+          maintenance, our trained team ensures a safe, hygienic, and refreshing
+          environment for you and your family.
         </p>
       </div>
 

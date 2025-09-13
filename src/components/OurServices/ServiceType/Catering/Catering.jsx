@@ -4,8 +4,9 @@ const services = [
   {
     title: "Marriage",
     description: "Exquisite menus for memorable weddings.",
-    image: "https://i.pinimg.com/1200x/29/ea/ec/29eaeccf0ff8df28c5504b690e5e1821.jpg",
-    moveTo: "/marriage"
+    image:
+      "https://i.pinimg.com/1200x/29/ea/ec/29eaeccf0ff8df28c5504b690e5e1821.jpg",
+    moveTo: "/marriage",
   },
   // {
   //   title: "Bartabanda",
@@ -18,26 +19,26 @@ const services = [
 const Catering = () => {
   const images = [
     {
-      src: 'https://www.shutterstock.com/image-illustration/linkedin-banner-poster-design-background-260nw-2250461485.jpg',
+      src: "https://www.shutterstock.com/image-illustration/linkedin-banner-poster-design-background-260nw-2250461485.jpg",
       link: "",
     },
     {
-      src: 'https://www.shutterstock.com/image-illustration/linkedin-banner-poster-design-background-260nw-2250461485.jpg',
+      src: "https://www.shutterstock.com/image-illustration/linkedin-banner-poster-design-background-260nw-2250461485.jpg",
       link: "",
     },
   ];
   return (
-
     <div>
-      {/* Top Section with Heading + Description */}
-      <div className="text-center px-6 py-10 bg-gradient-to-r from-[#FFE3BB] via-white to-[#FFF7EB]">
+      {/* Catering Services */}
+      <div className="text-center px-6 py-10 bg-gradient-to-r from-[#FFE3BB] via-white to-[#FFF7EB] shadow-inner rounded-2xl mb-6">
         <h2 className="text-3xl md:text-4xl font-bold text-[#03A6A1]">
-          Our Electrical Services
+          Catering Services
         </h2>
         <p className="mt-4 max-w-2xl mx-auto text-gray-700 text-base md:text-lg">
-          WorkWhiz provides professional and reliable electrical services for
-          your home and office. From lighting to wiring and socket
-          installations, our experts ensure safety and quality work.
+          WorkWhiz offers professional catering services for all occasions. From
+          weddings and parties to corporate events, our expert chefs and staff
+          provide delicious food, seamless service, and an unforgettable
+          experience for your guests.
         </p>
       </div>
 

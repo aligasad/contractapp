@@ -127,6 +127,40 @@ function AddWorker() {
               setWorkers({ ...workers, aboutMe: e.target.value })
             }
           ></textarea>
+
+          {/* Checkboxes----------------------------------------------- */}
+              <div className="flex items-center gap-6 mt-2">
+                {/* <label className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={workers.isNew || false}
+                    onChange={(e) =>
+                      setWorkers({ ...workers, isNew: e.target.checked })
+                    }
+                    className="accent-green-500 w-4 h-4"
+                  />
+                  <span className="text-green-700 text-sm">Mark as New</span>
+                </label> */}
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={workers.available || false}
+                    onChange={(e) =>
+                      setWorkers({ ...workers, available: e.target.checked })
+                    }
+                    className="accent-green-500 w-4 h-4"
+                  />
+                  <span className="text-green-700 text-sm">Availability</span>
+                </label>
+              </div>
+
+
+
+
+
+
+
+
           {/* New Ingredients Field */}
           {/* <textarea
             cols="30"
@@ -138,32 +172,6 @@ function AddWorker() {
             onChange={(e) =>
               setWorkers({ ...workers, ingredients: e.target.value })
             } */}
-
-          {/* Checkbox------------- */}
-          {/* <div className="flex items-center gap-6 mt-2">
-            <label className="flex items-center gap-2 cursor-pointer">
-              <input
-                type="checkbox"
-                checked={workers.isNew || false}
-                onChange={(e) =>
-                  setWorkers({ ...workers, isNew: e.target.checked })
-                }
-                className="accent-green-500 w-4 h-4"
-              />
-              <span className="text-green-700 text-sm">Mark as New</span>
-            </label>
-            <label className="flex items-center gap-2 cursor-pointer">
-              <input
-                type="checkbox"
-                checked={workers.onSale || false}
-                onChange={(e) =>
-                  setWorkers({ ...workers, onSale: e.target.checked })
-                }
-                className="accent-green-500 w-4 h-4"
-              />
-              <span className="text-green-700 text-sm">On Sale</span>
-            </label>
-          </div> */}
         </div>
         <button
           onClick={addWorker}

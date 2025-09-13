@@ -502,6 +502,32 @@ function BecomeWorker() {
               required
             />
 
+            {/* Checkboxes----------------------------------------------- */}
+              <div className="flex items-center gap-6 mt-2">
+                {/* <label className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={workers.isNew || false}
+                    onChange={(e) =>
+                      setWorkers({ ...workers, isNew: e.target.checked })
+                    }
+                    className="accent-green-500 w-4 h-4"
+                  />
+                  <span className="text-green-700 text-sm">Mark as New</span>
+                </label> */}
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={workers.available || false}
+                    onChange={(e) =>
+                      setWorkers({ ...workers, available: e.target.checked })
+                    }
+                    className="accent-green-500 w-4 h-4"
+                  />
+                  <span className="text-green-700 text-sm">Availability</span>
+                </label>
+              </div>
+
             <button
               type="submit"
               className="w-full bg-[#219C90] hover:bg-[#19786f] text-white p-2 rounded font-semibold"

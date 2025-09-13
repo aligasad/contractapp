@@ -4,63 +4,69 @@ const services = [
   {
     title: "Wash Basin",
     description: "Installation and repair of wash basins.",
-    image: "https://i.pinimg.com/1200x/0d/36/d2/0d36d24fc76f9091f76f197db585f0b7.jpg",
-    moveTo: "/washbasin"
+    image:
+      "https://i.pinimg.com/1200x/0d/36/d2/0d36d24fc76f9091f76f197db585f0b7.jpg",
+    moveTo: "/washbasin",
   },
   {
     title: "Tap And Faucets",
     description: "Installation and maintenance of taps and faucets.",
-    image: "https://i.pinimg.com/736x/70/b8/2d/70b82d7ad135082a38770493d64714bc.jpg",
-    moveTo: "/tapfaucets"
+    image:
+      "https://i.pinimg.com/736x/70/b8/2d/70b82d7ad135082a38770493d64714bc.jpg",
+    moveTo: "/tapfaucets",
   },
   {
     title: "Toilet",
     description: "Repair and maintenance of toilet systems.",
-    image: "https://i.pinimg.com/736x/96/35/fd/9635fd25ceb82b420b4937bb2e3ca1c9.jpg",
-    moveTo: "/toilet"
+    image:
+      "https://i.pinimg.com/736x/96/35/fd/9635fd25ceb82b420b4937bb2e3ca1c9.jpg",
+    moveTo: "/toilet",
   },
   {
     title: "Water Tank",
     description: "Installation and repair of water tanks.",
-    image: "https://i.pinimg.com/736x/0c/d8/f0/0cd8f02f909dc0add1d5fd5f9ddfa737.jpg",
-    moveTo: "/watertank"
+    image:
+      "https://i.pinimg.com/736x/0c/d8/f0/0cd8f02f909dc0add1d5fd5f9ddfa737.jpg",
+    moveTo: "/watertank",
   },
   {
     title: "Blockages",
     description: "Clearing blockages in plumbing systems.",
-    image: "https://i.pinimg.com/1200x/53/ac/11/53ac1144b3fdabdab82cda972e7cbae7.jpg",
-    moveTo: "/blockages"
+    image:
+      "https://i.pinimg.com/1200x/53/ac/11/53ac1144b3fdabdab82cda972e7cbae7.jpg",
+    moveTo: "/blockages",
   },
   {
     title: "Whole House Plumbing",
     description: "Complete plumbing solutions for entire houses.",
-    image: "https://i.pinimg.com/736x/33/21/77/33217714fbd2af5449a3c1d7e649452d.jpg",
-    moveTo: "/wholehouse"
+    image:
+      "https://i.pinimg.com/736x/33/21/77/33217714fbd2af5449a3c1d7e649452d.jpg",
+    moveTo: "/wholehouse",
   },
 ];
 
 const Plumbing = () => {
   const images = [
     {
-      src: 'https://www.thesilverbird.com/wp-content/uploads/2019/06/House-shifting.jpg',
+      src: "https://www.thesilverbird.com/wp-content/uploads/2019/06/House-shifting.jpg",
       link: "",
     },
     {
-      src: 'https://www.thesilverbird.com/wp-content/uploads/2019/06/House-shifting.jpg',
+      src: "https://www.thesilverbird.com/wp-content/uploads/2019/06/House-shifting.jpg",
       link: "",
     },
   ];
   return (
     <div>
       {/* Top Section with Heading + Description */}
-      <div className="text-center px-6 py-10 bg-gradient-to-r from-[#FFE3BB] via-white to-[#FFF7EB]">
+      <div className="text-center px-6 py-10 bg-gradient-to-r from-[#FFE3BB] via-white to-[#FFF7EB] shadow-inner rounded-2xl mb-6">
         <h2 className="text-3xl md:text-4xl font-bold text-[#03A6A1]">
           Plumbing Services
         </h2>
         <p className="mt-4 max-w-2xl mx-auto text-gray-700 text-base md:text-lg">
-          WorkWhiz provides professional and reliable electrical services for
-          your home and office. From lighting to wiring and socket
-          installations, our experts ensure safety and quality work.
+          WorkWhiz delivers fast and reliable plumbing services, including leak
+          repairs, pipe installations, and bathroom fittings. Our plumbers
+          ensure efficiency and long-lasting solutions.
         </p>
       </div>
 
