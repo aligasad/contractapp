@@ -247,7 +247,7 @@ function Navbar() {
                     <ul className="absolute mt-3 bg-[#FFFBEA] text-gray-800 shadow-lg rounded-xl py-2 px-4 z-50 min-w-[160px] space-y-2 border border-[#FFC700]/60">
                       <li
                         onClick={() => {
-                          handleSelect("/allproducts"),
+                          handleSelect("/allworkers"),
                             setIsProductDropdownOpen(false),
                             setMenuOpen(false);
                         }}
@@ -444,7 +444,7 @@ function Navbar() {
                 <ul className="absolute mt-3 bg-[#FFFBEA] text-gray-800 shadow-lg rounded-xl py-2 px-4 z-50 min-w-[160px] space-y-2 border border-[#FFC700]/60">
                   <li
                     onClick={() => {
-                      handleSelect("/allproducts"),
+                      handleSelect("/allworkers"),
                         setIsProductDropdownOpen(false),
                         setMenuOpen(false);
                     }}

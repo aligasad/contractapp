@@ -19,7 +19,6 @@ import { ToastContainer, Bounce } from "react-toastify";
 import AddWorker from "./pages/admin/page/AddWorker.jsx"
 import AuthProvider from "./components/protector/AuthContext.jsx";
 import ProtectedRoute from "./components/protector/ProtectedRoute.jsx";
-import Allproducts from "./pages/allworkers/Allworkers.jsx";
 import AboutUs from "./components/aboutUs/AboutUs.jsx";
 import Profile from "./components/profile/Profile.jsx";
 import CompleteProfile from "./components/profile/CompleteProfile.jsx";
@@ -51,6 +50,7 @@ import InteriorPainting from "./components/OurServices/ServiceType/Painting/Inte
 import ExteriorPainting from "./components/OurServices/ServiceType/Painting/ExteriorPainting.jsx";
 import ElectricianWorkers from "./components/OurServices/ServiceType/Electrician/ElectricianWorkers.jsx";
 import WorkerDashboard from "./components/WorkerDashboard/WorkerDashboard.jsx";
+import AllWorkers from "./pages/allworkers/Allworkers.jsx";
 
 function App() {
   const router = createBrowserRouter([
@@ -115,8 +115,8 @@ function App() {
           element: <ProductInfo />,
         },
         {
-          path: "/allproducts",
-          element: <Allproducts />,
+          path: "/allworkers",
+          element: <AllWorkers />,
         },
         {
           path: "/workers/:category",

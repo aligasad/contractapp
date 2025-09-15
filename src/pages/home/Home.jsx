@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import { useData } from "../../context/data/MyState";
 import { motion } from "framer-motion";
 import HeroSection2 from "../../components/heroSection/HeroSection2";
-import ProductShow from "../../components/heroSection/ProductShow";
 import TransformSection from "../../components/heroSection/TransforSection";
 import TestimonialAnim from "../../components/testimonial/TestimonialAnim";
 import CategoriesSection from "../../components/ProductCategory/ProductCategory";
@@ -32,14 +31,6 @@ function Home() {
         {/* <HeroSection /> */}
         <HeroSection2 />
       </motion.div>
-      {/* <motion.div
-        initial={{ opacity: 0, x: -100 }}
-        animate={{ opacity: 1, x: 0 }} 
-        exit={{ opacity: 0 }} 
-        transition={{ duration: 1 }}
-      >
-        <CategoriesSection />
-      </motion.div> */}
 
       <motion.div
         initial={{ opacity: 0, y: 50 }}

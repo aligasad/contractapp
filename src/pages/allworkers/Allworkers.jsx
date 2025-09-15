@@ -14,7 +14,10 @@ function AllWorkers() {
   }
 
   return (
-    <section className="text-gray-600 body-font bg-gradient-to-br from-[#caf5e7] to-[#e6fffa] min-h-screen">
+    <section className="text-gray-600 body-font relative bg-gradient-to-br from-[#FFE3BB] via-white to-[#FFF9F3] overflow-hidden min-h-screen">
+      {/* Decorative Blobs */}
+      <div className="absolute -top-20 -left-20 w-72 h-72 bg-[#03A6A1]/10 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#FFA673]/20 rounded-full blur-3xl"></div>
       <div className="container px-5 py-12 mx-auto">
         <div className="text-center mb-12">
           <h1 className="sm:text-5xl text-3xl font-extrabold title-font text-gray-900">
@@ -47,7 +50,7 @@ function AllWorkers() {
                   <img
                     src={worker.profilePic}
                     alt={worker.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+                    className="w-full h-full object-cover object-top group-hover:scale-110 transition duration-500"
                   />
 
                   {/* Blur Overlay with Details */}
