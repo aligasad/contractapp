@@ -99,7 +99,7 @@ const BookingModal = ({ isOpen, onClose, worker }) => {
             Book {worker?.name}
           </h2>
 
-          {/* Dates */}
+          {/* Dates-------------------------------------------------------------------------------------- */}
           <div>
             <p className="font-semibold text-gray-700 mb-2">Select Date</p>
             <div className="flex gap-2 flex-wrap">
@@ -110,7 +110,7 @@ const BookingModal = ({ isOpen, onClose, worker }) => {
                     setSelectedDate(d.iso);
                     setSelectedTime("");
                   }}
-                  className={`px-3 py-2 rounded-lg shadow-sm border 
+                  className={`cursor-pointer px-3 py-2 rounded-lg shadow-sm border 
                     ${
                       selectedDate === d.iso
                         ? "bg-[#FF4F0F] text-white border-[#FF4F0F]"
@@ -124,7 +124,7 @@ const BookingModal = ({ isOpen, onClose, worker }) => {
             </div>
           </div>
 
-          {/* Times */}
+          {/* Times-------------------------------------------------------------------------------------- */}
           {selectedDate && (
             <div className="mt-5">
               <p className="font-semibold text-gray-700 mb-2">Select Time</p>
@@ -133,7 +133,7 @@ const BookingModal = ({ isOpen, onClose, worker }) => {
                   <button
                     key={i}
                     onClick={() => setSelectedTime(slot)}
-                    className={`px-3 py-2 rounded-lg shadow-sm border text-sm font-medium
+                    className={`cursor-pointer px-3 py-2 rounded-lg shadow-sm border text-sm font-medium
                       ${
                         selectedTime === slot
                           ? "bg-[#03A6A1] text-white border-[#03A6A1]"
@@ -147,7 +147,7 @@ const BookingModal = ({ isOpen, onClose, worker }) => {
             </div>
           )}
 
-          {/* Description */}
+          {/* Description-------------------------------------------------------------------------------------- */}
           {selectedDate && selectedTime && (
             <div className="mt-5">
               <p className="font-semibold text-gray-700 mb-2">Description</p>
@@ -161,18 +161,18 @@ const BookingModal = ({ isOpen, onClose, worker }) => {
             </div>
           )}
 
-          {/* Buttons */}
+          {/* Buttons-------------------------------------------------------------------------------------- */}
           <div className="flex justify-end gap-3 mt-6">
             <button
               onClick={onClose}
-              className="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400"
+              className="cursor-pointer px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400"
             >
               Cancel
             </button>
             <button
               onClick={handleConfirm}
               disabled={loading}
-              className="px-4 py-2 bg-[#03A6A1] text-white rounded-lg hover:bg-[#FF4F0F] disabled:opacity-50"
+              className="cursor-pointer px-4 py-2 bg-[#03A6A1] text-white rounded-lg hover:bg-[#FF4F0F] disabled:opacity-50"
             >
               {loading ? "Saving..." : "Confirm"}
             </button>
@@ -180,7 +180,7 @@ const BookingModal = ({ isOpen, onClose, worker }) => {
         </div>
       </div>
 
-      {/* Address Modal */}
+      {/* Address Modal-------------------------- */}
       <AddressModal
         isOpen={showAddressModal}
         onClose={() => setShowAddressModal(false)}

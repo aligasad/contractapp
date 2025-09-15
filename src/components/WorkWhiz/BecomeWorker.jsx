@@ -224,62 +224,72 @@ function BecomeWorker() {
           <>
             {/* Worker Profile--------------------------------- */}
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-[#03A6A1] mb-6">
-                🎉 Your Worker Profile
-              </h2>
-              <div className="flex justify-between w-full">
-                <img
-                  src={workers.profilePic}
-                  alt="profile"
-                  className="w-28 h-28 rounded-full object-cover object-top border-4 border-[#03A6A1] shadow-md mb-4"
-                />
-                <div className="space-y-2 text-lg grid grid-cols-2  ">
-                  <p>
-                    <strong className="text-[#FF4F0F]">Name:</strong>{" "}
-                    {workers.name}
-                  </p>
-                  <p>
-                    <strong className="text-[#FF4F0F]">Phone:</strong>{" "}
-                    {workers.phone}
-                  </p>
-                  <p>
-                    <strong className="text-[#FF4F0F]">Skills:</strong>{" "}
-                    {workers.skills}
-                  </p>
-                  <p>
-                    <strong className="text-[#FF4F0F]">Location:</strong>{" "}
-                    {workers.area}, {workers.city}, {workers.district}
-                  </p>
-                  <p>
-                    <strong className="text-[#FF4F0F]">Experience:</strong>{" "}
-                    {workers.experience}
-                  </p>
-                  <p>
-                    <strong className="text-[#FF4F0F]">About Me:</strong>{" "}
-                    {workers.aboutMe}
-                  </p>
-                </div>
-              </div>
-            </div>
+  <h2 className="text-3xl font-bold text-[#03A6A1] mb-6">
+    🎉 Your Worker Profile
+  </h2>
 
-            {/* Worker Dashboard */}
-            <WorkerDashboard worker={workers} />
+  <div className="w-full grid grid-cols-1 lg:grid-cols-3 md:gap-6 md:items-center  text-left">
+    {/* Image Section */}
+    <div className="flex justify-center">
+      <img
+        src={workers.profilePic}
+        alt="profile"
+        className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover object-top border-4 border-[#03A6A1] shadow-md"
+      />
+    </div>
+
+    {/* Details Left */}
+    <div className=" md:space-y-2 text-lg">
+      <p>
+        <strong className="text-[#FF4F0F]">Name:</strong> {workers.name}
+      </p>
+      <p>
+        <strong className="text-[#FF4F0F]">Phone:</strong> {workers.phone}
+      </p>
+      <p>
+        <strong className="text-[#FF4F0F]">Skills:</strong> {workers.skills}
+      </p>
+    </div>
+
+    {/* Details Right */}
+    <div className=" md:space-y-2 text-lg">
+      <p>
+        <strong className="text-[#FF4F0F]">Location:</strong> {workers.area},{" "}
+        {workers.city}, {workers.district}
+      </p>
+      <p>
+        <strong className="text-[#FF4F0F]">Experience:</strong>{" "}
+        {workers.experience}
+      </p>
+      <p>
+        <strong className="text-[#FF4F0F]">About Me:</strong>{" "}
+        {workers.aboutMe}
+      </p>
+    </div>
+  </div>
+</div>
+
+
+            
 
             {/* Buttons */}
-            <div className="flex gap-4 mt-6">
+            <div className="flex gap-4 mt-6 w-full md:w-[50%]">
               <button
                 onClick={() => setEditMode(true)}
-                className="flex-1 bg-[#FFA673] hover:bg-[#ff9555] text-white p-3 rounded-lg font-semibold shadow-md"
+                className="cursor-pointer flex-1 bg-[#FFA673] hover:bg-[#ff9555] text-white p-3 rounded-lg font-semibold shadow-md"
               >
                 Edit
               </button>
               <button
                 onClick={deleteWorker}
-                className="flex-1 bg-[#FF4F0F] hover:bg-[#d93f0c] text-white p-3 rounded-lg font-semibold shadow-md"
+                className="cursor-pointer flex-1 bg-[#FF4F0F] hover:bg-[#d93f0c] text-white p-3 rounded-lg font-semibold shadow-md"
               >
                 Delete
               </button>
             </div>
+            <div className="w-full h-0.5 bg-[#ff9555] mt-6"></div>
+            {/* Worker Dashboard */}
+            <WorkerDashboard worker={workers} />
           </>
         )}
       </div>
