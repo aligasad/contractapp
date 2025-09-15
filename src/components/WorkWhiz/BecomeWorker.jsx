@@ -89,7 +89,9 @@ function BecomeWorker() {
               type="text"
               placeholder="Phone Number"
               value={workers.phone || ""}
-              onChange={(e) => setWorkers({ ...workers, phone: e.target.value })}
+              onChange={(e) =>
+                setWorkers({ ...workers, phone: e.target.value })
+              }
               className="w-full border-2 border-[#FFA673] p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#03A6A1]"
               required
             />
@@ -99,7 +101,9 @@ function BecomeWorker() {
               type="text"
               placeholder="Skills"
               value={workers.skills || ""}
-              onChange={(e) => setWorkers({ ...workers, skills: e.target.value })}
+              onChange={(e) =>
+                setWorkers({ ...workers, skills: e.target.value })
+              }
               className="w-full border-2 border-[#FFA673] p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#03A6A1]"
               required
             />
@@ -218,41 +222,43 @@ function BecomeWorker() {
           </form>
         ) : (
           <>
-            {/* Worker Profile */}
+            {/* Worker Profile--------------------------------- */}
             <div className="text-center mb-8">
               <h2 className="text-3xl font-bold text-[#03A6A1] mb-6">
                 🎉 Your Worker Profile
               </h2>
-              <img
-                src={workers.profilePic}
-                alt="profile"
-                className="w-28 h-28 rounded-full mx-auto border-4 border-[#03A6A1] shadow-md mb-4"
-              />
-              <div className="space-y-2 text-lg">
-                <p>
-                  <strong className="text-[#FF4F0F]">Name:</strong>{" "}
-                  {workers.name}
-                </p>
-                <p>
-                  <strong className="text-[#FF4F0F]">Phone:</strong>{" "}
-                  {workers.phone}
-                </p>
-                <p>
-                  <strong className="text-[#FF4F0F]">Skills:</strong>{" "}
-                  {workers.skills}
-                </p>
-                <p>
-                  <strong className="text-[#FF4F0F]">Location:</strong>{" "}
-                  {workers.area}, {workers.city}, {workers.district}
-                </p>
-                <p>
-                  <strong className="text-[#FF4F0F]">Experience:</strong>{" "}
-                  {workers.experience}
-                </p>
-                <p>
-                  <strong className="text-[#FF4F0F]">About Me:</strong>{" "}
-                  {workers.aboutMe}
-                </p>
+              <div className="flex justify-between w-full">
+                <img
+                  src={workers.profilePic}
+                  alt="profile"
+                  className="w-28 h-28 rounded-full object-cover object-top border-4 border-[#03A6A1] shadow-md mb-4"
+                />
+                <div className="space-y-2 text-lg grid grid-cols-2  ">
+                  <p>
+                    <strong className="text-[#FF4F0F]">Name:</strong>{" "}
+                    {workers.name}
+                  </p>
+                  <p>
+                    <strong className="text-[#FF4F0F]">Phone:</strong>{" "}
+                    {workers.phone}
+                  </p>
+                  <p>
+                    <strong className="text-[#FF4F0F]">Skills:</strong>{" "}
+                    {workers.skills}
+                  </p>
+                  <p>
+                    <strong className="text-[#FF4F0F]">Location:</strong>{" "}
+                    {workers.area}, {workers.city}, {workers.district}
+                  </p>
+                  <p>
+                    <strong className="text-[#FF4F0F]">Experience:</strong>{" "}
+                    {workers.experience}
+                  </p>
+                  <p>
+                    <strong className="text-[#FF4F0F]">About Me:</strong>{" "}
+                    {workers.aboutMe}
+                  </p>
+                </div>
               </div>
             </div>
 
