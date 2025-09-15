@@ -50,6 +50,7 @@ import Shifting from "./components/OurServices/ServiceType/Shifting/Shifting.jsx
 import InteriorPainting from "./components/OurServices/ServiceType/Painting/InteriorPainting.jsx";
 import ExteriorPainting from "./components/OurServices/ServiceType/Painting/ExteriorPainting.jsx";
 import ElectricianWorkers from "./components/OurServices/ServiceType/Electrician/ElectricianWorkers.jsx";
+import WorkerDashboard from "./components/WorkerDashboard/WorkerDashboard.jsx";
 
 function App() {
   const router = createBrowserRouter([
@@ -72,9 +73,9 @@ function App() {
         {
           // path: "/orders",
           // element: (
-          //   <ProtectedRoute>
-          //     <Order />
-          //   </ProtectedRoute>
+            // <ProtectedRoute>
+            //   <Order />
+            // </ProtectedRoute>
           // ),
         },
         {
@@ -121,10 +122,18 @@ function App() {
           path: "/workers/:category",
           element: <ElectricianWorkers />
         },
+        {
+          path: "workerdashboard",
+          element: <WorkerDashboard />
+        },
         // --------------{ ELECTRICIAN AND ITS'S CATEGORY }----------------------------------
         {
           path: 'electrician',
-          element: <Electrician />
+          element: (
+            <ProtectedRoute>
+              <Electrician />
+            </ProtectedRoute>
+          )
         },
         {
           path: "inverter",

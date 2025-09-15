@@ -1,8 +1,13 @@
 import { motion } from "framer-motion";
 import { useData } from "../../context/data/MyState";
+import BookingModal from "../../components/BookingModal/BookingModal";
+import { useState } from "react";
 
 function AllWorkers() {
   const { worker } = useData();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedWorker, setSelectedWorker] = useState(null);
 
   if (!worker || worker.length === 0) {
     return <p className="text-center mt-10">No workers available...</p>;
@@ -82,7 +87,13 @@ function AllWorkers() {
                       </div>
 
                       <div className="flex items-center gap-3 mt-1">
-                        <button className="cursor-pointer px-2 py-1 text-[11px] bg-[#03A6A1] rounded-md shadow hover:bg-[#FF4F0F] transition">
+                        <button
+                          onClick={() => {
+                            setSelectedWorker(worker);
+                            setIsModalOpen(true);
+                          }}
+                          className="cursor-pointer px-2 py-1 text-[11px] bg-[#03A6A1] rounded-md shadow hover:bg-[#FF4F0F] transition"
+                        >
                           Hire
                         </button>
                         <button
@@ -105,6 +116,12 @@ function AllWorkers() {
             </p>
           )}
         </div>
+        {/* ✅ Modal ko grid ke bahar rakho */}
+        <BookingModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          worker={selectedWorker}
+        />
       </div>
     </section>
   );
