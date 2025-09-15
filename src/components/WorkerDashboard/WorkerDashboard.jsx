@@ -15,11 +15,11 @@ const WorkerDashboard = ({ worker }) => {
 
   // ✅ Worker ke bookings fetch karna
   useEffect(() => {
-    if (!worker || !worker.id) return;
+    if (!worker || !worker.uid) return;
 
     const q = query(
       collection(firebaseDB, "bookings"),
-      where("workerId", "==", worker.id) // workerId match karega
+      where("workerId", "==", worker.uid) // workerId match karega
     );
 
     const unsubscribe = onSnapshot(q, (snapshot) => {
