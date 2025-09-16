@@ -13,27 +13,49 @@ const WorkerDashboard = ({ worker }) => {
   const [bookings, setBookings] = useState([]);
   const [search, setSearch] = useState("");
 
-  // ✅ Worker ke bookings fetch karna
+  //  Worker ke bookings fetch karna
   useEffect(() => {
     if (!worker || !worker.uid) return;
 
     const q = query(
       collection(firebaseDB, "bookings"),
-      where("workerId", "==", worker.uid) // workerId match karega
+      where("workerId", "==", worker.uid)
     );
 
-    const unsubscribe = onSnapshot(q, (snapshot) => {
+    const unsubscribe = onSnapshot(q, async (snapshot) => {
       const data = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       }));
+
+      //  ------------------{ Time check karke status update karna }--------------------------------------
+      const now = new Date();
+
+      for (let b of data) {
+        if (!b.date || !b.time) continue;
+
+        const bookingDateTime = new Date(`${b.date} ${b.time}`);
+
+        if (now > bookingDateTime) {
+          if (b.status === "pending") {
+            await updateDoc(doc(firebaseDB, "bookings", b.id), {
+              status: "cancelled",
+            });
+          } else if (b.status === "confirmed") {
+            await updateDoc(doc(firebaseDB, "bookings", b.id), {
+              status: "success",
+            });
+          }
+        }
+      }
+
       setBookings(data);
     });
 
     return () => unsubscribe();
   }, [worker]);
 
-  // ✅ Status update function
+  //  Status update function
   const handleUpdateStatus = async (id, status) => {
     try {
       await updateDoc(doc(firebaseDB, "bookings", id), { status });
@@ -43,7 +65,7 @@ const WorkerDashboard = ({ worker }) => {
     }
   };
 
-  // ✅ Search filter
+  //  Search filter
   const filteredBookings = bookings.filter(
     (b) =>
       b.userAddress?.name?.toLowerCase().includes(search.toLowerCase()) ||
@@ -52,17 +74,20 @@ const WorkerDashboard = ({ worker }) => {
   );
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
+    <div className="p-6 relative bg-gradient-to-br from-[#FFE3BB] via-white to-[#FFF9F3] overflow-hidden min-h-screen">
+      <div className="absolute -top-20 -left-20 w-72 h-72 bg-[#03A6A1]/10 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#FFA673]/20 rounded-full blur-3xl"></div>
+
       {/* Worker Info */}
       {worker ? (
         <div className="bg-white shadow-md rounded-xl p-5 mb-6">
-          <h2 className="text-2xl font-bold text-center text-[#03A6A1]">
-          Dashboard
+          <h2 className="text-2xl md:text-3xl font-bold text-center text-[#03A6A1]">
+            Dashboard
           </h2>
         </div>
       ) : (
         <p className="text-center text-gray-500 mb-6">
-          Worker details not available
+          Worker details not available...
         </p>
       )}
 
@@ -78,7 +103,7 @@ const WorkerDashboard = ({ worker }) => {
       </div>
 
       {/* Bookings List */}
-      <div className="bg-white shadow-md rounded-xl overflow-x-auto">
+      <div className=" shadow-md rounded-xl overflow-x-auto">
         <table className="w-full border-collapse">
           <thead className="bg-gray-100 text-left text-gray-700">
             <tr>
@@ -107,6 +132,8 @@ const WorkerDashboard = ({ worker }) => {
                           ? "bg-yellow-200 text-yellow-700"
                           : b.status === "confirmed"
                           ? "bg-green-200 text-green-700"
+                          : b.status === "success"
+                          ? "bg-blue-200 text-blue-700"
                           : "bg-red-200 text-red-700"
                       }`}
                     >

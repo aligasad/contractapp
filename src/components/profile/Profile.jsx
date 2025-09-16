@@ -97,7 +97,10 @@ function Profile() {
             Log Out
           </button>
           <button
-            onClick={() => navigate('/orders')}
+            onClick={() => {
+              navigate('/userorders');
+              window.scrollTo({top: 0, behavior: "smooth"});
+            }}
             className="text-red-600 hover:text-white cursor-pointer border border-red-500 px-4 py-2 rounded-lg hover:bg-rose-700 transition-colors duration-300"
           >
             Your Orders

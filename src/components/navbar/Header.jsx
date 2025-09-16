@@ -25,9 +25,10 @@ import {
 } from "@headlessui/react";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
-import { auth } from "../../firebase/FirebaseConfig";
+import { auth, firebaseDB } from "../../firebase/FirebaseConfig";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
+import { doc, getDoc } from "firebase/firestore";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -58,6 +59,27 @@ function Navbar() {
 
   const [isOpen, setIsOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  // -------------------{ Fetch worker data }-------------------------
+  const [hasData, setHasData] = useState(false);
+  useEffect(() => {
+    const fetchWorker = async () => {
+      const user = auth.currentUser;
+      if (!user) return;
+
+      const docRef = doc(firebaseDB, "workers", user.uid);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        // setWorkers({ uid: user.uid, ...docSnap.data() });
+        setHasData(true);
+      } else {
+        setHasData(false);
+      }
+    };
+
+    fetchWorker();
+  }, []);
 
   // For Select Options in header-========= ======= ====== ===== ====== ===== =======
   const [isProductDropdownOpen, setIsProductDropdownOpen] = useState(false);
@@ -331,15 +353,27 @@ function Navbar() {
               </li>
 
               {user && (
-                <li>
-                  <Link
-                    to="/join"
-                    onClick={() => setMenuOpen(false)}
-                    className="hover:text-[#219C90] transition"
-                  >
-                    Dashboard
-                  </Link>
-                </li>
+                hasData ? (
+                    <li
+                      onClick={() => {
+                        handleSelect("/join");
+                        setMenuOpen(false);
+                      }}
+                      className="hover:text-[#FF4F0F] cursor-pointer"
+                    >
+                      Dashboard
+                    </li>
+                  ) : (
+                    <li
+                      onClick={() => {
+                        handleSelect("/userorders");
+                        setMenuOpen(false);
+                      }}
+                      className="hover:text-[#FF4F0F] cursor-pointer"
+                    >
+                      User Orders
+                    </li>
+                  )
               )}
 
               <li>
@@ -587,12 +621,22 @@ function Navbar() {
                   >
                     Profile
                   </li>
-                  <li
-                    onClick={() => handleSelect("/join")}
-                    className="hover:text-[#FF4F0F] cursor-pointer"
-                  >
-                    Dashboard
-                  </li>
+                  {hasData ? (
+                    <li
+                      onClick={() => handleSelect("/join")}
+                      className="hover:text-[#FF4F0F] cursor-pointer"
+                    >
+                      Dashboard
+                    </li>
+                  ) : (
+                    <li
+                      onClick={() => handleSelect("/userorders")}
+                      className="hover:text-[#FF4F0F] cursor-pointer"
+                    >
+                      User Orders
+                    </li>
+                  )}
+
                   <li
                     onClick={handleLogout}
                     className="hover:text-[#FF4F0F] cursor-pointer"

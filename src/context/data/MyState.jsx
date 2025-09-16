@@ -5,6 +5,7 @@ import {
   collection,
   deleteDoc,
   doc,
+  getDoc,
   getDocs,
   onSnapshot,
   orderBy,
@@ -52,9 +53,7 @@ function MyState({ children }) {
 
   // ------------- Add Worker Section -------------------------------
   const addWorker = async () => {
-    if (
-      !workers.name 
-    ) {
+    if (!workers.name) {
       return toast.warning("Please fill all fields");
     }
 
@@ -87,7 +86,7 @@ function MyState({ children }) {
         QuerySnapshot.forEach((doc) => {
           workerArray.push({ ...doc.data(), id: doc.id });
         });
-              console.log("Firestore Data:", workerArray); // 👈 check karo yaha kya aa raha hai
+        console.log("Firestore Data:", workerArray); // 👈 check karo yaha kya aa raha hai
         setWorker(workerArray);
         setLoading(false);
       });
@@ -103,7 +102,7 @@ function MyState({ children }) {
     getWorkerData();
   }, []);
 
-console.log("Fetched Workers", worker);
+  console.log("Fetched Workers", worker);
 
   // Update and Delete workers only admin can do it-------------------------
   const editHandle = (item) => {
@@ -238,6 +237,27 @@ console.log("Fetched Workers", worker);
     setFilterType("");
   }
 
+  // -------------------{ Fetch worker data }----------------------------------
+  const [hasData, setHasData] = useState(false);
+  useEffect(() => {
+    const fetchWorker = async () => {
+      const user = auth.currentUser;
+      if (!user) return;
+
+      const docRef = doc(firebaseDB, "workers", user.uid);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        // setWorkers({ uid: user.uid, ...docSnap.data() });
+        setHasData(true);
+      } else {
+        setHasData(false);
+      }
+    };
+
+    fetchWorker();
+  }, []);
+
   return (
     <MyContext.Provider
       value={{
@@ -252,6 +272,7 @@ console.log("Fetched Workers", worker);
         editHandle,
         updateWorker,
         deleteWorker,
+        hasData,
         order,
         users,
         searchkey,

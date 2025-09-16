@@ -9,7 +9,6 @@ import { motion } from "framer-motion";
 import HeroSection2 from "../../components/heroSection/HeroSection2";
 import TransformSection from "../../components/heroSection/TransforSection";
 import TestimonialAnim from "../../components/testimonial/TestimonialAnim";
-import CategoriesSection from "../../components/ProductCategory/ProductCategory";
 import Services from "../../components/OurServices/Services";
 
 function Home() {

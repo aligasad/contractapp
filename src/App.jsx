@@ -51,6 +51,7 @@ import ExteriorPainting from "./components/OurServices/ServiceType/Painting/Exte
 import ElectricianWorkers from "./components/OurServices/ServiceType/Electrician/ElectricianWorkers.jsx";
 import WorkerDashboard from "./components/WorkerDashboard/WorkerDashboard.jsx";
 import AllWorkers from "./pages/allworkers/Allworkers.jsx";
+import UserDashboard from "./components/UserDashboard/UserDashboard.jsx";
 
 function App() {
   const router = createBrowserRouter([
@@ -71,12 +72,12 @@ function App() {
           )
         },
         {
-          // path: "/orders",
-          // element: (
-            // <ProtectedRoute>
-            //   <Order />
-            // </ProtectedRoute>
-          // ),
+          path: "/userorders",
+          element: (
+            <ProtectedRoute>
+              <UserDashboard />
+            </ProtectedRoute>
+          ),
         },
         {
           // path: "/cart",

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { collection, addDoc, Timestamp } from "firebase/firestore";
-import { firebaseDB } from "../../firebase/FirebaseConfig";
+import { auth, firebaseDB } from "../../firebase/FirebaseConfig";
 import AddressModal from "./AddressModal"; // import address modal
 
 const BookingModal = ({ isOpen, onClose, worker }) => {
@@ -76,6 +76,7 @@ const BookingModal = ({ isOpen, onClose, worker }) => {
         userAddress: address, // address merge
         createdAt: Timestamp.now(),
         status: "pending",
+        userId: auth.currentUser.uid
       });
 
       alert("Booking Confirmed with Address 🎉");

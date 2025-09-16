@@ -19,7 +19,7 @@ function CompleteProfile() {
     bio: "",
   });
 
-  // 🔄 Fetch existing user profile
+  // Fetch existing user profile
   useEffect(() => {
     if (!uid) {
       alert("Please login first.");
@@ -55,7 +55,7 @@ function CompleteProfile() {
     e.preventDefault();
 
     try {
-      const signedUpAt = new Date().toISOString(); // optional timestamp
+      const signedUpAt = new Date().toISOString(); 
 
       const updatedForm = {
         ...form,
@@ -64,7 +64,7 @@ function CompleteProfile() {
 
       await setDoc(doc(firebaseDB, "users", uid), updatedForm);
 
-      // Update localStorage
+      // Update localStorage--------------
       const updatedUserData = {
         ...userData,
         user: {
