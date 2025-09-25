@@ -46,12 +46,21 @@ import Painting from "./components/OurServices/ServiceType/Painting/Painting.jsx
 import Plumbing from "./components/OurServices/ServiceType/Plumbing/Plumbing.jsx";
 import Renovation from "./components/OurServices/ServiceType/Renovation/Renovation.jsx";
 import Shifting from "./components/OurServices/ServiceType/Shifting/Shifting.jsx";
-import InteriorPainting from "./components/OurServices/ServiceType/Painting/InteriorPainting.jsx";
-import ExteriorPainting from "./components/OurServices/ServiceType/Painting/ExteriorPainting.jsx";
 import ElectricianWorkers from "./components/OurServices/ServiceType/Electrician/ElectricianWorkers.jsx";
 import WorkerDashboard from "./components/WorkerDashboard/WorkerDashboard.jsx";
 import AllWorkers from "./pages/allworkers/Allworkers.jsx";
 import UserDashboard from "./components/UserDashboard/UserDashboard.jsx";
+import BeauticianWorkers from "./components/OurServices/ServiceType/Beautician/BeauticianWorkers.jsx";
+import CateringWorkers from "./components/OurServices/ServiceType/Catering/CateringWorkers.jsx";
+import CleaningWorkers from "./components/OurServices/ServiceType/Cleaning/CleaningWorkers.jsx";
+import ConstructionWorkers from "./components/OurServices/ServiceType/Construction/ConstructionWorker.jsx";
+import ElectronicDevicesWorkers from "./components/OurServices/ServiceType/ElectronicDevices/ElectronicDevicesWorkers.jsx";
+import LaundryWorkers from "./components/OurServices/ServiceType/Laundry/LaundryWorkers.jsx";
+import NetworkingWorkers from "./components/OurServices/ServiceType/Networking/NetworkingWorkers.jsx";
+import PaintingWorkers from "./components/OurServices/ServiceType/Painting/PaintingWorkers.jsx";
+import PlumbingWorkers from "./components/OurServices/ServiceType/Plumbing/PlumbingWorkers.jsx";
+import RenovationWorkers from "./components/OurServices/ServiceType/Renovation/RenovationWorkers.jsx";
+import ShiftingWorkers from "./components/OurServices/ServiceType/Shifting/ShiftingWorkers.jsx";
 
 function App() {
   const router = createBrowserRouter([
@@ -119,10 +128,7 @@ function App() {
           path: "/allworkers",
           element: <AllWorkers />,
         },
-        {
-          path: "/workers/:category",
-          element: <ElectricianWorkers />
-        },
+        
         {
           path: "workerdashboard",
           element: <WorkerDashboard />
@@ -137,71 +143,151 @@ function App() {
           )
         },
         {
-          path: "inverter",
-          element: <Inverter />
+          path: "/electrician/:category",
+          element: <ElectricianWorkers />
         },
-        // --------------{ ELECTRICIAN AND ITS'S CATEGORY }----------------------------------
+        // --------------{ Beautician AND ITS'S CATEGORY }----------------------------------
         {
           path: 'beautician',
-          element: <Beautician />
+          element: (
+            <ProtectedRoute>
+              <Beautician />
+            </ProtectedRoute>
+          )
         },
-        // --------------{ ELECTRICIAN AND ITS'S CATEGORY }----------------------------------
+        {
+          path: "/beautician/:category",
+          element: <BeauticianWorkers />
+        },
+        // --------------{ Cleaning AND ITS'S CATEGORY }----------------------------------
         {
           path: 'cleaning',
-          element: <Cleaning />
+          element: (
+            <ProtectedRoute>
+              <Cleaning />
+            </ProtectedRoute>
+          )
         },
-        // --------------{ ELECTRICIAN AND ITS'S CATEGORY }----------------------------------
+        {
+          path: "/cleaning/:category",
+          element: <CleaningWorkers />
+        },
+        // --------------{ Catering AND ITS'S CATEGORY }----------------------------------
         {
           path: 'catering',
-          element: <Catering />
+          element: (
+            <ProtectedRoute>
+              <Catering />
+            </ProtectedRoute>
+          )
         },
-        // --------------{ ELECTRICIAN AND ITS'S CATEGORY }----------------------------------
+        {
+          path: "/catering/:category",
+          element: <CateringWorkers />
+        },
+        // --------------{ Construction AND ITS'S CATEGORY }----------------------------------
         {
           path: 'construction',
-          element: <Construction />
+          element: (
+            <ProtectedRoute>
+              <Construction />
+            </ProtectedRoute>
+          )
         },
-        // --------------{ ELECTRICIAN AND ITS'S CATEGORY }----------------------------------
+        {
+          path: "/construction/:category",
+          element: <ConstructionWorkers />
+        },
+        // --------------{ Electronic Device AND ITS'S CATEGORY }----------------------------------
         {
           path: 'electronicdevice',
-          element: <ElectronicDevice />
+          element: (
+            <ProtectedRoute>
+              <ElectronicDevice />
+            </ProtectedRoute>
+          )
         },
-        // --------------{ ELECTRICIAN AND ITS'S CATEGORY }----------------------------------
+        {
+          path: "electronicdevice/:category",
+          element: <ElectronicDevicesWorkers />
+        },
+        // --------------{ Laundry AND ITS'S CATEGORY }----------------------------------
         {
           path: 'laundary',
-          element: <Laundry />
+          element: (
+            <ProtectedRoute>
+              <Laundry />
+            </ProtectedRoute>
+          )
         },
-        // --------------{ ELECTRICIAN AND ITS'S CATEGORY }----------------------------------
+        {
+          path: "laundary/:category",
+          element: <LaundryWorkers />
+        },
+        // --------------{ Networking AND ITS'S CATEGORY }----------------------------------
         {
           path: 'computer',
-          element: <Networking />
+          element: (
+            <ProtectedRoute>
+              <Networking />
+            </ProtectedRoute>
+          )
+        },
+        {
+          path: "computer/:category",
+          element: <NetworkingWorkers />
         },
         // --------------{ PAINTING AND ITS'S CATEGORY }----------------------------------
         {
           path: '/painting',
-          element: <Painting />
+          element: (
+            <ProtectedRoute>
+              <Painting />
+            </ProtectedRoute>
+          )
         },
         {
-          path: 'interiorpainting',
-          element: <InteriorPainting />
-        },
-        {
-          path: 'exteriorpainting',
-          element: <ExteriorPainting />
+          path: '/painting/:category',
+          element: <PaintingWorkers />
         },
         // --------------{ ELECTRICIAN AND ITS'S CATEGORY }----------------------------------
         {
           path: 'plumbing',
-          element: <Plumbing />
+          element: (
+            <ProtectedRoute>
+              <Plumbing />
+            </ProtectedRoute>
+          )
         },
-        // --------------{ ELECTRICIAN AND ITS'S CATEGORY }----------------------------------
+        {
+          path: '/plumbing/:category',
+          element: <PlumbingWorkers />
+        },
+        // --------------{ RENOVATION AND ITS'S CATEGORY }----------------------------------
         {
           path: 'renovation',
-          element: <Renovation />
+          element: (
+            <ProtectedRoute>
+              <Renovation />
+            </ProtectedRoute>
+          )
+        },
+        {
+          path: '/renovation/:category',
+          element: <RenovationWorkers />
         },
         // --------------{ ELECTRICIAN AND ITS'S CATEGORY }----------------------------------
         {
           path: 'shifting',
-          element: <Shifting />
+          element: (
+            <ProtectedRoute>
+              <Shifting />
+            </ProtectedRoute>
+          )
+        },
+        {
+          path: '/shifting/:category',
+          element: <ShiftingWorkers />
         },
         
         
@@ -263,12 +349,12 @@ function App() {
   return (
     <>
       {/* // Scroll to top button */}
-      {/* <button
+      <button
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         className="z-20 fixed bottom-8 sm:bottom-3 right-6 bg-[#449474] hover:bg-[#019664] hover:shadow-lg hover:scale-105 text-white p-[10px] cursor-pointer rounded-full shadow-lg transition"
       >
         <FaArrowUp size={25} />
-      </button> */}
+      </button>
       {/* WhatsApp Button */}
       {/* <button
         onClick={handleWhatsAppClick}

@@ -7,46 +7,63 @@ const services = [
     description: "Professional styling for your hair.",
     image:
       "https://i.pinimg.com/736x/15/7b/8a/157b8afef3f373d0ff5bef1139fcc95e.jpg",
-    moveTo: "/beautician/hair",
+    moveTo: "/workers/hair",
   },
   {
     title: "Waxing",
     description: "Efficient services for smooth skin.",
     image:
       "https://i.pinimg.com/736x/8d/c7/17/8dc7172d2a74f83778c46f8e082f05db.jpg",
-    moveTo: "/beautician/waxing",
+    moveTo: "/waxing",
   },
-  {
-    title: "Bridal Packages",
-    description: "Tailored packages for brides-to-be.",
-    image:
-      "https://i.pinimg.com/736x/b0/f7/18/b0f71854cb8ac1f351a12bbf35068d8d.jpg",
-    moveTo: "/beautician/bridalpackages",
-  },
+  // {
+  //   title: "Bridal Packages",
+  //   description: "Tailored packages for brides-to-be.",
+  //   image:
+  //     "https://i.pinimg.com/736x/b0/f7/18/b0f71854cb8ac1f351a12bbf35068d8d.jpg",
+  //   moveTo: "/bridalpackages",
+  // },
   {
     title: "Makeup",
     description: "Expert makeup application for any occasion.",
     image:
       "https://i.pinimg.com/736x/0d/62/3a/0d623a9caa9d3540f9cbad09f7229581.jpg",
-    moveTo: "/beautician/makeup",
+    moveTo: "/makeup",
   },
   {
     title: "Mehendi",
     description: "Intricate designs for traditional adornment.",
     image:
       "https://i.pinimg.com/736x/65/55/81/655581205eee1cbd937f49017e951795.jpg",
-    moveTo: "/beautician/mehendi",
+    moveTo: "/mehendi",
   },
   {
     title: "Facial",
     description: "Rejuvenating treatments for your skin.",
     image:
       "https://i.pinimg.com/1200x/5d/0c/ed/5d0ced66453076be0e9df481560b1174.jpg",
-    moveTo: "/beautician/facial",
+    moveTo: "/facial",
   },
 ];
 
 const Beautician = () => {
+  useEffect(() => {
+    if (category === "hair") {
+      setHeading("Hair Professional styling Hair");
+    } else if (category === "waxing") {
+      setHeading("Waxing");
+    } else if (category === "bridalpackages") {
+      setHeading("Bridal Packages");
+    } else if (category === "Makeup") {
+      setHeading("Makeup");
+    } else if (category === "mehendi") {
+      setHeading("Mehendi");
+    } else if (category === "fan") {
+      setHeading("Fan");
+    } else if (category === "facial") {
+      setHeading("Facial");
+    }
+  }, []);
   const navigate = useNavigate();
   const images = [
     {

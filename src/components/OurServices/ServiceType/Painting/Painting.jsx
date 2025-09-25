@@ -8,7 +8,7 @@ const services = [
       "Professional house inner wall painting for fresh, vibrant interiors.",
     image:
       "http://static1.squarespace.com/static/58f2de7b579fb3f5948c63d8/669f637b726bc74ad44a392e/68af34984728b9257c3104e7/1757177710472/painter-thinking.png?format=1500w",
-    moveTo: "/interiorpainting",
+    moveTo: "/painting/interiorpainting",
   },
   {
     title: "Exterior Painting",
@@ -16,7 +16,7 @@ const services = [
       "Expert house outer wall painting for durable, attractive exterior.",
     image:
       "https://i.pinimg.com/736x/ef/5b/f4/ef5bf49a1d88c1016a698d4354472fd0.jpg",
-    moveTo: "/exteriorpainting",
+    moveTo: "/painting/exteriorpainting",
   },
 ];
 
@@ -96,7 +96,6 @@ const Painting = () => {
                 onClick={() => {
                   navigate(service.moveTo);
                   window.scrollTo({ top: 0, behavior: "smooth" });
-                  window.location.reload();
                 }}
               >
                 Hire Now

@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import Carousel from "../../../heroSection/Carousel";
 
 const services = [
@@ -6,22 +7,27 @@ const services = [
     description: "Relocation assistance for your entire home.",
     image:
       "https://www.thesilverbird.com/wp-content/uploads/2019/06/House-shifting.jpg",
+      moveTo: '/shifting/wholehome'
   },
   {
     title: "Single Room",
     description: "Efficient moving services for individual rooms.",
     image:
       "https://cdni.iconscout.com/illustration/premium/thumb/man-shifting-house-5369004-4487791.png",
+      moveTo: '/shifting/singleroom'
   },
   {
     title: "Office",
     description: "Seamless relocation solutions for your office space.",
     image:
       "https://4.imimg.com/data4/LD/QX/GLADMIN-26263308/office-shifting-1000x1000.jpg",
+      moveTo: '/shifting/office'
   },
+  
 ];
 
 const Shifting = () => {
+  const navigate = useNavigate();
   const images = [
     {
       src: "https://static.vecteezy.com/system/resources/previews/019/049/174/large_2x/global-business-logistics-import-export-and-container-cargo-freight-ship-during-loading-at-industrial-port-by-port-crane-cargo-plane-truck-on-highway-with-copy-space-transportation-industry-concept-photo.jpg",

@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import Carousel from "../../../heroSection/Carousel";
 
 const services = [
@@ -5,17 +6,18 @@ const services = [
     title: "Normal Clothes",
     description: "Cleaning service for everyday wear.",
     image: "https://i.pinimg.com/1200x/c3/f6/f0/c3f6f028c17881be5f9ac9b44d7eda64.jpg",
-    moveTo: "/normalclothes"
+    moveTo: "/laundary/normalclothes"
   },
   {
     title: "Party Wear",
     description: "Specialized cleaning for party and formal attire.",
     image: "https://i.pinimg.com/1200x/57/14/0d/57140d0a4b9b72bb1403a67efc95c52d.jpg",
-    moveTo: "/partywear"
+    moveTo: "/laundary/partywear"
   }
 ];
 
 const Laundry = () => {
+  const navigate = useNavigate();
   const images = [
     {
       src: 'https://www.thesilverbird.com/wp-content/uploads/2019/06/House-shifting.jpg',
@@ -84,7 +86,7 @@ const Laundry = () => {
                 onClick={() => {
                   navigate(service.moveTo);
                   window.scrollTo({ top: 0, behavior: "smooth" });
-                  window.location.reload();
+                  
                 }}
               >
                 Hire Now

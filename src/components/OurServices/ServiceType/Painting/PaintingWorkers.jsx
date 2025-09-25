@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import Carousel from "../../../heroSection/Carousel";
 import BookingModal from "../../../BookingModal/BookingModal";
 
-const ElectricianWorkers = () => {
+const PaintingWorkers = () => {
   const { category } = useParams();
   const context = useData();
   const { worker, searchkey, filterType } = context;
@@ -18,25 +18,11 @@ const ElectricianWorkers = () => {
 
   // For heading - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   useEffect(() => {
-    if (category === "solar") {
-      setHeading("Solar Repair And Installation");
-    } else if (category === "whole") {
-      setHeading("Whole House Wiring");
-    } else if (category === "power") {
-      setHeading("Power Sockets and Switch Boards");
-    } else if (category === "telephone") {
-      setHeading("Telephone And Networking Sockets");
-    } else if (category === "mcb") {
-      setHeading("MCB & MCCBs");
-    } else if (category === "fan") {
-      setHeading("Fan");
-    } else if (category === "inverter") {
-      setHeading("Inverter");
-    } else if (category === "light") {
-      setHeading("Light");
-    } else if (category === "wiring") {
-      setHeading("Wiring");
-    }
+    if (category === "interiorpainting") {
+      setHeading("Interior Painting");
+    } else if (category === "exteriorpainting") {
+      setHeading("Exterior Painting");
+    } 
   }, []);
 
   // Filter The same category type workers---------------
@@ -45,7 +31,7 @@ const ElectricianWorkers = () => {
       (obj.skills || "")
         .replace(/\s+/g, "")
         .toLowerCase()
-        .includes("electrician")
+        .includes("painting")
     )
     ?.filter((obj) =>
       (obj.professional || "")
@@ -194,4 +180,4 @@ const ElectricianWorkers = () => {
   );
 };
 
-export default ElectricianWorkers;
+export default PaintingWorkers;

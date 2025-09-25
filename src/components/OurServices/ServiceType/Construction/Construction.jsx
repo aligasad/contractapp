@@ -1,62 +1,59 @@
+import { useNavigate } from "react-router-dom";
 import Carousel from "../../../heroSection/Carousel";
 
 const services = [
   {
     title: "Enggineer. Consultation",
     description: "Expert guidance and advice from experienced engineers.",
-    image:
-      "https://i.pinimg.com/736x/f6/ea/d0/f6ead07e3234762ba479c7d59888b1a1.jpg",
+    image:"https://i.pinimg.com/736x/f6/ea/d0/f6ead07e3234762ba479c7d59888b1a1.jpg",
+    moveTo: "/construction/enggconslt",
   },
   {
     title: "Home Design",
     description: "Collaborative creation of personalized home plans.",
-    image:
-      "https://i.pinimg.com/736x/56/77/f9/5677f93acf2e3106638c5955bd5753ae.jpg",
+    image:"https://i.pinimg.com/736x/56/77/f9/5677f93acf2e3106638c5955bd5753ae.jpg",
+    moveTo: "/construction/homedesign",
   },
   {
     title: "Mason (Raj Mistri)",
-    description:
-      "Builds walls, applies plaster, and handles brick, stone, and cement work for house structure.",
-    image:
-      "https://i.pinimg.com/1200x/d1/44/3d/d1443dca48e43c49e6ef120bfa3a5c2a.jpg",
+    description:"Builds walls, applies plaster, and handles brick, stone, and cement work for house structure.",
+    image:"https://i.pinimg.com/1200x/d1/44/3d/d1443dca48e43c49e6ef120bfa3a5c2a.jpg",
+    moveTo: "/construction/mistri",
   },
   {
     title: "Helper / Labourer",
-    description:
-      "Assists skilled workers, carries materials, and supports in construction tasks.",
-    image:
-      "https://i.pinimg.com/736x/06/49/1f/06491fc131d25e2aab2afe73ac0947e3.jpg",
+    description:"Assists skilled workers, carries materials, and supports in construction tasks.",
+    image:"https://i.pinimg.com/736x/06/49/1f/06491fc131d25e2aab2afe73ac0947e3.jpg",
+    moveTo: "/construction/labourer",
   },
   {
     title: "Carpenter (Badhai)",
-    description:
-      "Works with wood to make doors, windows, furniture, and wooden frameworks.",
-    image:
-      "https://i.pinimg.com/1200x/91/90/08/919008e88c358a9bdaa5ef0b157f834b.jpg",
+    description:"Works with wood to make doors, windows, furniture, and wooden frameworks.",
+    image:"https://i.pinimg.com/1200x/91/90/08/919008e88c358a9bdaa5ef0b157f834b.jpg",
+    moveTo: "/construction/carpenter",
   },
   {
     title: "Tile or Marble Fitter (Tile Mistri)",
-    description:
-      "Installs floor and wall tiles for kitchens, bathrooms, and flooring.",
-    image:
-      "https://i.pinimg.com/736x/b7/5e/dd/b75eddcf03749b68d3aef042a3133d27.jpg",
+    description:"Installs floor and wall tiles for kitchens, bathrooms, and flooring.",
+    image:"https://i.pinimg.com/736x/b7/5e/dd/b75eddcf03749b68d3aef042a3133d27.jpg",
+    moveTo: "/construction/tilemistri",
   },
   {
     title: "Welder / Iron Gate & Grill Work",
-    description:
-      "A worker who shapes and joins iron or steel to make gates, windows, grills, and railings for homes.",
-    image:
-      "https://i.pinimg.com/1200x/c5/46/e9/c546e9dd2330c7419db05fd3f0cfe3ac.jpg",
+    description:"A worker who shapes and joins iron or steel to make gates, windows, grills, and railings for homes.",
+    image:"https://i.pinimg.com/1200x/c5/46/e9/c546e9dd2330c7419db05fd3f0cfe3ac.jpg",
+    moveTo: "/construction/welder",
   },
   {
-    title: "Whole Home Construction:",
+    title: "Whole Home Construction.",
     description: " Construction services from start to finish.",
-    image:
-      "https://i.pinimg.com/736x/80/95/16/8095160db9c25da384452400c5928b2f.jpg",
+    image:"https://i.pinimg.com/736x/80/95/16/8095160db9c25da384452400c5928b2f.jpg",
+    moveTo: "/construction/wholehome",
   },
 ];
 
 const Construction = () => {
+  const navigate = useNavigate();
   const images = [
     {
       src: "https://i.pinimg.com/1200x/18/d2/2e/18d22ec394716576129649de5b0daf8a.jpg",
@@ -125,7 +122,6 @@ const Construction = () => {
                 onClick={() => {
                   navigate(service.moveTo);
                   window.scrollTo({ top: 0, behavior: "smooth" });
-                  window.location.reload();
                 }}
               >
                 Hire Now

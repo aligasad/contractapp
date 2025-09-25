@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import Carousel from "../../../heroSection/Carousel";
 
 const services = [
@@ -6,17 +7,18 @@ const services = [
     description: "Exquisite menus for memorable weddings.",
     image:
       "https://i.pinimg.com/1200x/29/ea/ec/29eaeccf0ff8df28c5504b690e5e1821.jpg",
-    moveTo: "/marriage",
+    moveTo: "/catering/marriage",
   },
   // {
   //   title: "Bartabanda",
   //   description: "Traditional delicacies for milestone celebrations.",
   //   image: "03A6A1",
-  //   moveTo: "/bartabanda"
+  //   moveTo: "/catering/bartabanda"
   // },
 ];
 
 const Catering = () => {
+  const navigate = useNavigate();
   const images = [
     {
       src: "https://www.shutterstock.com/image-illustration/linkedin-banner-poster-design-background-260nw-2250461485.jpg",
@@ -86,7 +88,6 @@ const Catering = () => {
                 onClick={() => {
                   navigate(service.moveTo);
                   window.scrollTo({ top: 0, behavior: "smooth" });
-                  window.location.reload();
                 }}
               >
                 Hire Now

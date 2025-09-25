@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import Carousel from "../../../heroSection/Carousel";
 import BookingModal from "../../../BookingModal/BookingModal";
 
-const ElectricianWorkers = () => {
+const ShiftingWorkers = () => {
   const { category } = useParams();
   const context = useData();
   const { worker, searchkey, filterType } = context;
@@ -18,24 +18,14 @@ const ElectricianWorkers = () => {
 
   // For heading - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   useEffect(() => {
-    if (category === "solar") {
-      setHeading("Solar Repair And Installation");
-    } else if (category === "whole") {
-      setHeading("Whole House Wiring");
-    } else if (category === "power") {
-      setHeading("Power Sockets and Switch Boards");
-    } else if (category === "telephone") {
-      setHeading("Telephone And Networking Sockets");
-    } else if (category === "mcb") {
-      setHeading("MCB & MCCBs");
-    } else if (category === "fan") {
-      setHeading("Fan");
-    } else if (category === "inverter") {
-      setHeading("Inverter");
-    } else if (category === "light") {
-      setHeading("Light");
-    } else if (category === "wiring") {
-      setHeading("Wiring");
+    if (category === "wholehome") {
+      setHeading("Relocation assistance for your entire home.");
+    } 
+    else if (category === "singleroom") {
+      setHeading("Efficient moving services for individual rooms.");
+    } 
+    else if (category === "office") {
+      setHeading("Seamless relocation solutions for your office space.");
     }
   }, []);
 
@@ -45,7 +35,7 @@ const ElectricianWorkers = () => {
       (obj.skills || "")
         .replace(/\s+/g, "")
         .toLowerCase()
-        .includes("electrician")
+        .includes("shift")
     )
     ?.filter((obj) =>
       (obj.professional || "")
@@ -178,7 +168,7 @@ const ElectricianWorkers = () => {
               </motion.div>
             ))
           ) : (
-            <p className="text-gray-600 w-full grid grid-cols-1 ">
+            <p className="text-gray-600 col-span-full text-center">
               No workers found for {heading}
             </p>
           )}
@@ -194,4 +184,4 @@ const ElectricianWorkers = () => {
   );
 };
 
-export default ElectricianWorkers;
+export default ShiftingWorkers;

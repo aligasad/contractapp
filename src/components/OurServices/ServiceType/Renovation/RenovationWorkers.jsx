@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import Carousel from "../../../heroSection/Carousel";
 import BookingModal from "../../../BookingModal/BookingModal";
 
-const ElectricianWorkers = () => {
+const RenovationWorkers = () => {
   const { category } = useParams();
   const context = useData();
   const { worker, searchkey, filterType } = context;
@@ -18,25 +18,24 @@ const ElectricianWorkers = () => {
 
   // For heading - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   useEffect(() => {
-    if (category === "solar") {
-      setHeading("Solar Repair And Installation");
-    } else if (category === "whole") {
-      setHeading("Whole House Wiring");
-    } else if (category === "power") {
-      setHeading("Power Sockets and Switch Boards");
-    } else if (category === "telephone") {
-      setHeading("Telephone And Networking Sockets");
-    } else if (category === "mcb") {
-      setHeading("MCB & MCCBs");
-    } else if (category === "fan") {
-      setHeading("Fan");
-    } else if (category === "inverter") {
-      setHeading("Inverter");
-    } else if (category === "light") {
-      setHeading("Light");
-    } else if (category === "wiring") {
-      setHeading("Wiring");
-    }
+    if (category === "kitchen") {
+      setHeading("Functional and stylish kitchen updates.");
+    } 
+    else if (category === "bathroom") {
+      setHeading("Luxurious updates for your bathroom.");
+    } 
+    else if (category === "upvc") {
+      setHeading("Energy-efficient installations for windows and doors.");
+    } 
+    else if (category === "railings") {
+      setHeading("Stylish railing solutions for safety.");
+    } 
+    else if (category === "doorwindows") {
+      setHeading("Replacement for improved functionality and security.");
+    } 
+    else if (category === "furnitures") {
+      setHeading("Custom designs to complement your spaces.");
+    } 
   }, []);
 
   // Filter The same category type workers---------------
@@ -45,7 +44,7 @@ const ElectricianWorkers = () => {
       (obj.skills || "")
         .replace(/\s+/g, "")
         .toLowerCase()
-        .includes("electrician")
+        .includes("laundry")
     )
     ?.filter((obj) =>
       (obj.professional || "")
@@ -194,4 +193,4 @@ const ElectricianWorkers = () => {
   );
 };
 
-export default ElectricianWorkers;
+export default RenovationWorkers;

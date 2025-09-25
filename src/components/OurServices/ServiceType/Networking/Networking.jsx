@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import Carousel from "../../../heroSection/Carousel";
 
 const services = [
@@ -5,23 +6,24 @@ const services = [
     title: "Gaming Setup",
     description: "Repair services for computers and laptops. Printers And Photocopy Machine Maintenance and repair of printers and photocopy machines.",
     image: "https://i.pinimg.com/736x/4b/a7/d5/4ba7d517112b740e62654fdccc55243a.jpg",
-    moveTo: "/gamingsetup"
+    moveTo: "/computer/gamingsetup"
   },
   {
     title: "Computer And Laptop Repairing",
     description: "Repair services for computers and laptops. Printers And Photocopy Machine Maintenance and repair of printers and photocopy machines.",
     image: "https://i.pinimg.com/736x/21/78/da/2178da06ff78dca0090a5fc72d250db5.jpg",
-    moveTo: "/computerlaptop"
+    moveTo: "/computer/computerlaptop"
   },
   {
     title: "IT Technician",
     description: "Professional IT technician support. Computer And Laptop Servicing Regular servicing for computers and laptops.",
     image: "https://i.pinimg.com/736x/15/90/8e/15908e25aee50eca8d18e9a796fa1422.jpg",
-    moveTo: "/ittechnician"
+    moveTo: "/computer/ittechnician"
   }
 ];
 
 const Networking = () => {
+  const navigate = useNavigate();
   const images = [
     {
       src: 'https://www.thesilverbird.com/wp-content/uploads/2019/06/House-shifting.jpg',
@@ -90,7 +92,7 @@ const Networking = () => {
                 onClick={() => {
                   navigate(service.moveTo);
                   window.scrollTo({ top: 0, behavior: "smooth" });
-                  window.location.reload();
+                   
                 }}
               >
                 Hire Now

@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import Carousel from "../../../heroSection/Carousel";
 
 const services = [
@@ -6,14 +7,14 @@ const services = [
     description: "Functional and stylish kitchen updates.",
     image:
       "https://i.pinimg.com/736x/41/21/41/412141fe7fb57cc2c0ae483c3fdf7b64.jpg",
-    moveTo: "/kitchenrenovation",
+    moveTo: "/renovation/kitchen",
   },
   {
     title: "Bathroom Renovation",
     description: "Luxurious updates for your bathroom.",
     image:
       "https://i.pinimg.com/736x/df/c1/84/dfc1844612aaa00931efa6f235e6313f.jpg",
-    moveTo: "/bathroomrenovation",
+    moveTo: "/renovation/bathroom",
   },
   // {
   //   title: "Aluminum",
@@ -26,32 +27,33 @@ const services = [
     description: "Energy-efficient installations for windows and doors.",
     image:
       "https://i.pinimg.com/1200x/f2/95/01/f295015af2641c2c932bdf989f60f380.jpg",
-    moveTo: "/upvc",
+    moveTo: "/renovation/upvc",
   },
   {
     title: "Railings",
     description: "Stylish railing solutions for safety.",
     image:
       "https://i.pinimg.com/1200x/fa/e0/2d/fae02ddd947a4f900587aae936446229.jpg",
-    moveTo: "/railings",
+    moveTo: "/renovation/railings",
   },
   {
     title: "Door And Windows",
     description: "Replacement for improved functionality and security.",
     image:
       "https://i.pinimg.com/1200x/79/16/ac/7916ac9f6a708d0c3174e4b266f032f2.jpg",
-    moveTo: "/doorwindows",
+    moveTo: "/renovation/doorwindows",
   },
   {
     title: "Furnitures",
     description: "Custom designs to complement your spaces.",
     image:
       "https://i.pinimg.com/1200x/fb/e3/48/fbe348121aaff157e0ee009137ccb034.jpg",
-    moveTo: "/furnitures",
+    moveTo: "/renovation/furnitures",
   },
 ];
 
 const Renovation = () => {
+  const navigate = useNavigate();
   const images = [
     {
       src: "https://www.thesilverbird.com/wp-content/uploads/2019/06/House-shifting.jpg",

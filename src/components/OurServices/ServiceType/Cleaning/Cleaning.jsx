@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import Carousel from "../../../heroSection/Carousel";
 
 const services = [
@@ -6,25 +7,26 @@ const services = [
     description: "Expert cleaning and disinfection of water storage tanks.",
     image:
       "https://i.pinimg.com/1200x/bb/13/76/bb137617476e3947eeaa47548c3592d7.jpg",
-    moveTo: "/tankcleaning",
+    moveTo: "/cleaning/tankcleaning",
   },
   {
     title: "House Cleaning",
     description: "Thorough cleaning and sanitization of residential spaces.",
     image:
       "https://i.pinimg.com/736x/5a/d3/bb/5ad3bb3a2e65bdae78eb73acf5762406.jpg",
-    moveTo: "/housecleaning",
+    moveTo: "/cleaning/housecleaning",
   },
   {
     title: "Waste Management",
     description: "Efficient handling and disposal of waste materials.",
     image:
       "https://i.pinimg.com/1200x/68/8c/cf/688ccf4afb65d0414cfd588733ba8544.jpg",
-    moveTo: "/wastemanagement",
+    moveTo: "/cleaning/wastemanagement",
   },
 ];
 
 const Cleaning = () => {
+  const navigate = useNavigate();
   const images = [
     {
       src: "https://www.thesilverbird.com/wp-content/uploads/2019/06/House-shifting.jpg",
@@ -94,7 +96,6 @@ const Cleaning = () => {
                 onClick={() => {
                   navigate(service.moveTo);
                   window.scrollTo({ top: 0, behavior: "smooth" });
-                  window.location.reload();
                 }}
               >
                 Hire Now

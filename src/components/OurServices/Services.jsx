@@ -157,7 +157,7 @@ const Services = () => {
                       WebkitMaskRepeat: "no-repeat",
                       WebkitMaskPosition: "center",
                       WebkitMaskSize: "contain",
-                      maskImage: `url(${item.icon})`,  // image icons----------------    --------------------!!!
+                      maskImage: `url(${item.icon})`,  // image icons-------  ---------    ----------   ----------!!!
                       maskRepeat: "no-repeat",
                       maskPosition: "center",
                       maskSize: "contain",

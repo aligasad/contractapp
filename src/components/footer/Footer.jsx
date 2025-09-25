@@ -228,12 +228,12 @@ const Footer = () => {
           <h3 className="text-lg font-semibold mb-5 text-[#FFE3BB]">
             Quick Links
           </h3>
-          <ul className="space-y-3 text-sm">
+          <ul className="space-y-3 text-sm group">
             {["About Us", "Services", "Pricing", "Reviews", "Contact"].map(
               (link, i) => (
                 <li
                   key={i}
-                  className="hover:translate-x-2 transition-transform duration-200 cursor-pointer hover:text-[#FFC700]"
+                  className="hover:translate-x-2 duration-200 cursor-pointer hover:text-[#FFC700] group-hover:opacity-70 hover:!opacity-100 transition "
                 >
                   {link}
                 </li>
@@ -247,15 +247,15 @@ const Footer = () => {
           <h3 className="text-lg font-semibold mb-5 text-[#FFE3BB]">
             Customer Care
           </h3>
-          <ul className="space-y-4 text-sm text-white/90">
-            <li className="flex items-center gap-2 hover:text-[#FFC700] transition">
+          <ul className="space-y-4 text-sm text-white/90 group">
+            <li className="flex items-center gap-2 hover:text-[#FFC700] group-hover:opacity-70 hover:!opacity-100 transition">
               <MdEmail />{" "}
-              <a href="mailto:support@workwhiz.com">support@workwhiz.com</a>
+              <a href="mailto:support@workwhiz.com">support@workwhizapp.in</a>
             </li>
-            <li className="flex items-center gap-2 hover:text-[#FFC700] transition">
-              <MdPhone /> <a href="tel:+911234567890">+91-1234567890</a>
+            <li className="flex items-center gap-2 hover:text-[#FFC700] group-hover:opacity-70 hover:!opacity-100 transition">
+              <MdPhone /> <a href="tel:+911234567890">+91-7417331926</a>
             </li>
-            <li className="flex items-center gap-2 hover:text-[#FFC700] transition">
+            <li className="flex items-center gap-2 hover:text-[#FFC700] group-hover:opacity-70 hover:!opacity-100 transition">
               <MdLocationOn />{" "}
               <a
                 href="https://www.google.com/maps?q=Lucknow"
@@ -297,12 +297,12 @@ const Footer = () => {
       {/* Footer Bottom */}
       <div className="relative border-t-2 border-white/20 mt-12 pt-6 flex flex-col md:flex-row items-center justify-between text-sm text-white/80 z-10">
         <p className="mb-4 md:mb-0">© 2025 WorkWhiz. All rights reserved.</p>
-        <div className="flex space-x-6">
+        <div className="flex space-x-6 group">
           {[{title: "Privacy Policy", link: 'privacy-policy'}, {title: "Terms & Conditions", link: 'terms&condition'}, {title: "Cookie Policy", link: 'about'}].map(
             (item, i) => (
               <Link to={item.link}
                 key={i}
-                className="hover:underline cursor-pointer hover:text-[#FFC700] transition"
+                className="hover:underline cursor-pointer hover:text-[#FFC700] transition group-hover:opacity-70 hover:!opacity-100 transition "
               >
                 {item.title}
               </Link>

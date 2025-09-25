@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import Carousel from "../../../heroSection/Carousel";
 
 const services = [
@@ -6,35 +7,35 @@ const services = [
     description: "Expert repair and servicing of televisions.",
     image:
       "https://i.pinimg.com/736x/a5/0e/40/a50e401a427090c3ed1eeaade001d2ca.jpg",
-    moveTo: "/washbasin",
+    moveTo: "/electronicdevice/washbasin",
   },
   {
     title: "Air Condition (AC)",
     description: "Proficient maintenance and repair of air conditioners.",
     image:
       "https://i.pinimg.com/736x/ce/9c/f7/ce9cf7367350d789d9c7c2115e1bd572.jpg",
-    moveTo: "/ac",
+    moveTo: "/electronicdevice/ac",
   },
   {
     title: "Refrigerator",
     description: "Thorough repair and servicing of refrigerators.",
     image:
       "https://i.pinimg.com/1200x/e6/a2/43/e6a2432c85629aaf7cb3bb5b818a50c8.jpg",
-    moveTo: "/refrigerator",
+    moveTo: "/electronicdevice/refrigerator",
   },
   {
     title: "Washing Machine",
     description: "Complete maintenance and repair of washing machines.",
     image:
       "https://i.pinimg.com/736x/72/25/0e/72250ecdffcd4b3bf9425cce9708d1f4.jpg",
-    moveTo: "/washingmachine",
+    moveTo: "/electronicdevice/washingmachine",
   },
   {
     title: "Iron",
     description: "Skilled repair and servicing of irons for crisp results.",
     image:
       "https://i.pinimg.com/736x/91/b1/a7/91b1a79c0094d2d65458de198e060dd2.jpg",
-    moveTo: "/iron",
+    moveTo: "/electronicdevice/iron",
   },
   {
     title: "Vacuum Cleaner",
@@ -42,11 +43,12 @@ const services = [
       "Thorough maintenance and repair of vacuum cleaners for cleaning.",
     image:
       "https://i.pinimg.com/1200x/8c/ea/f9/8ceaf96813cf05f1ca48907a8c7588f7.jpg",
-    moveTo: "/vacuumcleaner",
+    moveTo: "/electronicdevice/vacuumcleaner",
   },
 ];
 
 const ElectronicDevice = () => {
+  const navigate = useNavigate();
   const images = [
     {
       src: "https://www.thesilverbird.com/wp-content/uploads/2019/06/House-shifting.jpg",
@@ -115,7 +117,7 @@ const ElectronicDevice = () => {
                 onClick={() => {
                   navigate(service.moveTo);
                   window.scrollTo({ top: 0, behavior: "smooth" });
-                  window.location.reload();
+                  
                 }}
               >
                 Hire Now

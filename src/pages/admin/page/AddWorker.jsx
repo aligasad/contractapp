@@ -3,16 +3,12 @@ import { useData } from "../../../context/data/MyState";
 
 function AddWorker() {
   const context = useData();
-  const { workers, setWorkers, addWorker } = context;
+  const { workers, setWorkers, addWorker, districtCityMap, skillsProfessionMap } = context;
 
   // Add new fields to your initial state if not already present
   // Example: { ...workers, brand: '', stock: '', discount: '', tags: '' }
 
-  // District aur city ka mapping----------------------------------- --------------------------- ------------
-  const districtCityMap = {
-    "West Champaran": ["Bettiah", "Bagaha", "Narkatiaganj"],
-    Siwan: ["Siwan", "Mairwa", "Gopalganj"],
-  };
+
 
   return (
     <div className="py-6 min-h-screen bg-gradient-to-br from-green-50 to-lime-100 flex items-center justify-center">
@@ -37,7 +33,7 @@ function AddWorker() {
             value={workers.phone || ""}
             onChange={(e) => setWorkers({ ...workers, phone: e.target.value })}
           />
-          <input
+          {/* <input
             type="text"
             name="skills"
             className="bg-green-50 border border-green-200 px-4 py-2 rounded-lg text-gray-800 placeholder:text-green-400 outline-none focus:ring-2 focus:ring-green-300"
@@ -51,9 +47,45 @@ function AddWorker() {
             className="bg-green-50 border border-green-200 px-4 py-2 rounded-lg text-gray-800 placeholder:text-green-400 outline-none focus:ring-2 focus:ring-green-300"
             placeholder="Professional In(eg. Invertor, Wiring etc)"
             value={workers.professional || ""}
-            onChange={(e) => setWorkers({ ...workers, professional: e.target.value })}
+            onChange={(e) =>
+              setWorkers({ ...workers, professional: e.target.value })
+            }
             required
-          />
+          /> */}
+
+          {/* Skills Select */}
+          <select
+            name="skills"
+            onChange={(e) => {
+              setWorkers({ ...workers, skills: e.target.value, professional: "" }); // city reset kar do
+            }}
+            className="bg-green-50 border border-green-200 px-4 py-2 rounded-lg text-gray-800 placeholder:text-green-400 outline-none focus:ring-2 focus:ring-green-300"
+            required
+          >
+            <option value="">Select Skills</option>
+            {Object.keys(skillsProfessionMap).map((skills) => (
+              <option key={skills} value={skills}>
+                {skills}
+              </option>
+            ))}
+          </select>
+
+          {/* Profession Select */}
+          <select
+            name="professional"
+            onChange={(e) => setWorkers({ ...workers, professional: e.target.value })}
+            className="bg-green-50 border border-green-200 px-4 py-2 rounded-lg text-gray-800 placeholder:text-green-400 outline-none focus:ring-2 focus:ring-green-300"
+            required
+            disabled={!workers.skills} // jab tak district select na ho tab tak disable
+          >
+            <option value="">Select Professional</option>
+            {workers.skills &&
+              skillsProfessionMap[workers.skills].map((professional) => (
+                <option key={professional} value={professional}>
+                  {professional}
+                </option>
+              ))}
+          </select>
 
           {/* District Select */}
           <select
@@ -88,6 +120,7 @@ function AddWorker() {
                 </option>
               ))}
           </select>
+
           <input
             type="text"
             name="area"
@@ -129,8 +162,8 @@ function AddWorker() {
           ></textarea>
 
           {/* Checkboxes----------------------------------------------- */}
-              <div className="flex items-center gap-6 mt-2">
-                {/* <label className="flex items-center gap-2 cursor-pointer">
+          <div className="flex items-center gap-6 mt-2">
+            {/* <label className="flex items-center gap-2 cursor-pointer">
                   <input
                     type="checkbox"
                     checked={workers.isNew || false}
@@ -141,25 +174,18 @@ function AddWorker() {
                   />
                   <span className="text-green-700 text-sm">Mark as New</span>
                 </label> */}
-                <label className="flex items-center gap-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={workers.available || false}
-                    onChange={(e) =>
-                      setWorkers({ ...workers, available: e.target.checked })
-                    }
-                    className="accent-green-500 w-4 h-4"
-                  />
-                  <span className="text-green-700 text-sm">Availability</span>
-                </label>
-              </div>
-
-
-
-
-
-
-
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={workers.available || false}
+                onChange={(e) =>
+                  setWorkers({ ...workers, available: e.target.checked })
+                }
+                className="accent-green-500 w-4 h-4"
+              />
+              <span className="text-green-700 text-sm">Availability</span>
+            </label>
+          </div>
 
           {/* New Ingredients Field */}
           {/* <textarea

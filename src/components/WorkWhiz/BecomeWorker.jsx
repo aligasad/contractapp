@@ -7,15 +7,11 @@ import WorkerDashboard from "../WorkerDashboard/WorkerDashboard";
 import Loader from "../loader/Loader";
 
 function BecomeWorker() {
-  const { workers, setWorkers, loading, setLoading } = useData();
+  const { workers, setWorkers, loading, setLoading, districtCityMap = {}, skillsProfessionMap = {} } = useData();
   const [hasData, setHasData] = useState(false);
   const [editMode, setEditMode] = useState(false);
-  
 
-  const districtCityMap = {
-    "West Champaran": ["Bettiah", "Bagaha", "Narkatiaganj"],
-    Siwan: ["Siwan", "Mairwa", "Gopalganj"],
-  };
+
 
   // -------------------{ Fetch worker data }-------------------------
   useEffect(() => {
@@ -102,29 +98,45 @@ function BecomeWorker() {
                 required
               />
 
-              {/* Skills */}
-              <input
-                type="text"
-                placeholder="Skills"
-                value={workers.skills || ""}
-                onChange={(e) =>
-                  setWorkers({ ...workers, skills: e.target.value })
-                }
+              {/* Skills Select */}
+              <select
+                name="skills"
+                onChange={(e) => {
+                  setWorkers({
+                    ...workers,
+                    skills: e.target.value,
+                    professional: "",
+                  }); // city reset kar do
+                }}
                 className="w-full border-2 border-[#FFA673] p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#03A6A1]"
                 required
-              />
+              >
+                <option value="">Select Skills</option>
+                {Object.keys(skillsProfessionMap).map((skills) => (
+                  <option key={skills} value={skills}>
+                    {skills}
+                  </option>
+                ))}
+              </select>
 
-              {/* Professional */}
-              <input
-                type="text"
-                placeholder="Professional In (e.g. Inverter, Wiring, etc)"
-                value={workers.professional || ""}
+              {/* Profession Select */}
+              <select
+                name="professional"
                 onChange={(e) =>
                   setWorkers({ ...workers, professional: e.target.value })
                 }
                 className="w-full border-2 border-[#FFA673] p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#03A6A1]"
                 required
-              />
+                disabled={!workers.skills} // jab tak district select na ho tab tak disable
+              >
+                <option value="">Select Professional</option>
+                {workers.skills &&
+                  skillsProfessionMap[workers.skills].map((professional) => (
+                    <option key={professional} value={professional}>
+                      {professional}
+                    </option>
+                  ))}
+              </select>
 
               {/* District */}
               <select

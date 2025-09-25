@@ -13,7 +13,7 @@ import {
   setDoc,
   Timestamp,
 } from "firebase/firestore";
-import { firebaseDB } from "../../firebase/FirebaseConfig.jsx";
+import { auth, firebaseDB } from "../../firebase/FirebaseConfig.jsx";
 import { toast } from "react-toastify";
 
 function MyState({ children }) {
@@ -258,6 +258,86 @@ function MyState({ children }) {
     fetchWorker();
   }, []);
 
+  
+
+  // -----------{ ALL TYPE OF SKILLS 7 PROFESSION }---------------------------------------
+  const skillsProfessionMap = {
+    "Shifting Services": ["Whole Home", "Single Room", "Office"],
+    "Home Painting Service": ["Interior Painting", "Exterior Painting"],
+    "Home Construction": [
+      "Enggineer. Consultation",
+      "Home Design",
+      "Mason (Raj Mistri)",
+      "Helper / Labourer",
+      "Carpenter (Badhai)",
+      "Tile or Marble Fitter (Tile Mistri)",
+      "Welder / Iron Gate & Grill Work",
+      "Whole Home Construction.",
+    ],
+    Electrician: [
+      "Inverter",
+      "Wiring",
+      "Light",
+      "Solar Repair And Installation",
+      "Whole House Wiring",
+      "Power Sockets and Switch Boards",
+      "Telephone And Networking Sockets",
+      "MCB & MCCBs",
+      "Fan",
+      "Sub Meter",
+    ],
+    "Home Renovation": [
+      "Kitchen Renovation",
+      "Bathroom Renovation",
+      "UPVC",
+      "Railings",
+      "Door And Windows",
+      "Furnitures",
+    ],
+    "Catering Services": ["Marriage", "Bartabanda"],
+    "Cleaning Services": [
+      "Tank Cleaning",
+      "House Cleaning",
+      "Waste Management",
+    ],
+    "Laundry Services": ["Normal Clothes", "Party Wear"],
+    Beautician: [
+      "Hair",
+      "Waxing",
+      "Bridal Packages",
+      "Makeup",
+      "Mehendi",
+      "Facial",
+    ],
+    "Computer and networking": [
+      "Gaming Setup",
+      "Computer And Laptop Repairing",
+      "IT Technician",
+    ],
+    "Plumbing Service": [
+      "Wash Basin",
+      "Tap And Faucets",
+      "Toilet",
+      "Water Tank",
+      "Blockages",
+      "Whole House Plumbing",
+    ],
+    "Electronic Devices": [
+      "Wash Basin",
+      "Air Condition (AC)",
+      "Refrigerator",
+      "Washing Machine",
+      "Iron",
+      "Vacuum Cleaner",
+    ],
+  };
+
+  // ------------{ ALL TYPE OF DISTRICT & CITIES }--------------------------------
+  const districtCityMap = {
+    "West Champaran": ["Bettiah", "Bagaha", "Narkatiaganj"],
+    Siwan: ["Siwan", "Mairwa", "Gopalganj"],
+  };
+
   return (
     <MyContext.Provider
       value={{
@@ -287,6 +367,8 @@ function MyState({ children }) {
         resetFilter,
         pageType,
         setPageType,
+        skillsProfessionMap,
+        districtCityMap
       }}
     >
       {children}
