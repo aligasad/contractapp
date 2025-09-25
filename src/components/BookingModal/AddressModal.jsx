@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 
 const AddressModal = ({ isOpen, onClose, onSave }) => {
   const [name, setName] = useState("");
@@ -8,7 +9,7 @@ const AddressModal = ({ isOpen, onClose, onSave }) => {
 
   const handleSubmit = () => {
     if (!name || !phone || !address || !pincode) {
-      alert("Please fill all fields");
+      toast.warning("Please fill all fields");
       return;
     }
 
@@ -69,7 +70,7 @@ const AddressModal = ({ isOpen, onClose, onSave }) => {
             onClick={handleSubmit}
             className="cursor-pointer px-5 py-2 rounded-lg font-medium text-white shadow transition-all bg-gradient-to-r from-[#03A6A1] to-[#FFA673] hover:from-[#FF4F0F] hover:to-[#FFA673]"
           >
-            Save
+            Order
           </button>
         </div>
       </div>

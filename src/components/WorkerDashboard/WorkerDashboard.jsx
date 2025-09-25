@@ -74,7 +74,7 @@ const WorkerDashboard = ({ worker }) => {
   );
 
   return (
-    <div className="p-6 relative bg-gradient-to-br from-[#FFE3BB] via-white to-[#FFF9F3] overflow-hidden min-h-screen">
+    <div className="p-6 relative bg-gradient-to-br from-[#FFE3BB] via-white to-[#FFF9F3] min-h-screen">
       <div className="absolute -top-20 -left-20 w-72 h-72 bg-[#03A6A1]/10 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#FFA673]/20 rounded-full blur-3xl"></div>
 
@@ -140,19 +140,21 @@ const WorkerDashboard = ({ worker }) => {
                       {b.status}
                     </span>
                   </td>
-                  <td className="p-3 border flex gap-2">
-                    <button
-                      onClick={() => handleUpdateStatus(b.id, "confirmed")}
-                      className="px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600"
-                    >
-                      Confirm
-                    </button>
-                    <button
-                      onClick={() => handleUpdateStatus(b.id, "declined")}
-                      className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
-                    >
-                      Decline
-                    </button>
+                  <td className="p-3 border">
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => handleUpdateStatus(b.id, "confirmed")}
+                        className="px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 z-20"
+                      >
+                        Confirm
+                      </button>
+                      <button
+                        onClick={() => handleUpdateStatus(b.id, "declined")}
+                        className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 z-10"
+                      >
+                        Decline
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))

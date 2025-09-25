@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { collection, addDoc, Timestamp } from "firebase/firestore";
 import { auth, firebaseDB } from "../../firebase/FirebaseConfig";
 import AddressModal from "./AddressModal"; // import address modal
+import { toast } from "react-toastify";
 
 const BookingModal = ({ isOpen, onClose, worker }) => {
   const [dates, setDates] = useState([]);
@@ -49,7 +50,7 @@ const BookingModal = ({ isOpen, onClose, worker }) => {
   // Step 1 → Open Address Modal instead of direct save
   const handleConfirm = () => {
     if (!selectedDate || !selectedTime) {
-      alert("Please select date and time");
+      toast.warning("Please select date and time");
       return;
     }
 
@@ -79,12 +80,12 @@ const BookingModal = ({ isOpen, onClose, worker }) => {
         userId: auth.currentUser.uid
       });
 
-      alert("Booking Confirmed with Address 🎉");
+      toast.success("Booking Confirmed with Address 🎉");
       setShowAddressModal(false);
       onClose();
     } catch (error) {
       console.error("Error saving booking:", error);
-      alert("Failed to save booking!");
+      toast.error("Failed to save booking!");
     } finally {
       setLoading(false);
     }

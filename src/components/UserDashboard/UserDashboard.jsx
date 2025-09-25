@@ -8,6 +8,7 @@ import {
   updateDoc,
   doc,
 } from "firebase/firestore";
+import { toast } from "react-toastify";
 
 const UserDashboard = () => {
   const [bookings, setBookings] = useState([]);
@@ -40,7 +41,7 @@ const UserDashboard = () => {
   const handleCancel = async (id) => {
     try {
       await updateDoc(doc(firebaseDB, "bookings", id), { status: "cancelled" });
-      alert("Booking cancelled ❌");
+      toast.error("Booking cancelled ❌");
     } catch (error) {
       console.error("Error cancelling booking:", error);
     }
@@ -55,7 +56,7 @@ const UserDashboard = () => {
         time: newTime || editBooking.time,
         status: "pending", // reset to pending for worker confirmation------------------------------------
       });
-      alert("Booking updated");
+      toast.success("Booking updated");
       setEditBooking(null);
       setNewDate("");
       setNewTime("");
