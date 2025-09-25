@@ -65,11 +65,11 @@ const HeroSection2 = () => {
           className="flex-1 flex justify-center"
         >
           <div className="relative">
-            <div className="absolute -top-10 -left-10 w-72 h-72 bg-[#03A6A1]/20 rounded-full blur-2xl"></div>
+            <div className="absolute -top-10 -left-10 w-72 h-72 bg-[#03A6A1]/20 rounded-full blur-2xl "></div>
             <img
               src="https://wallpaperaccess.com/full/3113314.jpg"
               alt="WorkWhiz Hero"
-              className="relative w-full sm:w-72 md:w-96 lg:w-[30rem] sm:rounded-2xl shadow-2xl hover:scale-105 transition duration-500 ease-in-out"
+              className="relative w-full sm:w-72 md:w-96 lg:w-[30rem] rounded-tl-[110px] sm:rounded-2xl shadow-2xl hover:scale-105 transition duration-500 ease-in-out"
             />
           </div>
         </motion.div>
