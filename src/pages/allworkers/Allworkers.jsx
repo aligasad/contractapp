@@ -44,7 +44,7 @@ function AllWorkers() {
               >
                 <div
                   key={index}
-                  className="relative h-76 rounded-xl overflow-hidden shadow-md group"
+                  className="relative h-55 sm:h-76 rounded-xl overflow-hidden shadow-md group"
                 >
                   {/* Background Image */}
                   <img
@@ -55,23 +55,23 @@ function AllWorkers() {
 
                   {/* Blur Overlay with Details */}
                   <div className="absolute inset-0 bg-black/40 flex items-end">
-                    <div className="w-full backdrop-blur-md bg-white/30 text-white p-3">
+                    <div className="w-full backdrop-blur-md bg-white/30 text-white p-2 pt-0 sm:pt-1 sm:p-3">
                       <h3 className="text-base font-bold text-gray-800 flex items-center">
                         {worker.name}{" "}
                       </h3>
                       <div className="h-[1.5px] bg-[#ff4f0f] w-full"></div>
-                      <p className="text-xs text-[#ff4f0f] shadow-inner shadow-gray-700 bg-gray-300 w-fit px-1 mt-0.5 ">
+                      <p className="text-xs text-[#eadeda] w-fit  mt-0.5 ">
                         {worker.skills}
                       </p>
 
                       <div className="grid grid-cols-1 text-[11px]">
-                        <p className="text-gray-100">
-                          <span className="font-semibold text-gray-800 text-[12px]">
+                        <p className="hidden sm:block text-gray-100">
+                          <span className=" font-semibold text-gray-800 text-[12px]">
                             Location:
                           </span>{" "}
                           {worker.area}, {worker.city}
                         </p>
-                        <p>
+                        <p className="text-[#eadeda]">
                           <span className="font-semibold text-gray-800 text-[12px]">
                             Experiance:
                           </span>{" "}
@@ -81,7 +81,7 @@ function AllWorkers() {
 
                       {/* Bottom Row */}
                       <div className="flex items-center justify-between">
-                        <p className="text-[11px]">
+                        <p className=" hidden text-[11px] ">
                           <span className="font-semibold text-gray-800 text-[12px]">
                             Contact:
                           </span>{" "}
@@ -89,13 +89,13 @@ function AllWorkers() {
                         </p>
                       </div>
 
-                      <div className="flex items-center gap-3 mt-1">
+                      <div className="flex flex-row gap-2 mt-2">
                         <button
                           onClick={() => {
                             setSelectedWorker(worker);
                             setIsModalOpen(true);
                           }}
-                          className="cursor-pointer px-2 py-1 text-[11px] bg-[#03A6A1] rounded-md shadow hover:bg-[#FF4F0F] transition"
+                          className="w-1/2 cursor-pointer py-1 text-xs sm:text-sm lg:text-base bg-[#03A6A1] rounded-md shadow hover:bg-[#FF4F0F] transition"
                         >
                           Hire
                         </button>
@@ -103,7 +103,7 @@ function AllWorkers() {
                           onClick={() =>
                             (window.location.href = `/productinfo/${worker.id}`)
                           }
-                          className="cursor-pointer px-2 py-1 text-[11px] bg-[#FF4F0F] rounded-md shadow hover:bg-[#03A6A1] transition"
+                          className="w-1/2 cursor-pointer py-1 text-xs sm:text-sm lg:text-base bg-[#FF4F0F] rounded-md shadow hover:bg-[#03A6A1] transition"
                         >
                           Details
                         </button>
