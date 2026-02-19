@@ -2,210 +2,283 @@ import { useEffect } from "react";
 import { useData } from "../../../context/data/MyState";
 
 function AddWorker() {
+
   const context = useData();
-  const { workers, setWorkers, addWorker, districtCityMap, skillsProfessionMap } = context;
 
-  // Add new fields to your initial state if not already present
-  // Example: { ...workers, brand: '', stock: '', discount: '', tags: '' }
+  const {
+    workers,
+    setWorkers,
+    addWorker,
+    districtCityMap,
+    companyRoleMap
+  } = context;
 
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="py-6 min-h-screen bg-gradient-to-br from-green-50 to-lime-100 flex items-center justify-center">
+
       <div className="w-full max-w-lg bg-white rounded-2xl shadow-2xl p-8 border border-green-100">
-        <h1 className="text-center text-2xl font-extrabold text-green-800 mb-6 tracking-wide">
-          Add New Workers
+
+        <h1 className="text-center text-2xl font-extrabold text-green-800 mb-6">
+          Add New Worker
         </h1>
+
         <div className="grid grid-cols-1 gap-4">
+
+          {/* Name */}
           <input
             type="text"
-            name="name"
-            className="bg-green-50 border border-green-200 px-4 py-2 rounded-lg text-gray-800 placeholder:text-green-400 outline-none focus:ring-2 focus:ring-green-300"
-            placeholder="Worker's Name"
-            value={workers.name}
-            onChange={(e) => setWorkers({ ...workers, name: e.target.value })}
+            placeholder="Worker Name"
+            value={workers.name || ""}
+            onChange={(e) =>
+              setWorkers({ ...workers, name: e.target.value })
+            }
+            className="input"
           />
+
+          {/* Phone */}
           <input
             type="number"
-            name="phone"
-            className="bg-green-50 border border-green-200 px-4 py-2 rounded-lg text-gray-800 placeholder:text-green-400 outline-none focus:ring-2 focus:ring-green-300"
-            placeholder="Phone (74XXXXXX26)"
+            placeholder="Phone Number"
             value={workers.phone || ""}
-            onChange={(e) => setWorkers({ ...workers, phone: e.target.value })}
-          />
-          {/* <input
-            type="text"
-            name="skills"
-            className="bg-green-50 border border-green-200 px-4 py-2 rounded-lg text-gray-800 placeholder:text-green-400 outline-none focus:ring-2 focus:ring-green-300"
-            placeholder="Skills"
-            value={workers.skills || ""}
-            onChange={(e) => setWorkers({ ...workers, skills: e.target.value })}
-          />
-          <input
-            type="text"
-            name="professional"
-            className="bg-green-50 border border-green-200 px-4 py-2 rounded-lg text-gray-800 placeholder:text-green-400 outline-none focus:ring-2 focus:ring-green-300"
-            placeholder="Professional In(eg. Invertor, Wiring etc)"
-            value={workers.professional || ""}
             onChange={(e) =>
-              setWorkers({ ...workers, professional: e.target.value })
+              setWorkers({ ...workers, phone: e.target.value })
             }
-            required
-          /> */}
+            className="input"
+          />
 
-          {/* Skills Select */}
+          {/* Gender */}
           <select
-            name="skills"
-            onChange={(e) => {
-              setWorkers({ ...workers, skills: e.target.value, professional: "" }); // city reset kar do
-            }}
-            className="bg-green-50 border border-green-200 px-4 py-2 rounded-lg text-gray-800 placeholder:text-green-400 outline-none focus:ring-2 focus:ring-green-300"
-            required
+            value={workers.gender || ""}
+            onChange={(e) =>
+              setWorkers({ ...workers, gender: e.target.value })
+            }
+            className="input"
           >
-            <option value="">Select Skills</option>
-            {Object.keys(skillsProfessionMap).map((skills) => (
-              <option key={skills} value={skills}>
-                {skills}
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+
+
+          {/* DOB */}
+          <input
+            type="date"
+            value={workers.dob || ""}
+            onChange={(e) =>
+              setWorkers({ ...workers, dob: e.target.value })
+            }
+            className="input"
+          />
+
+
+          {/* Marital Status */}
+          <select
+            value={workers.maritalStatus || ""}
+            onChange={(e) =>
+              setWorkers({
+                ...workers,
+                maritalStatus: e.target.value
+              })
+            }
+            className="input"
+          >
+            <option value="">Marital Status</option>
+            <option value="Single">Single</option>
+            <option value="Married">Married</option>
+            <option value="Divorced">Divorced</option>
+            <option value="Widowed">Widowed</option>
+          </select>
+
+
+          {/* Company */}
+          <select
+            value={workers.company || ""}
+            onChange={(e) =>
+              setWorkers({
+                ...workers,
+                company: e.target.value,
+                role: ""
+              })
+            }
+            className="input"
+          >
+            <option value="">Select Company</option>
+
+            {Object.keys(companyRoleMap).map((company) => (
+              <option key={company} value={company}>
+                {company}
               </option>
             ))}
+
           </select>
 
-          {/* Profession Select */}
+
+          {/* Role */}
           <select
-            name="professional"
-            onChange={(e) => setWorkers({ ...workers, professional: e.target.value })}
-            className="bg-green-50 border border-green-200 px-4 py-2 rounded-lg text-gray-800 placeholder:text-green-400 outline-none focus:ring-2 focus:ring-green-300"
-            required
-            disabled={!workers.skills} // jab tak district select na ho tab tak disable
+            value={workers.role || ""}
+            disabled={!workers.company}
+            onChange={(e) =>
+              setWorkers({
+                ...workers,
+                role: e.target.value
+              })
+            }
+            className="input"
           >
-            <option value="">Select Professional</option>
-            {workers.skills &&
-              skillsProfessionMap[workers.skills].map((professional) => (
-                <option key={professional} value={professional}>
-                  {professional}
+
+            <option value="">Select Role</option>
+
+            {workers.company &&
+              companyRoleMap[workers.company].map((role) => (
+                <option key={role} value={role}>
+                  {role}
                 </option>
-              ))}
+              ))
+            }
+
           </select>
 
-          {/* District Select */}
+
+          {/* District */}
           <select
-            name="district"
-            onChange={(e) => {
-              setWorkers({ ...workers, district: e.target.value, city: "" }); // city reset kar do
-            }}
-            className="bg-green-50 border border-green-200 px-4 py-2 rounded-lg text-gray-800 placeholder:text-green-400 outline-none focus:ring-2 focus:ring-green-300"
-            required
+            value={workers.district || ""}
+            onChange={(e) =>
+              setWorkers({
+                ...workers,
+                district: e.target.value,
+                city: ""
+              })
+            }
+            className="input"
           >
             <option value="">Select District</option>
+
             {Object.keys(districtCityMap).map((district) => (
               <option key={district} value={district}>
                 {district}
               </option>
             ))}
+
           </select>
 
-          {/* City Select */}
+
+          {/* City */}
           <select
-            name="city"
-            onChange={(e) => setWorkers({ ...workers, city: e.target.value })}
-            className="bg-green-50 border border-green-200 px-4 py-2 rounded-lg text-gray-800 placeholder:text-green-400 outline-none focus:ring-2 focus:ring-green-300"
-            required
-            disabled={!workers.district} // jab tak district select na ho tab tak disable
+            value={workers.city || ""}
+            disabled={!workers.district}
+            onChange={(e) =>
+              setWorkers({
+                ...workers,
+                city: e.target.value
+              })
+            }
+            className="input"
           >
+
             <option value="">Select City</option>
+
             {workers.district &&
               districtCityMap[workers.district].map((city) => (
                 <option key={city} value={city}>
                   {city}
                 </option>
-              ))}
+              ))
+            }
+
           </select>
 
+
+          {/* Area */}
           <input
             type="text"
-            name="area"
-            className="bg-green-50 border border-green-200 px-4 py-2 rounded-lg text-gray-800 placeholder:text-green-400 outline-none focus:ring-2 focus:ring-green-300"
-            placeholder="Area "
-            value={workers.area}
-            onChange={(e) => setWorkers({ ...workers, area: e.target.value })}
+            placeholder="Area"
+            value={workers.area || ""}
+            onChange={(e) =>
+              setWorkers({ ...workers, area: e.target.value })
+            }
+            className="input"
           />
+
+
+          {/* Experience */}
           <input
             type="text"
-            name="experience"
-            className="bg-green-50 border border-green-200 px-4 py-2 rounded-lg text-gray-800 placeholder:text-green-400 outline-none focus:ring-2 focus:ring-green-300"
-            placeholder="Experience (comma separated)"
+            placeholder="Experience"
             value={workers.experience || ""}
             onChange={(e) =>
-              setWorkers({ ...workers, experience: e.target.value })
+              setWorkers({
+                ...workers,
+                experience: e.target.value
+              })
             }
+            className="input"
           />
+
+
+          {/* Profile Pic */}
           <input
-            type="url"
-            name="profilePic"
-            className="bg-green-50 border border-green-200 px-4 py-2 rounded-lg text-gray-800 placeholder:text-green-400 outline-none focus:ring-2 focus:ring-green-300"
-            placeholder="URL Pic"
+            type="text"
+            placeholder="Profile Picture URL"
             value={workers.profilePic || ""}
             onChange={(e) =>
-              setWorkers({ ...workers, profilePic: e.target.value })
+              setWorkers({
+                ...workers,
+                profilePic: e.target.value
+              })
             }
+            className="input"
           />
+
+
+          {/* About */}
           <textarea
-            cols="30"
-            rows="4"
-            name="aboutMe"
-            className="bg-green-50 border border-green-200 px-4 py-2 rounded-lg text-gray-800 placeholder:text-green-400 outline-none focus:ring-2 focus:ring-green-300"
-            placeholder="aboutMe"
-            value={workers.aboutMe}
+            placeholder="About Worker"
+            value={workers.aboutMe || ""}
             onChange={(e) =>
-              setWorkers({ ...workers, aboutMe: e.target.value })
+              setWorkers({
+                ...workers,
+                aboutMe: e.target.value
+              })
             }
-          ></textarea>
+            className="input"
+          />
 
-          {/* Checkboxes----------------------------------------------- */}
-          <div className="flex items-center gap-6 mt-2">
-            {/* <label className="flex items-center gap-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={workers.isNew || false}
-                    onChange={(e) =>
-                      setWorkers({ ...workers, isNew: e.target.checked })
-                    }
-                    className="accent-green-500 w-4 h-4"
-                  />
-                  <span className="text-green-700 text-sm">Mark as New</span>
-                </label> */}
-            <label className="flex items-center gap-2 cursor-pointer">
-              <input
-                type="checkbox"
-                checked={workers.available || false}
-                onChange={(e) =>
-                  setWorkers({ ...workers, available: e.target.checked })
-                }
-                className="accent-green-500 w-4 h-4"
-              />
-              <span className="text-green-700 text-sm">Availability</span>
-            </label>
-          </div>
 
-          {/* New Ingredients Field */}
-          {/* <textarea
-            cols="30"
-            rows="3"
-            name="ingredients"
-            className="bg-green-50 border border-green-200 px-4 py-2 rounded-lg text-gray-800 placeholder:text-green-400 outline-none focus:ring-2 focus:ring-green-300"
-            placeholder="Ingredients (comma separated or paragraph)"
-            value={workers.ingredients || ""}
-            onChange={(e) =>
-              setWorkers({ ...workers, ingredients: e.target.value })
-            } */}
+          {/* Availability */}
+          <label className="flex gap-2">
+
+            <input
+              type="checkbox"
+              checked={workers.available || false}
+              onChange={(e) =>
+                setWorkers({
+                  ...workers,
+                  available: e.target.checked
+                })
+              }
+            />
+
+            Available
+
+          </label>
+
         </div>
+
+
         <button
           onClick={addWorker}
-          className="mt-6 w-full bg-gradient-to-r from-green-400 to-lime-400 text-white font-bold py-2 rounded-lg shadow hover:from-green-500 hover:to-lime-500 transition"
+          className="mt-6 w-full bg-gradient-to-r from-green-400 to-lime-400 text-white font-bold py-2 rounded-lg"
         >
-          Add Product
+          Add Worker
         </button>
+
       </div>
+
     </div>
   );
 }

@@ -98,12 +98,12 @@ function Profile() {
           </button>
           <button
             onClick={() => {
-              navigate('/userorders');
+              navigate('/join');
               window.scrollTo({top: 0, behavior: "smooth"});
             }}
             className="text-red-600 hover:text-white cursor-pointer border border-red-500 px-4 py-2 rounded-lg hover:bg-rose-700 transition-colors duration-300"
           >
-            Your Orders
+            Become a Worker
           </button>
         </div>
 

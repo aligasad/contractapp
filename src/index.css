@@ -14,6 +14,14 @@
   }
 }
 
+.input {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+
 .bg-pulse {
   animation: bgPulse 2s infinite ease-in-out;
 }

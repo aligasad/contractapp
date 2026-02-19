@@ -4,7 +4,6 @@ import { getFirestore, collection, getDocs } from "firebase/firestore";
 import { useData } from "../../../../context/data/MyState";
 import { motion } from "framer-motion";
 import Carousel from "../../../heroSection/Carousel";
-import BookingModal from "../../../BookingModal/BookingModal";
 
 const ConstructionWorkers = () => {
   const { category } = useParams();
@@ -13,8 +12,6 @@ const ConstructionWorkers = () => {
 
   const [heading, setHeading] = useState("");
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedWorker, setSelectedWorker] = useState(null);
 
   // For heading - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   useEffect(() => {
@@ -153,10 +150,6 @@ const ConstructionWorkers = () => {
 
                       <div className="flex items-center gap-3 mt-1">
                         <button
-                          onClick={() => {
-                            setSelectedWorker(worker);
-                            setIsModalOpen(true);
-                          }}
                           className="cursor-pointer px-2 py-1 text-[11px] bg-[#03A6A1] rounded-md shadow hover:bg-[#FF4F0F] transition"
                         >
                           Hire
@@ -181,12 +174,6 @@ const ConstructionWorkers = () => {
             </p>
           )}
         </div>
-        {/* ✅ Modal ko grid ke bahar rakho */}
-        <BookingModal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          worker={selectedWorker}
-        />
       </div>
     </>
   );

@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import { useData } from "../../context/data/MyState";
 import { motion } from "framer-motion";
 import HeroSection2 from "../../components/heroSection/HeroSection2";
-import TransformSection from "../../components/heroSection/TransforSection";
 import TestimonialAnim from "../../components/testimonial/TestimonialAnim";
 import Services from "../../components/OurServices/Services";
 
@@ -27,7 +26,6 @@ function Home() {
         exit={{ opacity: 0 }} // exit off-screen to the right
         transition={{ duration: 1 }}
       >
-        {/* <HeroSection /> */}
         <HeroSection2 />
       </motion.div>
 
@@ -40,48 +38,6 @@ function Home() {
       >
         <Services />
       </motion.div>
-
-      {/* <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 1 }}
-        onAnimationComplete={() => setIsFirstVisit(false)} 
-      >
-        <ProductShow />
-      </motion.div> */}
-
-      {/* <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 1 }}
-        onAnimationComplete={() => setIsFirstVisit(false)} 
-      >
-        <TransformSection />
-      </motion.div> */}
-
-      {/* <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 1 }}
-        onAnimationComplete={() => setIsFirstVisit(false)} 
-      >
-        <ProductCard />
-      </motion.div> */}
-
-      {/* <ProductApi /> */}
-      {/* <div className="flex justify-center md:-mt-10 mb-4 ">
-        <Link to={"/allproducts"}>
-          <button
-            onClick={resetFilter}
-            className=" bg-gray-300 px-5 py-2 rounded-xl cursor-pointer"
-          >
-            See more
-          </button>
-        </Link>
-      </div> */}
 
       <TestimonialAnim />
     </>

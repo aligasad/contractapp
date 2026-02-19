@@ -261,76 +261,14 @@ function MyState({ children }) {
   
 
   // -----------{ ALL TYPE OF SKILLS 7 PROFESSION }---------------------------------------
-  const skillsProfessionMap = {
-    "Shifting Services": ["Whole Home", "Single Room", "Office"],
-    "Home Painting Service": ["Interior Painting", "Exterior Painting"],
-    "Home Construction": [
-      "Enggineer. Consultation",
-      "Home Design",
-      "Mason (Raj Mistri)",
-      "Helper / Labourer",
-      "Carpenter (Badhai)",
-      "Tile or Marble Fitter (Tile Mistri)",
-      "Welder / Iron Gate & Grill Work",
-      "Whole Home Construction.",
-    ],
-    Electrician: [
-      "Inverter",
-      "Wiring",
-      "Light",
-      "Solar Repair And Installation",
-      "Whole House Wiring",
-      "Power Sockets and Switch Boards",
-      "Telephone And Networking Sockets",
-      "MCB & MCCBs",
-      "Fan",
-      "Sub Meter",
-    ],
-    "Home Renovation": [
-      "Kitchen Renovation",
-      "Bathroom Renovation",
-      "UPVC",
-      "Railings",
-      "Door And Windows",
-      "Furnitures",
-    ],
-    "Catering Services": ["Marriage", "Bartabanda"],
-    "Cleaning Services": [
-      "Tank Cleaning",
-      "House Cleaning",
-      "Waste Management",
-    ],
-    "Laundry Services": ["Normal Clothes", "Party Wear"],
-    Beautician: [
-      "Hair",
-      "Waxing",
-      "Bridal Packages",
-      "Makeup",
-      "Mehendi",
-      "Facial",
-    ],
-    "Computer and networking": [
-      "Gaming Setup",
-      "Computer And Laptop Repairing",
-      "IT Technician",
-    ],
-    "Plumbing Service": [
-      "Wash Basin",
-      "Tap And Faucets",
-      "Toilet",
-      "Water Tank",
-      "Blockages",
-      "Whole House Plumbing",
-    ],
-    "Electronic Devices": [
-      "Wash Basin",
-      "Air Condition (AC)",
-      "Refrigerator",
-      "Washing Machine",
-      "Iron",
-      "Vacuum Cleaner",
-    ],
-  };
+  const companyRoleMap = {
+  "L&T": ["Welder", "Fitter", "Electrician", "Helper"],
+  "Gujarat Power Corp.": ["Solar Fitter", "Operator", "Supervisor", "Other"],
+  "Reliance": ["Helper", "Supervisor", "Machine Operator"],
+  "Adani": ["Electrician", "Crane Operator", "Helper"],
+  "Tata": ["Welder", "Fabricator", "Supervisor"]
+};
+
 
   // ------------{ ALL TYPE OF DISTRICT & CITIES }--------------------------------
   const districtCityMap = {
@@ -367,7 +305,7 @@ function MyState({ children }) {
         resetFilter,
         pageType,
         setPageType,
-        skillsProfessionMap,
+        companyRoleMap,
         districtCityMap
       }}
     >

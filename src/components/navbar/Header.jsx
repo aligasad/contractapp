@@ -195,14 +195,14 @@ function Navbar() {
           )}
 
           {/* Cart button */}
-          <Link to="/cart">
+          {/* <Link to="/cart">
             <div className="relative">
               <ShoppingCart className="h-5 w-5 font-bold text-[#219C90] hover:text-[#EE4E4E] transition" />
               <span className="bg-[#EE4E4E] text-white text-[12px] rounded-full px-[6px] absolute -top-2 -right-3 shadow-md">
                 {(cartItems || []).length}
               </span>
             </div>
-          </Link>
+          </Link> */}
 
           {/* Menu button */}
           <button
@@ -488,63 +488,23 @@ function Navbar() {
                   </li>
                   <li
                     onClick={() => {
-                      handleSelect("/electrician"),
+                      handleSelect("/gujaratPC"),
                         setIsOpen(false),
                         setMenuOpen(false);
                     }}
                     className="hover:text-[#EE4E4E] cursor-pointer transition"
                   >
-                    Electrician
+                    Gujarat Power Co.
                   </li>
                   <li
                     onClick={() => {
-                      handleSelect("/painting"),
+                      handleSelect("/gujaratPC"),
                         setIsOpen(false),
                         setMenuOpen(false);
                     }}
                     className="hover:text-[#EE4E4E] cursor-pointer transition"
                   >
-                    Home Painter
-                  </li>
-                  <li
-                    onClick={() => {
-                      handleSelect("/construction"),
-                        setIsOpen(false),
-                        setMenuOpen(false);
-                    }}
-                    className="hover:text-[#EE4E4E] cursor-pointer transition"
-                  >
-                    Construction
-                  </li>
-                  <li
-                    onClick={() => {
-                      handleSelect("/renovation"),
-                        setIsOpen(false),
-                        setMenuOpen(false);
-                    }}
-                    className="hover:text-[#EE4E4E] cursor-pointer transition"
-                  >
-                    Renovation
-                  </li>
-                  <li
-                    onClick={() => {
-                      handleSelect("/plumbing"),
-                        setIsOpen(false),
-                        setMenuOpen(false);
-                    }}
-                    className="hover:text-[#EE4E4E] cursor-pointer transition"
-                  >
-                    Plumbing
-                  </li>
-                  <li
-                    onClick={() => {
-                      handleSelect("/electronicdevice"),
-                        setIsOpen(false),
-                        setMenuOpen(false);
-                    }}
-                    className="hover:text-[#EE4E4E] cursor-pointer transition"
-                  >
-                    Electronic Device
+                    Company2
                   </li>
                 </ul>
               )}
@@ -614,29 +574,13 @@ function Navbar() {
               </button>
 
               {isUserDropdownOpen && (
-                <ul className="absolute mt-3 bg-[#FFE3BB] text-[#03A6A1] shadow-lg rounded-xl py-2 px-4 z-50 min-w-[160px] space-y-2">
+                <ul className="absolute mt-3 right-0 bg-[#FFE3BB] text-[#03A6A1] shadow-lg rounded-xl py-2 px-4 z-50 min-w-[160px] space-y-2">
                   <li
                     onClick={() => handleSelect("/profile")}
                     className="hover:text-[#FF4F0F] cursor-pointer"
                   >
                     Profile
                   </li>
-                  {hasData ? (
-                    <li
-                      onClick={() => handleSelect("/join")}
-                      className="hover:text-[#FF4F0F] cursor-pointer"
-                    >
-                      Dashboard
-                    </li>
-                  ) : (
-                    <li
-                      onClick={() => handleSelect("/userorders")}
-                      className="hover:text-[#FF4F0F] cursor-pointer"
-                    >
-                      User Orders
-                    </li>
-                  )}
-
                   <li
                     onClick={handleLogout}
                     className="hover:text-[#FF4F0F] cursor-pointer"
@@ -655,17 +599,6 @@ function Navbar() {
             </Link>
           )}
 
-          {/* Cart */}
-          <Link
-            to="/cart"
-            className="relative flex items-center text-sm text-[#03A6A1] hover:text-[#FF4F0F] font-bold"
-          >
-            <ShoppingCart className="h-5 w-5" />
-            <span className="ml-1">Cart</span>
-            <span className="absolute -top-2 -right-3 bg-[#FF4F0F] text-white text-xs rounded-full px-1">
-              {(cartItems || []).length}
-            </span>
-          </Link>
         </div>
       </div>
     </div>

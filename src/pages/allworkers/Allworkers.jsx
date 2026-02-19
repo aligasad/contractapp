@@ -1,13 +1,9 @@
 import { motion } from "framer-motion";
 import { useData } from "../../context/data/MyState";
-import BookingModal from "../../components/BookingModal/BookingModal";
 import { useState } from "react";
 
 function AllWorkers() {
   const { worker } = useData();
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedWorker, setSelectedWorker] = useState(null);
 
   if (!worker || worker.length === 0) {
     return <p className="text-center mt-10">No workers available...</p>;
@@ -67,15 +63,15 @@ function AllWorkers() {
                       <div className="grid grid-cols-1 text-[11px]">
                         <p className="hidden sm:block text-gray-100">
                           <span className=" font-semibold text-gray-800 text-[12px]">
-                            Location:
+                            Company:
                           </span>{" "}
-                          {worker.area}, {worker.city}
+                          {worker.company}
                         </p>
                         <p className="text-[#eadeda]">
                           <span className="font-semibold text-gray-800 text-[12px]">
-                            Experiance:
+                            Role:
                           </span>{" "}
-                          {worker.experience} yrs Exp
+                          {worker.role}
                         </p>
                       </div>
 
@@ -91,22 +87,22 @@ function AllWorkers() {
 
                       <div className="flex flex-row gap-2 mt-2">
                         <button
-                          onClick={() => {
-                            setSelectedWorker(worker);
-                            setIsModalOpen(true);
-                          }}
                           className="w-1/2 cursor-pointer py-1 text-xs sm:text-sm lg:text-base bg-[#03A6A1] rounded-md shadow hover:bg-[#FF4F0F] transition"
                         >
                           Hire
                         </button>
-                        <button
-                          onClick={() =>
-                            (window.location.href = `/productinfo/${worker.id}`)
-                          }
-                          className="w-1/2 cursor-pointer py-1 text-xs sm:text-sm lg:text-base bg-[#FF4F0F] rounded-md shadow hover:bg-[#03A6A1] transition"
-                        >
-                          Details
-                        </button>
+
+                        {JSON.parse(localStorage.getItem("user"))?.user
+                          ?.email === "asadalamalig@gmail.com" && (
+                          <button
+                            onClick={() =>
+                              (window.location.href = `/productinfo/${worker.id}`)
+                            }
+                            className="w-1/2 cursor-pointer py-1 text-xs sm:text-sm lg:text-base bg-[#FF4F0F] rounded-md shadow hover:bg-[#03A6A1] transition"
+                          >
+                            Details
+                          </button>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -119,12 +115,7 @@ function AllWorkers() {
             </p>
           )}
         </div>
-        {/* ✅ Modal ko grid ke bahar rakho */}
-        <BookingModal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          worker={selectedWorker}
-        />
+        
       </div>
     </section>
   );

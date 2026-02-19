@@ -120,7 +120,7 @@ function DashboardTab() {
                           Role
                         </th>
                         <th scope="col" className="px-6 py-3">
-                          Area
+                          Company
                         </th>
                         <th scope="col" className="px-6 py-3">
                           City
@@ -150,10 +150,10 @@ function DashboardTab() {
                         skills,
                         area,
                         city,
-                        district,
+                        role,
                         experience,
                         profilePic,
-                        aboutMe,
+                        company,
                       } = item;
                       return (
                         <tbody key={index} className="">
@@ -187,13 +187,13 @@ function DashboardTab() {
                               className="px-6 py-4 text-black "
                               style={{ color: mode === "dark" ? "white" : "" }}
                             >
-                              {skills}
+                              {role}
                             </td>
                             <td
                               className="px-6 py-4 text-black "
                               style={{ color: mode === "dark" ? "white" : "" }}
                             >
-                              {area}
+                              {company.substring(0,15)}
                             </td>
                             <td
                               className="px-6 py-4 text-black "

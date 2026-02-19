@@ -29,13 +29,11 @@ import TermsAndConditions from "./components/aboutUs/TermsAndCondition.jsx";
 import PrivacyPolicy from "./components/aboutUs/PrivacyPolicy.jsx";
 import Contact from "./components/Contact/Contact.jsx";
 import { useState } from "react";
-import { Icon } from "@iconify/react/dist/iconify.js";
 
 
 import BecomeWorker from "./components/WorkWhiz/BecomeWorker.jsx";
 import Inverter from "./components/OurServices/ServiceType/Electrician/Inverter.jsx";
 import Electrician from "./components/OurServices/ServiceType/Electrician/Electrician.jsx";
-import Beautician from "./components/OurServices/ServiceType/Beautician/Beautician.jsx";
 import Catering from "./components/OurServices/ServiceType/Catering/Catering.jsx";
 import Cleaning from "./components/OurServices/ServiceType/Cleaning/Cleaning.jsx";
 import Construction from "./components/OurServices/ServiceType/Construction/Construction.jsx";
@@ -45,12 +43,9 @@ import Networking from "./components/OurServices/ServiceType/Networking/Networki
 import Painting from "./components/OurServices/ServiceType/Painting/Painting.jsx";
 import Plumbing from "./components/OurServices/ServiceType/Plumbing/Plumbing.jsx";
 import Renovation from "./components/OurServices/ServiceType/Renovation/Renovation.jsx";
-import Shifting from "./components/OurServices/ServiceType/Shifting/Shifting.jsx";
 import ElectricianWorkers from "./components/OurServices/ServiceType/Electrician/ElectricianWorkers.jsx";
 import WorkerDashboard from "./components/WorkerDashboard/WorkerDashboard.jsx";
 import AllWorkers from "./pages/allworkers/Allworkers.jsx";
-import UserDashboard from "./components/UserDashboard/UserDashboard.jsx";
-import BeauticianWorkers from "./components/OurServices/ServiceType/Beautician/BeauticianWorkers.jsx";
 import CateringWorkers from "./components/OurServices/ServiceType/Catering/CateringWorkers.jsx";
 import CleaningWorkers from "./components/OurServices/ServiceType/Cleaning/CleaningWorkers.jsx";
 import ConstructionWorkers from "./components/OurServices/ServiceType/Construction/ConstructionWorker.jsx";
@@ -60,7 +55,7 @@ import NetworkingWorkers from "./components/OurServices/ServiceType/Networking/N
 import PaintingWorkers from "./components/OurServices/ServiceType/Painting/PaintingWorkers.jsx";
 import PlumbingWorkers from "./components/OurServices/ServiceType/Plumbing/PlumbingWorkers.jsx";
 import RenovationWorkers from "./components/OurServices/ServiceType/Renovation/RenovationWorkers.jsx";
-import ShiftingWorkers from "./components/OurServices/ServiceType/Shifting/ShiftingWorkers.jsx";
+import ShiftingWorkers from "./components/OurServices/ServiceType/gujaratPC/GujaratPower.jsx";
 
 function App() {
   const router = createBrowserRouter([
@@ -79,22 +74,6 @@ function App() {
               <BecomeWorker />
             </ProtectedRoute>
           )
-        },
-        {
-          path: "/userorders",
-          element: (
-            <ProtectedRoute>
-              <UserDashboard />
-            </ProtectedRoute>
-          ),
-        },
-        {
-          // path: "/cart",
-          // element: (
-          //   <ProtectedRoute>
-          //     <Cart />,
-          //   </ProtectedRoute>
-          // ),
         },
         {
           path: "/dashboard",
@@ -145,19 +124,6 @@ function App() {
         {
           path: "/electrician/:category",
           element: <ElectricianWorkers />
-        },
-        // --------------{ Beautician AND ITS'S CATEGORY }----------------------------------
-        {
-          path: 'beautician',
-          element: (
-            <ProtectedRoute>
-              <Beautician />
-            </ProtectedRoute>
-          )
-        },
-        {
-          path: "/beautician/:category",
-          element: <BeauticianWorkers />
         },
         // --------------{ Cleaning AND ITS'S CATEGORY }----------------------------------
         {
@@ -276,18 +242,14 @@ function App() {
           path: '/renovation/:category',
           element: <RenovationWorkers />
         },
-        // --------------{ ELECTRICIAN AND ITS'S CATEGORY }----------------------------------
+        // --------------{ Shifting AND ITS'S CATEGORY }----------------------------------
         {
-          path: 'shifting',
+          path: 'gujaratPC',
           element: (
             <ProtectedRoute>
-              <Shifting />
+              <ShiftingWorkers />
             </ProtectedRoute>
           )
-        },
-        {
-          path: '/shifting/:category',
-          element: <ShiftingWorkers />
         },
         
         

@@ -4,7 +4,6 @@ import { getFirestore, collection, getDocs } from "firebase/firestore";
 import { useData } from "../../../../context/data/MyState";
 import { motion } from "framer-motion";
 import Carousel from "../../../heroSection/Carousel";
-import BookingModal from "../../../BookingModal/BookingModal";
 
 const PlumbingWorkers = () => {
   const { category } = useParams();
@@ -182,12 +181,6 @@ const PlumbingWorkers = () => {
             </p>
           )}
         </div>
-        {/* ✅ Modal ko grid ke bahar rakho */}
-        <BookingModal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          worker={selectedWorker}
-        />
       </div>
     </>
   );

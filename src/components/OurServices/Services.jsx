@@ -20,13 +20,13 @@ import Laundary from "../../assets/ServiceLogo/Laundary.webp";
 import painting from "../../assets/ServiceLogo/painting.webp";
 import plumbing from "../../assets/ServiceLogo/plumbing.webp";
 import renovation from "../../assets/ServiceLogo/renovation.webp";
-import shifting from "../../assets/ServiceLogo/shifting.webp";
+import gujaratPC from "../../assets/ServiceLogo/gujaratPC.png";
 
 const benefits = [
   {
-    icon: shifting,
-    title: "Shifting Service",
-    moveTo: "shifting",
+    icon: gujaratPC,
+    title: "Gujarat Power Plant",
+    moveTo: "gujaratPC",
   },
   {
     icon: painting,

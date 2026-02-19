@@ -4,7 +4,6 @@ import { getFirestore, collection, getDocs } from "firebase/firestore";
 import { useData } from "../../../../context/data/MyState";
 import { motion } from "framer-motion";
 import Carousel from "../../../heroSection/Carousel";
-import BookingModal from "../../../BookingModal/BookingModal";
 
 const ShiftingWorkers = () => {
   const { category } = useParams();
@@ -13,58 +12,31 @@ const ShiftingWorkers = () => {
 
   const [heading, setHeading] = useState("");
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedWorker, setSelectedWorker] = useState(null);
 
   // For heading - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   useEffect(() => {
     if (category === "wholehome") {
       setHeading("Relocation assistance for your entire home.");
-    } 
-    else if (category === "singleroom") {
+    } else if (category === "singleroom") {
       setHeading("Efficient moving services for individual rooms.");
-    } 
-    else if (category === "office") {
+    } else if (category === "office") {
       setHeading("Seamless relocation solutions for your office space.");
     }
   }, []);
 
   // Filter The same category type workers---------------
-  const filteredWorkers = worker
-    ?.filter((obj) =>
-      (obj.skills || "")
-        .replace(/\s+/g, "")
-        .toLowerCase()
-        .includes("shift")
-    )
-    ?.filter((obj) =>
-      (obj.professional || "")
-        .replace(/\s+/g, "")
-        .toLowerCase()
-        .includes(category.replace(/\s+/g, "").toLowerCase())
-    )
-    .filter(
-      (obj) =>
-        (obj.skills || "")
-          .toLowerCase()
-          .includes(searchkey?.toLowerCase() || "") ||
-        (obj.area || "").toLowerCase().includes(searchkey?.toLowerCase() || "")
-    )
-    .filter((item) =>
-      (item.category || "")
-        .replace(/\s+/g, "")
-        .toLowerCase()
-        .includes(filterType?.toLowerCase() || "")
-    );
+  const filteredWorkers = worker?.filter((obj) =>
+    (obj.company || "").replace(/\s+/g, "").toLowerCase().includes("guj"),
+  );
 
   // Poster images--------------------------------
   const images = [
     {
-      src: "https://tse3.mm.bing.net/th/id/OIP.6jLhzynOzti5VZsmh_G6xwHaCS?pid=Api&P=0&h=180",
+      src: "https://solex.in/wp-content/uploads/2024/12/best-solar-panel-company-in-gujarat.webp",
       link: "https://isavii.com/",
     },
     {
-      src: "https://tse1.mm.bing.net/th/id/OIP.PpEN-jI0V-ufDNviNHHMwgHaC1?pid=Api&P=0&h=180",
+      src: "https://amplussolar.com/blog/wp-content/uploads/2025/01/Gujarat-2.jpg",
       link: "/soap",
     },
   ];
@@ -78,7 +50,7 @@ const ShiftingWorkers = () => {
             class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900"
             //   style={{ color: mode === "dark" ? "white" : "" }}
           >
-            {heading} !
+            Gujarat Power Corporation!
           </h1>
           <div class="h-1 w-25 bg-green-700 rounded"></div>
         </div>
@@ -124,43 +96,36 @@ const ShiftingWorkers = () => {
                       <div className="grid grid-cols-1 text-[11px]">
                         <p className="text-gray-100 hidden sm:block ">
                           <span className="font-semibold text-gray-800 text-[12px]">
-                            Location:
+                            Company:
                           </span>{" "}
-                          {worker.area}, {worker.city}
+                          {worker.company}
                         </p>
-                        {/* <p>
-                          <span className="font-semibold text-gray-800 text-[12px]">
-                            Experiance:
-                          </span>{" "}
-                          {worker.experience} yrs Exp
-                        </p> */}
                       </div>
 
                       <p className="text-[11px] hidden sm:block">
                         <span className="font-semibold text-gray-800 text-[12px]">
-                          Contact:
+                          Role:
                         </span>{" "}
-                        {worker.phone}
+                        {worker.role}
                       </p>
 
                       <div className="flex items-center gap-3 mt-1">
                         <button
-                          onClick={() => {
-                            setSelectedWorker(worker);
-                            setIsModalOpen(true);
-                          }}
                           className="cursor-pointer px-2 py-1 text-[11px] bg-[#03A6A1] rounded-md shadow hover:bg-[#FF4F0F] transition"
                         >
                           Hire
                         </button>
-                        <button
-                          onClick={() =>
-                            (window.location.href = `/productinfo/${worker.id}`)
-                          }
-                          className="cursor-pointer px-2 py-1 text-[11px] bg-[#FF4F0F] rounded-md shadow hover:bg-[#03A6A1] transition"
-                        >
-                          Details
-                        </button>
+                        {JSON.parse(localStorage.getItem("user"))?.user
+                          ?.email === "asadalamalig@gmail.com" && (
+                          <button
+                            onClick={() =>
+                              (window.location.href = `/productinfo/${worker.id}`)
+                            }
+                            className="cursor-pointer px-2 py-1 text-[11px] bg-[#FF4F0F] rounded-md shadow hover:bg-[#03A6A1] transition"
+                          >
+                            Details
+                          </button>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -173,12 +138,6 @@ const ShiftingWorkers = () => {
             </p>
           )}
         </div>
-        {/* ✅ Modal ko grid ke bahar rakho */}
-        <BookingModal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          worker={selectedWorker}
-        />
       </div>
     </>
   );
