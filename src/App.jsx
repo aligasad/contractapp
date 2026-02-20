@@ -13,7 +13,7 @@ import NoPage from "./pages/nopage/NoPage.jsx";
 import MyState from "./context/data/MyState.jsx";
 import Login from "./pages/registration/Login.jsx";
 import Signup from "./pages/registration/Signup.jsx";
-import ProductInfo from "./pages/workerInfo/WorkerInfo.jsx";
+import WorkerInfo from "./pages/workerInfo/WorkerInfo.jsx";
 import UpdateProduct from "./pages/admin/page/UpdateWorker.jsx";
 import { ToastContainer, Bounce } from "react-toastify";
 import AddWorker from "./pages/admin/page/AddWorker.jsx"
@@ -100,8 +100,8 @@ function App() {
           element: <Signup />,
         },
         {
-          path: "/productinfo/:id",
-          element: <ProductInfo />,
+          path: "/workerinfo/:id",
+          element: <WorkerInfo />,
         },
         {
           path: "/allworkers",

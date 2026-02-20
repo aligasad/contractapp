@@ -23,17 +23,16 @@ const HeroSection2 = () => {
           </span>
 
           <h1 className="text-4xl md:text-5xl font-extrabold text-[#03A6A1] mb-6 leading-tight">
-            Find <span className="text-[#FF4F0F]">Trusted Workers</span>
-            <br /> Anytime, Anywhere
+            We Provide <span className="text-[#FF4F0F]">Trusted Workers </span>
+             for You.
           </h1>
 
           <p className="text-lg text-gray-700 mb-8 max-w-md">
-            WorkWhiz makes hiring{" "}
+            Hire verified local talent effortlessly.{" "}
             <span className="font-semibold text-[#03A6A1]">
-              local, verified workers
+              From urgent needs to planned projects,
             </span>{" "}
-            easy. Whether it’s urgent help or planned tasks — we’ve got you
-            covered.
+              WorkWhiz delivers.
           </p>
 
           {/* Features */}

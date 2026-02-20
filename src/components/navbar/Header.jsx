@@ -279,78 +279,29 @@ function Navbar() {
                       </li>
                       <li
                         onClick={() => {
-                          handleSelect("/electrician"),
+                          handleSelect("/gujaratPC"),
                             setIsOpen(false),
                             setMenuOpen(false);
                         }}
                         className="hover:text-[#EE4E4E] cursor-pointer transition"
                       >
-                        Electrician
+                        Gujarat Power Co.
                       </li>
                       <li
                         onClick={() => {
-                          handleSelect("/painting"),
+                          handleSelect("/gujaratPC"),
                             setIsOpen(false),
                             setMenuOpen(false);
                         }}
                         className="hover:text-[#EE4E4E] cursor-pointer transition"
                       >
-                        Home Painter
-                      </li>
-                      <li
-                        onClick={() => {
-                          handleSelect("/construction"),
-                            setIsOpen(false),
-                            setMenuOpen(false);
-                        }}
-                        className="hover:text-[#EE4E4E] cursor-pointer transition"
-                      >
-                        Construction
-                      </li>
-                      <li
-                        onClick={() => {
-                          handleSelect("/renovation"),
-                            setIsOpen(false),
-                            setMenuOpen(false);
-                        }}
-                        className="hover:text-[#EE4E4E] cursor-pointer transition"
-                      >
-                        Renovation
-                      </li>
-                      <li
-                        onClick={() => {
-                          handleSelect("/plumbing"),
-                            setIsOpen(false),
-                            setMenuOpen(false);
-                        }}
-                        className="hover:text-[#EE4E4E] cursor-pointer transition"
-                      >
-                        Plumbing
-                      </li>
-                      <li
-                        onClick={() => {
-                          handleSelect("/electronicdevice"),
-                            setIsOpen(false),
-                            setMenuOpen(false);
-                        }}
-                        className="hover:text-[#EE4E4E] cursor-pointer transition"
-                      >
-                        Electronic Device
+                        Comp@2
                       </li>
                     </ul>
                   )}
                 </div>
               </li>
 
-              <li>
-                <Link
-                  to="/orders"
-                  onClick={() => setMenuOpen(false)}
-                  className="hover:text-[#219C90] transition"
-                >
-                  Orders
-                </Link>
-              </li>
 
               {user && (
                 hasData ? (
@@ -510,9 +461,7 @@ function Navbar() {
               )}
             </div>
 
-            <Link to="/orders" className="hover:text-[#03A6A1] transition">
-              Orders
-            </Link>
+            
             <Link to="/about" className="hover:text-[#03A6A1] transition">
               About
             </Link>

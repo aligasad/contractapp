@@ -8,7 +8,7 @@ function UpdateProduct() {
     workers,
     setWorkers,
     updateWorker,
-    districtCityMap = {},
+    stateDistrictMap = {},
     companyRoleMap = {},
   } = context;
 
@@ -56,6 +56,20 @@ function UpdateProduct() {
               value={workers.phone || ""}
               onChange={(e) =>
                 setWorkers({ ...workers, phone: e.target.value })
+              }
+              className="w-full mt-1 bg-green-50 border border-green-200 px-4 py-2 rounded-lg focus:ring-2 focus:ring-green-400 outline-none"
+            />
+          </div>
+          {/* Aadhar Number */}
+          <div>
+            <label className="text-sm font-semibold text-green-700">
+              Aadhar Number
+            </label>
+            <input
+              type="number"
+              value={workers.aadhar || ""}
+              onChange={(e) =>
+                setWorkers({ ...workers, aadhar: e.target.value })
               }
               className="w-full mt-1 bg-green-50 border border-green-200 px-4 py-2 rounded-lg focus:ring-2 focus:ring-green-400 outline-none"
             />
@@ -183,7 +197,7 @@ function UpdateProduct() {
               className="w-full mt-1 bg-green-50 border border-green-200 px-4 py-2 rounded-lg focus:ring-2 focus:ring-green-400 outline-none"
             >
               <option value="">Select District</option>
-              {Object.keys(districtCityMap).map((district) => (
+              {Object.keys(stateDistrictMap).map((district) => (
                 <option key={district}>{district}</option>
               ))}
             </select>
@@ -204,7 +218,7 @@ function UpdateProduct() {
             >
               <option value="">Select City</option>
               {workers.district &&
-                districtCityMap[workers.district]?.map((city) => (
+                stateDistrictMap[workers.district]?.map((city) => (
                   <option key={city}>{city}</option>
                 ))}
             </select>
@@ -224,6 +238,20 @@ function UpdateProduct() {
               className="w-full mt-1 bg-green-50 border border-green-200 px-4 py-2 rounded-lg focus:ring-2 focus:ring-green-400 outline-none"
             />
           </div>
+
+          {/* Profile Pic */}
+          <input
+            type="text"
+            placeholder="Profile Picture URL"
+            value={workers.profilePic || ""}
+            onChange={(e) =>
+              setWorkers({
+                ...workers,
+                profilePic: e.target.value
+              })
+            }
+            className="input"
+          />
 
           {/* About */}
           <div className="md:col-span-2">

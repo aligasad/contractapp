@@ -9,7 +9,7 @@ function AddWorker() {
     workers,
     setWorkers,
     addWorker,
-    districtCityMap,
+    stateDistrictMap,
     companyRoleMap
   } = context;
 
@@ -46,6 +46,16 @@ function AddWorker() {
             value={workers.phone || ""}
             onChange={(e) =>
               setWorkers({ ...workers, phone: e.target.value })
+            }
+            className="input"
+          />
+          {/* Aadhar Number */}
+          <input
+            type="number"
+            placeholder="Aadhar Number"
+            value={workers.aadhar || ""}
+            onChange={(e) =>
+              setWorkers({ ...workers, aadhar: e.target.value })
             }
             className="input"
           />
@@ -158,7 +168,7 @@ function AddWorker() {
           >
             <option value="">Select District</option>
 
-            {Object.keys(districtCityMap).map((district) => (
+            {Object.keys(stateDistrictMap).map((district) => (
               <option key={district} value={district}>
                 {district}
               </option>
@@ -183,7 +193,7 @@ function AddWorker() {
             <option value="">Select City</option>
 
             {workers.district &&
-              districtCityMap[workers.district].map((city) => (
+              stateDistrictMap[workers.district].map((city) => (
                 <option key={city} value={city}>
                   {city}
                 </option>

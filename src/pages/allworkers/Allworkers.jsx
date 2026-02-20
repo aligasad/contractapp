@@ -96,7 +96,7 @@ function AllWorkers() {
                           ?.email === "asadalamalig@gmail.com" && (
                           <button
                             onClick={() =>
-                              (window.location.href = `/productinfo/${worker.id}`)
+                              (window.location.href = `/workerinfo/${worker.id}`)
                             }
                             className="w-1/2 cursor-pointer py-1 text-xs sm:text-sm lg:text-base bg-[#FF4F0F] rounded-md shadow hover:bg-[#03A6A1] transition"
                           >

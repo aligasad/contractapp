@@ -8,14 +8,14 @@ import WorkerDashboard from "../WorkerDashboard/WorkerDashboard";
 import Loader from "../loader/Loader";
 
 function BecomeWorker() {
-
   const {
     workers,
     setWorkers,
+    addWorker,
     loading,
     setLoading,
-    districtCityMap = {},
-    companyRoleMap = {}
+    stateDistrictMap = {},
+    companyRoleMap = {},
   } = useData();
 
   const [hasData, setHasData] = useState(false);
@@ -23,9 +23,7 @@ function BecomeWorker() {
 
   // ------------------- Fetch worker data -------------------
   useEffect(() => {
-
     const fetchWorker = async () => {
-
       const user = auth.currentUser;
 
       if (!user) return;
@@ -35,32 +33,25 @@ function BecomeWorker() {
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
-
         setWorkers({
           uid: user.uid,
-          ...docSnap.data()
+          ...docSnap.data(),
         });
 
         setHasData(true);
-
       } else {
-
         setHasData(false);
-
       }
 
       setLoading(false);
-
     };
 
     fetchWorker();
-
   }, []);
 
   // ------------------- Delete worker -------------------
 
   const deleteWorker = async () => {
-
     const user = auth.currentUser;
 
     if (!user) return;
@@ -70,49 +61,50 @@ function BecomeWorker() {
     setWorkers({});
 
     setHasData(false);
-
   };
 
   // ------------------- Submit worker -------------------
 
   const handleSubmit = async (e) => {
-
     e.preventDefault();
 
-    const user = auth.currentUser;
+    try {
+      setLoading(true);
 
-    if (!user) return;
+      const user = auth.currentUser;
+      if (!user) return;
 
-    await setDoc(doc(firebaseDB, "workers", user.uid), {
+      const workerData = {
+        ...workers,
+        uid: user.uid,
+        email: user.email,
+        updatedAt: new Date(),
+      };
 
-      ...workers,
-      uid: user.uid
+      // ✅ IMPORTANT FIX: use setDoc with uid
+      await setDoc(doc(firebaseDB, "workers", user.uid), workerData);
 
-    });
+      setWorkers(workerData);
+      setHasData(true);
+      setEditMode(false);
 
-    setHasData(true);
-
-    setEditMode(false);
-
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (loading) return <Loader />;
 
   return (
-
     <>
-      <div className="min-h-screen bg-[#FFE3BB] px-6 pt-10">
-
+      <div className="min-h-screen bg-[#FFE3BB] px-6 py-10">
         <div className="relative bg-gradient-to-br from-[#FFE3BB] via-white to-[#FFF9F3] p-8 rounded-2xl shadow-lg w-full max-w-5xl mx-auto border-2 border-[#03A6A1]">
-
           {!hasData || editMode ? (
-
             <form onSubmit={handleSubmit} className="space-y-4">
-
               <h2 className="text-3xl font-bold text-center text-[#03A6A1]">
-
                 {editMode ? "Edit Worker Profile" : "Become a Worker"}
-
               </h2>
 
               {/* Name */}
@@ -131,11 +123,22 @@ function BecomeWorker() {
               {/* Phone */}
 
               <input
-                type="text"
+                type="number"
                 placeholder="Phone"
                 value={workers.phone || ""}
                 onChange={(e) =>
                   setWorkers({ ...workers, phone: e.target.value })
+                }
+                className="input"
+                required
+              />
+              {/* Aadhar Number */}
+              <input
+                type="number"
+                placeholder="Aadhar"
+                value={workers.aadhar || ""}
+                onChange={(e) =>
+                  setWorkers({ ...workers, aadhar: e.target.value })
                 }
                 className="input"
                 required
@@ -151,7 +154,6 @@ function BecomeWorker() {
                 className="input"
                 required
               >
-
                 <option value="">Select Gender</option>
 
                 <option value="Male">Male</option>
@@ -159,7 +161,6 @@ function BecomeWorker() {
                 <option value="Female">Female</option>
 
                 <option value="Other">Other</option>
-
               </select>
 
               {/* DOB */}
@@ -181,13 +182,12 @@ function BecomeWorker() {
                 onChange={(e) =>
                   setWorkers({
                     ...workers,
-                    maritalStatus: e.target.value
+                    maritalStatus: e.target.value,
                   })
                 }
                 className="input"
                 required
               >
-
                 <option value="">Marital Status</option>
 
                 <option value="Single">Single</option>
@@ -197,7 +197,6 @@ function BecomeWorker() {
                 <option value="Divorced">Divorced</option>
 
                 <option value="Widowed">Widowed</option>
-
               </select>
 
               {/* Company */}
@@ -208,25 +207,19 @@ function BecomeWorker() {
                   setWorkers({
                     ...workers,
                     company: e.target.value,
-                    role: ""
+                    role: "",
                   })
                 }
                 className="input"
                 required
               >
-
                 <option value="">Select Company</option>
 
                 {Object.keys(companyRoleMap).map((company) => (
-
                   <option key={company} value={company}>
-
                     {company}
-
                   </option>
-
                 ))}
-
               </select>
 
               {/* Role */}
@@ -236,27 +229,21 @@ function BecomeWorker() {
                 onChange={(e) =>
                   setWorkers({
                     ...workers,
-                    role: e.target.value
+                    role: e.target.value,
                   })
                 }
                 disabled={!workers.company}
                 className="input"
                 required
               >
-
                 <option value="">Select Role</option>
 
                 {workers.company &&
                   companyRoleMap[workers.company].map((role) => (
-
                     <option key={role} value={role}>
-
                       {role}
-
                     </option>
-
                   ))}
-
               </select>
 
               {/* District */}
@@ -267,25 +254,19 @@ function BecomeWorker() {
                   setWorkers({
                     ...workers,
                     district: e.target.value,
-                    city: ""
+                    city: "",
                   })
                 }
                 className="input"
                 required
               >
-
                 <option value="">Select District</option>
 
-                {Object.keys(districtCityMap).map((district) => (
-
+                {Object.keys(stateDistrictMap).map((district) => (
                   <option key={district} value={district}>
-
                     {district}
-
                   </option>
-
                 ))}
-
               </select>
 
               {/* City */}
@@ -295,27 +276,21 @@ function BecomeWorker() {
                 onChange={(e) =>
                   setWorkers({
                     ...workers,
-                    city: e.target.value
+                    city: e.target.value,
                   })
                 }
                 disabled={!workers.district}
                 className="input"
                 required
               >
-
                 <option value="">Select City</option>
 
                 {workers.district &&
-                  districtCityMap[workers.district].map((city) => (
-
+                  stateDistrictMap[workers.district].map((city) => (
                     <option key={city} value={city}>
-
                       {city}
-
                     </option>
-
                   ))}
-
               </select>
 
               {/* Area */}
@@ -327,7 +302,7 @@ function BecomeWorker() {
                 onChange={(e) =>
                   setWorkers({
                     ...workers,
-                    area: e.target.value
+                    area: e.target.value,
                   })
                 }
                 className="input"
@@ -343,7 +318,7 @@ function BecomeWorker() {
                 onChange={(e) =>
                   setWorkers({
                     ...workers,
-                    experience: e.target.value
+                    experience: e.target.value,
                   })
                 }
                 className="input"
@@ -359,7 +334,7 @@ function BecomeWorker() {
                 onChange={(e) =>
                   setWorkers({
                     ...workers,
-                    profilePic: e.target.value
+                    profilePic: e.target.value,
                   })
                 }
                 className="input"
@@ -374,7 +349,7 @@ function BecomeWorker() {
                 onChange={(e) =>
                   setWorkers({
                     ...workers,
-                    aboutMe: e.target.value
+                    aboutMe: e.target.value,
                   })
                 }
                 className="input"
@@ -384,20 +359,17 @@ function BecomeWorker() {
               {/* Available */}
 
               <label className="flex gap-2">
-
                 <input
                   type="checkbox"
                   checked={workers.available || false}
                   onChange={(e) =>
                     setWorkers({
                       ...workers,
-                      available: e.target.checked
+                      available: e.target.checked,
                     })
                   }
                 />
-
                 Available
-
               </label>
 
               {/* Submit */}
@@ -406,84 +378,127 @@ function BecomeWorker() {
                 type="submit"
                 className="w-full bg-[#03A6A1] text-white p-3 rounded-lg"
               >
-
                 {editMode ? "Update" : "Submit"}
-
               </button>
-
             </form>
-
           ) : (
-
             <>
               {/* Worker Profile */}
 
-              <div className="text-center">
-
-                <img
-                  src={workers.profilePic}
-                  className="w-32 h-32 rounded-full mx-auto"
-                />
-
-                <h2 className="text-2xl font-bold mt-4">
-
-                  {workers.name}
-
-                </h2>
-
-                <p>{workers.phone}</p>
-
-                <p>{workers.gender}</p>
-
-                <p>DOB: {workers.dob}</p>
-
-                <p>Status: {workers.maritalStatus}</p>
-
-                <p>
-                  {workers.company} - {workers.role}
-                </p>
-
-                <p>
-                  {workers.area}, {workers.city}, {workers.district}
-                </p>
-
-                <p>{workers.experience}</p>
-
-                <p>{workers.aboutMe}</p>
-
-                <div className="flex gap-3 mt-4">
-
-                  <button
-                    onClick={() => setEditMode(true)}
-                    className="bg-orange-400 px-4 py-2 text-white rounded"
-                  >
-                    Edit
-                  </button>
-
-                  <button
-                    onClick={deleteWorker}
-                    className="bg-red-500 px-4 py-2 text-white rounded"
-                  >
-                    Delete
-                  </button>
-
+              <div className="max-w-md mx-auto bg-white rounded-2xl shadow-lg border border-[#FFE3BB] overflow-hidden">
+                {/* Header Gradient */}
+                <div className="bg-gradient-to-r from-[#03A6A1] to-[#FF4F0F] h-24 relative">
+                  {/* Profile Image */}
+                  <div className="absolute left-1/2 transform -translate-x-1/2 top-12">
+                    <img
+                      src={workers.profilePic || "/default-user.png"}
+                      alt="profile"
+                      className="w-28 h-28 rounded-full border-4 border-white shadow-lg object-cover"
+                    />
+                  </div>
                 </div>
 
+                {/* Content */}
+                <div className="pt-16 pb-6 px-6 text-center">
+                  {/* Name */}
+                  <h2 className="text-2xl font-bold text-gray-800">
+                    {workers.name || "N/A"}
+                  </h2>
+
+                  {/* Role + Company */}
+                  <p className="text-sm text-[#FF4F0F] font-semibold mt-1">
+                    {workers.role || "N/A"} • {workers.company || "N/A"}
+                  </p>
+
+                  {/* Status Badge */}
+                  <div className="mt-2">
+                    <span
+                      className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                        workers.available
+                          ? "bg-green-100 text-green-700"
+                          : "bg-red-100 text-red-600"
+                      }`}
+                    >
+                      {workers.available ? "Available" : "Not Available"}
+                    </span>
+                  </div>
+
+                  {/* Info Grid */}
+                  <div className="mt-5 grid grid-cols-2 gap-3 text-sm text-gray-700">
+                    <div className="bg-[#FFE3BB]/40 rounded-lg p-2">
+                      <span className="font-semibold text-[#03A6A1]">
+                        Phone
+                      </span>
+                      <p>{workers.phone || "N/A"}</p>
+                    </div>
+
+                    <div className="bg-[#FFE3BB]/40 rounded-lg p-2">
+                      <span className="font-semibold text-[#03A6A1]">
+                        Gender
+                      </span>
+                      <p>{workers.gender || "N/A"}</p>
+                    </div>
+
+                    <div className="bg-[#FFE3BB]/40 rounded-lg p-2">
+                      <span className="font-semibold text-[#03A6A1]">DOB</span>
+                      <p>{workers.dob || "N/A"}</p>
+                    </div>
+
+                    <div className="bg-[#FFE3BB]/40 rounded-lg p-2">
+                      <span className="font-semibold text-[#03A6A1]">
+                        Marital
+                      </span>
+                      <p>{workers.maritalStatus || "N/A"}</p>
+                    </div>
+
+                    <div className="bg-[#FFE3BB]/40 rounded-lg p-2 col-span-2">
+                      <span className="font-semibold text-[#03A6A1]">
+                        Location
+                      </span>
+                      <p>
+                        {workers.area}, {workers.city}, {workers.district}
+                      </p>
+                    </div>
+
+                    <div className="bg-[#FFE3BB]/40 rounded-lg p-2 col-span-2">
+                      <span className="font-semibold text-[#03A6A1]">
+                        Experience
+                      </span>
+                      <p>{workers.experience || "0"} Years</p>
+                    </div>
+                  </div>
+
+                  {/* About */}
+                  {workers.aboutMe && (
+                    <div className="mt-4 text-sm text-gray-600 bg-gray-50 rounded-lg p-3 border">
+                      {workers.aboutMe}
+                    </div>
+                  )}
+
+                  {/* Buttons */}
+                  <div className="flex gap-3 mt-6 justify-center">
+                    <button
+                      onClick={() => setEditMode(true)}
+                      className="px-5 py-2 bg-gradient-to-r from-[#FFA673] to-[#FF4F0F] text-white font-semibold rounded-lg shadow hover:scale-105 transition"
+                    >
+                      Edit
+                    </button>
+
+                    <button
+                      onClick={deleteWorker}
+                      className="px-5 py-2 bg-red-500 text-white font-semibold rounded-lg shadow hover:bg-red-600 hover:scale-105 transition"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
               </div>
-
             </>
-
           )}
-
         </div>
-
       </div>
-
-      <WorkerDashboard worker={workers} />
-
     </>
   );
-
 }
 
 export default BecomeWorker;
