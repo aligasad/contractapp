@@ -9,6 +9,8 @@ function AllWorkers() {
     return <p className="text-center mt-10">No workers available...</p>;
   }
 
+  console.log("LENGTH::",worker.length);
+
   return (
     <section className="text-gray-600 body-font relative bg-gradient-to-br from-[#FFE3BB] via-white to-[#FFF9F3] overflow-hidden min-h-screen">
       {/* Decorative Blobs */}

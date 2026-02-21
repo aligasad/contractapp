@@ -36,7 +36,6 @@ function MyState({ children }) {
   const [workers, setWorkers] = useState({
     name: "",
     phone: "",
-    skills: "",
     area: "",
     city: "",
     district: "",

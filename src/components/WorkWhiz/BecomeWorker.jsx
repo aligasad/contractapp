@@ -3,9 +3,17 @@
 import { useEffect, useState } from "react";
 import { useData } from "../../context/data/MyState";
 import { auth, firebaseDB } from "../../firebase/FirebaseConfig";
-import { doc, getDoc, deleteDoc, setDoc } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  deleteDoc,
+  setDoc,
+  collection,
+  addDoc,
+} from "firebase/firestore";
 import WorkerDashboard from "../WorkerDashboard/WorkerDashboard";
 import Loader from "../loader/Loader";
+import { toast } from "react-toastify";
 
 function BecomeWorker() {
   const {
@@ -68,28 +76,41 @@ function BecomeWorker() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (
+      !workers.name ||
+      !workers.phone ||
+      !workers.gender ||
+      !workers.district ||
+      !workers.role
+    ) {
+      return toast.warning("Please fill all required fields");
+    }
+
+    setLoading(true);
+
     try {
-      setLoading(true);
-
       const user = auth.currentUser;
-      if (!user) return;
 
-      const workerData = {
+      if (!user) {
+        toast.error("User not logged in");
+        return;
+      }
+
+      // IMPORTANT: use setDoc with user.uid
+      await setDoc(doc(firebaseDB, "workers", user.uid), {
         ...workers,
         uid: user.uid,
         email: user.email,
-        updatedAt: new Date(),
-      };
+        time: Date.now(),
+      });
 
-      // ✅ IMPORTANT FIX: use setDoc with uid
-      await setDoc(doc(firebaseDB, "workers", user.uid), workerData);
+      toast.success("Worker Profile Saved!");
 
-      setWorkers(workerData);
       setHasData(true);
       setEditMode(false);
-
     } catch (error) {
       console.log(error);
+      toast.error("Failed to save worker");
     } finally {
       setLoading(false);
     }

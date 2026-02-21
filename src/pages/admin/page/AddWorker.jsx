@@ -9,9 +9,12 @@ function AddWorker() {
     workers,
     setWorkers,
     addWorker,
+    worker,
     stateDistrictMap,
     companyRoleMap
   } = context;
+
+  
 
   useEffect(() => {
     window.scrollTo(0, 0);
