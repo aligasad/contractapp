@@ -113,7 +113,7 @@ function DashboardTab() {
                           Company
                         </th>
                         <th scope="col" className="px-6 py-3">
-                          City
+                          District/City
                         </th>
                         <th scope="col" className="px-6 py-3">
                           Contact

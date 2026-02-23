@@ -466,8 +466,11 @@ function Navbar() {
               About
             </Link>
 
-            {user?.user?.email === "asadalam4291@gmail.com" ||
-              (user?.user?.email === "asadalamalig@gmail.com" && (
+            {(user?.user?.email === "mrsaakh@gmail.com" && (
+                <Link to="/dashboard" className="text-[#EE4E4E] font-bold">
+                  Admin
+                </Link>
+              )) || (user?.user?.email === "asadalamalig@gmail.com" && (
                 <Link to="/dashboard" className="text-[#EE4E4E] font-bold">
                   Admin
                 </Link>

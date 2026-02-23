@@ -24,7 +24,6 @@ import Profile from "./components/profile/Profile.jsx";
 import CompleteProfile from "./components/profile/CompleteProfile.jsx";
 import { FaArrowUp } from "react-icons/fa";
 import { BsWhatsapp } from "react-icons/bs";
-import ReturnPolicy from "./components/aboutUs/ReturnPolicy.jsx";
 import TermsAndConditions from "./components/aboutUs/TermsAndCondition.jsx";
 import PrivacyPolicy from "./components/aboutUs/PrivacyPolicy.jsx";
 import Contact from "./components/Contact/Contact.jsx";
@@ -56,6 +55,7 @@ import PaintingWorkers from "./components/OurServices/ServiceType/Painting/Paint
 import PlumbingWorkers from "./components/OurServices/ServiceType/Plumbing/PlumbingWorkers.jsx";
 import RenovationWorkers from "./components/OurServices/ServiceType/Renovation/RenovationWorkers.jsx";
 import ShiftingWorkers from "./components/OurServices/ServiceType/gujaratPC/GujaratPower.jsx";
+import Services from "./components/aboutUs/Services.jsx";
 
 function App() {
   const router = createBrowserRouter([
@@ -275,16 +275,16 @@ function App() {
           ),
         },
         {
-          path: "/return-policy",
-          element: <ReturnPolicy />,
-        },
-        {
           path: "/privacy-policy",
           element: <PrivacyPolicy />,
         },
         {
           path: "/terms&condition",
           element: <TermsAndConditions />,
+        },
+        {
+          path: "/services",
+          element: <Services />,
         },
         {
           path: "/contact",
@@ -368,7 +368,7 @@ const ProtectedRouteForAdmin = ({ children }) => {
   const admin = JSON.parse(localStorage.getItem("user"));
 
   if (
-    admin.user.email === "asadalam4291@gmail.com" ||
+    admin.user.email === "mrsaakh@gmail.com" ||
     admin.user.email === "asadalamalig@gmail.com"
   ) {
     return children;
