@@ -415,7 +415,7 @@ function Navbar() {
                   setIsProductDropdownOpen(!isProductDropdownOpen);
                   setIsDropdownOpen(false);
                 }}
-                className="flex items-center gap-1 text-[#FF4F0F] font-bold hover:text-[#03A6A1] transition"
+                className="flex items-center gap-1 text-[#FF4F0F] font-bold hover:text-[#03A6A1] transition cursor-pointer"
               >
                 Services{" "}
                 {isProductDropdownOpen ? (

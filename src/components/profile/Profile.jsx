@@ -30,6 +30,10 @@ function Profile() {
     return () => unsubscribe();
   }, [navigate]);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
   const handleSignOut = async () => {
     try {
       await signOut(auth);
@@ -40,13 +44,13 @@ function Profile() {
     }
   };
 
-
-
   return (
     <div className="min-h-screen bg-[#f6fef9] flex items-center justify-center px-4 py-0  md:py-8">
       <div className="w-full max-w-md bg-white rounded-3xl shadow-xl p-6">
         {/* Header */}
-        <h2 className="text-xl font-semibold text-center text-gray-700 mb-6">My Profile</h2>
+        <h2 className="text-xl font-semibold text-center text-gray-700 mb-6">
+          My Profile
+        </h2>
 
         {/* Profile Info */}
         <div className="flex flex-col items-center space-y-4">
@@ -56,8 +60,12 @@ function Profile() {
             className="w-24 h-24 rounded-full object-cover shadow-md"
           />
           <div className="text-center">
-            <h3 className="text-lg font-semibold text-gray-800">{userData?.name || "User"}</h3>
-            <p className="text-sm text-gray-500">{userData?.email || "No email"}</p>
+            <h3 className="text-lg font-semibold text-gray-800">
+              {userData?.name || "User"}
+            </h3>
+            <p className="text-sm text-gray-500">
+              {userData?.email || "No email"}
+            </p>
           </div>
           <button
             onClick={() => navigate("/complete-profile")}
@@ -74,17 +82,23 @@ function Profile() {
         <div className="text-[11px] sm:text-sm text-gray-700">
           <div className="flex items-center gap-3 pb-0.5">
             <span className="font-semibold w-[22%]">📍 Address:</span>
-            <span className="text-gray-600">{userData?.address || "Not provided"}</span>
+            <span className="text-gray-600">
+              {userData?.address || "Not provided"}
+            </span>
           </div>
           <hr />
           <div className="flex items-center gap-3 py-1">
             <span className="font-semibold w-[22%]">📦 Pin Code:</span>
-            <span className="text-gray-600">{userData?.pincode || "Not provided"}</span>
+            <span className="text-gray-600">
+              {userData?.pincode || "Not provided"}
+            </span>
           </div>
           <hr />
           <div className="flex gap-3 mt-1">
             <span className="font-semibold ">📝 Bio: </span>
-            <span className="text-gray-600 w-[80%]">{(userData?.Biography) || "Not provided"}...</span>
+            <span className="text-gray-600 w-[80%]">
+              {userData?.Biography || "Not provided"}...
+            </span>
           </div>
         </div>
 
@@ -98,8 +112,8 @@ function Profile() {
           </button>
           <button
             onClick={() => {
-              navigate('/join');
-              window.scrollTo({top: 0, behavior: "smooth"});
+              navigate("/join");
+              window.scrollTo({ top: 0, behavior: "smooth" });
             }}
             className="text-red-600 hover:text-white cursor-pointer border border-red-500 px-4 py-2 rounded-lg hover:bg-rose-700 transition-colors duration-300"
           >
@@ -108,7 +122,9 @@ function Profile() {
         </div>
 
         {/* App Version (Optional Footer) */}
-        <p className="text-xs text-gray-400 text-center mt-4">App version 0.1</p>
+        <p className="text-xs text-gray-400 text-center mt-4">
+          App version 0.1
+        </p>
       </div>
     </div>
   );
