@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useData } from "../../context/data/MyState";
 import { useState } from "react";
+import { Icon } from "@iconify/react";
 
 function AllWorkers() {
   const { worker } = useData();
@@ -9,7 +10,7 @@ function AllWorkers() {
     return <p className="text-center mt-10">No workers available...</p>;
   }
 
-  console.log("LENGTH::",worker.length);
+  console.log("LENGTH::", worker.length);
 
   return (
     <section className="text-gray-600 body-font relative bg-gradient-to-br from-[#FFE3BB] via-white to-[#FFF9F3] overflow-hidden min-h-screen">
@@ -51,6 +52,10 @@ function AllWorkers() {
                     className="w-full h-full object-cover object-top group-hover:scale-110 transition duration-500"
                   />
 
+                  <p className=" absolute top-0 left-0 z-40 font-semibold text-gray-800 text-[13px] px-2 bg-gray-200 rounded-br-lg rounded-tl-xl border-2 border-[#ff4f0f]">
+                    {worker.experience} yrs Exp
+                  </p>
+
                   {/* Blur Overlay with Details */}
                   <div className="absolute inset-0 bg-black/40 flex items-end">
                     <div className="w-full backdrop-blur-md bg-white/30 text-white p-2 pt-0 sm:pt-1 sm:p-3">
@@ -89,20 +94,25 @@ function AllWorkers() {
 
                       <div className="flex flex-row gap-2 mt-2">
                         <button
-                          className="w-1/2 cursor-pointer py-1 text-xs sm:text-sm lg:text-base bg-[#03A6A1] rounded-md shadow hover:bg-[#FF4F0F] transition"
+                          onClick={() =>
+                            (window.location.href = `/workerinfo/${worker.id}`)
+                          }
+                          className="w-1/2 cursor-pointer py-1 text-xs sm:text-sm lg:text-base bg-[#FF4F0F] rounded-md shadow hover:bg-[#03A6A1] transition"
                         >
-                          Hire
+                          Details
                         </button>
-
                         {JSON.parse(localStorage.getItem("user"))?.user
                           ?.email === "asadalamalig@gmail.com" && (
                           <button
                             onClick={() =>
-                              (window.location.href = `/workerinfo/${worker.id}`)
+                              (window.location.href = `tel:${worker.phone}`)
                             }
-                            className="w-1/2 cursor-pointer py-1 text-xs sm:text-sm lg:text-base bg-[#FF4F0F] rounded-md shadow hover:bg-[#03A6A1] transition"
+                            className="w-1/2 flex items-center justify-center gap-1 cursor-pointer py-1 sm:py-2 text-xs bg-[#FF4F0F] text-white rounded-md shadow hover:bg-[#03a624] transition"
                           >
-                            Details
+                            <Icon
+                              icon="mdi:phone"
+                              className="text-sm "
+                            />{worker.phone}
                           </button>
                         )}
                       </div>
@@ -117,7 +127,6 @@ function AllWorkers() {
             </p>
           )}
         </div>
-        
       </div>
     </section>
   );

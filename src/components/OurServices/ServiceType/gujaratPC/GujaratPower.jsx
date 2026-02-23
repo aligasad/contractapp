@@ -4,6 +4,7 @@ import { getFirestore, collection, getDocs } from "firebase/firestore";
 import { useData } from "../../../../context/data/MyState";
 import { motion } from "framer-motion";
 import Carousel from "../../../heroSection/Carousel";
+import { Icon } from "@iconify/react";
 
 const ShiftingWorkers = () => {
   const { category } = useParams();
@@ -11,7 +12,6 @@ const ShiftingWorkers = () => {
   const { worker, searchkey, filterType } = context;
 
   const [heading, setHeading] = useState("");
-
 
   // For heading - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   useEffect(() => {
@@ -44,7 +44,7 @@ const ShiftingWorkers = () => {
   return (
     <>
       <Carousel images={images} />
-      <div className="max-w-6xl mx-auto py-10">
+      <div className=" mx-auto px-5 py-10">
         <div class="lg:w-1/2 w-full mb-6 lg:mb-10">
           <h1
             class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900"
@@ -109,21 +109,25 @@ const ShiftingWorkers = () => {
                         {worker.role}
                       </p>
 
-                      <div className="flex items-center gap-3 mt-1">
+                      <div className="flex flex-row gap-2 mt-2">
                         <button
-                          className="cursor-pointer px-2 py-1 text-[11px] bg-[#03A6A1] rounded-md shadow hover:bg-[#FF4F0F] transition"
+                          onClick={() =>
+                            (window.location.href = `/workerinfo/${worker.id}`)
+                          }
+                          className="w-1/2 cursor-pointer py-1 text-xs sm:text-sm lg:text-base bg-[#FF4F0F] rounded-md shadow hover:bg-[#03A6A1] transition"
                         >
-                          Hire
+                          Details
                         </button>
                         {JSON.parse(localStorage.getItem("user"))?.user
                           ?.email === "asadalamalig@gmail.com" && (
                           <button
                             onClick={() =>
-                              (window.location.href = `/productinfo/${worker.id}`)
+                              (window.location.href = `tel:${worker.phone}`)
                             }
-                            className="cursor-pointer px-2 py-1 text-[11px] bg-[#FF4F0F] rounded-md shadow hover:bg-[#03A6A1] transition"
+                            className="w-1/2 flex items-center justify-center gap-1 cursor-pointer py-1 sm:py-2 text-xs bg-[#FF4F0F] text-white rounded-md shadow hover:bg-[#03a624] transition"
                           >
-                            Details
+                            <Icon icon="mdi:phone" className="text-sm " />
+                            {worker.phone}
                           </button>
                         )}
                       </div>

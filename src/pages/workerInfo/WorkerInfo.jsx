@@ -169,7 +169,7 @@ function ProductInfo() {
                     <div>
                       <span className="font-bold text-[#03A6A1]">Role:</span>{" "}
                       <span className="text-[#FF4F0F] font-semibold">
-                         {workers.role || "N/A"}
+                        {workers.role || "N/A"}
                       </span>
                     </div>
                     <div>
@@ -181,7 +181,9 @@ function ProductInfo() {
                       </span>
                     </div>
                     <div>
-                      <span className="font-bold text-[#03A6A1]">Marital Status:</span>{" "}
+                      <span className="font-bold text-[#03A6A1]">
+                        Marital Status:
+                      </span>{" "}
                       <span className="text-[#FF4F0F] font-semibold ">
                         {workers.maritalStatus || "N/A"}
                       </span>
@@ -214,18 +216,20 @@ function ProductInfo() {
                         {workers.available ? "Available" : "Not Available"}
                       </span>
                     </div>
+                    {JSON.parse(localStorage.getItem("user"))?.user?.email ===
+                      "asadalamalig@gmail.com" && (
+                      <div>
+                        <span className="font-bold text-[#03A6A1]">
+                          Contact:
+                        </span>{" "}
+                        <span className="text-gray-700 font-semibold text-[13px]">
+                          {workers.phone ? workers.phone : "N/A"}
+                        </span>
+                      </div>
+                    )}
+
                     <div>
-                      <span className="font-bold text-[#03A6A1]">
-                        Contact:
-                      </span>{" "}
-                      <span className="text-gray-700 font-semibold text-[13px]">
-                        {workers.phone ? workers.phone : "N/A"}
-                      </span>
-                    </div>
-                    <div>
-                      <span className="font-bold text-[#03A6A1]">
-                        Aadhar:
-                      </span>{" "}
+                      <span className="font-bold text-[#03A6A1]">Aadhar:</span>{" "}
                       <span className="text-gray-700 font-semibold text-[13px]">
                         {workers.aadhar ? workers.aadhar : "N/A"}
                       </span>
@@ -310,8 +314,6 @@ function ProductInfo() {
                       )}
                     </div>
                   </div>
-
-                  
                 </div>
               </div>
 
@@ -324,8 +326,6 @@ function ProductInfo() {
         )}
       </div>
     </section>
-
-    
   );
 }
 
