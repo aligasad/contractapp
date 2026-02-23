@@ -1,141 +1,320 @@
-// TestimonialAnim.jsx
 "use client";
 import React, { useEffect, useState } from "react";
-import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
-import { motion, AnimatePresence } from "framer-motion"; // Make sure to install framer-motion
+import {
+  collection,
+  addDoc,
+  onSnapshot,
+  query,
+  where,
+  getDocs,
+  orderBy,
+} from "firebase/firestore";
+import { firebaseDB, auth } from "../../firebase/FirebaseConfig";
+import { motion, AnimatePresence } from "framer-motion";
+import { IconArrowLeft, IconArrowRight, IconPlus } from "@tabler/icons-react";
+import { toast } from "react-toastify";
 
-import asadDp from "../../assets/react.svg";
-import { useData } from "../../context/data/MyState";
-
-const TestimonialAnim = ({ autoplay = false }) => {
-  const context = useData();
-  const { mode } = context;
+const TestimonialAnim = () => {
+  const [testimonials, setTestimonials] = useState([]);
   const [active, setActive] = useState(0);
 
-  const testimonials = [
-    {
-      name: "Aisha Khan",
-      designation: "Frontend Developer at CodeCraft",
-      quote:
-        "Using this platform improved our workflow tremendously. The animations are smooth and the interface is super intuitive.",
-      src: "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/short/linkedin-profile-picture-maker/dummy_image/thumb/004.webp",
-    },
-    {
-      name: "Ravi Verma",
-      designation: "Product Designer at Creatix",
-      quote:
-        "I love the simplicity and flexibility. It feels like magic every time the UI updates with such elegance.",
-      src: "https://wallpapers.com/images/hd/professional-profile-pictures-1080-x-1080-460wjhrkbwdcp1ig.jpg",
-    },
-  ];
+  const [showForm, setShowForm] = useState(false);
+  const [alreadyAdded, setAlreadyAdded] = useState(false);
+  const [loading, setLoading] = useState(false);
 
+  const [formData, setFormData] = useState({
+    name: "",
+    designation: "",
+    quote: "",
+    photo: "",
+  });
+
+  // fetch testimonials
+  useEffect(() => {
+    const q = query(
+      collection(firebaseDB, "testimonials"),
+      orderBy("createdAt", "desc")
+    );
+
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const arr = [];
+      snapshot.forEach((doc) => {
+        arr.push({ id: doc.id, ...doc.data() });
+      });
+      setTestimonials(arr);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  // check already added
+  useEffect(() => {
+    checkUserTestimonial();
+  }, []);
+
+  const checkUserTestimonial = async () => {
+    const user = auth.currentUser;
+
+    if (!user) return;
+
+    const q = query(
+      collection(firebaseDB, "testimonials"),
+      where("userId", "==", user.uid)
+    );
+
+    const snapshot = await getDocs(q);
+
+    if (!snapshot.empty) {
+      setAlreadyAdded(true);
+    }
+  };
+
+  // handle input
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  // add testimonial
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const user = auth.currentUser;
+
+    if (!user) {
+      toast.error("Please login first");
+      return;
+    }
+
+    if (alreadyAdded) {
+      toast.warning("You already added testimonial");
+      return;
+    }
+
+    if (!formData.name || !formData.quote) {
+      toast.error("Please fill required fields");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      await addDoc(collection(firebaseDB, "testimonials"), {
+        name: formData.name,
+        designation: formData.designation,
+        quote: formData.quote,
+        src:
+          formData.photo ||
+          "https://cdn-icons-png.flaticon.com/512/149/149071.png",
+        userId: user.uid,
+        email: user.email,
+        createdAt: new Date(),
+      });
+
+      toast.success("Testimonial Added");
+
+      setAlreadyAdded(true);
+      setShowForm(false);
+
+      setFormData({
+        name: "",
+        designation: "",
+        quote: "",
+        photo: "",
+      });
+    } catch (error) {
+      console.log(error);
+      toast.error("Error adding testimonial");
+    }
+
+    setLoading(false);
+  };
+
+  // navigation
   const handleNext = () => {
     setActive((prev) => (prev + 1) % testimonials.length);
   };
 
   const handlePrev = () => {
-    setActive((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    setActive((prev) =>
+      prev === 0 ? testimonials.length - 1 : prev - 1
+    );
   };
 
   const isActive = (index) => index === active;
 
-  useEffect(() => {
-    if (autoplay) {
-      const interval = setInterval(handleNext, 5000);
-      return () => clearInterval(interval);
-    }
-  }, [autoplay]);
-
-  const randomRotateY = () => Math.floor(Math.random() * 21) - 10;
-
   return (
-    <div className="bg-gradient-to-b from-[#eabaa0]  via-[#FDFBF5] to-[#fffdfa]">
-      <div className="relative mx-auto max-w-6xl px-6 py-5 font-sans antialiased">
-      {/* Decorative Backgrounds */}
-      <div className="absolute -top-20 -left-20 w-72 h-72 bg-[#03A6A1]/10 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#FFA673]/20 rounded-full blur-3xl"></div>
+    <div className="bg-gradient-to-b from-[#eabaa0] via-[#FDFBF5] to-white py-10">
 
-      <div className="relative grid grid-cols-1 md:grid-cols-2 gap-12 items-center z-10">
-        {/* Image Section */}
-        <div className="relative mx-auto h-64 sm:h-80 w-64 sm:w-80">
-          <AnimatePresence>
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={testimonial.src}
-                initial={{ opacity: 0, scale: 0.9, rotate: -5 }}
-                animate={{
-                  opacity: isActive(index) ? 1 : 0.5,
-                  scale: isActive(index) ? 1 : 0.9,
-                  zIndex: isActive(index) ? 30 : 0,
-                  rotate: isActive(index) ? 0 : -5,
-                }}
-                exit={{ opacity: 0, scale: 0.9, rotate: 5 }}
-                transition={{ duration: 0.6, ease: "easeInOut" }}
-                className="absolute inset-0"
-              >
-                <img
-                  src={testimonial.src}
-                  alt={testimonial.name}
-                  className="h-full w-full rounded-3xl object-cover shadow-2xl border-4 border-[#029590]/70"
-                />
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </div>
+      {/* Header */}
+      <div className="max-w-6xl mx-auto px-6 flex justify-between items-center mb-6">
 
-        {/* Content Section */}
-        <div className="flex flex-col justify-between py-6">
-          <motion.div
-            key={active}
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -20, opacity: 0 }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="bg-[#029590]/30 backdrop-blur-lg p-6 rounded-2xl shadow-lg border border-[#035590]/30"
-          >
-            <h3 className="text-2xl font-bold text-[#03A6A1]">
-              {testimonials[active].name}
-            </h3>
-            <p className="text-sm text-[#FF4F0F] font-medium">
-              {testimonials[active].designation}
-            </p>
-            <motion.p className="mt-4 text-gray-700 text-lg leading-relaxed">
-              {testimonials[active].quote.split(" ").map((word, index) => (
-                <motion.span
-                  key={index}
-                  initial={{ filter: "blur(6px)", opacity: 0, y: 5 }}
-                  animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 0.2,
-                    ease: "easeInOut",
-                    delay: 0.015 * index,
-                  }}
-                  className="inline-block"
-                >
-                  {word}&nbsp;
-                </motion.span>
-              ))}
-            </motion.p>
-          </motion.div>
+        <h2 className="text-3xl font-bold text-[#03A6A1]">
+          Worker Testimonials
+        </h2>
 
-          {/* Arrows */}
-          <div className="flex gap-4 pt-6">
-            <button
-              onClick={handlePrev}
-              className="cursor-pointer flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-r from-[#03A6A1] to-[#02807C] shadow-md hover:scale-110 transition"
-            >
-              <IconArrowLeft className="h-6 w-6 text-white" />
-            </button>
-            <button
-              onClick={handleNext}
-              className="cursor-pointer flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-r from-[#FFA673] to-[#FF4F0F] shadow-md hover:scale-110 transition"
-            >
-              <IconArrowRight className="h-6 w-6 text-white" />
-            </button>
-          </div>
-        </div>
+        <button
+          disabled={alreadyAdded}
+          onClick={() => setShowForm(true)}
+          className={`flex items-center gap-2 px-4 py-2 rounded-lg text-white transition 
+          ${
+            alreadyAdded
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-[#03A6A1] hover:bg-[#02807C] cursor-pointer"
+          }`}
+        >
+          <IconPlus size={18} />
+          {alreadyAdded ? "Already Added" : "Add Testimonial"}
+        </button>
+
       </div>
-    </div>
+
+      {/* testimonial section */}
+      {testimonials.length > 0 && (
+        <div className="relative mx-auto max-w-6xl px-6 grid md:grid-cols-2 gap-10">
+
+          {/* image */}
+          <div className="relative h-70 w-70 mx-auto">
+
+            <AnimatePresence mode="wait">
+
+              {testimonials.map((item, index) =>
+                isActive(index) && (
+                  <motion.img
+                    key={item.id}
+                    src={item.src}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="absolute w-full h-full object-cover rounded-2xl shadow-xl border"
+                  />
+                )
+              )}
+
+            </AnimatePresence>
+
+          </div>
+
+          {/* text */}
+          <div className="flex flex-col justify-center">
+
+            <AnimatePresence mode="wait">
+
+              <motion.div
+                key={testimonials[active]?.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+              >
+
+                <h3 className="text-2xl font-bold text-[#03A6A1]">
+                  {testimonials[active]?.name}
+                </h3>
+
+                <p className="text-[#FF4F0F]">
+                  {testimonials[active]?.designation}
+                </p>
+
+                <p className="mt-3 text-gray-600">
+                  {testimonials[active]?.quote}
+                </p>
+
+              </motion.div>
+
+            </AnimatePresence>
+
+            <div className="flex gap-4 mt-5">
+
+              <button
+                onClick={handlePrev}
+                className="p-2 bg-[#03A6A1] text-white rounded-full"
+              >
+                <IconArrowLeft />
+              </button>
+
+              <button
+                onClick={handleNext}
+                className="p-2 bg-[#FF4F0F] text-white rounded-full"
+              >
+                <IconArrowRight />
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+      )}
+
+      {/* FORM MODAL */}
+      {showForm && (
+
+        <div className="fixed inset-0 bg-black/40 flex justify-center items-center z-50">
+
+          <form
+            onSubmit={handleSubmit}
+            className="bg-white p-6 rounded-xl w-96 space-y-3"
+          >
+
+            <h3 className="text-xl font-bold">
+              Add Testimonial
+            </h3>
+
+            <input
+              name="name"
+              placeholder="Name"
+              onChange={handleChange}
+              className="w-full border p-2 rounded"
+            />
+
+            <input
+              name="designation"
+              placeholder="Designation"
+              onChange={handleChange}
+              className="w-full border p-2 rounded"
+            />
+
+            <input
+              name="photo"
+              placeholder="Photo URL"
+              onChange={handleChange}
+              className="w-full border p-2 rounded"
+            />
+
+            <textarea
+              name="quote"
+              placeholder="Your testimonial"
+              onChange={handleChange}
+              className="w-full border p-2 rounded"
+            />
+
+            <div className="flex gap-3">
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="bg-[#03A6A1] text-white px-4 py-2 rounded"
+              >
+                {loading ? "Adding..." : "Submit"}
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setShowForm(false)}
+                className="bg-gray-400 text-white px-4 py-2 rounded"
+              >
+                Cancel
+              </button>
+
+            </div>
+
+          </form>
+
+        </div>
+
+      )}
+
     </div>
   );
 };

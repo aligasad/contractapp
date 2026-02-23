@@ -61,10 +61,23 @@ const Footer = () => {
     }
   }
 
-  return (
+  const socialLinks = [
+    {
+      icon: FaInstagram,
+      link: "https://instagram.com/workwhizapp",
+    },
+    {
+      icon: FaFacebookF,
+      link: "https://facebook.com/yourusername",
+    },
+    {
+      icon: FaTwitter,
+      link: "https://twitter.com/yourusername",
+    },
+  ];
 
+  return (
     <footer className="relative bg-gradient-to-br from-[#03A6A1] via-[#02807C] to-[#FF4F0F] text-white px-6 md:px-20 py-16 overflow-hidden">
-      
       {/* Decorative Background Blobs */}
       <div className="absolute -top-10 -left-10 w-64 h-64 bg-[#FFE3BB]/20 rounded-full blur-3xl animate-pulse"></div>
       <div className="absolute bottom-10 right-30 w-80 h-80 bg-[#FFA673]/30 rounded-full blur-3xl animate-pulse"></div>
@@ -80,14 +93,21 @@ const Footer = () => {
             smarter, and better with WorkWhiz 🚀
           </p>
           <div className="flex space-x-4">
-            {[FaInstagram, FaFacebookF, FaTwitter].map((Icon, index) => (
-              <div
-                key={index}
-                className="group w-10 h-10 flex items-center justify-center bg-white/10 rounded-full cursor-pointer transform transition-all duration-300 hover:scale-125 hover:bg-white/90"
-              >
-                <Icon className="text-white text-lg group-hover:text-[#03A6A1]" />
-              </div>
-            ))}
+            {socialLinks.map((item, index) => {
+              const IconComponent = item.icon;
+
+              return (
+                <a
+                  key={index}
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group w-10 h-10 flex items-center justify-center bg-white/10 rounded-full cursor-pointer transform transition-all duration-300 hover:scale-125 hover:bg-white/90"
+                >
+                  <IconComponent className="text-white text-lg group-hover:text-[#03A6A1]" />
+                </a>
+              );
+            })}
           </div>
         </div>
 
@@ -97,16 +117,20 @@ const Footer = () => {
             Quick Links
           </h3>
           <ul className="space-y-3 text-sm group">
-            {[{title:"About Us", link: "about"}, {title:"Services", link:"services"}, {title:"Reviews", link:"reviews"}, {title:"Contact", link:"contact"}].map(
-              (item, i) => (
-                <li onClick={() => navigate(item.link)}
-                  key={i}
-                  className="hover:translate-x-2 duration-200 cursor-pointer hover:text-[#FFC700] group-hover:opacity-70 hover:!opacity-100 transition "
-                >
-                  {item.title}
-                </li>
-              )
-            )}
+            {[
+              { title: "About Us", link: "about" },
+              { title: "Services", link: "services" },
+              { title: "Reviews", link: "reviews" },
+              { title: "Contact", link: "contact" },
+            ].map((item, i) => (
+              <li
+                onClick={() => navigate(item.link)}
+                key={i}
+                className="hover:translate-x-2 duration-200 cursor-pointer hover:text-[#FFC700] group-hover:opacity-70 hover:!opacity-100 transition "
+              >
+                {item.title}
+              </li>
+            ))}
           </ul>
         </div>
 
@@ -166,16 +190,19 @@ const Footer = () => {
       <div className="relative border-t-2 border-white/20 mt-12 pt-6 flex flex-col md:flex-row items-center justify-between text-sm text-white/80 z-10">
         <p className="mb-4 md:mb-0">© 2025 WorkWhiz. All rights reserved.</p>
         <div className="flex space-x-6 group">
-          {[{title: "Privacy Policy", link: 'privacy-policy'}, {title: "Terms & Conditions", link: 'terms&condition'}, {title: "Cookie Policy", link: 'about'}].map(
-            (item, i) => (
-              <Link to={item.link}
-                key={i}
-                className="hover:underline cursor-pointer hover:text-[#FFC700] transition group-hover:opacity-70 hover:!opacity-100 transition "
-              >
-                {item.title}
-              </Link>
-            )
-          )}
+          {[
+            { title: "Privacy Policy", link: "privacy-policy" },
+            { title: "Terms & Conditions", link: "terms&condition" },
+            { title: "Cookie Policy", link: "about" },
+          ].map((item, i) => (
+            <Link
+              to={item.link}
+              key={i}
+              className="hover:underline cursor-pointer hover:text-[#FFC700] transition group-hover:opacity-70 hover:!opacity-100 transition "
+            >
+              {item.title}
+            </Link>
+          ))}
         </div>
       </div>
     </footer>
