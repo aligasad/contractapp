@@ -368,8 +368,8 @@ const ProtectedRouteForAdmin = ({ children }) => {
   const admin = JSON.parse(localStorage.getItem("user"));
 
   if (
-    admin.user.email === "mrsaakh@gmail.com" ||
-    admin.user.email === "asadalamalig@gmail.com"
+    admin.email === "mrsaakh@gmail.com" ||
+    admin.email === "asadalamalig@gmail.com"
   ) {
     return children;
   } else {

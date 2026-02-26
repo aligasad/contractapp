@@ -269,9 +269,9 @@ function Navbar() {
                     <ul className="absolute mt-3 bg-[#FFFBEA] text-gray-800 shadow-lg rounded-xl py-2 px-4 z-50 min-w-[160px] space-y-2 border border-[#FFC700]/60">
                       <li
                         onClick={() => {
-                          handleSelect("/allworkers"),
+                          (handleSelect("/allworkers"),
                             setIsProductDropdownOpen(false),
-                            setMenuOpen(false);
+                            setMenuOpen(false));
                         }}
                         className="hover:text-[#EE4E4E] cursor-pointer transition"
                       >
@@ -279,9 +279,9 @@ function Navbar() {
                       </li>
                       <li
                         onClick={() => {
-                          handleSelect("/gujaratPC"),
+                          (handleSelect("/gujaratPC"),
                             setIsOpen(false),
-                            setMenuOpen(false);
+                            setMenuOpen(false));
                         }}
                         className="hover:text-[#EE4E4E] cursor-pointer transition"
                       >
@@ -289,9 +289,9 @@ function Navbar() {
                       </li>
                       <li
                         onClick={() => {
-                          handleSelect("/gujaratPC"),
+                          (handleSelect("/gujaratPC"),
                             setIsOpen(false),
-                            setMenuOpen(false);
+                            setMenuOpen(false));
                         }}
                         className="hover:text-[#EE4E4E] cursor-pointer transition"
                       >
@@ -302,30 +302,28 @@ function Navbar() {
                 </div>
               </li>
 
-
-              {user && (
-                hasData ? (
-                    <li
-                      onClick={() => {
-                        handleSelect("/join");
-                        setMenuOpen(false);
-                      }}
-                      className="hover:text-[#FF4F0F] cursor-pointer"
-                    >
-                      Dashboard
-                    </li>
-                  ) : (
-                    <li
-                      onClick={() => {
-                        handleSelect("/userorders");
-                        setMenuOpen(false);
-                      }}
-                      className="hover:text-[#FF4F0F] cursor-pointer"
-                    >
-                      User Orders
-                    </li>
-                  )
-              )}
+              {user &&
+                (hasData ? (
+                  <li
+                    onClick={() => {
+                      handleSelect("/join");
+                      setMenuOpen(false);
+                    }}
+                    className="hover:text-[#FF4F0F] cursor-pointer"
+                  >
+                    Dashboard
+                  </li>
+                ) : (
+                  <li
+                    onClick={() => {
+                      handleSelect("/userorders");
+                      setMenuOpen(false);
+                    }}
+                    className="hover:text-[#FF4F0F] cursor-pointer"
+                  >
+                    User Orders
+                  </li>
+                ))}
 
               <li>
                 <Link
@@ -337,8 +335,7 @@ function Navbar() {
                 </Link>
               </li>
 
-              {user?.user?.email === "asadalam4291@gmail.com" ||
-              user?.user?.email === "asadalamalig@gmail.com" ? (
+              {(user?.email === "asadalam4291@gmail.com" ? (
                 <li>
                   <Link
                     to="/dashboard"
@@ -348,7 +345,18 @@ function Navbar() {
                     ADMIN
                   </Link>
                 </li>
-              ) : null}
+              ) : null) ||
+                (user?.email === "asadalamalig@gmail.com" ? (
+                  <li>
+                    <Link
+                      to="/dashboard"
+                      className="font-bold text-[#EE4E4E]"
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      ADMIN
+                    </Link>
+                  </li>
+                ) : null)}
 
               <li>
                 <Link
@@ -429,9 +437,9 @@ function Navbar() {
                 <ul className="absolute mt-3 bg-[#FFFBEA] text-gray-800 shadow-lg rounded-xl py-2 px-4 z-50 min-w-[160px] space-y-2 border border-[#FFC700]/60">
                   <li
                     onClick={() => {
-                      handleSelect("/allworkers"),
+                      (handleSelect("/allworkers"),
                         setIsProductDropdownOpen(false),
-                        setMenuOpen(false);
+                        setMenuOpen(false));
                     }}
                     className="hover:text-[#EE4E4E] cursor-pointer transition"
                   >
@@ -439,9 +447,9 @@ function Navbar() {
                   </li>
                   <li
                     onClick={() => {
-                      handleSelect("/gujaratPC"),
+                      (handleSelect("/gujaratPC"),
                         setIsOpen(false),
-                        setMenuOpen(false);
+                        setMenuOpen(false));
                     }}
                     className="hover:text-[#EE4E4E] cursor-pointer transition"
                   >
@@ -449,9 +457,9 @@ function Navbar() {
                   </li>
                   <li
                     onClick={() => {
-                      handleSelect("/gujaratPC"),
+                      (handleSelect("/gujaratPC"),
                         setIsOpen(false),
-                        setMenuOpen(false);
+                        setMenuOpen(false));
                     }}
                     className="hover:text-[#EE4E4E] cursor-pointer transition"
                   >
@@ -461,16 +469,16 @@ function Navbar() {
               )}
             </div>
 
-            
             <Link to="/about" className="hover:text-[#03A6A1] transition">
               About
             </Link>
 
-            {(user?.user?.email === "mrsaakh@gmail.com" && (
-                <Link to="/dashboard" className="text-[#EE4E4E] font-bold">
-                  Admin
-                </Link>
-              )) || (user?.user?.email === "asadalamalig@gmail.com" && (
+            {(user?.email === "mrsaakh@gmail.com" && (
+              <Link to="/dashboard" className="text-[#EE4E4E] font-bold">
+                Admin
+              </Link>
+            )) ||
+              (user?.email === "asadalamalig@gmail.com" && (
                 <Link to="/dashboard" className="text-[#EE4E4E] font-bold">
                   Admin
                 </Link>
@@ -550,7 +558,6 @@ function Navbar() {
               <FaUserAlt /> Login
             </Link>
           )}
-
         </div>
       </div>
     </div>

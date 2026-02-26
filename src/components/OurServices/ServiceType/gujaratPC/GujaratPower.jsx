@@ -118,16 +118,22 @@ const ShiftingWorkers = () => {
                         >
                           Details
                         </button>
-                        {JSON.parse(localStorage.getItem("user"))?.user
-                          ?.email === "asadalamalig@gmail.com" && (
+                        {JSON.parse(localStorage.getItem("user"))?.email === "asadalamalig@gmail.com" && (
                           <button
                             onClick={() =>
                               (window.location.href = `tel:${worker.phone}`)
                             }
-                            className="w-1/2 flex items-center justify-center gap-1 cursor-pointer py-1 sm:py-2 text-xs bg-[#FF4F0F] text-white rounded-md shadow hover:bg-[#03a624] transition"
+                            className="w-1/2 flex items-center justify-center gap-1 cursor-pointer py-1 sm:py-2 text-[10px] sm:text-xs bg-[#FF4F0F] text-white rounded-md shadow hover:bg-[#03a624] transition"
                           >
-                            <Icon icon="mdi:phone" className="text-sm " />
-                            {worker.phone}
+                            <Icon
+                              icon="mdi:phone-in-talk"
+                              className="text-base "
+                            />
+                            <Icon
+                              icon="mdi:phone-classic"
+                              className="text-base "
+                            />
+                            
                           </button>
                         )}
                       </div>

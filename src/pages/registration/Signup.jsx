@@ -2,9 +2,13 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useData } from "../../context/data/MyState";
 import { toast } from "react-toastify";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+  updateProfile,
+} from "firebase/auth";
 import { auth, firebaseDB } from "../../firebase/FirebaseConfig";
-import { addDoc, collection } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 
 function Signup() {
   const context = useData();
@@ -14,11 +18,11 @@ function Signup() {
     name: "",
     email: "",
     password: "",
+    confirmPassword: "",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     setForm((prev) => {
       return { ...prev, [name]: value };
     });
@@ -26,30 +30,72 @@ function Signup() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    if (form.name === "" || form.email === "" || form.password === "") {
+
+    if (
+      form.name === "" ||
+      form.email === "" ||
+      form.password === "" ||
+      form.confirmPassword === ""
+    ) {
       return toast.error("All fields are required");
     }
 
+    if (form.password !== form.confirmPassword) {
+      return toast.error("Password and Confirm Password do not match");
+    }
+
+    if (form.password.length < 6) {
+      return toast.error("Password must be at least 6 characters");
+    }
+
     try {
+      setLoading(true);
+
+      // ✅ Create user in Firebase Auth
       const users = await createUserWithEmailAndPassword(
         auth,
         form.email,
         form.password
       );
 
-      //Storing Data into firebase Database- - - -- - -
-      const user = {
+      const user = users.user;
+
+      // ✅ Update display name in Auth
+      await updateProfile(user, {
+        displayName: form.name,
+      });
+
+      // ✅ Send Email Verification
+      await sendEmailVerification(user);
+
+      // ✅ Store user in Firestore with UID as document ID
+      await setDoc(doc(firebaseDB, "users", user.uid), {
+        uid: user.uid,
         name: form.name,
-        uid: users.user.uid,
-        email: users.user.email,
-        signedupAt: new Date().toISOString(),
-      };
-      const userRef = collection(firebaseDB, "users");
-      await addDoc(userRef, user);
-      setForm({ name: "", email: "", password: "" });
-      toast.success("Register Successfully!");
+        email: user.email,
+        photoURL: "",
+        bio: "",
+        address: "",
+        pincode: "",
+        emailVerified: false,
+        role: "user",
+        createdAt: new Date(),
+      });
+
+      setForm({
+        name: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      });
+
+      toast.success(
+        "Account created! Please verify your email before login."
+      );
     } catch (error) {
-      toast.error("Registeration Failed...");
+      toast.error(error.message);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -63,12 +109,11 @@ function Signup() {
         className="bg-white/95 backdrop-blur-lg px-10 py-8 rounded-3xl shadow-2xl w-full max-w-md border border-[#03A6A1]/40 transition-all duration-300 hover:shadow-[#FF4F0F]/50 hover:-translate-y-1"
         onSubmit={handleSubmit}
       >
-        {/* Title */}
-        <h2 className="text-4xl font-extrabold mb-8 text-center text-[#03A6A1] tracking-wide drop-shadow-md">
+        <h2 className="text-4xl font-extrabold mb-8 text-center text-[#03A6A1]">
           Create Account ✨
         </h2>
 
-        {/* Name Input */}
+        {/* Name */}
         <div className="relative mb-5">
           <input
             type="text"
@@ -76,12 +121,12 @@ function Signup() {
             placeholder="Enter your name"
             value={form.name}
             onChange={handleChange}
-            className="w-full p-3 pl-12 border border-[#FFA673] bg-[#FFE3BB]/50 text-[#03A6A1] placeholder-[#FFA673] rounded-xl outline-none focus:ring-2 focus:ring-[#03A6A1] transition-all"
+            className="w-full p-3 pl-12 border border-[#FFA673] bg-[#FFE3BB]/50 rounded-xl outline-none focus:ring-2 focus:ring-[#03A6A1]"
           />
-          <span className="absolute left-4 top-3 text-[#FF4F0F]">👤</span>
+          <span className="absolute left-4 top-3">👤</span>
         </div>
 
-        {/* Email Input */}
+        {/* Email */}
         <div className="relative mb-5">
           <input
             type="email"
@@ -89,55 +134,48 @@ function Signup() {
             placeholder="Enter your email"
             value={form.email}
             onChange={handleChange}
-            className="w-full p-3 pl-12 border border-[#FFA673] bg-[#FFE3BB]/50 text-[#03A6A1] placeholder-[#FFA673] rounded-xl outline-none focus:ring-2 focus:ring-[#03A6A1] transition-all"
+            className="w-full p-3 pl-12 border border-[#FFA673] bg-[#FFE3BB]/50 rounded-xl outline-none focus:ring-2 focus:ring-[#03A6A1]"
           />
-          <span className="absolute left-4 top-3 text-[#FF4F0F]">📧</span>
+          <span className="absolute left-4 top-3">📧</span>
         </div>
 
-        {/* Password Input */}
-        <div className="relative mb-8">
+        {/* Password */}
+        <div className="relative mb-5">
           <input
             type="password"
             name="password"
-            placeholder="Enter your password"
+            placeholder="Enter password"
             value={form.password}
             onChange={handleChange}
-            className="w-full p-3 pl-12 border border-[#FFA673] bg-[#FFE3BB]/50 text-[#03A6A1] placeholder-[#FFA673] rounded-xl outline-none focus:ring-2 focus:ring-[#03A6A1] transition-all"
+            className="w-full p-3 pl-12 border border-[#FFA673] bg-[#FFE3BB]/50 rounded-xl outline-none focus:ring-2 focus:ring-[#03A6A1]"
           />
-          <span className="absolute left-4 top-3 text-[#FF4F0F]">🔒</span>
+          <span className="absolute left-4 top-3">🔒</span>
         </div>
 
-        {/* SignUp Button */}
+        {/* Confirm Password */}
+        <div className="relative mb-8">
+          <input
+            type="password"
+            name="confirmPassword"
+            placeholder="Confirm password"
+            value={form.confirmPassword}
+            onChange={handleChange}
+            className="w-full p-3 pl-12 border border-[#FFA673] bg-[#FFE3BB]/50 rounded-xl outline-none focus:ring-2 focus:ring-[#03A6A1]"
+          />
+          <span className="absolute left-4 top-3">🔑</span>
+        </div>
+
         <button
           type="submit"
-          className="cursor-pointer w-full bg-gradient-to-r from-[#03A6A1] via-[#FFA673] to-[#FF4F0F] text-white font-bold py-3 rounded-xl shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all"
+          disabled={loading}
+          className="w-full bg-gradient-to-r from-[#03A6A1] via-[#FFA673] to-[#FF4F0F] text-white font-bold py-3 rounded-xl shadow-lg hover:scale-[1.02]"
         >
-          Sign Up
+          {loading ? "Creating Account..." : "Sign Up"}
         </button>
 
-        {/* Divider */}
-        <div className="flex items-center gap-4 my-6">
-          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-[#FFA673] to-transparent"></div>
-          <span className="text-sm text-[#03A6A1] font-medium">or</span>
-          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-[#FFA673] to-transparent"></div>
-        </div>
-
-        {/* Google SignUp */}
-        <button
-          type="button"
-          className=" cursor-not-allowed w-full  bg-white border border-[#03A6A1]/40 text-[#03A6A1] font-semibold py-3 rounded-xl shadow-md hover:bg-[#03A6A1] hover:text-white transition-all flex items-center justify-center gap-2"
-        >
-          <img src="/google-icon.svg" alt="Google" className="w-5 h-5" />
-          Sign up with Google
-        </button>
-
-        {/* Redirect to Login */}
-        <p className="mt-8 text-center text-[#FF4F0F] font-medium">
+        <p className="mt-6 text-center text-[#FF4F0F]">
           Already have an account?{" "}
-          <Link
-            to="/login"
-            className="text-[#03A6A1] hover:text-[#FFA673] font-semibold underline transition-all"
-          >
+          <Link to="/login" className="text-[#03A6A1] underline">
             Login
           </Link>
         </p>

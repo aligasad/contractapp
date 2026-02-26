@@ -292,13 +292,13 @@ function DashboardTab() {
                         UID Number
                       </th>
                       <th scope="col" className="px-6 py-3">
-                        Date(YYYY-MM-DD)
+                        (YYYY-MM-DD / HH:MM:SS)
                       </th>
                     </tr>
                   </thead>
                   {users.map((user, index) => {
                     console.log("USER DETAILS", user);
-                    const { name, uid, email, signedupAt } = user;
+                    const { name, uid, email, updatedAt, createdAt } = user;
                     if (uid) {
                       return (
                         <tbody key={index}>
@@ -334,11 +334,26 @@ function DashboardTab() {
                             >
                               {uid?.slice(0, 15)}.....
                             </td>
-                            <td
-                              className="px-6 py-4 text-black "
-                              style={{ color: mode === "dark" ? "white" : "" }}
-                            >
-                              {signedupAt?.slice(0, 10)}
+                            <td className="px-6 py-4">
+                              {createdAt
+                                ? (() => {
+                                    const dateObj = createdAt.toDate();
+                                    const formatted =
+                                      dateObj.toLocaleString("sv-SE");
+                                    const [date, time] = formatted.split(" ");
+
+                                    return (
+                                      <div className="flex flex-col lg:flex-row gap-3">
+                                        <span className="font-bold text-blue-600">
+                                          {date}
+                                        </span>
+                                        <span className="font-semibold text-green-600 text-sm">
+                                          {time}
+                                        </span>
+                                      </div>
+                                    );
+                                  })()
+                                : "N/A"}
                             </td>
                           </tr>
                         </tbody>

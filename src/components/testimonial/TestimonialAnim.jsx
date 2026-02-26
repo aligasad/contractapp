@@ -108,7 +108,7 @@ const TestimonialAnim = () => {
 
     intervalRef.current = setInterval(() => {
       setActive((prev) => (prev + 1) % testimonials.length);
-    }, 3000);
+    }, 6000);
   };
 
   const stopAutoSlide = () => {

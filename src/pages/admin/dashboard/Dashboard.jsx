@@ -7,7 +7,7 @@ function Dashboard() {
   const context = useData();
   const { mode, worker, order, users } = context;
   let workerLength = worker.length;
-  let usersLength = users.filter(user => user.uid).length;
+  let usersLength = users.length;
 
   return (
     <section className="text-gray-600 body-font mt-10 mb-10">

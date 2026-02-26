@@ -29,7 +29,7 @@ const HeroSection2 = () => {
       <div className="absolute -top-20 -left-20 w-72 h-72 bg-[#03A6A1]/10 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#FFA673]/20 rounded-full blur-3xl"></div>
 
-      <div className="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center justify-between gap-12 relative z-10">
+      <div className="max-w-7xl mx-auto flex flex-col-reverse lg:flex-row items-center justify-between gap-12 relative z-10">
         {/* Left Content */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -87,23 +87,23 @@ const HeroSection2 = () => {
             <div className="absolute -top-10 -left-10 w-72 h-72 bg-[#03A6A1]/20 rounded-full blur-2xl"></div>
 
             {/* Image slider */}
-            <div className="relative w-[330px] sm:w-72 md:w-96 lg:w-[30rem] h-[250px]  md:h-[300px] overflow-hidden rounded-tl-[110px] sm:rounded-2xl shadow-2xl">
+            <div
+              className="relative w-[330px] sm:w-72 md:w-96 lg:w-[30rem] h-[250px] md:h-[330px] overflow-hidden shadow-2xl"
+              style={{
+                clipPath:
+                  "polygon(50% 0%, 83% 12%, 100% 43%, 94% 78%, 68% 100%, 32% 100%, 6% 78%, 0% 43%, 17% 12%)",
+              }}
+            >
               {images.map((img, index) => (
                 <img
                   key={index}
                   src={img}
                   alt="WorkWhiz Hero"
                   className={`absolute w-full h-full object-cover transition-all duration-1000 ease-in-out
-            ${
-              index === current
-                ? "opacity-100 scale-100"
-                : "opacity-0 scale-110"
-            }`}
+      ${index === current ? "opacity-100 scale-100" : "opacity-0 scale-110"}`}
                 />
               ))}
             </div>
-
-            
           </div>
         </motion.div>
       </div>
