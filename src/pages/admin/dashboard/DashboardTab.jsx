@@ -9,7 +9,8 @@ import { MdWork } from "react-icons/md"; // worker icon
 
 function DashboardTab() {
   const context = useData();
-  const { mode, worker, searchkey, editHandle, deleteWorker, order, users } = context;
+  const { mode, worker, searchkey, editHandle, deleteWorker, order, users } =
+    context;
   console.log(worker);
   let [isOpen, setIsOpen] = useState(false);
 
@@ -19,9 +20,9 @@ function DashboardTab() {
       setDebouncedSearchKey(searchkey);
     }, 600);
     return () => {
-      clearTimeout(handler)
-    }
-  }, [searchkey])
+      clearTimeout(handler);
+    };
+  }, [searchkey]);
 
   function closeModal() {
     setIsOpen(false);
@@ -123,107 +124,137 @@ function DashboardTab() {
                         </th>
                       </tr>
                     </thead>
-                    {worker.filter((obj) => {
+                    {worker
+                      .filter((obj) => {
                         const key = debouncedSearchKey
                           .toLowerCase()
                           .trim()
                           .replace(/\s+/g, " ");
                         return (
-                          obj.city.toLowerCase().trim().replace(/\s+/g, " ").includes(key) ||
-                          obj.district.toLowerCase().trim().replace(/\s+/g, " ").includes(key) ||
-                          obj.area.toLowerCase().trim().replace(/\s+/g, " ").includes(key)
+                          obj.city
+                            .toLowerCase()
+                            .trim()
+                            .replace(/\s+/g, " ")
+                            .includes(key) ||
+                          obj.district
+                            .toLowerCase()
+                            .trim()
+                            .replace(/\s+/g, " ")
+                            .includes(key) ||
+                          obj.area
+                            .toLowerCase()
+                            .trim()
+                            .replace(/\s+/g, " ")
+                            .includes(key)
                         );
-                      }).map((item, index) => {
-                      const {
-                        name,
-                        phone,
-                        area,
-                        city,
-                        role,
-                        profilePic,
-                        company,
-                      } = item;
-                      return (
-                        <tbody key={index} className="">
-                          <tr
-                            className="bg-gray-50 border-b  dark:border-gray-700"
-                            style={{
-                              backgroundColor:
-                                mode === "dark" ? "rgb(46 49 55)" : "",
-                              color: mode === "dark" ? "white" : "",
-                            }}
-                          >
-                            <td
-                              className="px-6 py-4 text-black font-bold"
-                              style={{ color: mode === "dark" ? "white" : "" }}
+                      })
+                      .map((item, index) => {
+                        const {
+                          name,
+                          phone,
+                          area,
+                          city,
+                          role,
+                          profilePic,
+                          company,
+                        } = item;
+                        return (
+                          <tbody key={index} className="">
+                            <tr
+                              className="bg-gray-50 border-b  dark:border-gray-700"
+                              style={{
+                                backgroundColor:
+                                  mode === "dark" ? "rgb(46 49 55)" : "",
+                                color: mode === "dark" ? "white" : "",
+                              }}
                             >
-                              {index + 1}
-                            </td>
-                            <th
-                              scope="row"
-                              className="px-6 py-4 font-medium text-black whitespace-nowrap"
-                            >
-                              <img className="w-16" src={profilePic} alt="img" />
-                            </th>
-                            <td
-                              className="px-6 py-4 text-black "
-                              style={{ color: mode === "dark" ? "white" : "" }}
-                            >
-                              {name}
-                            </td>
-                            <td
-                              className="px-6 py-4 text-black "
-                              style={{ color: mode === "dark" ? "white" : "" }}
-                            >
-                              {role}
-                            </td>
-                            <td
-                              className="px-6 py-4 text-black "
-                              style={{ color: mode === "dark" ? "white" : "" }}
-                            >
-                              {company.substring(0,15)}
-                            </td>
-                            <td
-                              className="px-6 py-4 text-black "
-                              style={{ color: mode === "dark" ? "white" : "" }}
-                            >
-                              {city}
-                            </td>
-                            <td
-                              className="px-6 py-4 text-black "
-                              style={{ color: mode === "dark" ? "white" : "" }}
-                            >
-                              {phone}
-                            </td>
-                            <td className="px-6 py-4">
-                              <div className=" flex gap-2">
-                                <div
-                                  className=" flex gap-2 cursor-pointer text-black "
-                                  style={{
-                                    color: mode === "dark" ? "white" : "",
-                                  }}
-                                >
-                                  <div className="flex gap-4">
-                                    <div className="text-xl hover:text-red-700">
-                                      <AiFillDelete
-                                        onClick={() => deleteWorker(item)}
-                                      />
-                                    </div>
-                                    <div className="text-xl hover:text-red-700">
-                                      <Link to={"/updateworker"}>
-                                        <FaEdit
-                                          onClick={() => editHandle(item)}
+                              <td
+                                className="px-6 py-4 text-black font-bold"
+                                style={{
+                                  color: mode === "dark" ? "white" : "",
+                                }}
+                              >
+                                {index + 1}
+                              </td>
+                              <th
+                                scope="row"
+                                className="px-6 py-4 font-medium text-black whitespace-nowrap"
+                              >
+                                <img
+                                  className="w-16"
+                                  src={profilePic}
+                                  alt="img"
+                                />
+                              </th>
+                              <td
+                                className="px-6 py-4 text-black "
+                                style={{
+                                  color: mode === "dark" ? "white" : "",
+                                }}
+                              >
+                                {name}
+                              </td>
+                              <td
+                                className="px-6 py-4 text-black "
+                                style={{
+                                  color: mode === "dark" ? "white" : "",
+                                }}
+                              >
+                                {role}
+                              </td>
+                              <td
+                                className="px-6 py-4 text-black "
+                                style={{
+                                  color: mode === "dark" ? "white" : "",
+                                }}
+                              >
+                                {company.substring(0, 15)}
+                              </td>
+                              <td
+                                className="px-6 py-4 text-black "
+                                style={{
+                                  color: mode === "dark" ? "white" : "",
+                                }}
+                              >
+                                {city}
+                              </td>
+                              <td
+                                className="px-6 py-4 text-black "
+                                style={{
+                                  color: mode === "dark" ? "white" : "",
+                                }}
+                              >
+                                {phone}
+                              </td>
+                              <td className="px-6 py-4">
+                                <div className=" flex gap-2">
+                                  <div
+                                    className=" flex gap-2 cursor-pointer text-black "
+                                    style={{
+                                      color: mode === "dark" ? "white" : "",
+                                    }}
+                                  >
+                                    <div className="flex gap-4">
+                                      <div className="text-xl hover:text-red-700">
+                                        <AiFillDelete
+                                          onClick={() => deleteWorker(item)}
                                         />
-                                      </Link>
+                                      </div>
+                                      <div className="text-xl hover:text-red-700">
+                                        <Link to={"/updateworker"}>
+                                          <FaEdit
+                                            onClick={() => editHandle(item)}
+                                          />
+                                        </Link>
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
-                              </div>
-                            </td>
-                          </tr>
-                        </tbody>
-                      );
-                    })}
+                              </td>
+                            </tr>
+                          </tbody>
+                        );
+                      })}
                   </table>
                 </div>
               </div>
@@ -268,49 +299,51 @@ function DashboardTab() {
                   {users.map((user, index) => {
                     console.log("USER DETAILS", user);
                     const { name, uid, email, signedupAt } = user;
-                    return (
-                      <tbody key={index}>
-                        <tr
-                          className="bg-gray-50 border-b  dark:border-gray-700"
-                          style={{
-                            backgroundColor:
-                              mode === "dark" ? "rgb(46 49 55)" : "",
-                            color: mode === "dark" ? "white" : "",
-                          }}
-                        >
-                          <td
-                            className="px-6 py-4 text-black "
-                            style={{ color: mode === "dark" ? "white" : "" }}
+                    if (uid) {
+                      return (
+                        <tbody key={index}>
+                          <tr
+                            className="bg-gray-50 border-b  dark:border-gray-700"
+                            style={{
+                              backgroundColor:
+                                mode === "dark" ? "rgb(46 49 55)" : "",
+                              color: mode === "dark" ? "white" : "",
+                            }}
                           >
-                            {index + 1}.
-                          </td>
-                          <td
-                            className="px-6 py-4 text-black "
-                            style={{ color: mode === "dark" ? "white" : "" }}
-                          >
-                            {name}
-                          </td>
-                          <td
-                            className="px-6 py-4 text-black "
-                            style={{ color: mode === "dark" ? "white" : "" }}
-                          >
-                            {email}
-                          </td>
-                          <td
-                            className="px-6 py-4 text-black "
-                            style={{ color: mode === "dark" ? "white" : "" }}
-                          >
-                            {uid?.slice(0, 15)}.....
-                          </td>
-                          <td
-                            className="px-6 py-4 text-black "
-                            style={{ color: mode === "dark" ? "white" : "" }}
-                          >
-                            {signedupAt?.slice(0, 10)}
-                          </td>
-                        </tr>
-                      </tbody>
-                    );
+                            <td
+                              className="px-6 py-4 text-black "
+                              style={{ color: mode === "dark" ? "white" : "" }}
+                            >
+                              {index + 1}.
+                            </td>
+                            <td
+                              className="px-6 py-4 text-black "
+                              style={{ color: mode === "dark" ? "white" : "" }}
+                            >
+                              {name}
+                            </td>
+                            <td
+                              className="px-6 py-4 text-black "
+                              style={{ color: mode === "dark" ? "white" : "" }}
+                            >
+                              {email}
+                            </td>
+                            <td
+                              className="px-6 py-4 text-black "
+                              style={{ color: mode === "dark" ? "white" : "" }}
+                            >
+                              {uid?.slice(0, 15)}.....
+                            </td>
+                            <td
+                              className="px-6 py-4 text-black "
+                              style={{ color: mode === "dark" ? "white" : "" }}
+                            >
+                              {signedupAt?.slice(0, 10)}
+                            </td>
+                          </tr>
+                        </tbody>
+                      );
+                    }
                   })}
                 </table>
               </div>
