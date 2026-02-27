@@ -52,8 +52,8 @@ function AllWorkers() {
                     className="w-full h-full object-cover object-top group-hover:scale-110 transition duration-500"
                   />
 
-                  <p className=" absolute top-0 left-0 z-40 font-semibold text-gray-800 text-[13px] px-2 bg-gray-200 rounded-br-lg rounded-tl-xl border-2 border-[#ff4f0f]">
-                    {worker.experience} yrs Exp
+                  <p className="absolute top-0 left-0 z-40 font-semibold text-gray-800 text-[10px] sm:text-[13px] px-2 bg-gray-200 rounded-br-lg rounded-tl-xl border-2 border-[#ff4f0f]">
+                    {worker.experience} yrs Exp.
                   </p>
 
                   {/* Blur Overlay with Details */}

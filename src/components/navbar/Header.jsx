@@ -81,7 +81,7 @@ function Navbar() {
     fetchWorker();
   }, []);
 
-  // For Select Options in header-========= ======= ====== ===== ====== ===== =======
+  // For Select Options in header-========= ======= ====== ====== ====== ====== =======
   const [isProductDropdownOpen, setIsProductDropdownOpen] = useState(false);
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
   const productRef = useRef(null);

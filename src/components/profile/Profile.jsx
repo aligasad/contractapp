@@ -198,28 +198,59 @@ function Profile() {
 
         <div className="border-t border-gray-200 my-6"></div>
 
-        <div className="text-sm text-gray-700">
-          <p>📍 Address: {userData.address || "Not provided"}</p>
-          <p>📦 Pin Code: {userData.pincode || "Not provided"}</p>
+        <div
+          className="mt-4 bg-gradient-to-r from-gray-50 to-gray-100 
+                rounded-2xl p-5 border border-gray-200"
+        >
+          <div className="space-y-4">
+            {/* Address Row */}
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between sm:gap-1">
+              <span className="text-sm font-semibold text-gray-600">
+                Address
+              </span>
+
+              <span
+                className="text-sm text-gray-800 bg-white px-4 py-2 
+                       rounded-lg shadow-sm border border-gray-200 
+                       mt-1 sm:mt-0"
+              >
+                {userData.address || "Not provided"}
+              </span>
+            </div>
+
+            {/* Divider */}
+            <div className="h-px bg-gray-300 opacity-40"></div>
+
+            {/* Pin Code Row */}
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+              <span className="text-sm font-semibold text-gray-600">
+                Pin Code
+              </span>
+
+              <span className="text-sm font-bold text-blue-600 tracking-wide">
+                {userData.pincode || "Not provided"}
+              </span>
+            </div>
+          </div>
         </div>
 
         <div className="mt-8 flex justify-center gap-2">
           <button
             onClick={handleSignOut}
-            className="text-white bg-rose-700 px-4 py-2 rounded-lg hover:bg-red-600 cursor-pointer "
+            className="text-white bg-rose-700 px-4 py-2 rounded-lg hover:bg-white hover:text-rose-700 border-2 border-rose-700 cursor-pointer transition-all duration-200 "
           >
             Log Out
           </button>
           <button
             onClick={() => navigate("/join")}
-            className="text-rose-700 bg-white border-rose-700 border-2 px-4 py-2 rounded-lg hover:bg-red-700 hover:text-white cursor-pointer "
+            className="text-rose-700 bg-white border-rose-700 border-2 px-4 py-2 rounded-lg hover:bg-red-700 hover:text-white transition-all duration-200 cursor-pointer "
           >
             Become a Worker
           </button>
         </div>
 
         <p className="text-xs text-gray-400 text-center mt-4">
-          App version 0.1
+          App version 1.0.1
         </p>
       </div>
     </div>

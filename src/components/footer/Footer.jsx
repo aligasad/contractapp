@@ -12,6 +12,7 @@ import { MdEmail, MdPhone, MdLocationOn } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { firebaseDB } from "../../firebase/FirebaseConfig";
+import logo from "../../assets/logo2.png";
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -86,7 +87,16 @@ const Footer = () => {
         {/* Logo and Description */}
         <div>
           <h2 className="text-2xl font-extrabold flex items-center mb-4 tracking-wide">
-            <span className="text-3xl mr-2">⚡</span> WorkWhiz
+            <span className="text-3xl mr-2">
+              <img
+                src={logo}
+                onClick={() =>
+                  (window.location.href = "https://asadinfo.vercel.app")
+                }
+                className="h-8 cursor-pointer"
+              />
+            </span>{" "}
+            WorkWhiz
           </h2>
           <p className="text-sm leading-relaxed mb-6 text-white/90">
             Smart tools & solutions to simplify your workflow. Work faster,

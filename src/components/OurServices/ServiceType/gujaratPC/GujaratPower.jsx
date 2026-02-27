@@ -56,7 +56,7 @@ const ShiftingWorkers = () => {
         </div>
 
         <div className="grid grid-cols-2 px-2 md:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-4">
-          {filteredWorkers && filteredWorkers.length > 0 ? (
+          {filteredWorkers.length > 0 ? (
             filteredWorkers.map((worker, index) => (
               <motion.div
                 key={index}
@@ -69,45 +69,54 @@ const ShiftingWorkers = () => {
               >
                 <div
                   key={index}
-                  className="relative h-76 rounded-xl overflow-hidden shadow-md group"
+                  className="relative h-55 sm:h-76 rounded-xl overflow-hidden shadow-md group"
                 >
-                  {/* Background Image */}
+                  {/* Background Image -------------------- */}
                   <img
                     src={worker.profilePic}
                     alt={worker.name}
                     className="w-full h-full object-cover object-top group-hover:scale-110 transition duration-500"
                   />
 
-                  <p className=" absolute top-0 left-0 z-40 font-semibold text-gray-800 text-[13px] px-2 bg-gray-200 rounded-br-lg rounded-tl-xl border-2 border-[#ff4f0f]">
-                    {worker.experience} yrs Exp
+                  <p className="absolute top-0 left-0 z-40 font-semibold text-gray-800 text-[10px] sm:text-[13px] px-2 bg-gray-200 rounded-br-lg rounded-tl-xl border-2 border-[#ff4f0f]">
+                    {worker.experience} yrs Exp.
                   </p>
 
-                  {/* Blur Overlay with Details */}
+                  {/* Blur Overlay with Details ------------------------ */}
                   <div className="absolute inset-0 bg-black/40 flex items-end">
-                    <div className="w-full backdrop-blur-md bg-white/30 text-white p-3">
+                    <div className="w-full backdrop-blur-md bg-white/30 text-white p-2 pt-0 sm:pt-1 sm:p-3">
                       <h3 className="text-base font-bold text-gray-800 flex items-center">
                         {worker.name}{" "}
                       </h3>
                       <div className="h-[1.5px] bg-[#ff4f0f] w-full"></div>
-                      <p className="text-xs text-[#e1d5d1] font-semibold w-fit  py-1 ">
+                      <p className="text-xs text-[#eadeda] w-fit  mt-0.5 ">
                         {worker.skills}
                       </p>
 
                       <div className="grid grid-cols-1 text-[11px]">
-                        <p className="text-gray-100 hidden sm:block ">
-                          <span className="font-semibold text-gray-800 text-[12px]">
+                        <p className="hidden sm:block text-gray-100">
+                          <span className=" font-semibold text-gray-800 text-[12px]">
                             Company:
                           </span>{" "}
                           {worker.company}
                         </p>
+                        <p className="text-[#eadeda]">
+                          <span className="font-semibold text-gray-800 text-[12px]">
+                            Role:
+                          </span>{" "}
+                          {worker.role}
+                        </p>
                       </div>
 
-                      <p className="text-[11px] hidden sm:block">
-                        <span className="font-semibold text-gray-800 text-[12px]">
-                          Role:
-                        </span>{" "}
-                        {worker.role}
-                      </p>
+                      {/* Bottom Row */}
+                      <div className="flex items-center justify-between">
+                        <p className=" hidden text-[11px] ">
+                          <span className="font-semibold text-gray-800 text-[12px]">
+                            Contact:
+                          </span>{" "}
+                          {worker.phone}
+                        </p>
+                      </div>
 
                       <div className="flex flex-row gap-2 mt-2">
                         <button
@@ -118,7 +127,8 @@ const ShiftingWorkers = () => {
                         >
                           Details
                         </button>
-                        {JSON.parse(localStorage.getItem("user"))?.email === "asadalamalig@gmail.com" && (
+                        {JSON.parse(localStorage.getItem("user"))?.email ===
+                          "asadalamalig@gmail.com" && (
                           <button
                             onClick={() =>
                               (window.location.href = `tel:${worker.phone}`)
@@ -133,7 +143,6 @@ const ShiftingWorkers = () => {
                               icon="mdi:phone-classic"
                               className="text-base "
                             />
-                            
                           </button>
                         )}
                       </div>
@@ -143,7 +152,7 @@ const ShiftingWorkers = () => {
               </motion.div>
             ))
           ) : (
-            <p className="text-gray-600 col-span-full text-center">
+            <p className="text-gray-600 w-full grid grid-cols-1 ">
               No workers found for {heading}
             </p>
           )}

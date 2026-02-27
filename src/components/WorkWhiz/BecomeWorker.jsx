@@ -397,7 +397,7 @@ function BecomeWorker() {
 
               <button
                 type="submit"
-                className="w-full bg-[#03A6A1] text-white p-3 rounded-lg"
+                className="w-full bg-[#03A6A1] text-white p-3 rounded-lg cursor-pointer cursor-pointer"
               >
                 {editMode ? "Update" : "Submit"}
               </button>
@@ -500,14 +500,14 @@ function BecomeWorker() {
                   <div className="flex gap-3 mt-6 justify-center">
                     <button
                       onClick={() => setEditMode(true)}
-                      className="px-5 py-2 bg-gradient-to-r from-[#FFA673] to-[#FF4F0F] text-white font-semibold rounded-lg shadow hover:scale-105 transition"
+                      className="px-5 py-2 bg-gradient-to-r from-[#FFA673] to-[#FF4F0F] text-white font-semibold rounded-lg shadow hover:scale-105 transition cursor-pointer"
                     >
                       Edit
                     </button>
 
                     <button
                       onClick={deleteWorker}
-                      className="px-5 py-2 bg-red-500 text-white font-semibold rounded-lg shadow hover:bg-red-600 hover:scale-105 transition"
+                      className="px-5 py-2 bg-red-500 text-white font-semibold rounded-lg shadow hover:bg-red-600 hover:scale-105 transition cursor-pointer"
                     >
                       Delete
                     </button>
