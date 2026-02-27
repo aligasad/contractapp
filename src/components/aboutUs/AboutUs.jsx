@@ -61,7 +61,7 @@ function AboutUs() {
               ].map((item, index) => (
                 <div
                   key={index}
-                  className="bg-[#FFE3BB]/40 p-4 rounded-lg hover:shadow-md transition"
+                  className="bg-[#FFE3BB]/40 p-4 rounded-lg hover:shadow-md transition cursor-pointer"
                 >
                   ✔ {item}
                 </div>
@@ -86,7 +86,7 @@ function AboutUs() {
               ].map((item, index) => (
                 <div
                   key={index}
-                  className="bg-gray-50 p-4 rounded-lg hover:bg-gray-100 transition"
+                  className="bg-gray-50 p-4 rounded-lg hover:bg-gray-100 transition cursor-pointer"
                 >
                   {item}
                 </div>
@@ -131,7 +131,6 @@ function AboutUs() {
                 <h3 className="mt-4 text-xl font-semibold text-gray-800">
                   Asad Alam
                 </h3>
-                <p className="text-sm text-gray-500">Software Developer</p>
               </div>
 
               {/* Right Side - Details Grid */}

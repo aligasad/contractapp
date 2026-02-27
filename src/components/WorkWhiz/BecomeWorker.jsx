@@ -123,275 +123,345 @@ function BecomeWorker() {
       <div className="min-h-screen bg-[#FFE3BB] px-6 py-10">
         <div className="relative bg-gradient-to-br from-[#FFE3BB] via-white to-[#FFF9F3] p-8 rounded-2xl shadow-lg w-full max-w-5xl mx-auto border-2 border-[#03A6A1]">
           {!hasData || editMode ? (
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4 ">
               <h2 className="text-3xl font-bold text-center text-[#03A6A1]">
                 {editMode ? "Edit Worker Profile" : "Become a Worker"}
               </h2>
 
-              {/* Name */}
+              <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {/* Name */}
 
-              <input
-                type="text"
-                placeholder="Full Name"
-                value={workers.name || ""}
-                onChange={(e) =>
-                  setWorkers({ ...workers, name: e.target.value })
-                }
-                className="input"
-                required
-              />
-
-              {/* Phone */}
-
-              <input
-                type="number"
-                placeholder="Phone"
-                value={workers.phone || ""}
-                onChange={(e) =>
-                  setWorkers({ ...workers, phone: e.target.value })
-                }
-                className="input"
-                required
-              />
-              {/* Aadhar Number */}
-              <input
-                type="number"
-                placeholder="Aadhar"
-                value={workers.aadhar || ""}
-                onChange={(e) =>
-                  setWorkers({ ...workers, aadhar: e.target.value })
-                }
-                className="input"
-                required
-              />
-
-              {/* Gender */}
-
-              <select
-                value={workers.gender || ""}
-                onChange={(e) =>
-                  setWorkers({ ...workers, gender: e.target.value })
-                }
-                className="input"
-                required
-              >
-                <option value="">Select Gender</option>
-
-                <option value="Male">Male</option>
-
-                <option value="Female">Female</option>
-
-                <option value="Other">Other</option>
-              </select>
-
-              {/* DOB */}
-
-              <input
-                type="date"
-                value={workers.dob || ""}
-                onChange={(e) =>
-                  setWorkers({ ...workers, dob: e.target.value })
-                }
-                className="input"
-                required
-              />
-
-              {/* Marital Status */}
-
-              <select
-                value={workers.maritalStatus || ""}
-                onChange={(e) =>
-                  setWorkers({
-                    ...workers,
-                    maritalStatus: e.target.value,
-                  })
-                }
-                className="input"
-                required
-              >
-                <option value="">Marital Status</option>
-
-                <option value="Single">Single</option>
-
-                <option value="Married">Married</option>
-
-                <option value="Divorced">Divorced</option>
-
-                <option value="Widowed">Widowed</option>
-              </select>
-
-              {/* Company */}
-
-              <select
-                value={workers.company || ""}
-                onChange={(e) =>
-                  setWorkers({
-                    ...workers,
-                    company: e.target.value,
-                    role: "",
-                  })
-                }
-                className="input"
-                required
-              >
-                <option value="">Select Company</option>
-
-                {Object.keys(companyRoleMap).map((company) => (
-                  <option key={company} value={company}>
-                    {company}
-                  </option>
-                ))}
-              </select>
-
-              {/* Role */}
-
-              <select
-                value={workers.role || ""}
-                onChange={(e) =>
-                  setWorkers({
-                    ...workers,
-                    role: e.target.value,
-                  })
-                }
-                disabled={!workers.company}
-                className="input"
-                required
-              >
-                <option value="">Select Role</option>
-
-                {workers.company &&
-                  companyRoleMap[workers.company].map((role) => (
-                    <option key={role} value={role}>
-                      {role}
-                    </option>
-                  ))}
-              </select>
-
-              {/* District */}
-
-              <select
-                value={workers.district || ""}
-                onChange={(e) =>
-                  setWorkers({
-                    ...workers,
-                    district: e.target.value,
-                    city: "",
-                  })
-                }
-                className="input"
-                required
-              >
-                <option value="">Select District</option>
-
-                {Object.keys(stateDistrictMap).map((district) => (
-                  <option key={district} value={district}>
-                    {district}
-                  </option>
-                ))}
-              </select>
-
-              {/* City */}
-
-              <select
-                value={workers.city || ""}
-                onChange={(e) =>
-                  setWorkers({
-                    ...workers,
-                    city: e.target.value,
-                  })
-                }
-                disabled={!workers.district}
-                className="input"
-                required
-              >
-                <option value="">Select City</option>
-
-                {workers.district &&
-                  stateDistrictMap[workers.district].map((city) => (
-                    <option key={city} value={city}>
-                      {city}
-                    </option>
-                  ))}
-              </select>
-
-              {/* Area */}
-
-              <input
-                type="text"
-                placeholder="Area"
-                value={workers.area || ""}
-                onChange={(e) =>
-                  setWorkers({
-                    ...workers,
-                    area: e.target.value,
-                  })
-                }
-                className="input"
-                required
-              />
-
-              {/* Experience */}
-
-              <input
-                type="text"
-                placeholder="Experience"
-                value={workers.experience || ""}
-                onChange={(e) =>
-                  setWorkers({
-                    ...workers,
-                    experience: e.target.value,
-                  })
-                }
-                className="input"
-                required
-              />
-
-              {/* Profile Pic */}
-
-              <input
-                type="text"
-                placeholder="Profile Pic URL"
-                value={workers.profilePic || ""}
-                onChange={(e) =>
-                  setWorkers({
-                    ...workers,
-                    profilePic: e.target.value,
-                  })
-                }
-                className="input"
-                required
-              />
-
-              {/* About */}
-
-              <textarea
-                placeholder="About Worker"
-                value={workers.aboutMe || ""}
-                onChange={(e) =>
-                  setWorkers({
-                    ...workers,
-                    aboutMe: e.target.value,
-                  })
-                }
-                className="input"
-                required
-              />
-
-              {/* Available */}
-
-              <label className="flex gap-2">
                 <input
-                  type="checkbox"
-                  checked={workers.available || false}
+                  type="text"
+                  placeholder="Full Name"
+                  value={workers.name || ""}
+                  onChange={(e) =>
+                    setWorkers({ ...workers, name: e.target.value })
+                  }
+                  className="input"
+                  required
+                />
+
+                {/* Phone */}
+
+                <input
+                  type="number"
+                  placeholder="Phone"
+                  value={workers.phone || ""}
+                  onChange={(e) =>
+                    setWorkers({ ...workers, phone: e.target.value })
+                  }
+                  className="input"
+                  required
+                />
+                {/* Aadhar Number */}
+                <input
+                  type="number"
+                  placeholder="Aadhar"
+                  value={workers.aadhar || ""}
+                  onChange={(e) =>
+                    setWorkers({ ...workers, aadhar: e.target.value })
+                  }
+                  className="input"
+                  required
+                />
+
+                {/* Gender */}
+
+                <select
+                  value={workers.gender || ""}
+                  onChange={(e) =>
+                    setWorkers({ ...workers, gender: e.target.value })
+                  }
+                  className="input"
+                  required
+                >
+                  <option value="">Select Gender</option>
+
+                  <option value="Male">Male</option>
+
+                  <option value="Female">Female</option>
+
+                  <option value="Other">Other</option>
+                </select>
+
+                {/* DOB */}
+
+                <input
+                  type="date"
+                  value={workers.dob || ""}
+                  onChange={(e) =>
+                    setWorkers({ ...workers, dob: e.target.value })
+                  }
+                  className="input"
+                  required
+                />
+
+                {/* Marital Status */}
+
+                <select
+                  value={workers.maritalStatus || ""}
                   onChange={(e) =>
                     setWorkers({
                       ...workers,
-                      available: e.target.checked,
+                      maritalStatus: e.target.value,
                     })
                   }
+                  className="input"
+                  required
+                >
+                  <option value="">Marital Status</option>
+
+                  <option value="Single">Single</option>
+
+                  <option value="Married">Married</option>
+
+                  <option value="Divorced">Divorced</option>
+
+                  <option value="Widowed">Widowed</option>
+                </select>
+
+                {/* Company */}
+
+                <select
+                  value={workers.company || ""}
+                  onChange={(e) =>
+                    setWorkers({
+                      ...workers,
+                      company: e.target.value,
+                      role: "",
+                    })
+                  }
+                  className="input"
+                  required
+                >
+                  <option value="">Select Company</option>
+
+                  {Object.keys(companyRoleMap).map((company) => (
+                    <option key={company} value={company}>
+                      {company}
+                    </option>
+                  ))}
+                </select>
+
+                {/* Role */}
+
+                <select
+                  value={workers.role || ""}
+                  onChange={(e) =>
+                    setWorkers({
+                      ...workers,
+                      role: e.target.value,
+                    })
+                  }
+                  disabled={!workers.company}
+                  className="input"
+                  required
+                >
+                  <option value="">Select Role</option>
+
+                  {workers.company &&
+                    companyRoleMap[workers.company].map((role) => (
+                      <option key={role} value={role}>
+                        {role}
+                      </option>
+                    ))}
+                </select>
+
+                {/* District */}
+
+                <select
+                  value={workers.district || ""}
+                  onChange={(e) =>
+                    setWorkers({
+                      ...workers,
+                      district: e.target.value,
+                      city: "",
+                    })
+                  }
+                  className="input"
+                  required
+                >
+                  <option value="">Select District</option>
+
+                  {Object.keys(stateDistrictMap).map((district) => (
+                    <option key={district} value={district}>
+                      {district}
+                    </option>
+                  ))}
+                </select>
+
+                {/* City */}
+
+                <select
+                  value={workers.city || ""}
+                  onChange={(e) =>
+                    setWorkers({
+                      ...workers,
+                      city: e.target.value,
+                    })
+                  }
+                  disabled={!workers.district}
+                  className="input"
+                  required
+                >
+                  <option value="">Select City</option>
+
+                  {workers.district &&
+                    stateDistrictMap[workers.district].map((city) => (
+                      <option key={city} value={city}>
+                        {city}
+                      </option>
+                    ))}
+                </select>
+
+                {/* Area */}
+
+                <input
+                  type="text"
+                  placeholder="Area"
+                  value={workers.area || ""}
+                  onChange={(e) =>
+                    setWorkers({
+                      ...workers,
+                      area: e.target.value,
+                    })
+                  }
+                  className="input"
+                  required
                 />
-                Available
-              </label>
+
+                {/* Experience */}
+
+                <input
+                  type="text"
+                  placeholder="Experience"
+                  value={workers.experience || ""}
+                  onChange={(e) =>
+                    setWorkers({
+                      ...workers,
+                      experience: e.target.value,
+                    })
+                  }
+                  className="input"
+                  required
+                />
+
+                {/* Profile Pic */}
+
+                <input
+                  type="text"
+                  placeholder="Profile Pic URL"
+                  value={workers.profilePic || ""}
+                  onChange={(e) =>
+                    setWorkers({
+                      ...workers,
+                      profilePic: e.target.value,
+                    })
+                  }
+                  className="input"
+                  required
+                />
+
+                {/* About */}
+
+                <textarea
+                  placeholder="About Worker"
+                  value={workers.aboutMe || ""}
+                  onChange={(e) =>
+                    setWorkers({
+                      ...workers,
+                      aboutMe: e.target.value,
+                    })
+                  }
+                  className="input"
+                  required
+                />
+
+                {/* Available */}
+
+                <label className="flex gap-2">
+                  <input
+                    type="checkbox"
+                    checked={workers.available || false}
+                    onChange={(e) =>
+                      setWorkers({
+                        ...workers,
+                        available: e.target.checked,
+                      })
+                    }
+                  />
+                  Available
+                </label>
+              </div>
+
+              <hr />
+              <h3>Account Details</h3>
+
+              <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {/* Account Holder Name */}
+
+                <input
+                  type="text"
+                  placeholder="Enter Account Holder Name"
+                  value={workers.accountHolderName || ""}
+                  onChange={(e) =>
+                    setWorkers({
+                      ...workers,
+                      accountHolderName: e.target.value,
+                    })
+                  }
+                  className="input"
+                  required
+                />
+                {/* Bank Name Name */}
+
+                <input
+                  type="text"
+                  placeholder="Enter Bank Name"
+                  value={workers.bankName || ""}
+                  onChange={(e) =>
+                    setWorkers({
+                      ...workers,
+                      bankName: e.target.value,
+                    })
+                  }
+                  className="input"
+                  required
+                />
+
+                {/* Account Number */}
+
+                <input
+                  type="number"
+                  placeholder="Enter Account Number"
+                  value={workers.accountNumber || ""}
+                  onChange={(e) =>
+                    setWorkers({
+                      ...workers,
+                      accountNumber: e.target.value,
+                    })
+                  }
+                  className="input"
+                  required
+                />
+
+                {/* Account IFSC Code */}
+
+                <input
+                  type="text"
+                  placeholder="Enter IFSC Code"
+                  value={workers.ifscCode || ""}
+                  onChange={(e) =>
+                    setWorkers({
+                      ...workers,
+                      ifscCode: e.target.value,
+                    })
+                  }
+                  className="input"
+                  required
+                />
+              </div>
 
               {/* Submit */}
 
@@ -495,6 +565,55 @@ function BecomeWorker() {
                       {workers.aboutMe}
                     </div>
                   )}
+
+                  {/* Bank Details */}
+                  <div className="mt-6 text-left">
+                    <h3 className="text-lg font-bold text-[#03A6A1] mb-3 text-center">
+                      Bank Details
+                    </h3>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-gray-700">
+                      {/* Account Holder */}
+                      <div className="bg-[#FFE3BB]/40 rounded-lg p-3">
+                        <span className="block text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                          Account Holder
+                        </span>
+                        <p className="font-medium break-words">
+                          {workers.accountHolderName || "N/A"}
+                        </p>
+                      </div>
+
+                      {/* Bank Name */}
+                      <div className="bg-[#FFE3BB]/40 rounded-lg p-3">
+                        <span className="block text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                          Bank Name
+                        </span>
+                        <p className="font-medium break-words">
+                          {workers.bankName || "N/A"}
+                        </p>
+                      </div>
+
+                      {/* Account Number */}
+                      <div className="bg-[#FFE3BB]/40 rounded-lg p-3">
+                        <span className="block text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                          Account Number
+                        </span>
+                        <p className="font-mono tracking-wide">
+                          {workers.accountNumber || "N/A"}
+                        </p>
+                      </div>
+
+                      {/* IFSC */}
+                      <div className="bg-[#FFE3BB]/40 rounded-lg p-3">
+                        <span className="block text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                          IFSC Code
+                        </span>
+                        <p className="font-mono text-[#FF4F0F] tracking-wider">
+                          {workers.ifscCode || "N/A"}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
 
                   {/* Buttons */}
                   <div className="flex gap-3 mt-6 justify-center">

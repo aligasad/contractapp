@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useData } from "../../../context/data/MyState";
 
 function AddWorker() {
-
   const context = useData();
 
   const {
@@ -11,10 +10,8 @@ function AddWorker() {
     addWorker,
     worker,
     stateDistrictMap,
-    companyRoleMap
+    companyRoleMap,
   } = context;
-
-  
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -22,23 +19,18 @@ function AddWorker() {
 
   return (
     <div className="py-6 min-h-screen bg-gradient-to-br from-green-50 to-lime-100 flex items-center justify-center">
-
       <div className="w-full max-w-lg bg-white rounded-2xl shadow-2xl p-8 border border-green-100">
-
         <h1 className="text-center text-2xl font-extrabold text-green-800 mb-6">
           Add New Worker
         </h1>
 
         <div className="grid grid-cols-1 gap-4">
-
           {/* Name */}
           <input
             type="text"
             placeholder="Worker Name"
             value={workers.name || ""}
-            onChange={(e) =>
-              setWorkers({ ...workers, name: e.target.value })
-            }
+            onChange={(e) => setWorkers({ ...workers, name: e.target.value })}
             className="input"
           />
 
@@ -47,9 +39,7 @@ function AddWorker() {
             type="number"
             placeholder="Phone Number"
             value={workers.phone || ""}
-            onChange={(e) =>
-              setWorkers({ ...workers, phone: e.target.value })
-            }
+            onChange={(e) => setWorkers({ ...workers, phone: e.target.value })}
             className="input"
           />
           {/* Aadhar Number */}
@@ -57,18 +47,14 @@ function AddWorker() {
             type="number"
             placeholder="Aadhar Number"
             value={workers.aadhar || ""}
-            onChange={(e) =>
-              setWorkers({ ...workers, aadhar: e.target.value })
-            }
+            onChange={(e) => setWorkers({ ...workers, aadhar: e.target.value })}
             className="input"
           />
 
           {/* Gender */}
           <select
             value={workers.gender || ""}
-            onChange={(e) =>
-              setWorkers({ ...workers, gender: e.target.value })
-            }
+            onChange={(e) => setWorkers({ ...workers, gender: e.target.value })}
             className="input"
           >
             <option value="">Select Gender</option>
@@ -77,17 +63,13 @@ function AddWorker() {
             <option value="Other">Other</option>
           </select>
 
-
           {/* DOB */}
           <input
             type="date"
             value={workers.dob || ""}
-            onChange={(e) =>
-              setWorkers({ ...workers, dob: e.target.value })
-            }
+            onChange={(e) => setWorkers({ ...workers, dob: e.target.value })}
             className="input"
           />
-
 
           {/* Marital Status */}
           <select
@@ -95,7 +77,7 @@ function AddWorker() {
             onChange={(e) =>
               setWorkers({
                 ...workers,
-                maritalStatus: e.target.value
+                maritalStatus: e.target.value,
               })
             }
             className="input"
@@ -107,7 +89,6 @@ function AddWorker() {
             <option value="Widowed">Widowed</option>
           </select>
 
-
           {/* Company */}
           <select
             value={workers.company || ""}
@@ -115,7 +96,7 @@ function AddWorker() {
               setWorkers({
                 ...workers,
                 company: e.target.value,
-                role: ""
+                role: "",
               })
             }
             className="input"
@@ -127,9 +108,7 @@ function AddWorker() {
                 {company}
               </option>
             ))}
-
           </select>
-
 
           {/* Role */}
           <select
@@ -138,12 +117,11 @@ function AddWorker() {
             onChange={(e) =>
               setWorkers({
                 ...workers,
-                role: e.target.value
+                role: e.target.value,
               })
             }
             className="input"
           >
-
             <option value="">Select Role</option>
 
             {workers.company &&
@@ -151,11 +129,8 @@ function AddWorker() {
                 <option key={role} value={role}>
                   {role}
                 </option>
-              ))
-            }
-
+              ))}
           </select>
-
 
           {/* District */}
           <select
@@ -164,7 +139,7 @@ function AddWorker() {
               setWorkers({
                 ...workers,
                 district: e.target.value,
-                city: ""
+                city: "",
               })
             }
             className="input"
@@ -176,9 +151,7 @@ function AddWorker() {
                 {district}
               </option>
             ))}
-
           </select>
-
 
           {/* City */}
           <select
@@ -187,12 +160,11 @@ function AddWorker() {
             onChange={(e) =>
               setWorkers({
                 ...workers,
-                city: e.target.value
+                city: e.target.value,
               })
             }
             className="input"
           >
-
             <option value="">Select City</option>
 
             {workers.district &&
@@ -200,23 +172,17 @@ function AddWorker() {
                 <option key={city} value={city}>
                   {city}
                 </option>
-              ))
-            }
-
+              ))}
           </select>
-
 
           {/* Area */}
           <input
             type="text"
             placeholder="Area"
             value={workers.area || ""}
-            onChange={(e) =>
-              setWorkers({ ...workers, area: e.target.value })
-            }
+            onChange={(e) => setWorkers({ ...workers, area: e.target.value })}
             className="input"
           />
-
 
           {/* Experience */}
           <input
@@ -226,12 +192,11 @@ function AddWorker() {
             onChange={(e) =>
               setWorkers({
                 ...workers,
-                experience: e.target.value
+                experience: e.target.value,
               })
             }
             className="input"
           />
-
 
           {/* Profile Pic */}
           <input
@@ -241,12 +206,11 @@ function AddWorker() {
             onChange={(e) =>
               setWorkers({
                 ...workers,
-                profilePic: e.target.value
+                profilePic: e.target.value,
               })
             }
             className="input"
           />
-
 
           {/* About */}
           <textarea
@@ -255,43 +219,102 @@ function AddWorker() {
             onChange={(e) =>
               setWorkers({
                 ...workers,
-                aboutMe: e.target.value
+                aboutMe: e.target.value,
               })
             }
             className="input"
           />
 
-
           {/* Availability */}
           <label className="flex gap-2">
-
             <input
               type="checkbox"
               checked={workers.available || false}
               onChange={(e) =>
                 setWorkers({
                   ...workers,
-                  available: e.target.checked
+                  available: e.target.checked,
                 })
               }
             />
-
             Available
-
           </label>
 
-        </div>
+          <hr />
+          <h3>Account Details</h3>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {/* Account Holder Name */}
 
+            <input
+              type="text"
+              placeholder="Enter Account Holder Name"
+              value={workers.accountHolderName || ""}
+              onChange={(e) =>
+                setWorkers({
+                  ...workers,
+                  accountHolderName: e.target.value,
+                })
+              }
+              className="input"
+              required
+            />
+            {/* Bank Name Name */}
+
+            <input
+              type="text"
+              placeholder="Enter Bank Name"
+              value={workers.bankName || ""}
+              onChange={(e) =>
+                setWorkers({
+                  ...workers,
+                  bankName: e.target.value,
+                })
+              }
+              className="input"
+              required
+            />
+
+            {/* Account Number */}
+
+            <input
+              type="number"
+              placeholder="Enter Account Number"
+              value={workers.accountNumber || ""}
+              onChange={(e) =>
+                setWorkers({
+                  ...workers,
+                  accountNumber: e.target.value,
+                })
+              }
+              className="input"
+              required
+            />
+
+            {/* Account IFSC Code */}
+
+            <input
+              type="text"
+              placeholder="Enter IFSC Code"
+              value={workers.ifscCode || ""}
+              onChange={(e) =>
+                setWorkers({
+                  ...workers,
+                  ifscCode: e.target.value,
+                })
+              }
+              className="input"
+              required
+            />
+          </div>
+        </div>
 
         <button
           onClick={addWorker}
-          className="mt-6 w-full bg-gradient-to-r from-green-400 to-lime-400 text-white font-bold py-2 rounded-lg"
+          className="mt-6 w-full bg-gradient-to-r from-green-400 to-lime-400 text-white font-bold py-2 rounded-lg cursor-pointer"
         >
           Add Worker
         </button>
-
       </div>
-
     </div>
   );
 }

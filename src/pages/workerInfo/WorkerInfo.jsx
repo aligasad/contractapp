@@ -8,6 +8,7 @@ import { addToCart, deleteFromCart } from "../../redux/CartSlice";
 import { toast } from "react-toastify";
 import { FaArrowCircleDown, FaCheckCircle } from "react-icons/fa";
 import ReviewSection from "../../components/reviews/reviews";
+import { Icon } from "@iconify/react";
 
 function ProductInfo() {
   const context = useData();
@@ -216,7 +217,7 @@ function ProductInfo() {
                         {workers.available ? "Available" : "Not Available"}
                       </span>
                     </div>
-                    {JSON.parse(localStorage.getItem("user"))?.user?.email ===
+                    {JSON.parse(localStorage.getItem("user"))?.email ===
                       "asadalamalig@gmail.com" && (
                       <div>
                         <span className="font-bold text-[#03A6A1]">
@@ -256,9 +257,15 @@ function ProductInfo() {
                     <div className="border border-[#FFA673]/40 rounded-xl overflow-hidden">
                       <button
                         onClick={() => toggleSection("description")}
-                        className="w-full text-left px-5 py-2 bg-[#FFE3BB]/50 font-semibold text-gray-800 flex justify-between items-center hover:bg-[#FFE3BB]/70"
+                        className="w-full text-left px-5 py-2 bg-[#FFE3BB]/50 font-semibold text-gray-800 flex justify-between items-center hover:bg-[#FFE3BB]/70 cursor-pointer"
                       >
-                        <span>Description</span>
+                        <span className="flex items-center gap-1">
+                          <Icon
+                            icon="mdi:calendar-multiple"
+                            className="text-base "
+                          />{" "}
+                          Description
+                        </span>
                         <FaArrowCircleDown
                           className={`transform transition-transform duration-300 ${
                             openSection === "description"
@@ -282,37 +289,95 @@ function ProductInfo() {
                       )}
                     </div>
 
-                    {/* --- Best In Fields --- */}
-                    <div className="border border-[#FFA673]/40 rounded-xl overflow-hidden">
-                      <button
-                        onClick={() => toggleSection("ingredients")}
-                        className="w-full text-left px-5 py-2 bg-[#FFE3BB]/50 font-semibold text-gray-800 flex justify-between items-center hover:bg-[#FFE3BB]/70"
-                      >
-                        <span>Best In Fields</span>
-                        <FaArrowCircleDown
-                          className={`transform transition-transform duration-300 ${
-                            openSection === "ingredients"
-                              ? "rotate-180 text-[#03A6A1]"
-                              : "text-[#FF4F0F]"
-                          }`}
-                        />
-                      </button>
-                      {openSection === "ingredients" && (
-                        <div className="p-5 text-sm md:text-base text-gray-600 border-t border-[#FFA673]/40">
-                          {workers.professional ? (
-                            <ul className="list-disc pl-5">
-                              {workers.professional
-                                .split("|")
-                                .map((profession, index) => (
-                                  <li key={index}>{profession.trim()}</li>
-                                ))}
-                            </ul>
-                          ) : (
-                            <span className="text-gray-400">N/A</span>
-                          )}
-                        </div>
-                      )}
-                    </div>
+                    {/* ---- ---- Bank Details ---- ---- */}
+                    {JSON.parse(localStorage.getItem("user"))?.email ===
+                      "asadalamalig@gmail.com" && (
+                      <div className="border border-[#FFA673]/40 rounded-xl overflow-hidden">
+                        <button
+                          onClick={() => toggleSection("ingredients")}
+                          className="w-full text-left px-5 py-2 bg-[#FFE3BB]/50 font-semibold text-gray-800 flex justify-between items-center hover:bg-[#FFE3BB]/70 cursor-pointer"
+                        >
+                          <span className="flex items-center gap-1">
+                            <Icon
+                              icon="mdi:bank-check"
+                              className="text-base "
+                            />{" "}
+                            Bank Details
+                          </span>
+                          <FaArrowCircleDown
+                            className={`transform transition-transform duration-300 ${
+                              openSection === "ingredients"
+                                ? "rotate-180 text-[#03A6A1]"
+                                : "text-[#FF4F0F]"
+                            }`}
+                          />
+                        </button>
+                        {openSection === "ingredients" && (
+                          <div
+                            className="p-6 bg-white rounded-b-xl shadow-md 
+                border border-[#FFA673]/30"
+                          >
+                            <div className="grid sm:grid-cols-2 gap-4 text-sm md:text-base text-gray-700">
+                              {/* Account Holder */}
+                              <div className="bg-[#FFE3BB]/30 p-4 rounded-xl border border-[#FFA673]/20">
+                                <p className="text-xs uppercase tracking-wide text-gray-500 mb-1">
+                                  Account Holder Name
+                                </p>
+                                <p className="font-semibold break-words">
+                                  {workers.accountHolderName || (
+                                    <span className="text-gray-400 font-normal">
+                                      N/A
+                                    </span>
+                                  )}
+                                </p>
+                              </div>
+
+                              {/* Bank Name */}
+                              <div className="bg-[#FFE3BB]/30 p-4 rounded-xl border border-[#FFA673]/20">
+                                <p className="text-xs uppercase tracking-wide text-gray-500 mb-1">
+                                  Bank Name
+                                </p>
+                                <p className="font-semibold break-words">
+                                  {workers.bankName || (
+                                    <span className="text-gray-400 font-normal">
+                                      N/A
+                                    </span>
+                                  )}
+                                </p>
+                              </div>
+
+                              {/* Account Number */}
+                              <div className="bg-[#FFE3BB]/30 p-4 rounded-xl border border-[#FFA673]/20">
+                                <p className="text-xs uppercase tracking-wide text-gray-500 mb-1">
+                                  Account Number
+                                </p>
+                                <p className="font-mono tracking-wide">
+                                  {workers.accountNumber || (
+                                    <span className="text-gray-400 font-normal">
+                                      N/A
+                                    </span>
+                                  )}
+                                </p>
+                              </div>
+
+                              {/* IFSC Code */}
+                              <div className="bg-[#FFE3BB]/30 p-4 rounded-xl border border-[#FFA673]/20">
+                                <p className="text-xs uppercase tracking-wide text-gray-500 mb-1">
+                                  IFSC Code
+                                </p>
+                                <p className="font-mono tracking-wider text-[#03A6A1]">
+                                  {workers.ifscCode || (
+                                    <span className="text-gray-400 font-normal">
+                                      N/A
+                                    </span>
+                                  )}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

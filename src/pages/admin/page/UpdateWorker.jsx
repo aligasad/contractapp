@@ -20,7 +20,6 @@ function UpdateProduct() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-lime-50 to-emerald-100 py-10 px-4">
       <div className="max-w-2xl mx-auto bg-white shadow-2xl rounded-2xl border border-green-200">
-
         {/* Header */}
         <div className="bg-gradient-to-r from-green-500 to-emerald-500 rounded-t-2xl px-6 py-4">
           <h1 className="text-center text-white text-2xl font-bold tracking-wide">
@@ -30,7 +29,6 @@ function UpdateProduct() {
 
         {/* Form */}
         <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-
           {/* Name */}
           <div className="md:col-span-2">
             <label className="text-sm font-semibold text-green-700">
@@ -39,9 +37,7 @@ function UpdateProduct() {
             <input
               type="text"
               value={workers.name || ""}
-              onChange={(e) =>
-                setWorkers({ ...workers, name: e.target.value })
-              }
+              onChange={(e) => setWorkers({ ...workers, name: e.target.value })}
               className="w-full mt-1 bg-green-50 border border-green-200 px-4 py-2 rounded-lg focus:ring-2 focus:ring-green-400 outline-none"
             />
           </div>
@@ -102,9 +98,7 @@ function UpdateProduct() {
             <input
               type="date"
               value={workers.dob || ""}
-              onChange={(e) =>
-                setWorkers({ ...workers, dob: e.target.value })
-              }
+              onChange={(e) => setWorkers({ ...workers, dob: e.target.value })}
               className="w-full mt-1 bg-green-50 border border-green-200 px-4 py-2 rounded-lg focus:ring-2 focus:ring-green-400 outline-none"
             />
           </div>
@@ -159,14 +153,10 @@ function UpdateProduct() {
 
           {/* Role */}
           <div>
-            <label className="text-sm font-semibold text-green-700">
-              Role
-            </label>
+            <label className="text-sm font-semibold text-green-700">Role</label>
             <select
               value={workers.role || ""}
-              onChange={(e) =>
-                setWorkers({ ...workers, role: e.target.value })
-              }
+              onChange={(e) => setWorkers({ ...workers, role: e.target.value })}
               disabled={!workers.company}
               className="w-full mt-1 bg-green-50 border border-green-200 px-4 py-2 rounded-lg focus:ring-2 focus:ring-green-400 outline-none"
             >
@@ -205,14 +195,10 @@ function UpdateProduct() {
 
           {/* City */}
           <div>
-            <label className="text-sm font-semibold text-green-700">
-              City
-            </label>
+            <label className="text-sm font-semibold text-green-700">City</label>
             <select
               value={workers.city || ""}
-              onChange={(e) =>
-                setWorkers({ ...workers, city: e.target.value })
-              }
+              onChange={(e) => setWorkers({ ...workers, city: e.target.value })}
               disabled={!workers.district}
               className="w-full mt-1 bg-green-50 border border-green-200 px-4 py-2 rounded-lg focus:ring-2 focus:ring-green-400 outline-none"
             >
@@ -226,15 +212,11 @@ function UpdateProduct() {
 
           {/* Area */}
           <div className="md:col-span-2">
-            <label className="text-sm font-semibold text-green-700">
-              Area
-            </label>
+            <label className="text-sm font-semibold text-green-700">Area</label>
             <input
               type="text"
               value={workers.area || ""}
-              onChange={(e) =>
-                setWorkers({ ...workers, area: e.target.value })
-              }
+              onChange={(e) => setWorkers({ ...workers, area: e.target.value })}
               className="w-full mt-1 bg-green-50 border border-green-200 px-4 py-2 rounded-lg focus:ring-2 focus:ring-green-400 outline-none"
             />
           </div>
@@ -247,7 +229,7 @@ function UpdateProduct() {
             onChange={(e) =>
               setWorkers({
                 ...workers,
-                profilePic: e.target.value
+                profilePic: e.target.value,
               })
             }
             className="input"
@@ -281,23 +263,86 @@ function UpdateProduct() {
               }
               className="w-5 h-5 accent-green-500"
             />
-            <span className="text-green-700 font-medium">
-              Worker Available
-            </span>
+            <span className="text-green-700 font-medium">Worker Available</span>
           </div>
+        </div>
 
+        <hr className="px-5" />
+        <h3 className="px-5 font-bold mt-5">Account Details</h3>
+        <div className="grid sm:grid-cols-2 gap-4 p-5">
+          {/* Account Holder Name */}
+
+          <input
+            type="text"
+            placeholder="Enter Account Holder Name"
+            value={workers.accountHolderName || ""}
+            onChange={(e) =>
+              setWorkers({
+                ...workers,
+                accountHolderName: e.target.value,
+              })
+            }
+            className="input"
+            required
+          />
+          {/* Bank Name Name */}
+
+          <input
+            type="text"
+            placeholder="Enter Bank Name"
+            value={workers.bankName || ""}
+            onChange={(e) =>
+              setWorkers({
+                ...workers,
+                bankName: e.target.value,
+              })
+            }
+            className="input"
+            required
+          />
+
+          {/* Account Number */}
+
+          <input
+            type="number"
+            placeholder="Enter Account Number"
+            value={workers.accountNumber || ""}
+            onChange={(e) =>
+              setWorkers({
+                ...workers,
+                accountNumber: e.target.value,
+              })
+            }
+            className="input"
+            required
+          />
+
+          {/* Account IFSC Code */}
+
+          <input
+            type="text"
+            placeholder="Enter IFSC Code"
+            value={workers.ifscCode || ""}
+            onChange={(e) =>
+              setWorkers({
+                ...workers,
+                ifscCode: e.target.value,
+              })
+            }
+            className="input"
+            required
+          />
         </div>
 
         {/* Button */}
         <div className="p-6 pt-0">
           <button
             onClick={updateWorker}
-            className="w-full bg-gradient-to-r from-green-500 to-emerald-500 text-white py-3 rounded-xl font-semibold hover:from-green-600 hover:to-emerald-600 transition shadow-lg"
+            className="w-full bg-gradient-to-r from-green-500 to-emerald-500 text-white py-3 rounded-xl font-semibold hover:from-green-600 hover:to-emerald-600 transition shadow-lg cursor-pointer"
           >
             Update Worker
           </button>
         </div>
-
       </div>
     </div>
   );
