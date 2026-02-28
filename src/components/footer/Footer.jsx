@@ -93,7 +93,7 @@ const Footer = () => {
                 onClick={() =>
                   (window.location.href = "https://asadinfo.vercel.app")
                 }
-                className="h-8 cursor-pointer"
+                className="h-11 cursor-pointer"
               />
             </span>{" "}
             WorkWhiz

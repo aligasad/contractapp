@@ -117,11 +117,6 @@ function Navbar() {
     navigate(path);
   };
 
-  // For dark and light mode------ -------- ---------
-  const toggleDropdown = () => {
-    setIsDropdownOpen((prev) => !prev);
-  };
-
   // FOR LOGOUT-------- ---------
   function handleLogout() {
     auth.signOut();
@@ -405,7 +400,7 @@ function Navbar() {
             }}
             className="cursor-pointer text-2xl font-extrabold text-[#03A6A1] tracking-wide flex items-center gap-2"
           >
-            <img src={logo} className="sm:h-11" />{" "}
+            <img src={logo} className="sm:w-12" />{" "}
             <span className="hidden sm:block"></span>
           </div>
 
@@ -523,7 +518,7 @@ function Navbar() {
                   setIsUserDropdownOpen(!isUserDropdownOpen);
                   setMenuOpen(false);
                 }}
-                className="flex items-center gap-1 text-[#FF4F0F] font-bold hover:text-[#03A6A1] transition"
+                className="flex items-center gap-1 text-[#FF4F0F] font-bold hover:text-[#03A6A1] transition cursor-pointer"
               >
                 Profile{" "}
                 {isUserDropdownOpen ? (

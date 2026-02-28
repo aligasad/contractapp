@@ -5,6 +5,7 @@ import {
   signInWithEmailAndPassword,
   sendEmailVerification,
   signInWithPopup,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import { auth, googleProvider } from "../../firebase/FirebaseConfig";
 import { useData } from "../../context/data/MyState";
@@ -14,6 +15,8 @@ function Login() {
   const navigate = useNavigate();
   const context = useData();
   const { loading, setLoading } = context;
+
+  const [isResetMode, setIsResetMode] = useState(false);
 
   const [form, setForm] = useState({
     email: "",
@@ -32,11 +35,27 @@ function Login() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (form.email === "") {
+    if (!form.email) {
       return toast.warning("Please enter your email...");
     }
 
-    if (form.password === "") {
+    // 🔹 RESET MODE
+    if (isResetMode) {
+      try {
+        setLoading(true);
+        await sendPasswordResetEmail(auth, form.email);
+        toast.success("Password reset link sent! 📩");
+        setIsResetMode(false); // back to login mode
+      } catch (error) {
+        toast.error("Failed to send reset email");
+      } finally {
+        setLoading(false);
+      }
+      return;
+    }
+
+    // 🔹 LOGIN MODE
+    if (!form.password) {
       return toast.warning("Please enter your password...");
     }
 
@@ -46,28 +65,20 @@ function Login() {
       const result = await signInWithEmailAndPassword(
         auth,
         form.email,
-        form.password
+        form.password,
       );
 
       const user = result.user;
 
-      // ✅ Check if email verified
       if (!user.emailVerified) {
         await sendEmailVerification(user);
-
-        toast.error(
-          "Please verify your email first. Verification link sent again."
-        );
-
+        toast.error("Please verify your email first.");
         setLoading(false);
         return;
       }
 
-      // ✅ Store user in localStorage
       localStorage.setItem("user", JSON.stringify(user));
-
       toast.success("Login Successfully! 🎉");
-
       navigate("/");
     } catch (error) {
       toast.error("Invalid Email or Password!");
@@ -94,6 +105,21 @@ function Login() {
       toast.error("Google login failed!");
     } finally {
       setLoading(false);
+    }
+  };
+
+  // Handle Password Reset
+  const handleResetPassword = async () => {
+    if (!form.email) {
+      return toast.warning("Please enter your email first");
+    }
+
+    try {
+      await sendPasswordResetEmail(auth, form.email);
+      toast.success("Password reset email sent! 📩");
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong!");
     }
   };
 
@@ -125,33 +151,38 @@ function Login() {
               onChange={handleChange}
               className="w-full p-3 pl-12 border border-[#FFA673] bg-[#FFE3BB]/50 text-[#03A6A1] placeholder-[#FFA673] rounded-xl outline-none focus:ring-2 focus:ring-[#03A6A1] transition-all"
             />
-            <span className="absolute left-4 top-3 text-[#FF4F0F]">
-              📧
-            </span>
+            <span className="absolute left-4 top-3 text-[#FF4F0F]">📧</span>
           </div>
 
           {/* Password */}
-          <div className="relative mb-8">
-            <input
-              type="password"
-              name="password"
-              placeholder="Enter your password"
-              value={form.password}
-              onChange={handleChange}
-              className="w-full p-3 pl-12 border border-[#FFA673] bg-[#FFE3BB]/50 text-[#03A6A1] placeholder-[#FFA673] rounded-xl outline-none focus:ring-2 focus:ring-[#03A6A1] transition-all"
-            />
-            <span className="absolute left-4 top-3 text-[#FF4F0F]">
-              🔒
-            </span>
-          </div>
+          {!isResetMode && (
+            <div className="relative mb-8">
+              <input
+                type="password"
+                name="password"
+                placeholder="Enter your password"
+                value={form.password}
+                onChange={handleChange}
+                className="w-full p-3 pl-12 border border-[#FFA673] bg-[#FFE3BB]/50 text-[#03A6A1] placeholder-[#FFA673] rounded-xl outline-none focus:ring-2 focus:ring-[#03A6A1] transition-all"
+              />
+              <span className="absolute left-4 top-3 text-[#FF4F0F]">🔒</span>
+            </div>
+          )}
 
-          {/* Login Button */}
+          {/* Login Button OR Reset Button */}
           <button
             type="submit"
-            className="cursor-pointer w-full bg-gradient-to-r from-[#03A6A1] via-[#FFA673] to-[#FF4F0F] text-white font-bold py-3 rounded-xl shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all"
+            className="cursor-pointer w-full bg-gradient-to-r from-[#03A6A1] via-[#FFA673] to-[#FF4F0F] text-white   hover:text-[#03A6A1] hover:border hover:border-[#03A6A1]/40 hover:bg-gradient-to-r hover:from-[#FF4F0F] hover:via-white hover:to-[#03A6A1] font-bold py-3 rounded-xl shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all"
           >
-            Login
+            {isResetMode ? "Reset Password" : "Login"}
           </button>
+
+          <p
+            onClick={() => setIsResetMode(!isResetMode)}
+            className="text-right text-sm text-[#03A6A1] cursor-pointer hover:underline mt-1"
+          >
+            {isResetMode ? "Back to Login" : "Forgot Password?"}
+          </p>
 
           {/* Divider */}
           <div className="flex items-center gap-4 my-6">
@@ -164,9 +195,13 @@ function Login() {
           <button
             type="button"
             onClick={handleGoogleLogin}
-            className="w-full bg-white border border-[#03A6A1]/40 text-[#03A6A1] font-semibold py-3 rounded-xl shadow-md hover:bg-[#03A6A1] hover:text-white transition-all flex items-center justify-center gap-2"
+            className="w-full text-[#03A6A1] border border-[#03A6A1]/40 bg-gradient-to-r from-[#FF4F0F] via-white to-[#03A6A1]  hover:text-[#03A6A1] hover:border hover:border-[#03A6A1]/40 hover:bg-gradient-to-r hover:from-white hover:via-white hover:to-white font-semibold py-3 rounded-xl shadow-md   transition-all flex items-center justify-center gap-2 cursor-pointer"
           >
-            <img src="/google-icon.svg" alt="Google" className="w-5 h-5" />
+            <img
+              src="https://freelogopng.com/images/all_img/1657952440google-logo-png-transparent.png"
+              alt="Google"
+              className="w-5 h-5"
+            />
             Continue with Google
           </button>
 

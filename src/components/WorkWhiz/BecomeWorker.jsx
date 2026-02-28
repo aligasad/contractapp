@@ -396,7 +396,7 @@ function BecomeWorker() {
               </div>
 
               <hr />
-              <h3>Account Details</h3>
+              <h3 className="font-semibold underline text-[#02817d] ">Salery Account Details</h3>
 
               <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {/* Account Holder Name */}
