@@ -359,16 +359,6 @@ function Navbar() {
                   </li>
                 ) : null)}
 
-              <li>
-                <Link
-                  to="/profile"
-                  onClick={() => setMenuOpen(false)}
-                  className="hover:text-[#219C90] transition"
-                >
-                  Profile
-                </Link>
-              </li>
-
               {user ? (
                 <li>
                   <button
