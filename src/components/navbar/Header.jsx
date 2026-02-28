@@ -29,6 +29,7 @@ import { auth, firebaseDB } from "../../firebase/FirebaseConfig";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { doc, getDoc } from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -189,15 +190,17 @@ function Navbar() {
             />
           )}
 
-          {/* Cart button */}
-          {/* <Link to="/cart">
-            <div className="relative">
-              <ShoppingCart className="h-5 w-5 font-bold text-[#219C90] hover:text-[#EE4E4E] transition" />
-              <span className="bg-[#EE4E4E] text-white text-[12px] rounded-full px-[6px] absolute -top-2 -right-3 shadow-md">
-                {(cartItems || []).length}
-              </span>
-            </div>
-          </Link> */}
+          {/* User Profile */}
+          {user && (
+            <img
+              src={
+                user.photoURL ||
+                "https://ui-avatars.com/api/?name=" + user.email
+              }
+              alt="Profile"
+              className="w-10 h-10 rounded-full object-cover object-top border border-[#03A6A1] cursor-pointer"
+            />
+          )}
 
           {/* Menu button */}
           <button
@@ -520,26 +523,37 @@ function Navbar() {
                 }}
                 className="flex items-center gap-1 text-[#FF4F0F] font-bold hover:text-[#03A6A1] transition cursor-pointer"
               >
-                Profile{" "}
-                {isUserDropdownOpen ? (
-                  <ChevronUp size={16} />
-                ) : (
-                  <ChevronDown size={16} />
-                )}
+                <img
+                  src={
+                    user.photoURL ||
+                    "https://ui-avatars.com/api/?name=" + user.email
+                  }
+                  alt="Profile"
+                  className="w-12 h-12 rounded-full object-cover object-top border-2 border-[#03A6A1] cursor-pointer"
+                />
               </button>
 
               {isUserDropdownOpen && (
                 <ul className="absolute mt-3 right-0 bg-[#FFE3BB] text-[#03A6A1] shadow-lg rounded-xl py-2 px-4 z-50 min-w-[160px] space-y-2">
                   <li
                     onClick={() => handleSelect("/profile")}
-                    className="hover:text-[#FF4F0F] cursor-pointer"
+                    className="hover:text-[#FF4F0F] cursor-pointer flex items-center gap-1"
                   >
+                    <img
+                      src={
+                        user.photoURL ||
+                        "https://ui-avatars.com/api/?name=" + user.email
+                      }
+                      alt="Profile"
+                      className="w-5 h-5 rounded-full object-cover object-top border border-[#03A6A1] cursor-pointer"
+                    />
                     Profile
                   </li>
                   <li
                     onClick={handleLogout}
-                    className="hover:text-[#FF4F0F] cursor-pointer"
+                    className="hover:text-[#FF4F0F] cursor-pointer flex items-center gap-1"
                   >
+                    <IoLogOut size={20} />
                     Logout
                   </li>
                 </ul>

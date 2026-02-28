@@ -31,7 +31,7 @@ function Login() {
     });
   };
 
-  // Handle Email/Password Login
+  // Handle Email/Password Login And Reset Password
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -105,21 +105,6 @@ function Login() {
       toast.error("Google login failed!");
     } finally {
       setLoading(false);
-    }
-  };
-
-  // Handle Password Reset
-  const handleResetPassword = async () => {
-    if (!form.email) {
-      return toast.warning("Please enter your email first");
-    }
-
-    try {
-      await sendPasswordResetEmail(auth, form.email);
-      toast.success("Password reset email sent! 📩");
-    } catch (error) {
-      console.log(error);
-      toast.error("Something went wrong!");
     }
   };
 
