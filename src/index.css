@@ -4,9 +4,9 @@
 @import "slick-carousel/slick/slick.css";
 @import "slick-carousel/slick/slick-theme.css";
 
-
 @keyframes bgPulse {
-  0%, 100% {
+  0%,
+  100% {
     background-color: #ff2f28b2;
   }
   50% {
@@ -21,6 +21,19 @@
   border-radius: 8px;
 }
 
+/* For Toastify */
+@media (max-width: 640px) {
+  .Toastify__toast-container--top-center {
+    width: 80% !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    top: 20px !important;   /* 👈 top spacing */
+  }
+
+  .Toastify__toast {
+    border-radius: 5px !important;
+  }
+}
 
 .bg-pulse {
   animation: bgPulse 2s infinite ease-in-out;
@@ -33,9 +46,6 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-
-
-
 
 .leaf {
   position: absolute;
@@ -57,15 +67,27 @@
 }
 
 @keyframes floatLeaf {
-  0% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(20px) rotate(30deg); }
-  100% { transform: translateY(0px) rotate(0deg); }
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(20px) rotate(30deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
 }
 
 @keyframes floatLeafReverse {
-  0% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(-30deg); }
-  100% { transform: translateY(0px) rotate(0deg); }
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(-30deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
 }
 
 /* Bubbles */

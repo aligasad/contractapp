@@ -299,7 +299,7 @@ function App() {
   ]);
   // For whatsapp button----------------------
   const handleWhatsAppClick = () => {
-    const phoneNumber = "917807040707";
+    const phoneNumber = "917417331926";
     const message = "Hi, I am interested in your product!";
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
       message
@@ -318,12 +318,12 @@ function App() {
         <FaArrowUp size={25} />
       </button>
       {/* WhatsApp Button */}
-      {/* <button
+      <button
         onClick={handleWhatsAppClick}
         className="z-20 fixed bottom-22 sm:bottom-16 right-6 bg-[#449474] hover:bg-[#019664] hover:shadow-lg hover:scale-105 text-white p-[10px] cursor-pointer rounded-full shadow-lg transition"
       >
         <BsWhatsapp size={25} />
-      </button> */}
+      </button>
       {/* Contact Button */}
       {/* <button
         onClick={() => setIsContactOpen(!isContactOpen)}
@@ -350,7 +350,7 @@ function App() {
             <RouterProvider router={router} />
             <ToastContainer
               position="top-center"
-              autoClose={1000}
+              autoClose={1500}
               theme="dark"
               transition={Bounce}
             />

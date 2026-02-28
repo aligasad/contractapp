@@ -190,17 +190,7 @@ function Navbar() {
             />
           )}
 
-          {/* User Profile */}
-          {user && (
-            <img
-              src={
-                user.photoURL ||
-                "https://ui-avatars.com/api/?name=" + user.email
-              }
-              alt="Profile"
-              className="w-10 h-10 rounded-full object-cover object-top border border-[#03A6A1] cursor-pointer"
-            />
-          )}
+          
 
           {/* Menu button */}
           <button
@@ -209,6 +199,19 @@ function Navbar() {
           >
             <Menu />
           </button>
+
+          {/* User Profile */}
+          {user && (
+            <img
+            onClick={() => navigate('/profile')}
+              src={
+                user.photoURL ||
+                "https://ui-avatars.com/api/?name=" + user.email
+              }
+              alt="Profile"
+              className="w-12 h-12 rounded-full object-cover object-top border border-[#03A6A1] cursor-pointer"
+            />
+          )}
         </div>
       </div>
 

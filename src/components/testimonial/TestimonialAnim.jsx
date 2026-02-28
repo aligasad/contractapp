@@ -275,7 +275,7 @@ const TestimonialAnim = () => {
             <AnimatePresence mode="wait">
               <motion.img
                 key={current.id}
-                src={current.src}
+                src={current.src || "https://tse4.mm.bing.net/th/id/OIP.hGSCbXlcOjL_9mmzerqAbQHaHa?pid=Api&P=0&h=180"}
                 className="w-52 h-52 sm:w-64 sm:h-64 lg:w-72 lg:h-72 object-cover rounded-xl shadow order-1 lg:order-2 lg:ml-auto"
                 initial={{
                   opacity: 0,
