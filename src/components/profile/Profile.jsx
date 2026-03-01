@@ -150,18 +150,32 @@ function Profile() {
   if (!userData) return null;
 
   return (
-    <div className="min-h-screen bg-[#f6fef9] flex items-center justify-center px-4 py-6">
-      <div className="w-full max-w-md bg-white rounded-3xl shadow-xl p-6">
+    <div className="min-h-screen bg-[#f6fef9] flex items-center justify-center px-0 py-0">
+      <div className="w-full max-w-md bg-white  shadow-xl p-6">
         <h2 className="text-xl font-semibold text-center text-gray-700 mb-6">
           My Profile
         </h2>
 
-        <div className="flex flex-col items-center space-y-4">
-          <img
-            src={formData.photoURL || "https://via.placeholder.com/100"}
-            alt="Profile"
-            className="w-24 h-24 rounded-full object-cover shadow-md"
-          />
+        
+        <div className="flex flex-col items-center space-y-[5px]">
+          {/* Profile image */}
+          <div
+            className="w-30 h-30 p-[6px] bg-red-600 shadow-md"
+            style={{
+              clipPath:
+                "polygon(50% 0%, 83% 12%, 100% 43%, 94% 78%, 68% 100%, 32% 100%, 6% 78%, 0% 43%, 17% 12%)",
+            }}
+          >
+            <img
+              src={formData.photoURL || "https://via.placeholder.com/100"}
+              alt="Profile"
+              className="w-full h-full object-cover"
+              style={{
+                clipPath:
+                  "polygon(50% 0%, 83% 12%, 100% 43%, 94% 78%, 68% 100%, 32% 100%, 6% 78%, 0% 43%, 17% 12%)",
+              }}
+            />
+          </div>
 
           {editMode ? (
             <>
@@ -211,7 +225,7 @@ function Profile() {
 
               <button
                 onClick={handleUpdate}
-                className="bg-green-600 text-white px-4 py-2 rounded"
+                className="bg-green-600 text-white px-4 py-2 rounded cursor-pointer hover:bg-green-700"
               >
                 Save Changes
               </button>
@@ -221,22 +235,19 @@ function Profile() {
               <h3 className="text-lg font-semibold text-gray-800">
                 {userData.name}
               </h3>
-              <p className="text-sm text-gray-500">{userData.email}</p>
-              <p className="text-sm text-gray-600 mt-2">
-                {userData.bio || "No bio added"}
-              </p>
+              <p className="text-sm text-gray-500 mb-2">{userData.email}</p>
 
               <div className="flex items-center gap-3 ">
                 <button
                   onClick={() => setEditMode(true)}
-                  className="bg-[#4CAF50] text-white text-xs md:text-sm px-3 py-1 rounded-lg hover:bg-[#3b873e] cursor-pointer"
+                  className="bg-[#4CAF50] text-white text-xs md:text-sm px-3 py-[5px] sm:py-1 border-b-2 border-l-2 border-black rounded-tr-lg hover:bg-[#3b873e] cursor-pointer"
                 >
                   Edit Profile
                 </button>
                 {/* 🔐 Change Password Button */}
                 <button
                   onClick={() => setShowPasswordSection(!showPasswordSection)}
-                  className="bg-blue-600 text-white text-xs md:text-sm px-3 py-1 rounded-lg cursor-pointer"
+                  className="bg-blue-600 hover:bg-blue-700 text-white text-xs md:text-sm px-3 py-[5px] sm:py-1 border-b-2 border-l-2 border-black rounded-tr-lg cursor-pointer"
                 >
                   Change Password
                 </button>
@@ -262,7 +273,7 @@ function Profile() {
 
                   <button
                     onClick={handleChangePassword}
-                    className="bg-blue-700 text-white px-4 py-2 rounded w-full"
+                    className="bg-blue-700 text-white px-4 py-2 rounded w-full cursor-pointer hover:bg-blue-800"
                   >
                     Update Password
                   </button>
@@ -272,40 +283,50 @@ function Profile() {
           )}
         </div>
 
-        <div className="border-t border-gray-200 my-6"></div>
+        {/* Divider */}
+          <div className="flex items-center gap-4 my-6">
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-red-600 to-transparent"></div>
+            <span className="text-sm text-red-600 font-medium">information</span>
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-red-600 to-transparent"></div>
+          </div>
 
         <div
           className="mt-4 bg-gradient-to-r from-gray-50 to-gray-100 
                 rounded-2xl p-5 border border-gray-200"
         >
           <div className="space-y-4">
-            {/* Address Row */}
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between sm:gap-1">
-              <span className="text-sm font-semibold text-gray-600">
-                Address
-              </span>
-
-              <span
-                className="text-sm text-gray-800 bg-white px-4 py-2 
-                       rounded-lg shadow-sm border border-gray-200 
-                       mt-1 sm:mt-0"
-              >
-                {userData.address || "Not provided"}
-              </span>
+            {/* Address */}
+            <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-4 flex justify-between items-start">
+              <div>
+                <p className="text-xs text-gray-500 uppercase tracking-wide">
+                  Address <span className="text-lg">📍</span>
+                </p>
+                <p className="text-sm font-medium text-gray-800 mt-1">
+                  {userData.address || "Not provided"}
+                </p>
+              </div>
             </div>
 
-            {/* Divider */}
-            <div className="h-px bg-gray-300 opacity-40"></div>
+            {/* Pin Code */}
+            <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-4 flex justify-between items-center">
+              <div>
+                <p className="text-xs text-gray-500 uppercase tracking-wide">
+                  Pin Code <span className="text-lg">🏷️</span>
+                </p>
+                <p className="text-sm font-semibold text-blue-600 mt-1 tracking-wide">
+                  {userData.pincode || "Not provided"}
+                </p>
+              </div>
+            </div>
 
-            {/* Pin Code Row */}
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-              <span className="text-sm font-semibold text-gray-600">
-                Pin Code
-              </span>
-
-              <span className="text-sm font-bold text-blue-600 tracking-wide">
-                {userData.pincode || "Not provided"}
-              </span>
+            {/* Bio */}
+            <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-4">
+              <p className="text-xs text-gray-500 uppercase tracking-wide">
+                Bio <span className="text-lg">📝</span>
+              </p>
+              <p className="text-sm text-gray-700 mt-1 leading-relaxed">
+                {userData.bio || "Not provided"}
+              </p>
             </div>
           </div>
         </div>
@@ -313,13 +334,13 @@ function Profile() {
         <div className="mt-8 flex justify-center gap-2">
           <button
             onClick={handleSignOut}
-            className="text-white bg-rose-700 px-4 py-2 rounded-lg hover:bg-white hover:text-rose-700 border-2 border-rose-700 cursor-pointer transition-all duration-200 "
+            className="text-white bg-rose-700 px-4 py-[6px] sm:py-1 rounded-lg hover:bg-white hover:text-rose-700 border-2 border-rose-700 cursor-pointer transition-all duration-200 "
           >
             Log Out
           </button>
           <button
             onClick={() => navigate("/join")}
-            className="text-rose-700 bg-white border-rose-700 border-2 px-4 py-2 rounded-lg hover:bg-red-700 hover:text-white transition-all duration-200 cursor-pointer "
+            className="text-rose-700 bg-white border-rose-700 border-2 px-4 py-[6px] sm:py-1 rounded-lg hover:bg-red-700 hover:text-white transition-all duration-200 cursor-pointer "
           >
             Become a Worker
           </button>
