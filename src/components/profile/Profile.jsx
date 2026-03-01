@@ -199,7 +199,7 @@ function Profile() {
 
               <textarea
                 name="bio"
-                value={formData.bio || "Here, you can write about yourself."}
+                value={formData.bio}
                 onChange={handleChange}
                 placeholder="Bio"
                 className="border p-2 rounded w-full"
@@ -325,7 +325,7 @@ function Profile() {
                 Bio <span className="text-lg">📝</span>
               </p>
               <p className="text-sm text-gray-700 mt-1 leading-relaxed">
-                {userData.bio || "Not provided"}
+                {userData.bio || "Here, you can write about yourself."}
               </p>
             </div>
           </div>
