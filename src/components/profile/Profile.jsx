@@ -199,7 +199,7 @@ function Profile() {
 
               <textarea
                 name="bio"
-                value={formData.bio}
+                value={formData.bio || "Here, you can write about yourself."}
                 onChange={handleChange}
                 placeholder="Bio"
                 className="border p-2 rounded w-full"
