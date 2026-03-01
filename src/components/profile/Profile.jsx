@@ -167,7 +167,7 @@ function Profile() {
             }}
           >
             <img
-              src={formData.photoURL || "https://via.placeholder.com/100"}
+              src={formData.photoURL || "https://logodix.com/logo/1984123.png"}
               alt="Profile"
               className="w-full h-full object-cover"
               style={{

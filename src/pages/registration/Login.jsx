@@ -5,11 +5,14 @@ import {
   signInWithEmailAndPassword,
   sendEmailVerification,
   signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult,
   sendPasswordResetEmail,
 } from "firebase/auth";
 import { auth, googleProvider } from "../../firebase/FirebaseConfig";
 import { useData } from "../../context/data/MyState";
 import Loader from "../../components/loader/Loader";
+import { Icon } from "@iconify/react";
 
 function Login() {
   const navigate = useNavigate();
@@ -92,21 +95,45 @@ function Login() {
     try {
       setLoading(true);
 
-      const result = await signInWithPopup(auth, googleProvider);
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-      const user = result.user;
-
-      localStorage.setItem("user", JSON.stringify(user));
-
-      toast.success("Login with Google Successful! 🎉");
-
-      navigate("/");
+      if (isMobile) {
+        await signInWithRedirect(auth, googleProvider);
+      } else {
+        const result = await signInWithPopup(auth, googleProvider);
+        const user = result.user;
+        localStorage.setItem("user", JSON.stringify(user));
+        toast.success("Login with Google Successful! 🎉");
+        navigate("/");
+      }
     } catch (error) {
-      toast.error("Google login failed!");
+      console.log(error);
+      toast.error(error.message);
     } finally {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    const checkRedirect = async () => {
+      try {
+        const result = await getRedirectResult(auth);
+        if (result) {
+          const user = result.user;
+          localStorage.setItem("user", JSON.stringify(user));
+          toast.success("Login with Google Successful! 🎉");
+          navigate("/");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    checkRedirect();
+  }, []);
+
+  // Handle show Password
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -136,21 +163,45 @@ function Login() {
               onChange={handleChange}
               className="w-full p-3 pl-12 border border-[#FFA673] bg-[#FFE3BB]/50 text-[#03A6A1] placeholder-[#FFA673] rounded-xl outline-none focus:ring-2 focus:ring-[#03A6A1] transition-all"
             />
-            <span className="absolute left-4 top-3 text-[#FF4F0F]">📧</span>
+            <span className="absolute left-4 top-3 text-[#FF4F0F]">
+              <Icon width={"22"} icon={"mdi:email-edit-outline"} />
+            </span>
           </div>
 
           {/* Password */}
           {!isResetMode && (
             <div className="relative mb-8">
               <input
-                type="password"
+                type={showPassword ? "text" : "password"} //this is main part for show and hide password in input
                 name="password"
                 placeholder="Enter your password"
                 value={form.password}
                 onChange={handleChange}
-                className="w-full p-3 pl-12 border border-[#FFA673] bg-[#FFE3BB]/50 text-[#03A6A1] placeholder-[#FFA673] rounded-xl outline-none focus:ring-2 focus:ring-[#03A6A1] transition-all"
+                className={`w-full p-3 pl-12 pr-12 border border-[#FFA673] bg-[#FFE3BB]/50 ${showPassword ? "text-red-600" : "text-[#03A6A1]"} placeholder-[#FFA673] rounded-xl outline-none focus:ring-2 focus:ring-[#03A6A1] transition-all`}
               />
-              <span className="absolute left-4 top-3 text-[#FF4F0F]">🔒</span>
+
+              {/* Lock Icon */}
+              <span
+                className={`absolute flex left-4 top-3 ${showPassword ? "text-[#03A6A1]" : "text-red-600"}`}
+              >
+                <Icon
+                  width="22"
+                  icon={showPassword ? "mdi:lock-open" : "mdi:lock-off"}
+                />
+              </span>
+
+              {/* Eye Icon */}
+              <span
+                className={`absolute right-4 top-3 cursor-pointer ${showPassword ? "text-red-600" : "text-[#03A6A1]"}`}
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                <Icon
+                  icon={
+                    showPassword ? "mdi:eye-off-outline" : "mdi:eye-outline"
+                  }
+                  width="22"
+                />
+              </span>
             </div>
           )}
 

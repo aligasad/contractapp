@@ -9,6 +9,7 @@ import {
 } from "firebase/auth";
 import { auth, firebaseDB } from "../../firebase/FirebaseConfig";
 import { doc, setDoc } from "firebase/firestore";
+import { Icon } from "@iconify/react";
 
 function Signup() {
   const context = useData();
@@ -55,7 +56,7 @@ function Signup() {
       const users = await createUserWithEmailAndPassword(
         auth,
         form.email,
-        form.password
+        form.password,
       );
 
       const user = users.user;
@@ -89,15 +90,16 @@ function Signup() {
         confirmPassword: "",
       });
 
-      toast.success(
-        "Account created! Please verify your email before login."
-      );
+      toast.success("Account created! Please verify your email before login.");
     } catch (error) {
       toast.error(error.message);
     } finally {
       setLoading(false);
     }
   }
+
+  // Hide and show password
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -123,7 +125,7 @@ function Signup() {
             onChange={handleChange}
             className="w-full p-3 pl-12 border border-[#FFA673] bg-[#FFE3BB]/50 rounded-xl outline-none focus:ring-2 focus:ring-[#03A6A1]"
           />
-          <span className="absolute left-4 top-3">👤</span>
+          <span className="absolute left-4 top-3 text-[#03A6A1]"><Icon width={24} icon={"mdi:account"}/></span>
         </div>
 
         {/* Email */}
@@ -136,7 +138,7 @@ function Signup() {
             onChange={handleChange}
             className="w-full p-3 pl-12 border border-[#FFA673] bg-[#FFE3BB]/50 rounded-xl outline-none focus:ring-2 focus:ring-[#03A6A1]"
           />
-          <span className="absolute left-4 top-3">📧</span>
+          <span className="absolute left-4 top-3 text-[#03A6A1]"><Icon width={22} icon={"mdi:email-edit-outline"}/></span>
         </div>
 
         {/* Password */}
@@ -149,26 +151,41 @@ function Signup() {
             onChange={handleChange}
             className="w-full p-3 pl-12 border border-[#FFA673] bg-[#FFE3BB]/50 rounded-xl outline-none focus:ring-2 focus:ring-[#03A6A1]"
           />
-          <span className="absolute left-4 top-3">🔒</span>
+          <span className="absolute left-4 top-3 text-red-600"><Icon width={22} icon={"mdi:lock"}/></span>
         </div>
 
         {/* Confirm Password */}
         <div className="relative mb-8">
           <input
-            type="password"
+            type={showConfirmPassword ? "text" : "password"}
             name="confirmPassword"
             placeholder="Confirm password"
             value={form.confirmPassword}
             onChange={handleChange}
-            className="w-full p-3 pl-12 border border-[#FFA673] bg-[#FFE3BB]/50 rounded-xl outline-none focus:ring-2 focus:ring-[#03A6A1]"
+            className="w-full p-3 pl-12 pr-12 border border-[#FFA673] bg-[#FFE3BB]/50 rounded-xl outline-none focus:ring-2 focus:ring-[#03A6A1]"
           />
-          <span className="absolute left-4 top-3">🔑</span>
+
+          {/* Key Icon */}
+          <span className={`absolute left-4 top-3 ${showConfirmPassword ? "text-[#03A6A1]":"text-red-600"}`}><Icon width="22" icon={showConfirmPassword ? "mdi:lock-open" : "mdi:lock-off"}/></span>
+
+          {/* Eye Toggle Icon */}
+          <span
+            className={`absolute right-4 top-3 cursor-pointer ${showConfirmPassword ? "text-red-600":"text-[#03A6A1]"}`}
+            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+          >
+            <Icon
+              icon={
+                showConfirmPassword ? "mdi:eye-off-outline" : "mdi:eye-outline"
+              }
+              width="22"
+            />
+          </span>
         </div>
 
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-gradient-to-r from-[#03A6A1] via-[#FFA673] to-[#FF4F0F] text-white font-bold py-3 rounded-xl shadow-lg hover:scale-[1.02]"
+          className="w-full bg-gradient-to-r from-[#03A6A1] via-[#FFA673] to-[#FF4F0F] text-white font-bold py-3 rounded-xl shadow-lg hover:scale-[1.02] cursor-pointer"
         >
           {loading ? "Creating Account..." : "Sign Up"}
         </button>
