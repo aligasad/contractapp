@@ -5,21 +5,22 @@ import { auth } from "../../firebase/FirebaseConfig.jsx";
 import { useAuth } from "./AuthContext.jsx";
 
 function ProtectedRoute({ children }) {
-  const navigate = useNavigate();
   const { user } = useAuth();
-  const [isLoading, setIsLoading] = useState(true);
+  const [isChecking, setIsChecking] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setIsLoading(false);
+      setIsChecking(false);
     }, 1000);
 
-    return () => clearInterval(timer);
-  }, []); //mounting
+    return () => clearTimeout(timer);
+  }, []);
 
-  if (isLoading) return <Loader />;
+  if (isChecking) return <Loader />;
 
-  if (!user) return navigate("/login");
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
 
   return children;
 }
