@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
-import { onAuthStateChanged, signOut, updateProfile } from "firebase/auth";
+import {
+  onAuthStateChanged,
+  signOut,
+  updateProfile,
+  updatePassword,
+} from "firebase/auth";
 import { firebaseDB, auth } from "../../firebase/FirebaseConfig";
 import { toast } from "react-toastify";
 
@@ -9,6 +14,41 @@ function Profile() {
   const navigate = useNavigate();
   const [userData, setUserData] = useState(null);
   const [editMode, setEditMode] = useState(false);
+
+  // -------FOR PASSWORD UPDATE-----------------
+  const [showPasswordSection, setShowPasswordSection] = useState(false);
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  // 🔐 Change Password (Simple Version)
+  const handleChangePassword = async () => {
+    const user = auth.currentUser;
+    if (!user) return;
+
+    if (!newPassword || !confirmPassword) {
+      return toast.warning("Please fill all fields");
+    }
+
+    if (newPassword !== confirmPassword) {
+      return toast.error("Passwords do not match");
+    }
+
+    try {
+      await updatePassword(user, newPassword);
+      toast.success("Password changed successfully 🎉");
+
+      setNewPassword("");
+      setConfirmPassword("");
+      setShowPasswordSection(false);
+    } catch (error) {
+      if (error.code === "auth/requires-recent-login") {
+        toast.error("Please login again to change password");
+      } else {
+        toast.error("Password change failed");
+      }
+    }
+  };
+
+  // -------END PASSWORD UPDATE-----------------
 
   const [formData, setFormData] = useState({
     name: "",
@@ -186,12 +226,48 @@ function Profile() {
                 {userData.bio || "No bio added"}
               </p>
 
-              <button
-                onClick={() => setEditMode(true)}
-                className="bg-[#4CAF50] text-white px-4 py-2 rounded-lg hover:bg-[#3b873e]"
-              >
-                Edit Profile
-              </button>
+              <div className="flex items-center gap-3 ">
+                <button
+                  onClick={() => setEditMode(true)}
+                  className="bg-[#4CAF50] text-white text-xs md:text-sm px-3 py-1 rounded-lg hover:bg-[#3b873e] cursor-pointer"
+                >
+                  Edit Profile
+                </button>
+                {/* 🔐 Change Password Button */}
+                <button
+                  onClick={() => setShowPasswordSection(!showPasswordSection)}
+                  className="bg-blue-600 text-white text-xs md:text-sm px-3 py-1 rounded-lg cursor-pointer"
+                >
+                  Change Password
+                </button>
+              </div>
+              {/* 🔐 Password Section */}
+              {showPasswordSection && (
+                <div className="mt-4 space-y-3">
+                  <input
+                    type="password"
+                    placeholder="New Password"
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                    className="border p-2 rounded w-full"
+                  />
+
+                  <input
+                    type="password"
+                    placeholder="Confirm New Password"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    className="border p-2 rounded w-full"
+                  />
+
+                  <button
+                    onClick={handleChangePassword}
+                    className="bg-blue-700 text-white px-4 py-2 rounded w-full"
+                  >
+                    Update Password
+                  </button>
+                </div>
+              )}
             </>
           )}
         </div>
