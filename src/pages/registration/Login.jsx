@@ -161,7 +161,7 @@ function Login() {
         >
           {/* Title */}
           <h2 className="text-4xl font-extrabold mb-8 text-center text-[#03A6A1] tracking-wide drop-shadow-md">
-            WorkWhiz App 🚀
+            WorkWhiz App 3 🚀
           </h2>
 
           {/* Email */}
