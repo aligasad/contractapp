@@ -13,11 +13,13 @@ import { auth, googleProvider } from "../../firebase/FirebaseConfig";
 import { useData } from "../../context/data/MyState";
 import Loader from "../../components/loader/Loader";
 import { Icon } from "@iconify/react";
+import { useAuth } from "../../components/protector/AuthContext.jsx";
 
 function Login() {
   const navigate = useNavigate();
   const context = useData();
   const { loading, setLoading } = context;
+  const { user } = useAuth();
 
   const [isResetMode, setIsResetMode] = useState(false);
 
@@ -91,6 +93,8 @@ function Login() {
   }
 
   // Handle Google Login
+  
+
   const handleGoogleLogin = async () => {
     try {
       setLoading(true);
@@ -114,6 +118,8 @@ function Login() {
     }
   };
 
+  
+
   useEffect(() => {
     const checkRedirect = async () => {
       try {
@@ -132,6 +138,11 @@ function Login() {
     checkRedirect();
   }, []);
 
+  useEffect(() => {
+  if (user) {
+    navigate("/", { replace: true });
+  }
+}, [user]);
   // Handle show Password
   const [showPassword, setShowPassword] = useState(false);
 
