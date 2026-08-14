@@ -1,3 +1,154 @@
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import {
+onAuthStateChanged,
+signOut,
+updateProfile,
+updatePassword,
+} from "firebase/auth";
+import { firebaseDB, auth } from "../../firebase/FirebaseConfig";
+import { toast } from "react-toastify";
+
+function Profile() {
+const navigate = useNavigate();
+const [userData, setUserData] = useState(null);
+const [editMode, setEditMode] = useState(false);
+
+// -------FOR PASSWORD UPDATE-----------------
+const [showPasswordSection, setShowPasswordSection] = useState(false);
+const [newPassword, setNewPassword] = useState("");
+const [confirmPassword, setConfirmPassword] = useState("");
+// 🔐 Change Password (Simple Version)
+const handleChangePassword = async () => {
+const user = auth.currentUser;
+if (!user) return;
+
+if (!newPassword || !confirmPassword) {
+return toast.warning("Please fill all fields");
+}
+
+if (newPassword !== confirmPassword) {
+return toast.error("Passwords do not match");
+}
+
+try {
+await updatePassword(user, newPassword);
+toast.success("Password changed successfully 🎉");
+
+setNewPassword("");
+setConfirmPassword("");
+setShowPasswordSection(false);
+} catch (error) {
+if (error.code === "auth/requires-recent-login") {
+toast.error("Please login again to change password");
+} else {
+toast.error("Password change failed");
+}
+}
+};
+
+// -------END PASSWORD UPDATE-----------------
+
+const [formData, setFormData] = useState({
+name: "",
+photoURL: "",
+bio: "",
+address: "",
+pincode: "",
+});
+
+// Load User
+useEffect(() => {
+const unsubscribe = onAuthStateChanged(auth, async (user) => {
+if (user) {
+try {
+const docRef = doc(firebaseDB, "users", user.uid);
+const docSnap = await getDoc(docRef);
+
+let firestoreData = {};
+
+if (docSnap.exists()) {
+firestoreData = docSnap.data();
+}
+
+const combinedData = {
+name: user.displayName || firestoreData.name || "",
+email: user.email,
+photoURL: user.photoURL || firestoreData.photoURL || "",
+bio: firestoreData.bio || "",
+address: firestoreData.address || "",
+pincode: firestoreData.pincode || "",
+};
+
+setUserData(combinedData);
+setFormData(combinedData);
+} catch (error) {
+console.error("Error fetching profile:", error);
+}
+} else {
+navigate("/login");
+}
+});
+
+return () => unsubscribe();
+}, [navigate]);
+
+const handleChange = (e) => {
+const { name, value } = e.target;
+setFormData((prev) => ({ ...prev, [name]: value }));
+};
+
+// Update Profile
+const handleUpdate = async () => {
+try {
+const user = auth.currentUser;
+if (!user) return;
+
+// ✅ Update Firebase Authentication
+await updateProfile(user, {
+displayName: formData.name,
+photoURL: formData.photoURL,
+});
+
+console.log("DATA DIA", formData);
+// ✅ Update Firestore (merge to avoid overwrite)
+const userRef = doc(firebaseDB, "users", user.uid);
+
+await setDoc(
+userRef,
+{
+name: formData.name,
+email: user.email,
+photoURL: formData.photoURL,
+bio: formData.bio,
+address: formData.address,
+pincode: formData.pincode,
+updatedAt: new Date(),
+},
+{ merge: true },
+);
+
+toast.success("Profile updated successfully 🎉");
+setEditMode(false);
+} catch (error) {
+console.error(error);
+toast.error("Profile update failed");
+}
+};
+
+const handleSignOut = async () => {
+try {
+await signOut(auth);
+localStorage.removeItem("user");
+navigate("/login");
+} catch (error) {
+console.error("Error signing out:", error);
+}
+};
+
+if (!userData) return null;
+
 return (
   <div className="min-h-screen bg-[#f6fef9] w-full">
 
