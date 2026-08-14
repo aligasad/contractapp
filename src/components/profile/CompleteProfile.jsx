@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 
 function CompleteProfile() {
   const navigate = useNavigate();
+
   const userData = JSON.parse(localStorage.getItem("user"));
   const uid = userData?.user?.uid;
   const email = userData?.user?.email;
@@ -31,8 +32,10 @@ function CompleteProfile() {
       try {
         const docRef = doc(firebaseDB, "users", uid);
         const docSnap = await getDoc(docRef);
+
         if (docSnap.exists()) {
           const data = docSnap.data();
+
           setForm((prev) => ({
             ...prev,
             ...data,
@@ -48,14 +51,17 @@ function CompleteProfile() {
   }, [uid, navigate]);
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const signedUpAt = new Date().toISOString(); 
+      const signedUpAt = new Date().toISOString();
 
       const updatedForm = {
         ...form,
@@ -64,7 +70,7 @@ function CompleteProfile() {
 
       await setDoc(doc(firebaseDB, "users", uid), updatedForm);
 
-      // Update localStorage--------------
+      // Update localStorage
       const updatedUserData = {
         ...userData,
         user: {
@@ -72,6 +78,7 @@ function CompleteProfile() {
           ...updatedForm,
         },
       };
+
       localStorage.setItem("user", JSON.stringify(updatedUserData));
 
       toast.success("Profile saved successfully!");
@@ -83,78 +90,232 @@ function CompleteProfile() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 to-green-100 p-6">
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white p-6 rounded-2xl shadow-lg w-full max-w-md space-y-4"
+    <div className="min-h-screen bg-gradient-to-br from-green-50 to-green-100">
+
+      {/* Main responsive container */}
+      <div
+        className="
+          w-full
+          min-h-screen
+          px-4 py-6
+          sm:px-6 sm:py-8
+          md:px-8
+          lg:px-10
+          xl:px-12
+        "
       >
-        <h2 className="text-2xl font-bold text-center">Complete Your Profile</h2>
 
-        <input
-          type="text"
-          name="name"
-          placeholder="Full Name"
-          value={form.name}
-          onChange={handleChange}
-          required
-          className="w-full p-2 border rounded"
-        />
-
-        <input
-          type="email"
-          name="email"
-          value={form.email}
-          disabled
-          className="w-full p-2 border rounded bg-gray-100"
-        />
-
-        <textarea
-          name="address"
-          placeholder="Address"
-          value={form.address}
-          onChange={handleChange}
-          required
-          className="w-full p-2 border rounded"
-        />
-
-        <input
-          type="text"
-          name="pincode"
-          placeholder="Pincode"
-          value={form.pincode}
-          onChange={handleChange}
-          required
-          className="w-full p-2 border rounded"
-        />
-
-        <input
-          type="url"
-          name="photoURL"
-          placeholder="Profile Image URL (optional)"
-          value={form.photoURL}
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-        />
-
-        <textarea
-          name="Biography"
-          placeholder="Biography"
-          value={form.Biography}
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-        ></textarea>
-
-        <button
-          type="submit"
-          className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 cursor-pointer transition-colors duration-300 font-semibold"
+        {/* Form */}
+        <form
+          onSubmit={handleSubmit}
+          className="
+            w-full
+            bg-white
+            rounded-2xl
+            shadow-lg
+            p-5
+            sm:p-6
+            md:p-8
+            lg:p-10
+            space-y-5
+          "
         >
-          Save Profile
-        </button>
-      </form>
+
+          {/* Heading */}
+          <div className="text-center mb-6">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-800">
+              Complete Your Profile
+            </h2>
+
+            <p className="text-sm sm:text-base text-gray-500 mt-2">
+              Add your personal information
+            </p>
+          </div>
+
+          {/* Name */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Full Name
+            </label>
+
+            <input
+              type="text"
+              name="name"
+              placeholder="Enter your full name"
+              value={form.name}
+              onChange={handleChange}
+              required
+              className="
+                w-full
+                px-4 py-3
+                border border-gray-300
+                rounded-lg
+                outline-none
+                focus:ring-2
+                focus:ring-green-500
+                focus:border-green-500
+                transition
+              "
+            />
+          </div>
+
+          {/* Email */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Email
+            </label>
+
+            <input
+              type="email"
+              name="email"
+              value={form.email}
+              disabled
+              className="
+                w-full
+                px-4 py-3
+                border border-gray-300
+                rounded-lg
+                bg-gray-100
+                text-gray-500
+                cursor-not-allowed
+              "
+            />
+          </div>
+
+          {/* Address */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Address
+            </label>
+
+            <textarea
+              name="address"
+              placeholder="Enter your complete address"
+              value={form.address}
+              onChange={handleChange}
+              required
+              rows={4}
+              className="
+                w-full
+                px-4 py-3
+                border border-gray-300
+                rounded-lg
+                outline-none
+                resize-none
+                focus:ring-2
+                focus:ring-green-500
+                focus:border-green-500
+                transition
+              "
+            />
+          </div>
+
+          {/* Pincode */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Pincode
+            </label>
+
+            <input
+              type="text"
+              name="pincode"
+              placeholder="Enter pincode"
+              value={form.pincode}
+              onChange={handleChange}
+              required
+              className="
+                w-full
+                px-4 py-3
+                border border-gray-300
+                rounded-lg
+                outline-none
+                focus:ring-2
+                focus:ring-green-500
+                focus:border-green-500
+                transition
+              "
+            />
+          </div>
+
+          {/* Photo URL */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Profile Image URL
+            </label>
+
+            <input
+              type="url"
+              name="photoURL"
+              placeholder="https://example.com/photo.jpg"
+              value={form.photoURL}
+              onChange={handleChange}
+              className="
+                w-full
+                px-4 py-3
+                border border-gray-300
+                rounded-lg
+                outline-none
+                focus:ring-2
+                focus:ring-green-500
+                focus:border-green-500
+                transition
+              "
+            />
+          </div>
+
+          {/* Biography */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Biography
+            </label>
+
+            <textarea
+              name="bio"
+              placeholder="Tell us something about yourself..."
+              value={form.bio}
+              onChange={handleChange}
+              rows={5}
+              className="
+                w-full
+                px-4 py-3
+                border border-gray-300
+                rounded-lg
+                outline-none
+                resize-none
+                focus:ring-2
+                focus:ring-green-500
+                focus:border-green-500
+                transition
+              "
+            />
+          </div>
+
+          {/* Submit */}
+          <button
+            type="submit"
+            className="
+              w-full
+              bg-green-600
+              hover:bg-green-700
+              active:bg-green-800
+              text-white
+              py-3
+              rounded-lg
+              cursor-pointer
+              transition-colors
+              duration-300
+              font-semibold
+              text-base
+              sm:text-lg
+            "
+          >
+            Save Profile
+          </button>
+
+        </form>
+      </div>
     </div>
   );
 }
 
 export default CompleteProfile;
-// CompleteProfile.jsx
-// This component allows users to complete or edit their profile information.
